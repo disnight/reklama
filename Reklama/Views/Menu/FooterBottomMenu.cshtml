@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Domain.Entity.Other.MenuPageRef>
+
+@{
+    Layout = null;
+}
+
+<div class="bLinks">
+    @Html.ActionLink("Начать торговать через площадку", "Create", "Shop")
+    @foreach (var menuPageRef in Model)
+    {
+        @Html.ActionLink(menuPageRef.Page.Name, "Details", "Page", new { id = menuPageRef.PageId }, null)
+    }
+</div>

@@ -1,0 +1,41 @@
+﻿@using Domain.Entity.Announcements
+@using Domain.Enums
+@using Reklama.Models.SortModels
+@using Reklama.Models.ViewModels.Announcement
+@using Reklama.Models.ViewModels.Shared
+@model IEnumerable<Domain.Entity.Announcements.Subsection>
+
+@{
+    var searchViewModel = (SearchViewModel)ViewBag.SearchViewModel;
+}
+
+<div class="hedList">
+    <ul>
+        @foreach (Subsection subsection in ViewBag.Subsections)
+        {
+            <li>@Html.ActionLink(subsection.Name, "Search", new
+                                                                            {
+                                                                                // SearchViewModel
+                                                                                Name = searchViewModel.Name,
+                                                                                Category = CategorySearch.Announcement,
+                                                                                OnlyByName = searchViewModel.OnlyByName,
+                                                                                
+                                                                                IsEnabledFilter = searchViewModel.IsEnabledFilter,
+                                                                                CityId = searchViewModel.CityId,
+                                                                                PriceStart = searchViewModel.PriceStart,
+                                                                                PriceEnd = searchViewModel.PriceEnd,
+                                                                                HasPhoto = searchViewModel.HasPhoto,
+                                                                                HasAuction = searchViewModel.HasAuction,
+                                                                                SortOrder = searchViewModel.SortOrder,
+                                                                                SortOptions = searchViewModel.SortOptions,
+                                                                                SectionId = searchViewModel.SectionId,
+                                                                                SubsectionId = subsection.Id,
+                                                                                CategoryId = searchViewModel.CategoryId,
+                                                                                CurrentPage = 1,
+                                                                                PageSize = searchViewModel.PageSize
+                                                                            },
+                                                                            (subsection.Id.Equals(searchViewModel.SubsectionId) ? new { @class = "sectionSelected", style = "color: #F00;" } : null)
+                )</li>
+        }
+    </ul>
+</div>

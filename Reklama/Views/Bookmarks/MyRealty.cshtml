@@ -1,0 +1,200 @@
+﻿@using Domain.Entity.Realty;
+@using Domain.Enums
+@using Reklama
+@using Reklama.Models.SortModels
+@using Reklama.Models.ViewModels.Shared
+@model PagedList.IPagedList<Domain.Entity.Realty.Realty>
+@{
+    var sortModel = (PagerSortModel)ViewBag.SortModel;
+}
+
+<div class="catalogInner">
+    <table>
+        <tr>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                </div>
+                <h1>@ViewBag.Title</h1>
+                <div class="booksTabs">
+                    <ul>
+                        <li>@Html.RouteLink("Объявления", "MyAnnouncements")</li>
+                        <li class="a">@Html.RouteLink("Недвижимость", "MyRealty")</li>
+                        @*<li><a href="javascript:void(0)">Авто</a></li>
+                        <li><a href="javascript:void(0)">Купить</a></li>*@
+                    </ul>
+                </div>
+                <div class="ciList myBookm">
+                    <ul>
+                        @foreach (var realty in Model)
+                        {
+                            <li>
+                                <table>
+                                    <tr>
+                                        <td class="ciImg">
+                                            <a href="javascript:void(0)">
+                                                @if (realty.Photos.Count != 0)
+                                                {
+                                                    <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["realty_thumb"], "/", realty.Photos.OrderBy(x => x.CreatedAt).First().Link)" />
+                                                }
+                                                else
+                                                {
+                                                    <img src="/Images/System/no_photo.png" />
+                                                }
+                                            </a>
+                                        </td>
+                                        <td class="ciText">
+                                            <div>
+                                                <span class="ciName">
+                                                    <a href="http://jay.reklama.tm/Details/@realty.Id">@realty.Name</a>
+                                                    <span>@realty.Id</span>
+                                                </span>
+                                                <div class="ciType">
+                                                    <span class="sale">@realty.RealtyCategory.Name</span>
+                                                </div>
+                                                <p>
+                                                    @realty.SmallDescription
+                                                    <a href="http://jay.reklama.tm/Details/@realty.Id">Читать подробнее</a>
+                                                </p>
+                                                <div class="ciRate">
+                                                    <span>
+                                                        <img src="/Images/System/foto.png" />
+                                                        <span style="margin: 0; padding: 0;">Фото</span>
+                                                        <sup>@realty.Photos.Count</sup>
+                                                    </span>
+
+                                                    <img src="/Images/System/book.png" />
+                                                    <span style="margin: 0; padding: 0;">Комментарии</span>
+                                                    <sup>
+                                                        @if (realty.Comments == null)
+                                                        {
+                                                            @:0
+                                                        }
+                                                        else
+                                                        {
+                                                            @realty.Comments.Count
+                                                        }
+                                                    </sup>
+
+                                                </div>
+                                                <div class="ciAuthor">
+                                                    @Html.ActionLink(@realty.UserProfile.Email, "Index", "Profile", new { id = realty.UserId }, null)
+                                                    @string.Format("{0:dd.MM.yyyy HH:mm}", realty.CreatedAt)
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="ciOffers ciRealt">
+
+                                            @Html.Partial("_PriceCurrencyPartialList", new PriceCurrencyViewModel()
+                                                                                           {
+                                                                                               Currency = realty.Currency,
+                                                                                               IsAuction = realty.IsAuction,
+                                                                                               Price = realty.Price
+                                                                                           })
+
+                                        </td>
+                                        <td class="ciInfo">
+                                            <div>
+                                                <p class="ciStatus">статус - <span>@((realty.IsActive) ? "активно" : "неактивно")</span></p>
+                                                <p>дата публикации: <span>@string.Format("{0:dd.MM.yyyy}", realty.CreatedAt)</span></p>
+                                                <p>дата окончания: <span>@string.Format("{0:dd.MM.yyyy}", realty.ExpiredAt)</span></p>
+
+                                                @if (realty.UpTime <= DateTime.Now.AddHours(-((int)ViewBag.UpTimerealty)))
+                                                {
+                                                    <div id="RealtyUp">
+                                                        <input class="RealtyUp" realtyId="@realty.Id" value="Поднять объявление" type="button">
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    var time = DateTime.Now - realty.UpTime;
+                                                    time = TimeSpan.FromHours(ViewBag.UpTimerealty) - time;
+                                <p><b>Поднять объявление можно будет через:  @time.Hours ч. @time.Minutes м.</b></p>
+                                                }
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="pages">
+                    <ul class="fastNav">
+                        <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                        <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                        <a class="page-prev" href="javascript:void(0)"></a>
+                        <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
+
+                        @for (int page = 1; page <= Model.PageCount; page++)
+                        {
+                            <li>
+
+                                @if (page == Model.PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "MyRealty", new
+                                                                            {
+                                                                                CurrentPage = page,
+                                                                                PageSize = sortModel.PageSize
+                                                                            },
+                                                                            new { @class = "hr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "MyRealty", new
+                                                                            {
+                                                                                CurrentPage = page,
+                                                                                PageSize = sortModel.PageSize
+                                                                            })
+                                }
+                            </li>
+                        }
+
+                        <a class="page-next" href="javascript:void(0)"></a>
+                    </ul>
+
+                    <div class="pageslider">
+                        <div class="pagesliderTop">
+                            <ul>
+                                @for (int page = 1; page <= Model.PageCount; page++)
+                                {
+                                    <li>
+
+                                        @if (page == Model.PageNumber)
+                                        {
+                                            @Html.ActionLink(page.ToString(), "MyRealty", new
+                                                                            {
+                                                                                CurrentPage = page,
+                                                                                PageSize = sortModel.PageSize
+                                                                            },
+                                                                            new { @class = "shr" })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink(page.ToString(), "MyRealty", new
+                                                                            {
+                                                                                CurrentPage = page,
+                                                                                PageSize = sortModel.PageSize
+                                                                            })
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="alHScrollBar">
+                            <div class="alHScrollSlider" style="left: 0px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>
+
+
+@section head {
+    @Scripts.Render("~/Scripts/Bookmark.js")
+}

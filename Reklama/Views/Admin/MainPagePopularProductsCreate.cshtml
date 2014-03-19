@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Domain.Entity.Catalogs.Product>
+
+@{
+    ViewBag.Title = "Шаг 2. Выберите и добавьте товар";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Шаг2. Выберите и добавьте товар</h2>
+
+<table>
+    <tr>
+        <th>
+            
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Name, "Details", "Product", new { id = item.Id }, null)
+        </td>
+        <td>
+            @Html.ActionLink("Добавить", "MainPagePopularProductsCreate2", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

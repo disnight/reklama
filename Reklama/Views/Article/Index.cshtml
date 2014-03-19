@@ -1,0 +1,263 @@
+﻿@using System.Globalization
+@using System.Text.RegularExpressions
+@using Domain.Entity.Articles
+@using Reklama
+@using Reklama.Models.SortModels.Article
+@model PagedList.IPagedList<Domain.Entity.Articles.Article>
+
+@{
+    ViewBag.Title = "Статьи";
+    var sortModel = (ArticleSortModel)ViewBag.ArticleSortModel;
+}
+
+<div class="catalogInner">
+    <table>
+        <tr>
+            <td class="ci1">
+
+                @{
+                    try {
+                        Html.RenderAction("RenderSections", "Article", new { subsectionId = sortModel.SubsectionId });
+                    }
+                    catch {
+                        @: Unable to render the sections. Please, contact to administrator
+                    }
+                }
+                
+                @*
+                <div class="leftActual">
+                    <p>Актуальное</p>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <img src="/Images/User/lAct1.jpg" />
+                                SMSZombie заразил 500 тыс. Android-устройств
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <img src="/Images/User/lAct1.jpg" />
+                                SMSZombie заразил 500 тыс. Android-устройств
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="leftDiscus">
+                    <p>Обсуждаемое</p>
+                    <ul>
+                        <li><a href="javascript:void(0)">Apple похвалила Lumia и Xperia arc: они не копируют iPhone</a></li>
+                        <li><a href="javascript:void(0)">Samsung DV100: доступная 16-Мп камера с двумя дисплеями</a></li>
+                        <li><a href="javascript:void(0)">Apple похвалила Lumia и Xperia arc: они не копируют iPhone</a></li>
+                        <li><a href="javascript:void(0)">Samsung DV100: доступная 16-Мп камера с двумя дисплеями</a></li>
+                    </ul>
+                </div>
+                *@
+
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            
+
+
+
+
+
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                    <a href="/">Главная страница</a>
+                    <span class="arr">&rarr;</span>
+                    Статьи
+                </div>
+                <h1>Статьи</h1>
+                <div class="hed4">
+                    <span>
+                        <img src="/Images/System/hed4Bg.png" />
+                        Лучшее
+                    </span>
+                </div>
+
+
+                @try
+                {
+                    if (ProjectConfiguration.Get.ArticleConfig.Best1 != null)
+                    {
+                        <div class="mainArticlesBlock innerArticles">
+                            <div class="mainArticle">
+                                <div class="mArtImg">
+                                    <a href="@Url.Action("Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best1.Id})">
+                                        <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], ProjectConfiguration.Get.ArticleConfig.Best1.Logo)" />
+                                    </a>
+                                </div>
+                                <h2>
+                                    @Html.ActionLink(ProjectConfiguration.Get.ArticleConfig.Best1.Name, "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best1.Id})
+                                </h2>
+                                <p>
+                                    @ProjectConfiguration.Get.ArticleConfig.Best1.SmallDescription
+                                    <br />@Html.ActionLink("Читать полностью", "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best1.Id})
+                                </p>
+                                <div class="mArtDate">
+                                    @ProjectConfiguration.Get.ArticleConfig.Best1.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
+                                    <a href="javascript:void(0)">Комментариев: @ProjectConfiguration.Get.ArticleConfig.Best1.Comments.Count</a>
+                                </div>
+                            </div>
+                            <div class="mainArticlesList">
+                                <ul>
+                                    @if (ProjectConfiguration.Get.ArticleConfig.Best2 != null)
+                                    {
+                                        <li>
+                                                <div class="malImg">
+                                                    <a href="@Url.Action("Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best2.Id})">
+                                                        <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], ProjectConfiguration.Get.ArticleConfig.Best2.Logo)" />
+                                                    </a>
+                                                </div>
+                                                <div class="malText">
+                                                    <h3>
+                                                        @Html.ActionLink(ProjectConfiguration.Get.ArticleConfig.Best2.Name, "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best2.Id})
+                                                        <a class="commentIcon" href="javascript:void(0)"><span>@ProjectConfiguration.Get.ArticleConfig.Best2.Comments.Count</span></a>
+                                                    </h3>
+                                                    <p>
+                                                        @ProjectConfiguration.Get.ArticleConfig.Best2.SmallDescription
+                                                        <br />@Html.ActionLink("Читать полностью", "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best2.Id})
+                                                    </p>
+                                                    <div class="malDate">
+                                                        @ProjectConfiguration.Get.ArticleConfig.Best2.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
+                                                    </div>
+                                                </div>
+                                            </li>
+                                    }
+                                    @if (ProjectConfiguration.Get.ArticleConfig.Best3 != null)
+                                    {
+                                        <li>
+                                                <div class="malImg">
+                                                    <a href="@Url.Action("Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best3.Id})">
+                                                        <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], ProjectConfiguration.Get.ArticleConfig.Best3.Logo)" />
+                                                    </a>
+                                                </div>
+                                                <div class="malText">
+                                                    <h3>
+                                                        @Html.ActionLink(ProjectConfiguration.Get.ArticleConfig.Best3.Name, "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best3.Id})
+                                                        <a class="commentIcon" href="javascript:void(0)"><span>@ProjectConfiguration.Get.ArticleConfig.Best3.Comments.Count</span></a>
+                                                    </h3>
+                                                    <p>
+                                                        @ProjectConfiguration.Get.ArticleConfig.Best3.SmallDescription
+                                                        <br />@Html.ActionLink("Читать полностью", "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best3.Id})
+                                                    </p>
+                                                    <div class="malDate">
+                                                        @ProjectConfiguration.Get.ArticleConfig.Best3.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
+                                                    </div>
+                                                </div>
+                                            </li>
+                                    }
+                                    @if (ProjectConfiguration.Get.ArticleConfig.Best4 != null)
+                                    {
+                                        <li>
+                                                <div class="malImg">
+                                                    <a href="@Url.Action("Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best4.Id})">
+                                                        <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], ProjectConfiguration.Get.ArticleConfig.Best4.Logo)" />
+                                                    </a>
+                                                </div>
+                                                <div class="malText">
+                                                    <h3>
+                                                        @Html.ActionLink(ProjectConfiguration.Get.ArticleConfig.Best4.Name, "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best4.Id})
+                                                        <a class="commentIcon" href="javascript:void(0)"><span>@ProjectConfiguration.Get.ArticleConfig.Best4.Comments.Count</span></a>
+                                                    </h3>
+                                                    <p>
+                                                        @ProjectConfiguration.Get.ArticleConfig.Best4.SmallDescription
+                                                        <br />@Html.ActionLink("Читать полностью", "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best4.Id})
+                                                    </p>
+                                                    <div class="malDate">
+                                                        @ProjectConfiguration.Get.ArticleConfig.Best4.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
+                                                    </div>
+                                                </div>
+                                            </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    }
+
+
+
+                    <div class="hed5">
+                        <span>
+                            <img src="/Images/System/hed5Bg.png" />
+                            Последние пуликации
+                        </span>
+                    </div>
+                    <div class="innerArticlesList">
+                        <ul>
+                            @foreach (var article in Model)
+                            {
+                                <li>
+                                    <div class="ialImg">
+                                        <a href="javascript:void(0)">
+                                            <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], article.Logo)" /></a>
+                                    </div>
+                                    <div class="ialText">
+                                        <h2>@Html.ActionLink(article.Name, "Details", new {id = article.Id})</h2>
+                                        <p>@article.SmallDescription @*Regex.Replace(article.Description.PadRight(100), "<.*?>", string.Empty)*@
+                                            <br />@Html.ActionLink("Читать полностью", "Details", new {id = article.Id})</p>
+                                        <div class="mArtDate">
+                                            @article.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
+                                            @if (article.Comments.Count > 0)
+                                            {
+                                                <a href="javascript:void(0)">Комментариев: @article.Comments.Count</a>
+                                            }
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+
+                    <div class="pages">
+                        <ul class="fastNav">
+                            <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                            <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                            <a class="page-prev" href="javascript:void(0)"></a>
+                            <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
+
+                            @for (int page = 1; page <= Model.PageCount; page++)
+                            {
+                                <li>
+                                    @Html.ActionLink(page.ToString(), "Index", new {
+                                            SubsectionId = sortModel.SubsectionId,
+                                            PageSize = sortModel.PageSize,
+                                            CurrentPage = page
+                                        }, new {@class = "hr"})
+                                </li>
+                            }
+
+                            <a class="page-next" href="javascript:void(0)"></a>
+                        </ul>
+
+                        <div class="pageslider">
+                            <div class="pagesliderTop">
+                                <ul>
+                                    @for (int page = 1; page <= Model.PageCount; page++)
+                                    {
+                                        <li>
+                                            @Html.ActionLink(page.ToString(), "Index", new {
+                                            SubsectionId = sortModel.SubsectionId,
+                                            PageSize = sortModel.PageSize,
+                                            CurrentPage = page
+                                        }, new {@class = "shr"})
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="alHScrollBar">
+                                <div class="alHScrollSlider" style="left: 0px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                }   
+                catch (Exception e){}
+
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>

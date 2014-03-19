@@ -1,0 +1,50 @@
+﻿@using Reklama
+@model List<Domain.Entity.Realty.Realty>
+
+@{
+    Layout = null;
+}
+
+<div class="mainRealtyBlock addStyleRealt">
+    <div class="mArtHeader">
+        <span class="artHeader">
+            <img class="maHeaderL" src="/Images/System/maHeaderL.png" />
+            <img class="maHeaderR" src="/Images/System/maHeaderR.png" />
+            <a href="javascript:void(0)">Недвижимость</a>
+        </span>
+    </div>
+    <div class="mainRealtyWrap">
+        <div class="mainAds">
+            <ul>
+                @foreach(var realty in Model)
+                {
+                    <li>
+                        <div class="mAdsImg">
+                            <a href="javascript:void(0)">
+                                <img src="/Images/User/mAds5.jpg" />
+                            </a>
+                        </div>
+                        <div class="mAdsText">
+                            <span><a href="javascript:void(0)">@realty.Name </a></span>
+                            <div>
+                                <div class="type">
+                                    <span class="sale">ПРОДАЖА</span>
+                                    <span class="auction">ТОРГ</span>
+                                </div>
+                                <div class="mPrice">
+                                    <img class="mPriceL" src="/Images/System/mPriceL.png" />
+                                    <img class="mPriceR" src="/Images/System/mPriceR.png" />
+                                    120 000
+                                    <span>USD</span>
+                                </div>
+                            </div>
+                            <p class="author"><a href="javascript:void(0)">Argtys</a>меньше минуты назад</p>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <div class="allLink"><a href="javascript:void(0)">Все объявления за сегодня</a></div>
+        </div>
+        <img class="mRealtL" src="/Images/System/mRealtL.png" />
+    </div>
+</div>

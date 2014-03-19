@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Объявление поднято успешно";
+}
+
+<div class="siteMap">
+
+    <div class="adsDone">
+        <h3>Объявление поднято успешно</h3>
+    </div>
+    <div class="adsDoneColored" style="padding: 15px;">
+        <p>Начало размещения:<span>@string.Format("{0:dd.MM.yyyy HH:mm}", ViewBag.AdsPremiumsRef.CreatedAt)</span></p>
+        <p>Окончание размещения:<span>@string.Format("{0:dd.MM.yyyy HH:mm}", ViewBag.AdsPremiumsRef.ExpiresAt)</span></p>
+    </div>
+
+</div>
+<div class="middleBot"></div>

@@ -1,0 +1,27 @@
+﻿@model System.Linq.IQueryable<Domain.Entity.Admin.PopularSectionInCatalog>
+@{
+    Layout = null;
+}
+<div class="popCatalogueLeft">
+    <p class="listTitle">Популярные разделы каталога</p>
+
+    @if(Model != null)
+    {
+        <ul>
+            @foreach (var popular in Model)
+            {
+                var shopsProducts = popular.Section.Products.SelectMany(s => s.ShopProductRefs);
+
+                <li>
+                    @Html.ActionLink(popular.Section.Name, "List", "Product", new {secondCategoryId = popular.SectionId}, null)
+                    <sup>&nbsp;
+                        @if (shopsProducts != null && shopsProducts.Any())
+                        {
+                            @:от @Convert.ToInt32(shopsProducts.Min(p => p.Price)).ToString() $
+                        }
+                    </sup>
+                </li>
+            }
+        </ul>
+    }
+</div>

@@ -1,0 +1,69 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@model Reklama.Models.ViewModels.Shared.RegisterModel
+
+<div class="windowTitle">Регистрация пользователя</div> 
+<div class="regBlock">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "RegistrationForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <ul>
+@*            <li>
+                <label for="regName">Имя:</label>
+                <input type="text" id="regName" name="regName" />
+            </li>*@
+            <li>
+                @Html.LabelFor(m => m.Email)
+                @Html.EditorFor(m => m.Email)<br />
+                @Html.ValidationMessageFor(m => m.Email)
+            </li>
+            <li> 
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)<br />
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword)<br />
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                <p class="sure"><span>*</span> Заполнение всех полей обязательно</p>
+            </li>
+            <li>
+                @Html.Captcha(5, "_CaptchaPartial")
+            </li>
+            <li>
+                <input type="checkbox" class="AcceptUserAgreement" value="Accept" style="width: auto; float: none; height: auto; margin-top: 0;" />
+                <span style="font-size: 12px;">Принимаю условия @{ Html.RenderAction("LinkToOneOfMainConfigPage", "Links", new { mainPageName = "UserAgreement" }); }</span>
+                <br />
+                <span class="spanUserAgreement field-validation-error unvisible">
+                    Ознакомьтесь и примите условия пользовательского соглашения
+                </span>
+            </li>
+        </ul>
+        
+        
+        
+        
+        <div class="regSub">
+            <input type="submit" name="regSubmit" value=" " />
+        </div>
+    }
+</div>
+<div class="regComplete">
+    <span>Для завершеня регистрации необходимо активировать учетную запись.</span>
+    <p>Письмо с кодом активации выслано на <a href="javascript:void(0)">mail@mail.ru</a></p>
+</div>
+
+<script type="text/javascript">
+    $('#RegistrationForm').bind('submit', function () {
+        var isAccept = $('.AcceptUserAgreement').is(':checked');
+
+        if(!isAccept) {
+            $('.spanUserAgreement').addClass('visible').removeClass('unvisible');
+            return false;
+        }
+        
+        $('.spanUserAgreement').addClass('unvisible').removeClass('visible');
+        return true;
+    });
+</script>

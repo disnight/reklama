@@ -1,0 +1,146 @@
+/**************************************************
+  Объявления за сегодня
+*/
+.addStyleToday{
+	margin:0;
+	width: 33%;
+}
+
+.addStyleToday .mainAdsWrap{
+	width: 95%;
+	margin: 20px 0 10px 10px;
+}
+
+.addStyleToday .mainAds{
+	width: 100%;
+}
+
+/* 
+  Авто
+*/
+.addStyleAuto{
+	width: 33.5%;
+}
+
+.addStyleAuto .mainRealtyWrap{
+	margin: 20px 10px 10px 0;
+    width: 97%;
+}
+
+/* 
+  Недвижимость
+*/
+.addStyleRealt{
+	width: 33.5%;
+}
+
+.addStyleRealt .mainRealtyWrap{
+	margin: 20px 10px 10px 0;
+    width: 97%;
+}
+
+/* 
+  Правый зигзаг-бордер у Авто (mRealtR2.png)
+*/
+.mRealtR {
+    position: absolute;
+    right: 0px;
+    top: -6px;
+}
+
+/**************************************************
+  Авто-высота у популярных разделов
+*/
+.AddStylePopCatalogueTop{
+	padding: 0;
+}
+
+.AddStylePopCatalogueTop .popCatalogueRight{
+	height: auto;
+    padding: 19px 0 20px;
+}
+
+
+.popCatalogueBot {
+    margin: 10px 0 0;
+}
+/**************************************************
+  Баннеры
+*/
+
+.banner-max-50{
+	height: 50px;
+	width: 100%;
+	border-bottom: solid 1px #ddd;
+	background: white;
+}
+
+.banner-960-100{
+	height:100px;
+	width: 960px;
+	margin:0 auto 30px;
+	border: solid 1px #ddd;
+	background: white;
+}
+
+.banner-wrap-50{
+	display: inline-block;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 49%;	
+}
+
+.banner-470-100{
+	border: solid 1px #ddd;
+	background: white;
+	margin:0 auto;
+	height: 100px;
+	width: 470px;
+}
+
+/**************************************************
+  Обрубание заголовка многоточиями. Отдельный div не прописывал, ибо оно не помешает:)
+*/
+
+.mAdsText > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;	
+    white-space: nowrap;
+}
+
+
+/************footer margin*************/
+
+.wrapInner {
+    margin-bottom: 0;
+}
+
+/************block element size*************/
+
+.mainAds > ul > li {
+    height: 74px;
+}
+
+/***********sticker circle*****************/
+
+.pNewBgR {
+    top: 45%;
+}
+
+/***********img correction main page*************/
+
+.malImg img {
+    height: auto;
+    width: 200px;
+}/* картинки в статьях, для правильных пропорций*/
+
+
+/*
+
+Нет миниатюр у изображений в блоках Популярные товары и Статьи.
+В популярных товарах у изображений нужно убрать стили
+<img src="/Images/Catalog/Product/f7c5cbd1-14a5-487d-9977-c185c7864481.jpg" style="width:150px; height: 100px;">
+
+*/

@@ -1,0 +1,14 @@
+﻿@model Domain.Entity.Catalogs.CatalogSecondCategory
+
+<span class="hed1">Производители:</span>
+<div class="lMenu">
+    <ul>
+       <li class="a"><span>@Html.ActionLink("Все производители", "List", new { secondCategoryId = Model.Id })</span></li>
+        <li class="emptyLine"></li>
+        @foreach(var thirdCategory in Model.CatalogThirdCategories) {
+            <li><span>@Html.ActionLink(thirdCategory.Name, "List", new Reklama.Models.ViewModels.Catalog.ProductsFilterParams {
+                     SecondCategoryId = Model.Id, ThirdCategoryId = thirdCategory.Id
+                 })</span></li>
+        }
+    </ul>
+</div>

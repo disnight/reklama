@@ -1,0 +1,238 @@
+﻿@using Reklama.Models.ViewModels.Shared
+@using Domain.Enums
+@model PagedList.IPagedList<Domain.Entity.Articles.Article>
+
+@{
+    ViewBag.Title = "Результаты поиска";
+    var searchModel = (SearchViewModel)ViewBag.SearchViewModel;
+}
+
+
+<div class="catalogInner search">
+    <table>
+        <tr>
+            <td class="ci3 padLeft" valign="top">
+                <div class="crumbs">
+                </div>
+                <h1>Поиск по сайту</h1>
+
+                @if (Model == null || Model.Count <= 0)
+                {
+                    <p class="searchInfo">Ничего не найдено. Попробуйте сформулировать запрос иначе.</p>
+                }
+                else
+                {
+                    <div class="innerArticlesList">
+                        <ul>
+                            @foreach (var article in Model)
+                            {
+                                <li>
+                                    <div class="ialImg">
+                                        <a href="javascript:void(0)">
+                                            <img src="@string.Concat("/", Reklama.ProjectConfiguration.Get.FilePaths["articles"], article.Logo)" /></a>
+                                    </div>
+                                    <div class="ialText">
+                                        <h2>@Html.ActionLink(article.Name, "Details", "Article", new { id = article.Id }, null)</h2>
+                                        <p>@article.SmallDescription<br />
+                                            @Html.ActionLink("Читать полностью", "Details", "Article", new { id = article.Id }, null)
+                                        </p>
+                                        <div class="mArtDate">
+                                            @article.CreatedAt.ToString("D", System.Globalization.CultureInfo.CreateSpecificCulture("ru-RU"))
+                                            @if (article.Comments.Count > 0)
+                                            {
+                                                <a href="javascript:void(0)">@article.Comments.Count комментария</a>
+                                            }
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+
+
+                <div class="pages">
+                    <ul class="fastNav">
+                        <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                        <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                        <a class="page-prev" href="javascript:void(0)"></a>
+                        <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
+
+                        @for (int page = 1; page <= Model.PageCount; page++)
+                        {
+                            <li>
+
+                                @if (page == Model.PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "Search", new
+                                                                            {
+                                                                                // SearchViewModel
+                                                                                Name = searchModel.Name,
+                                                                                Category = CategorySearch.Article,
+                                                                                OnlyByName = searchModel.OnlyByName,
+
+                                                                                IsEnabledFilter = searchModel.IsEnabledFilter,
+                                                                                CityId = searchModel.CityId,
+                                                                                PriceStart = searchModel.PriceStart,
+                                                                                PriceEnd = searchModel.PriceEnd,
+                                                                                HasPhoto = searchModel.HasPhoto,
+                                                                                HasAuction = searchModel.HasAuction,
+                                                                                SortOrder = searchModel.SortOptions,
+                                                                                SortOptions = searchModel.SortOptions,
+                                                                                SectionId = searchModel.SectionId,
+                                                                                SubsectionId = searchModel.SubsectionId,
+                                                                                CategoryId = searchModel.CategoryId,
+                                                                                CurrentPage = page,
+                                                                                PageSize = searchModel.PageSize
+                                                                            },
+                                                                            new { @class = "hr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "Search", new
+                                                                            {
+
+                                                                                // SearchViewModel
+                                                                                Name = searchModel.Name,
+                                                                                Category = CategorySearch.Article,
+                                                                                OnlyByName = searchModel.OnlyByName,
+
+                                                                                IsEnabledFilter = searchModel.IsEnabledFilter,
+                                                                                CityId = searchModel.CityId,
+                                                                                PriceStart = searchModel.PriceStart,
+                                                                                PriceEnd = searchModel.PriceEnd,
+                                                                                HasPhoto = searchModel.HasPhoto,
+                                                                                HasAuction = searchModel.HasAuction,
+                                                                                SortOrder = searchModel.SortOptions,
+                                                                                SortOptions = searchModel.SortOptions,
+                                                                                SectionId = searchModel.SectionId,
+                                                                                SubsectionId = searchModel.SubsectionId,
+                                                                                CategoryId = searchModel.CategoryId,
+                                                                                CurrentPage = page,
+                                                                                PageSize = searchModel.PageSize
+                                                                            })
+                                }
+                            </li>
+                        }
+
+                        <a class="page-next" href="javascript:void(0)"></a>
+                    </ul>
+
+                    <div class="pageslider">
+                        <div class="pagesliderTop">
+                            <ul>
+                                @for (int page = 1; page <= Model.PageCount; page++)
+                                {
+                                    <li>
+
+                                        @if (page == Model.PageNumber)
+                                        {
+                                            @Html.ActionLink(page.ToString(), "Search", new
+                                                                            {
+                                                                                // SearchViewModel
+                                                                                Name = searchModel.Name,
+                                                                                Category = CategorySearch.Article,
+                                                                                OnlyByName = searchModel.OnlyByName,
+
+                                                                                IsEnabledFilter = searchModel.IsEnabledFilter,
+                                                                                CityId = searchModel.CityId,
+                                                                                PriceStart = searchModel.PriceStart,
+                                                                                PriceEnd = searchModel.PriceEnd,
+                                                                                HasPhoto = searchModel.HasPhoto,
+                                                                                HasAuction = searchModel.HasAuction,
+                                                                                SortOrder = searchModel.SortOptions,
+                                                                                SortOptions = searchModel.SortOptions,
+                                                                                SectionId = searchModel.SectionId,
+                                                                                SubsectionId = searchModel.SubsectionId,
+                                                                                CategoryId = searchModel.CategoryId,
+                                                                                CurrentPage = page,
+                                                                                PageSize = searchModel.PageSize
+                                                                            },
+                                                                            new { @class = "shr" })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink(page.ToString(), "Search", new
+                                                                            {
+                                                                                // SearchViewModel
+                                                                                Name = searchModel.Name,
+                                                                                Category = CategorySearch.Article,
+                                                                                OnlyByName = searchModel.OnlyByName,
+
+                                                                                IsEnabledFilter = searchModel.IsEnabledFilter,
+                                                                                CityId = searchModel.CityId,
+                                                                                PriceStart = searchModel.PriceStart,
+                                                                                PriceEnd = searchModel.PriceEnd,
+                                                                                HasPhoto = searchModel.HasPhoto,
+                                                                                HasAuction = searchModel.HasAuction,
+                                                                                SortOrder = searchModel.SortOptions,
+                                                                                SortOptions = searchModel.SortOptions,
+                                                                                SectionId = searchModel.SectionId,
+                                                                                SubsectionId = searchModel.SubsectionId,
+                                                                                CategoryId = searchModel.CategoryId,
+                                                                                CurrentPage = page,
+                                                                                PageSize = searchModel.PageSize
+                                                                            })
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="alHScrollBar">
+                            <div class="alHScrollSlider" style="left: 0px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            @*<td class="ci4">
+                <div class="leftProd">
+                    <ul>
+                        <li>
+                            <div>
+                                <a href="javascript:void(0)">
+                                    <span class="img">
+                                        <img src="~/Images/User/lProd1.jpg">
+                                    </span>
+                                    <div class="text">
+                                        <p>National Geographic NG 5159</p>
+                                        от 150 $
+                                    </div>
+                                    <div class="lShop">
+                                        <a href="javascript:void(0)">ООО «Диалса»</a>
+                                        <p>+375 29 555-00-00</p>
+                                        <p>+375 29 555-00-00</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <a href="javascript:void(0)">
+                                    <span class="img">
+                                        <img src="~/Images/User/lProd2.jpg">
+                                    </span>
+                                    <div class="text">
+                                        <p>Nokia Lumia 800</p>
+                                        от 380 $
+                                    </div>
+                                </a>
+                                <div class="lShop">
+                                    <a href="javascript:void(0)">ООО «Диалса»</a>
+                                    <p>+375 29 555-00-00</p>
+                                    <p>+375 29 555-00-00</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="lBan">
+                    <a href="javascript:void(0)">
+                        <img src="~/Images/System/ban120600.jpg" /></a>
+                </div>
+                <div class="lDirect">
+                    <img src="~/Images/User/yDir.jpg" />
+                </div>
+            </td>*@
+        </tr>
+    </table>
+</div>

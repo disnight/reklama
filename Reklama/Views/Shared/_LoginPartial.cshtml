@@ -1,0 +1,49 @@
+﻿@using Reklama.Models.ViewModels.Shared
+@model Reklama.Models.ViewModels.Shared.LoginModel 
+
+<div class="windowTitle">Авторизация</div>
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "AuthorizeForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <ul>
+        <li>
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email)<br /> 
+            @Html.ValidationMessageFor(m => m.Email)
+        </li>
+        <li>
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password)<br />
+            @Html.ValidationMessageFor(m => m.Password)
+            <p class="sure"><span>*</span> Заполнение всех полей обязательно</p>
+        </li>
+        <li>
+            @Html.CheckBoxFor(m => m.RememberMe, htmlAttributes: new { style = "float: none; width: auto;" })
+            @Html.LabelFor(m => m.RememberMe, htmlAttributes: new { style = "margin-top: 4px;" })
+        </li>
+        @if (ViewBag.ReturnUrl != null)
+        {
+            @Html.Hidden("returnUrl", (string)ViewBag.ReturnUrl)
+        }
+    </ul>
+    
+    
+    <div class="logSub">
+        <input type="submit" name="logSubmit" value=" " />
+    </div>
+}
+<script type="text/javascript">
+    $('.AuthorizeForm').bind('submit', function () {
+        $('.AuthorizeForm').valid();
+    });
+</script>
+<p>
+    <div id="rememberWindow" style="display: none;">
+        @Html.Partial("_RemeberPasswordPartial", new RegisterExternalLoginModel())
+    </div>
+    <p>
+        <a class="remLink" href="#rememberWindow">Изменить пароль</a>
+        <a class="regLink brownLink" href="#regWindow">Зарегистрироваться</a>
+    </p>
+</p>

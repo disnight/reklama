@@ -1,0 +1,10 @@
+﻿@model Reklama.Models.SortModels.CategorySearchSortModel
+
+@Scripts.Render("/Scripts/Bookmark.js")
+
+<div id="addToBookmarks" identifier="@Model.Id" category="@Model.Category">
+    <a class="addToBook" href="#">
+        <img src="/Images/System/plus.gif" />
+        <span>Добавить в закладки</span>
+    </a>
+</div>

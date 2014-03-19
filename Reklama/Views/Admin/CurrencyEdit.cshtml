@@ -1,0 +1,42 @@
+﻿@model Domain.Entity.Shared.Currency
+
+@{
+    ViewBag.Title = "Редактирование валюты";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Редактирование валюты</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Currency</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Rate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Rate)
+            @Html.ValidationMessageFor(model => model.Rate)
+        </div>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

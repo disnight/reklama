@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Domain.Entity.Announcements.Announcement>
+
+@{
+    ViewBag.Title = "Шаг 2. Выберите и добавьте объявление";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Шаг2. Выберите и добавьте объявление</h2>
+
+<table style="padding: 5px; border: 1px solid #000">
+    <tr>
+        <th>
+
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="padding: 5px; border: 1px solid #000">
+                @Html.ActionLink(item.Name, "Details", "Announcement", new { id = item.Id }, null)
+            </td>
+            <td style="padding: 5px; border: 1px solid #000">
+                @Html.ActionLink("Добавить", "MainPagePopularAnnouncementCreate2", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

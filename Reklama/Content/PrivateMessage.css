@@ -1,0 +1,40 @@
+﻿h2 {
+    margin: 10px;
+}
+
+#PrivateMessage {
+    margin: 10px;
+}
+
+.message-title {
+    margin-top: 5px;
+}
+
+.message-title a {
+    text-underline: none;
+    text-decoration: none;
+}
+
+.message-title a.read {
+    color: rgb(150, 180, 255);
+}
+
+.message-title a.unread {
+    color: rgb(50, 100, 250);
+}
+
+.details {
+    margin: 5px 10px;
+}
+
+.details-description {
+    margin-top: 10px;
+    color: #555;
+}
+
+.message-details-back {
+    margin-top: 10px;
+    padding-top: 10px;
+    text-decoration: none;
+    text-underline: none;
+}

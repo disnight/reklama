@@ -1,0 +1,202 @@
+﻿@using System.Globalization
+@using Domain.Entity.Announcements
+@using Domain.Entity.Common
+@using Reklama
+@model Domain.Entity.Announcements.Announcement
+
+@{
+    ViewBag.Title = "Создание нового объявления";
+}
+
+<div class="register">
+    <h1>Новое объявление</h1>
+    <div class="registerIn">
+        <div class="registerInW">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <div class="borderReg">
+                    <div>
+                        <span>Раздел сайта:</span>
+                        <input class="regRad" id="regRad" name="regRad" type="radio" checked="checked" value="" /><label
+                            for="regRad">объявления</label>
+                        <input class="regRad" id="regRad2" name="regRad" type="radio" value="" /><label for="regRad2">недвижимость</label>
+                    </div>
+                    <div>
+                        <span>@Html.LabelFor(c => c.CategoryId)</span>
+                        <div id="CategoryButtons">
+                            @foreach (var item in (SelectList)ViewBag.Categories)
+                            {
+                                <div class="item-container">
+                                    <div class="item">
+                                        @*<input id="categoryButtom1" class="radio" type="radio" value="1" name="Category">
+                                        <label for="categoryButtom1">Продам</label>*@
+                                        @Html.RadioButtonFor(m => m.CategoryId, item.Value, new { id = "categoryButtom" + item.Value, name = "CategoryId", @class = "radio" })
+                                        @Html.LabelFor(m => m, item.Text, new { @for = "categoryButtom" + item.Value })
+                                    </div>
+                                </div>
+                            }
+                            <div style="clear: both; padding: 0; height: 0; min-height: 0;"></div>
+                        </div>
+
+                    </div>
+                    <div>
+                        <input type="hidden" id="SectionId" value="0"/>
+                    <input type="hidden" id="SubsectionId" value="0"/>
+                        <span>@Html.LabelFor(s => s.SectionId)</span>
+                        <select id="newSectionId" name="newSectionId" >
+                            <option value="">Выбирете раздел</option>
+                            @foreach (var item in (List<GroupedSelectList>)ViewBag.Sections)
+                            {
+                                <optgroup label="@item.Text">
+                                    @foreach (var subItem in item.Children)
+                                    {
+                                        <option value="@subItem.Value" @(subItem.IsCurrent ? "selected='selected'" : "") >@subItem.Text</option>
+                                    }
+                                </optgroup>
+                            }
+                        </select>
+                        @* @Html.DropDownList("SectionId", (SelectList)ViewBag.Sections, new { @class = "SectionList" })
+                        @Html.ValidationMessageFor(s => s.SectionId)*@
+                    </div>
+@*                    <div>
+                        <span>@Html.LabelFor(s => s.SubsectionId)</span>
+                        @if (ViewBag.Subsections == null)
+                        {
+                            <select id="SubsectionId" name="SubsectionId" disabled="disabled"></select>
+                        }
+                        else
+                        {
+                            @Html.DropDownList("SubsectionId", (SelectList)ViewBag.Subsections)
+                            @Html.ValidationMessageFor(s => s.SubsectionId)
+                        }
+                    </div>*@
+
+                    <div>
+                        <span>@Html.LabelFor(s => s.CityId)</span>
+                        @Html.DropDownList("CityId", (SelectList)ViewBag.Cities)
+                        @Html.ValidationMessageFor(s => s.CityId)
+                    </div>
+                </div>
+                
+                <div class="borderReg">
+
+                    <div>
+                        <span class="regBrown">@Html.LabelFor(n => n.Name)</span>
+                        @Html.TextBoxFor(model => model.Name, new { @class = "regInp2" })
+                        <p>не более 64 символов</p>
+                        <div class="rightText">
+                            Заголовок - самая заметная часть объявления.<br />@Html.ValidationMessageFor(n => n.Name)
+                        </div>
+                    </div>
+
+                    <div>
+                        <span>@Html.LabelFor(m => m.SmallDescription)</span>
+                        @Html.TextAreaFor(m => m.SmallDescription)
+                        <p>не более 255 символов</p>
+                        <div class="rightText">
+                            Краткое описание позволит пользователю сразу сориентироваться в сущности объявления.
+                            Старайтесь писать кратко и лаконично, не нужно путать краткое описание с подробным.<br />
+                            @Html.ValidationMessageFor(m => m.SmallDescription)
+                        </div>
+                    </div>
+                    <div>
+                        <span>@Html.LabelFor(m => m.Description)</span>
+                        @Html.TextAreaFor(m => m.Description)
+                        <p>не более 1800 символов</p>
+                        <div class="rightText">
+                            Покупатель не захочет собирать дополнительную информацию о нужном ему товаре и сразу
+                            купит у вас. Кроме того, подробное описание товара оставляет хорошее впечатление
+                            о продавце - покупатель будет спокоен.<br />
+                            @Html.ValidationMessageFor(m => m.Description)
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+                <div class="borderReg">
+
+                    <div>
+                        <span class="regRed">@Html.LabelFor(m => m.Price)</span>
+                        @Html.TextBoxFor(m => m.Price, new { @class = "regInp1", data_val_number = "Должно быть введено вещественное число" })&nbsp;
+                        @Html.DropDownList("CurrencyId", (SelectList)ViewBag.Currencies, new { @style = "width: 100px;" })
+                        <p class="check">
+                            @Html.CheckBoxFor(m => m.IsAuction)
+                            @Html.LabelFor(m => m.IsAuction)
+                        </p>
+                        <div class="rightText">
+                            Если вы не укажете реальную стоимость, при сортировке по цене, покупатель не найдет
+                            ваше объявление. Цена  «1 у.е.»  отпугивает покупателя своей несерьезностью.<br />
+                            @Html.ValidationMessageFor(m => m.Price)
+                        </div>
+                        <div>
+                            <br />
+                            <span class="regBrown">@Html.LabelFor(n => n.Phone)</span>
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "regInp2" })
+                            <p>не более 32 символов</p>
+                            <div class="rightText">@Html.ValidationMessageFor(n => n.Name)</div>
+                        </div>
+                        <div>
+                            <p class="check" style="margin-top: -15px;">
+                                @Html.CheckBoxFor(m => m.IsDisplayPhone)
+                                @Html.LabelFor(m => m.IsDisplayPhone)
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="borderReg">
+
+                    <div>
+                        <span>Фотографии:</span>
+                        <input class="regBut1" type="button" value="" />
+                        <img id="load" src="loadstop.gif" class="unvisible" />
+                        <div class="rightText">
+                            Фотографии работают гораздо лучше, чем самый талантливый текст. Взглянув на фотографию
+                            и представив себя счастливым владельцем товара, покупатель может захотеть немедленно
+                            его купить. Чем больше фотографий - тем лучше.<br />
+                            <strong>jpeg, png, gif не более 1MB</strong>
+                        </div>
+
+                        <div id="imagePreview" class="@((ViewBag.UploadedImages != null) ? "visible" : "unvisible")">
+                            Загруженные файлы : 
+                            <br />
+                            @if (ViewBag.UploadedImages != null)
+                            {
+                                foreach (string image in (IEnumerable<string>)ViewBag.UploadedImages)
+                                {
+                                <div class="image_fields">
+                                    <img class="announcementImage" src="/Images/Users/@image"/>
+                                    <input type="hidden" name="images[]" value="@image" /><br />
+                                    <a href="#" class="image_remove" onclick="return $.fn.removeImage($(this));">Удалить</a>
+                                </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                
+                @Html.AntiForgeryToken()
+                <div class="regBtm">
+
+                    @*<a href="javascript:void(0)">Предварительный просмотр</a>*@
+                    <input class="regBut2" type="submit" value="" />
+                    <p>
+                        Время размещения с @string.Format("{0:dd.MM.yyyy}", DateTime.Now) до @string.Format("{0:dd.MM.yyyy}", DateTime.Now.AddDays(ProjectConfiguration.Get.GetConfigValue("ExpiredAtAnnouncement").ToInt32(null)))
+                    </p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="middleBot"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/ajaxupload.js")
+    @Scripts.Render("~/Scripts/Announcement.js")
+    @Styles.Render("~/Content/Announcement.css")
+}

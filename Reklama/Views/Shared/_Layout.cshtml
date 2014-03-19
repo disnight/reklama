@@ -1,0 +1,290 @@
+﻿@using Reklama.Models.ViewModels.Shared
+@using Reklama;
+@using Domain.Enums;
+
+@{
+    
+    var selectedSiteCategory = (ViewBag.SelectedSiteCategory != null) ? (CategorySearch)ViewBag.SelectedSiteCategory : CategorySearch.Index;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>@ViewBag.Title</title>
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link rel="shortcut icon" href="/Images/System/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/Images/System/favicon.ico" type="image/x-icon" />
+    @Scripts.Render("~/Scripts/jquery-1.8.0.min.js")
+    @Styles.Render("~/Scripts/fancybox/jquery.fancybox.css")
+    @Scripts.Render("~/Scripts/jquery.textshadow.js")
+    @Scripts.Render("~/Scripts/jquery.equal-height-columns.js")
+    @Scripts.Render("~/Scripts/jquery.mousewheel-3.0.6.pack.js")
+    @Scripts.Render("~/Scripts/jquery.fancybox.js")
+    @Scripts.Render("~/Scripts/reactive.js")
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Html.RenderScripts()
+    @RenderSection("head", required: false)
+</head>
+<body>
+
+    @* TODO: Remove margin top *@
+    <div class="wrap">
+        <div class="wrapInner">
+            <div class="header">
+
+                @*
+                <div class="headerTop">
+                    <ul>
+                        <li>
+                            <div class="topBlocks">
+                                <a href="javascript:void(0)" class="topBlocksWrap">
+                                    <img class="topBgL" src="/Images/System/topBg.png" />
+                                    <img class="topBgR" src="/Images/System/topBg.png" />
+                                    <div class="topImg">
+                                        <div>
+                                            <img src="/Images/User/topImg.jpg" />
+                                        </div>
+                                    </div>
+                                    <span>Лучшее предложение</span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="topBlocks">
+                            <a href="javascript:void(0)" class="topBlocksWrap">
+                                <img class="topBgL" src="/Images/System/topBg.png" />
+                                <img class="topBgR" src="/Images/System/topBg.png" />
+                                <div class="topImg">
+                                    <div>
+                                        <img src="/Images/User/topImg.jpg" />
+                                    </div>
+                                </div>
+                                <span>Кондиционеры</span>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="topBlocks">
+                                <a href="javascript:void(0)" class="topBlocksWrap">
+                                    <img class="topBgL" src="/Images/System/topBg.png" />
+                                    <img class="topBgR" src="/Images/System/topBg.png" />
+                                    <div class="topImg">
+                                        <div>
+                                            <img src="/Images/User/topImg.jpg" />
+                                        </div>
+                                    </div>
+                                    <span>Велосипеды</span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="topBlocks">
+                                <a href="javascript:void(0)" class="topBlocksWrap">
+                                    <img class="topBgL" src="/Images/System/topBg.png" />
+                                    <img class="topBgR" src="/Images/System/topBg.png" />
+                                    <div class="topImg">
+                                        <div>
+                                            <img src="/Images/User/topImg.jpg" />
+                                        </div>
+                                    </div>
+                                    <span>Горные лыжи</span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="topBlocks">
+                                <a href="javascript:void(0)" class="topBlocksWrap">
+                                    <img class="topBgL" src="/Images/System/topBg.png" />
+                                    <img class="topBgR" src="/Images/System/topBg.png" />
+                                    <div class="topImg">
+                                        <div>
+                                            <img src="/Images/User/topImg.jpg" />
+                                        </div>
+                                    </div>
+                                    <span>Сувенирная продукция</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>*@
+
+
+                <div class="headerBot">
+                    <div class="logo">
+                        <a href="http://reklama.tm/">
+                            <img src="/Images/System/logo1.png" /></a>
+                        @{ Html.RenderAction("UnderLogoMenu", "Menu"); }
+                    </div>
+                    <p><span>* </span>@ViewBag.Slogan</p>
+
+                    @Html.Partial("_SearchPartial", (ViewBag.SearchViewModel != null ? new SearchViewModel() { Name = ViewBag.SearchViewModel.Name, Category = ViewBag.SearchViewModel.Category, OnlyByName = ViewBag.SearchViewModel.OnlyByName } : (new SearchViewModel() { Category = selectedSiteCategory } )))
+
+                    @Html.Partial("_LoginMenuPartial")
+
+
+                    <div class="hMenu">
+                        <img class="hMenuL" src="/Images/System/hMenuL.png" />
+                        <img class="hMenuR" src="/Images/System/hMenuR.png" />
+                        <table>
+                            <tr>
+                                <td @((selectedSiteCategory == CategorySearch.Product) ? "class=a" : "")>@Html.ActionLink("Товары", "Catalog", "Product")</td>
+                                <td @((selectedSiteCategory == CategorySearch.Realty) ? "class=a" : "")><a href="http://jay.reklama.tm/">Недвижимость</a></td>
+                                <td @((selectedSiteCategory == CategorySearch.Announcement) ? "class=a" : "")>@Html.ActionLink("Объявления", "List", "Announcement")</td>
+                                <td @((selectedSiteCategory == CategorySearch.Auto) ? "class=a" : "")>@Html.ActionLink("Авто", "List", "Announcement", new { SectionId = 3 }, null)</td>
+                                <td @((selectedSiteCategory == CategorySearch.Article) ? "class=a" : "")>@Html.ActionLink("Статьи", "Index", "Article")</td>
+                                @*<td class="f"><a href="javascript:void(0)">Форум</a></td>*@
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    @* Выпадающий список с меню *@
+                    @{ Html.RenderAction("AllsDropDownMenu", "Menu"); }
+
+                </div>
+            </div>
+            <div class="middle">
+                <div class="backTop" style="display: block;"><a title="Вверх" href="javascript:void(0)"></a></div>
+
+                @if (TempData["notice"] != null)
+                {
+                    <div id="notice" style="width: 40%; margin: 10px auto; border: 1px solid green; padding: 20px; font-family: sans-serif; font-size: 14px; font-weight: bold; color: orangered;">
+                        @Html.Raw(TempData["notice"])
+                    </div>
+                }
+
+                @if (TempData["error"] != null)
+                {
+                    <div id="error" style="width: 40%; margin: 10px auto; border: 1px solid red; padding: 20px; font-family: sans-serif; font-size: 12px; font-weight: bold; color: mediumblue;">
+                        @Html.Raw(TempData["error"])
+                    </div>
+                }
+
+                @RenderBody()
+
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="footerOuter">
+            <div class="footer">
+                <div class="footerTop"></div>
+                <div class="bMenu">
+                    <table>
+                        <tr>
+                            <td>@Html.ActionLink("Товары", "Catalog", "Product")</td>
+                            <td><a href="http://jay.reklama.tm/">Недвижимость</a></td>
+                            <td>@Html.ActionLink("Объявления", "List", "Announcement")</td>
+                            <td>@Html.ActionLink("Авто", "List", "Announcement", new { SectionId = 3 }, null)</td>
+                            <td>@Html.ActionLink("Статьи", "Index", "Article")</td>
+                            @*<td><a href="javascript:void(0)">Форум</a></td>*@
+                        </tr>
+                    </table>
+                </div>
+                <div class="copyright">
+                    <div class="bLogo">
+                        <a href="/">
+                            <img src="/Images/System/logo1.png" /></a>
+                    </div>
+                    <p>www.reklama.tm</p>
+                    <p>&copy; 2012</p>
+                </div>
+                <div class="footerInfo">
+
+                    @* Footer Menu *@
+                    @{ Html.RenderAction("FooterMenu", "Menu"); }
+
+                    @*                    <div class="footerStat">
+                        Вчера:
+                        <span>12 300</span>
+                        поданных объявлений, 
+                        <span>448 147</span>
+                        посещений,
+                        <span>4 457 356</span>
+                        просмотров страниц.
+                    </div>
+                    <div class="bSiteMap">
+                        <a href="javascript:void(0)">Карта сайта</a>
+                    </div>*@
+
+                    @* FooterBottomMenu *@
+                    @try { Html.RenderAction("FooterBottomMenu", "Menu"); }
+                    catch { }
+                    <!-- Yandex.Metrika informer -->
+                    <a href="http://metrika.yandex.ru/stat/?id=21414034&amp;from=informer"
+                        target="_blank" rel="nofollow">
+                        <img src="//bs.yandex.ru/informer/21414034/3_0_FF6F20FF_FF4F00FF_1_pageviews"
+                            style="width: 88px; height: 31px; border: 0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" onclick="try{Ya.Metrika.informer({i:this,id:21414034,lang:'ru'});return false}catch(e){}" /></a>
+                    <!-- /Yandex.Metrika informer -->
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        @Html.ActionLink("Администраторская", "General", "Admin", null, new { @class = "error" })
+                    }
+                    else if (User.IsInRole("Moderator"))
+                    {
+                        @Html.ActionLink("Модераторская", "PageIndex", "Admin", null, new { @class = "error" })
+                    }
+
+                </div>
+                @{ Html.RenderAction("ViewSocialLinks", "Links"); }
+
+                <div class="reactive">
+                    <p>
+                        <br />
+                        <a href="javascript: void(0)">Дизайн от</a>
+                    </p>
+                    <a href="javascript: void(0)">
+                        <img src="/Images/System/reactive.png" /></a>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/Scripts/jquery.fancybox.js")
+    @Scripts.Render("/Scripts/slides.min.jquery.js")
+
+
+    
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function () {
+                try {
+                    w.yaCounter21414034 = new Ya.Metrika({
+                        id: 21414034,
+                        webvisor: true,
+                        clickmap: true,
+                        trackLinks: true,
+                        accurateTrackBounce: true
+                    });
+                } catch (e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript>
+        <div>
+            <img src="//mc.yandex.ru/watch/21414034" style="position: absolute; left: -9999px;" alt="" />
+        </div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+</body>
+</html>

@@ -1,0 +1,78 @@
+﻿@using Domain.Entity.Shared
+@model Reklama.Models.ViewModels.Announcement.FilterParams
+
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+<div class="realtyForm">
+    <p class="rfTitle">
+        Подбор<br />
+        по параметрам
+    </p>
+    @using (Html.BeginForm("SortedByParamList", "Announcement", FormMethod.Get))
+    {
+        @Html.ValidationSummary(true)
+
+            <div class="realtyFilters realtyCity">
+                @Html.LabelFor(a => a.CityId)
+                <div>
+                    @Html.DropDownList("CityId", @Model.Cities, new { @class = "city" })
+                   
+
+                    @*                                <p class="filtersAdd"><a href="javascript:void(0)">Добавить еще</a></p>
+                                <input type="text" name="cityName" class="cityName" value="название города" />*@
+                </div>
+            </div>
+            <div class="realtyFilters realtyPrice">
+                <label>Стоимость:</label>
+                <div>
+                    <ul>
+                        <li>
+                            <span>@Html.LabelFor(a => a.PriceStart)</span>
+                            @Html.EditorFor(a => a.PriceStart)
+                        </li>
+                        <li>
+                            <span>@Html.LabelFor(a => a.PriceEnd)</span>
+                            @Html.EditorFor(a => a.PriceEnd)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="realtyFilters realtyMore3">
+
+                <div>
+                    <ul>
+                        <li>
+                            @Html.CheckBoxFor(a => a.HasPhoto)
+                            <span>@Html.LabelFor(a => a.HasPhoto)</span>
+                        </li>
+                        <li>
+                            @Html.CheckBoxFor(a => a.HasAuction)
+                            <span>@Html.LabelFor(a => a.HasAuction)</span>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+            <div class="realtyFilters realtySubmit">
+
+                <div>
+                    @Html.HiddenFor(s => s.CategoryId)
+                    @Html.HiddenFor(s => s.CityId)
+                    @Html.HiddenFor(s => s.PageSize)
+                    @Html.HiddenFor(s => s.SectionId)
+                    @Html.HiddenFor(s => s.SortOptions)
+                    @Html.HiddenFor(s => s.SortOrder)
+                    @Html.HiddenFor(s => s.SubsectionId)
+                    @Html.HiddenFor(s => s.CurrentPage)
+                    @Html.HiddenFor(s => s.IsEnabledFilter)
+                    <input type="submit" name="subm" class="subm" value="" />
+                </div>
+            </div>
+    }
+
+</div>

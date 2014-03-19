@@ -1,0 +1,707 @@
+﻿@using Domain.Entity.Realty;
+@using Domain.Enums
+@using Reklama
+@using Reklama.Models.SortModels
+@using Reklama.Models.ViewModels.Realty
+@using Reklama.Models.ViewModels.Shared
+@model PagedList.IPagedList<Domain.Entity.Realty.Realty>
+
+@{
+    ViewBag.Title = "reklama.tm Недвижимость";
+    var sortModel = (RealtySortByParams)ViewBag.SortModel;
+}
+
+<div class="catalogInner">
+    <table>
+        <tr>
+            <td class="ci1 green">
+                <div class="placeGoods sec">
+                    <a href="http://reklama.tm/Realty/Create"></a>
+                </div>
+                @Html.Partial("_RealtyCategories", (object)ViewBag.Categories)
+                @Html.Partial("_RealtySortByParams", sortModel)
+                @*<div class="leftProd">
+                    <ul>
+                        <li>
+                            <div>
+                                <a href="javascript:void(0)">
+                                    <span class="img">
+                                        <img src="~/Images/User/lProd1.jpg">
+                                    </span>
+                                    <div class="text">
+                                        <p>National Geographic NG 5159</p>
+                                        от 150 $
+                                    </div>
+                                    <div class="lShop">
+                                        <a href="javascript:void(0)">ООО «Диалса»</a>
+                                        <p>+375 29 555-00-00</p>
+                                        <p>+375 29 555-00-00</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <a href="javascript:void(0)">
+                                    <span class="img">
+                                        <img src="~/Images/User/lProd2.jpg">
+                                    </span>
+                                    <div class="text">
+                                        <p>Nokia Lumia 800</p>
+                                        от 380 $
+                                    </div>
+                                </a>
+                                <div class="lShop">
+                                    <a href="javascript:void(0)">ООО «Диалса»</a>
+                                    <p>+375 29 555-00-00</p>
+                                    <p>+375 29 555-00-00</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>*@
+                @Html.Partial("_YandexDirectPartial")
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="~/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                    @Html.ActionLink("Главная страница", "Index", "Home")
+                    <span class="arr">&rarr;</span>
+                    Недвижимость
+                </div>
+                <h1>Недвижимость2</h1>
+                <div class="hed3">
+                    <ul>
+                        <li @if (!sortModel.SectionId.HasValue || sortModel.SectionId == 0)
+                            {
+                            @:class="a"
+                        }>
+                            @Html.ActionLink("Все", "List", new
+                       {
+                           SortOptions = sortModel.SortOptions,
+                           SortOrder = sortModel.SortOrder,
+                           IsEnableSort = sortModel.IsEnableSort,
+                           CurrentPage = 1,
+                           PageSize = sortModel.PageSize,
+                           CategoryId = sortModel.CategoryId,
+                           SectionId = 0,
+                           CityId = sortModel.CityId,
+                           sortModel.StringCountsRoom,
+                           IsAuction = sortModel.IsAuction,
+                           IsPerson = sortModel.IsPerson,
+                           Street = sortModel.Street,
+                           WithBasement = sortModel.WithBasement,
+                           WithExtension = sortModel.WithExtension,
+                           WithGarage = sortModel.WithGarage,
+                           WithGarden = sortModel.WithGarden,
+                           WithPhoto = sortModel.WithPhoto,
+                           ToCeillingHeight = sortModel.ToCeillingHeight,
+                           FromCeillingHeight = sortModel.FromCeillingHeight,
+                           ToFloor = sortModel.ToFloor,
+                           FromFloor = sortModel.FromFloor,
+                           ToFloorCount = sortModel.ToFloorCount,
+                           FromFloorCount = sortModel.FromFloorCount,
+                           ToPrice = sortModel.ToPrice,
+                           FromPrice = sortModel.FromPrice,
+                           ToSquare = sortModel.ToSquare,
+                           FromSquare = sortModel.FromSquare
+                       })
+
+                        </li>
+                        @foreach (RealtySection section in ViewBag.Sections)
+                        {
+                            <li @if (sortModel.SectionId.HasValue && sortModel.SectionId.Value == section.Id)
+                                { 
+                                    @:class="a" 
+                                    }
+                            >
+                                @Html.ActionLink(section.Name, "List", new
+                                                                            {
+                                                                                SortOptions = sortModel.SortOptions,
+                                                                                SortOrder = sortModel.SortOrder,
+                                                                                IsEnableSort = sortModel.IsEnableSort,
+                                                                                CurrentPage = 1,
+                                                                                PageSize = sortModel.PageSize,
+                                                                                CategoryId = sortModel.CategoryId,
+                                                                                SectionId = section.Id,
+                                                                                CityId = sortModel.CityId,
+                                                                                sortModel.StringCountsRoom,
+                                                                                IsAuction = sortModel.IsAuction,
+                                                                                IsPerson = sortModel.IsPerson,
+                                                                                Street = sortModel.Street,
+                                                                                WithBasement = sortModel.WithBasement,
+                                                                                WithExtension = sortModel.WithExtension,
+                                                                                WithGarage = sortModel.WithGarage,
+                                                                                WithGarden = sortModel.WithGarden,
+                                                                                WithPhoto = sortModel.WithPhoto,
+                                                                                ToCeillingHeight = sortModel.ToCeillingHeight,
+                                                                                FromCeillingHeight = sortModel.FromCeillingHeight,
+                                                                                ToFloor = sortModel.ToFloor,
+                                                                                FromFloor = sortModel.FromFloor,
+                                                                                ToFloorCount = sortModel.ToFloorCount,
+                                                                                FromFloorCount = sortModel.FromFloorCount,
+                                                                                ToPrice = sortModel.ToPrice,
+                                                                                FromPrice = sortModel.FromPrice,
+                                                                                ToSquare = sortModel.ToSquare,
+                                                                                FromSquare = sortModel.FromSquare
+                                                                            })
+                            </li>
+                        }
+                    </ul>
+                    @* Как поднять объявление *@
+                    @{ Html.RenderAction("LinkToOneOfMainConfigPage", "Links", new { mainPageName = "HowToUpAnnouncement", cssClass = "howUp", target = "_blank" }); }
+                </div>
+                <div class="hed2 real">
+                    <div class="ciSort">
+                        <span>Сортировать по:</span>
+                        <ul>
+                            <li 
+                                @if (sortModel.SortOptions == SortOptionsParams.ByPrice)
+                                {
+                                    @:class="a"
+                                }
+                                >
+                                <img class="ciSortL" src="~/Images/System/ciSortL2.png"><img class="ciSortR" src="~/Images/System/ciSortR2.png">
+                                <span>@Html.ActionLink("цене", "List", new
+                                                                           {
+                                                                               SortOptions = SortOptionsParams.ByPrice,
+                                                                               SortOrder = sortModel.SortOrder,
+                                                                               IsEnableSort = sortModel.IsEnableSort,
+                                                                               CurrentPage = 1,
+                                                                               PageSize = sortModel.PageSize,
+                                                                               CategoryId = sortModel.CategoryId,
+                                                                               SectionId = sortModel.SectionId,
+                                                                               CityId = sortModel.CityId,
+                                                                               sortModel.StringCountsRoom,
+                                                                               IsAuction = sortModel.IsAuction,
+                                                                               IsPerson = sortModel.IsPerson,
+                                                                               Street = sortModel.Street,
+                                                                               WithBasement = sortModel.WithBasement,
+                                                                               WithExtension = sortModel.WithExtension,
+                                                                               WithGarage = sortModel.WithGarage,
+                                                                               WithGarden = sortModel.WithGarden,
+                                                                               WithPhoto = sortModel.WithPhoto,
+                                                                               ToCeillingHeight = sortModel.ToCeillingHeight,
+                                                                               FromCeillingHeight = sortModel.FromCeillingHeight,
+                                                                               ToFloor = sortModel.ToFloor,
+                                                                               FromFloor = sortModel.FromFloor,
+                                                                               ToFloorCount = sortModel.ToFloorCount,
+                                                                               FromFloorCount = sortModel.FromFloorCount,
+                                                                               ToPrice = sortModel.ToPrice,
+                                                                               FromPrice = sortModel.FromPrice,
+                                                                               ToSquare = sortModel.ToSquare,
+                                                                               FromSquare = sortModel.FromSquare
+                                                                           },
+                                                                         new { @class = "a_ads_list_sort_params" })
+
+                                </span></li>
+                            <li 
+                                @if (sortModel.SortOptions == SortOptionsParams.ByDate)
+                                {
+                                    @:class="a"
+                                }
+                                >
+                                <img class="ciSortL" src="~/Images/System/ciSortL2.png"><img class="ciSortR" src="~/Images/System/ciSortR2.png">
+                                <span>@Html.ActionLink("дате", "List", new
+                                                                            {
+                                                                                SortOptions = SortOptionsParams.ByDate,
+                                                                                SortOrder = sortModel.SortOrder,
+                                                                                IsEnableSort = sortModel.IsEnableSort,
+                                                                                CurrentPage = 1,
+                                                                                PageSize = sortModel.PageSize,
+                                                                                CategoryId = sortModel.CategoryId,
+                                                                                SectionId = sortModel.SectionId,
+                                                                                CityId = sortModel.CityId,
+                                                                                sortModel.StringCountsRoom,
+                                                                                IsAuction = sortModel.IsAuction,
+                                                                                IsPerson = sortModel.IsPerson,
+                                                                                Street = sortModel.Street,
+                                                                                WithBasement = sortModel.WithBasement,
+                                                                                WithExtension = sortModel.WithExtension,
+                                                                                WithGarage = sortModel.WithGarage,
+                                                                                WithGarden = sortModel.WithGarden,
+                                                                                WithPhoto = sortModel.WithPhoto,
+                                                                                ToCeillingHeight = sortModel.ToCeillingHeight,
+                                                                                FromCeillingHeight = sortModel.FromCeillingHeight,
+                                                                                ToFloor = sortModel.ToFloor,
+                                                                                FromFloor = sortModel.FromFloor,
+                                                                                ToFloorCount = sortModel.ToFloorCount,
+                                                                                FromFloorCount = sortModel.FromFloorCount,
+                                                                                ToPrice = sortModel.ToPrice,
+                                                                                FromPrice = sortModel.FromPrice,
+                                                                                ToSquare = sortModel.ToSquare,
+                                                                                FromSquare = sortModel.FromSquare
+                                                                            }, new { @class = "a_ads_list_sort_params" })</span>
+                            </li>
+                            <li 
+                                @if (sortModel.SortOptions == SortOptionsParams.ByName)
+                                {
+                                    @:class="a"
+                                }
+                            >
+                                <img class="ciSortL" src="~/Images/System/ciSortL2.png"><img class="ciSortR" src="~/Images/System/ciSortR2.png">
+                                <span>@Html.ActionLink("названию", "List", new
+                                                                            {
+                                                                                SortOptions = SortOptionsParams.ByName,
+                                                                                SortOrder = sortModel.SortOrder,
+                                                                                IsEnableSort = sortModel.IsEnableSort,
+                                                                                CurrentPage = 1,
+                                                                                PageSize = sortModel.PageSize,
+                                                                                CategoryId = sortModel.CategoryId,
+                                                                                SectionId = sortModel.SectionId,
+                                                                                CityId = sortModel.CityId,
+                                                                                sortModel.StringCountsRoom,
+                                                                                IsAuction = sortModel.IsAuction,
+                                                                                IsPerson = sortModel.IsPerson,
+                                                                                Street = sortModel.Street,
+                                                                                WithBasement = sortModel.WithBasement,
+                                                                                WithExtension = sortModel.WithExtension,
+                                                                                WithGarage = sortModel.WithGarage,
+                                                                                WithGarden = sortModel.WithGarden,
+                                                                                WithPhoto = sortModel.WithPhoto,
+                                                                                ToCeillingHeight = sortModel.ToCeillingHeight,
+                                                                                FromCeillingHeight = sortModel.FromCeillingHeight,
+                                                                                ToFloor = sortModel.ToFloor,
+                                                                                FromFloor = sortModel.FromFloor,
+                                                                                ToFloorCount = sortModel.ToFloorCount,
+                                                                                FromFloorCount = sortModel.FromFloorCount,
+                                                                                ToPrice = sortModel.ToPrice,
+                                                                                FromPrice = sortModel.FromPrice,
+                                                                                ToSquare = sortModel.ToSquare,
+                                                                                FromSquare = sortModel.FromSquare
+                                                                            }, new { @class = "a_ads_list_sort_params" })</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="retSort
+                        @if (sortModel.SortOrder == SortOrderParams.Descending)
+                        {
+                            @:down
+                        }
+                        else
+                        {
+                            @:up
+                        }
+                    ">
+                        @if (sortModel.SortOrder == SortOrderParams.Descending)
+                        {
+                            @Html.ActionLink("по убыванию", "List", new
+                                                                            {
+                                                                                SortOptions = sortModel.SortOptions,
+                                                                                SortOrder = SortOrderParams.Ascending,
+                                                                                IsEnableSort = sortModel.IsEnableSort,
+                                                                                CurrentPage = 1,
+                                                                                PageSize = sortModel.PageSize,
+                                                                                CategoryId = sortModel.CategoryId,
+                                                                                SectionId = sortModel.SectionId,
+                                                                                CityId = sortModel.CityId,
+                                                                                sortModel.StringCountsRoom,
+                                                                                IsAuction = sortModel.IsAuction,
+                                                                                IsPerson = sortModel.IsPerson,
+                                                                                Street = sortModel.Street,
+                                                                                WithBasement = sortModel.WithBasement,
+                                                                                WithExtension = sortModel.WithExtension,
+                                                                                WithGarage = sortModel.WithGarage,
+                                                                                WithGarden = sortModel.WithGarden,
+                                                                                WithPhoto = sortModel.WithPhoto,
+                                                                                ToCeillingHeight = sortModel.ToCeillingHeight,
+                                                                                FromCeillingHeight = sortModel.FromCeillingHeight,
+                                                                                ToFloor = sortModel.ToFloor,
+                                                                                FromFloor = sortModel.FromFloor,
+                                                                                ToFloorCount = sortModel.ToFloorCount,
+                                                                                FromFloorCount = sortModel.FromFloorCount,
+                                                                                ToPrice = sortModel.ToPrice,
+                                                                                FromPrice = sortModel.FromPrice,
+                                                                                ToSquare = sortModel.ToSquare,
+                                                                                FromSquare = sortModel.FromSquare
+                                                                            })
+                            <span></span>
+                        }
+                        else
+                        {
+                            @Html.ActionLink("по возрастанию", "List", new
+                                                                            {
+                                                                                SortOptions = sortModel.SortOptions,
+                                                                                SortOrder = SortOrderParams.Descending,
+                                                                                IsEnableSort = sortModel.IsEnableSort,
+                                                                                CurrentPage = 1,
+                                                                                PageSize = sortModel.PageSize,
+                                                                                CategoryId = sortModel.CategoryId,
+                                                                                SectionId = sortModel.SectionId,
+                                                                                CityId = sortModel.CityId,
+                                                                                sortModel.StringCountsRoom,
+                                                                                IsAuction = sortModel.IsAuction,
+                                                                                IsPerson = sortModel.IsPerson,
+                                                                                Street = sortModel.Street,
+                                                                                WithBasement = sortModel.WithBasement,
+                                                                                WithExtension = sortModel.WithExtension,
+                                                                                WithGarage = sortModel.WithGarage,
+                                                                                WithGarden = sortModel.WithGarden,
+                                                                                WithPhoto = sortModel.WithPhoto,
+                                                                                ToCeillingHeight = sortModel.ToCeillingHeight,
+                                                                                FromCeillingHeight = sortModel.FromCeillingHeight,
+                                                                                ToFloor = sortModel.ToFloor,
+                                                                                FromFloor = sortModel.FromFloor,
+                                                                                ToFloorCount = sortModel.ToFloorCount,
+                                                                                FromFloorCount = sortModel.FromFloorCount,
+                                                                                ToPrice = sortModel.ToPrice,
+                                                                                FromPrice = sortModel.FromPrice,
+                                                                                ToSquare = sortModel.ToSquare,
+                                                                                FromSquare = sortModel.FromSquare
+                                                                            })
+                            <span></span>
+                        }
+                    </div>
+                    <div class="ciShowBy">
+                        <span>Показать на странице:</span>
+                        <ul>
+                            @foreach (byte pageSize in ProjectConfiguration.Get.ItemsOnPage)
+                            {
+                                <li
+                                    @if (sortModel.PageSize == pageSize)
+                                    {
+                                        @: class="a"
+                                    }
+                                    >
+                                    <span>
+                                        @Html.ActionLink(pageSize.ToString(), "List", new
+                                                                                        {
+                                                                                            SortOptions = sortModel.SortOptions,
+                                                                                            SortOrder = sortModel.SortOrder,
+                                                                                            IsEnableSort = sortModel.IsEnableSort,
+                                                                                            CurrentPage = 1,
+                                                                                            PageSize = pageSize,
+                                                                                            CategoryId = sortModel.CategoryId,
+                                                                                            SectionId = sortModel.SectionId,
+                                                                                            CityId = sortModel.CityId,
+                                                                                            sortModel.StringCountsRoom,
+                                                                                            IsAuction = sortModel.IsAuction,
+                                                                                            IsPerson = sortModel.IsPerson,
+                                                                                            Street = sortModel.Street,
+                                                                                            WithBasement = sortModel.WithBasement,
+                                                                                            WithExtension = sortModel.WithExtension,
+                                                                                            WithGarage = sortModel.WithGarage,
+                                                                                            WithGarden = sortModel.WithGarden,
+                                                                                            WithPhoto = sortModel.WithPhoto,
+                                                                                            ToCeillingHeight = sortModel.ToCeillingHeight,
+                                                                                            FromCeillingHeight = sortModel.FromCeillingHeight,
+                                                                                            ToFloor = sortModel.ToFloor,
+                                                                                            FromFloor = sortModel.FromFloor,
+                                                                                            ToFloorCount = sortModel.ToFloorCount,
+                                                                                            FromFloorCount = sortModel.FromFloorCount,
+                                                                                            ToPrice = sortModel.ToPrice,
+                                                                                            FromPrice = sortModel.FromPrice,
+                                                                                            ToSquare = sortModel.ToSquare,
+                                                                                            FromSquare = sortModel.FromSquare
+                                                                                        })
+                                    </span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="ciList">
+                    <ul>
+                        @if (Model.Count() != 0)
+                        {
+                            foreach (var realty in Model)
+                            {
+                            <li>
+                                <table>
+                                    <tr>
+                                        <td class="ciImg">
+                                            <a href="Realty/Details/@realty.Id">
+                                                @if (realty.Photos.Count != 0)
+                                                {
+                                                    <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["realty_thumb"], "/", realty.Photos.OrderBy(x => x.CreatedAt).First().Link)" />
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/Images/System/no_photo.png" />
+                                                }
+                                            </a>
+                                        </td>
+                                        <td class="ciText">
+                                            <div>
+                                                <span class="ciName">@Html.ActionLink(realty.Name, "Details", new { id = realty.Id })<span>№@realty.Id</span></span>
+                                                <div class="ciType">
+                                                    <span class="sale">@realty.RealtySection.Name</span>
+                                                </div>
+                                                <p>@realty.SmallDescription @Html.ActionLink("Читать подробней", "Details", new { id = realty.Id })
+                                                </p>
+                                                <div class="ciRate">
+                                                    <span>
+                                                        <img src="~/Images/System/foto.png" />Фото
+                                                        <sup>@realty.Photos.Count</sup>
+                                                    </span>
+                                                    <span>
+                                                        <img src="~/Images/System/book.png" />Отзывы
+                                                    <sup>@realty.Comments.Count</sup>
+                                                    </span>
+                                                </div>
+                                                <div class="ciAuthor">
+                                                    @if (realty.UserId != -1)
+                                                    {
+                                                        if (realty.IsAgency)
+                                                        {
+                                                            <span>агенство</span>
+                                                            @Html.ActionLink(realty.AgencyName, "Index", "Profile", new { id = realty.UserId }, null)
+                                                        }
+                                                        else
+                                                        {
+                                                            <span>частное</span>
+                                                            @Html.ActionLink(realty.UserProfile.Email, "Index", "Profile", new { id = realty.UserId }, null)
+                                                        } 
+                                                    }
+
+                                                    @string.Format("{0:dd.MM.yyyy HH:mm}", realty.CreatedAt)
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="ciOffers ciRealt">
+                                            @if (@realty.ForDays)
+                                            {<p>в сутки</p>}
+                                            @Html.Partial("_PriceCurrencyPartialList", new PriceCurrencyViewModel()
+                                                                                           {
+                                                                                               Currency = realty.Currency,
+                                                                                               IsAuction = realty.IsAuction,
+                                                                                               Price = realty.Price
+                                                                                           })
+                                        </td>
+                                    </tr>
+                                </table>
+                            </li>
+                            }
+                        }
+                        else
+                        {
+                            <p class="searchInfo">Ничего не найдено. Попробуйте сформулировать запрос иначе.
+                            </p>    
+                        }
+                        <!--
+                                <li class="last">
+                                    <table>
+                                        <tr>
+                                            <td class="ciImg">
+                                                <a href="javascript:void(0)">
+                                                    <img src="~/Images/User/ciImg2.jpg" /></a>
+                                            </td>
+                                            <td class="ciText">
+                                                <div>
+                                                    <span class="ciName"><a href="javascript:void(0)">Павильон на авторынке</a><span>№46346</span></span>
+                                                    <div class="ciType">
+                                                        <span class="sale">ПРОДАЖА</span>
+                                                    </div>
+                                                    <p>76.3x111.1x83.1 мм, 430 г, матрица 16.1 Мп (1/2.3"), 26X опт. zoom, оптический стабилизатор изображения, видео 1280x720 30fps, экран 3", SD, SDHC, SDXC ...<a href="javascript:void(0)">Читать подробнее</a></p>
+                                                    <div class="ciRate">
+                                                        <span>
+                                                            <img src="~/Images/System/foto.png" />
+                                                            <a href="javascript:void(0)">Фото</a>
+                                                            <sup>34</sup>
+                                                        </span>
+                                                        <img src="~/Images/System/book.png" />
+                                                        <a href="javascript:void(0)">Отзывы</a>
+                                                        <sup>12</sup>
+                                                    </span>
+                                                    </div>
+                                                    <div class="ciAuthor">
+                                                        <span>частное</span>
+                                                        <a href="javascript:void(0)">ОАО «Диалса - Строй»</a>
+                                                        5 минут назад
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="ciOffers ciRealt">
+                                                <div class="mPrice alSelect">
+                                                    <img class="mPriceL" src="~/Images/System/mPriceL.png" />
+                                                    <img class="mPriceR2" src="~/Images/System/mPriceR2.png" />
+                                                    1350
+                                                    <span>USD</span>
+                                                    <div class="mPriceList">
+                                                        <ul>
+                                                            <li class="a"><span>USD</span></li>
+                                                            <li><span>TMT</span></li>
+                                                            <li><span>EUR</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="type">
+                                                    <span class="auction big">ТОРГ</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>-->
+                    </ul>
+                </div>
+                <div class="pages">
+                    <ul class="fastNav">
+                        <img class="fastNavL" src="~/Images/System/fastNavL.png" />
+                        <img class="fastNavR" src="~/Images/System/fastNavR.png" />
+                        <a class="page-prev" href="javascript:void(0)"></a>
+                        <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a>
+                        </li>
+                        @for (int page = 1; page <= Model.PageCount; page++)
+                        {
+                            <li>
+
+                                @if (page == Model.PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "List", new
+                                                                            {
+                                                                                SortOptions = sortModel.SortOptions,
+                                                                                SortOrder = sortModel.SortOrder,
+                                                                                IsEnableSort = sortModel.IsEnableSort,
+                                                                                CurrentPage = page,
+                                                                                PageSize = sortModel.PageSize,
+                                                                                CategoryId = sortModel.CategoryId,
+                                                                                SectionId = sortModel.SectionId,
+                                                                                CityId = sortModel.CityId,
+                                                                                sortModel.StringCountsRoom,
+                                                                                IsAuction = sortModel.IsAuction,
+                                                                                IsPerson = sortModel.IsPerson,
+                                                                                Street = sortModel.Street,
+                                                                                WithBasement = sortModel.WithBasement,
+                                                                                WithExtension = sortModel.WithExtension,
+                                                                                WithGarage = sortModel.WithGarage,
+                                                                                WithGarden = sortModel.WithGarden,
+                                                                                WithPhoto = sortModel.WithPhoto,
+                                                                                ToCeillingHeight = sortModel.ToCeillingHeight,
+                                                                                FromCeillingHeight = sortModel.FromCeillingHeight,
+                                                                                ToFloor = sortModel.ToFloor,
+                                                                                FromFloor = sortModel.FromFloor,
+                                                                                ToFloorCount = sortModel.ToFloorCount,
+                                                                                FromFloorCount = sortModel.FromFloorCount,
+                                                                                ToPrice = sortModel.ToPrice,
+                                                                                FromPrice = sortModel.FromPrice,
+                                                                                ToSquare = sortModel.ToSquare,
+                                                                                FromSquare = sortModel.FromSquare
+                                                                            },
+                                                                            new { @class = "hr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "List", new
+                                                                            {
+                                                                                SortOptions = sortModel.SortOptions,
+                                                                                SortOrder = sortModel.SortOrder,
+                                                                                IsEnableSort = sortModel.IsEnableSort,
+                                                                                CurrentPage = page,
+                                                                                PageSize = sortModel.PageSize,
+                                                                                CategoryId = sortModel.CategoryId,
+                                                                                SectionId = sortModel.SectionId,
+                                                                                CityId = sortModel.CityId,
+                                                                                sortModel.StringCountsRoom,
+                                                                                IsAuction = sortModel.IsAuction,
+                                                                                IsPerson = sortModel.IsPerson,
+                                                                                Street = sortModel.Street,
+                                                                                WithBasement = sortModel.WithBasement,
+                                                                                WithExtension = sortModel.WithExtension,
+                                                                                WithGarage = sortModel.WithGarage,
+                                                                                WithGarden = sortModel.WithGarden,
+                                                                                WithPhoto = sortModel.WithPhoto,
+                                                                                ToCeillingHeight = sortModel.ToCeillingHeight,
+                                                                                FromCeillingHeight = sortModel.FromCeillingHeight,
+                                                                                ToFloor = sortModel.ToFloor,
+                                                                                FromFloor = sortModel.FromFloor,
+                                                                                ToFloorCount = sortModel.ToFloorCount,
+                                                                                FromFloorCount = sortModel.FromFloorCount,
+                                                                                ToPrice = sortModel.ToPrice,
+                                                                                FromPrice = sortModel.FromPrice,
+                                                                                ToSquare = sortModel.ToSquare,
+                                                                                FromSquare = sortModel.FromSquare
+                                                                            })
+                                }
+                            </li>
+                        }                        <a class="page-next" href="javascript:void(0)"></a>
+                    </ul>
+                    <div class="pageslider">
+                        <div class="pagesliderTop">
+                            <ul>
+                                @for (int page = 1; page <= Model.PageCount; page++)
+                                {
+                                    <li>
+
+                                        @if (page == Model.PageNumber)
+                                        {
+                                            @Html.ActionLink(page.ToString(), "List", new
+                                                                            {
+                                                                                SortOptions = sortModel.SortOptions,
+                                                                                SortOrder = sortModel.SortOrder,
+                                                                                IsEnableSort = sortModel.IsEnableSort,
+                                                                                CurrentPage = page,
+                                                                                PageSize = sortModel.PageSize,
+                                                                                CategoryId = sortModel.CategoryId,
+                                                                                SectionId = sortModel.SectionId,
+                                                                                CityId = sortModel.CityId,
+                                                                                sortModel.StringCountsRoom,
+                                                                                IsAuction = sortModel.IsAuction,
+                                                                                IsPerson = sortModel.IsPerson,
+                                                                                Street = sortModel.Street,
+                                                                                WithBasement = sortModel.WithBasement,
+                                                                                WithExtension = sortModel.WithExtension,
+                                                                                WithGarage = sortModel.WithGarage,
+                                                                                WithGarden = sortModel.WithGarden,
+                                                                                WithPhoto = sortModel.WithPhoto,
+                                                                                ToCeillingHeight = sortModel.ToCeillingHeight,
+                                                                                FromCeillingHeight = sortModel.FromCeillingHeight,
+                                                                                ToFloor = sortModel.ToFloor,
+                                                                                FromFloor = sortModel.FromFloor,
+                                                                                ToFloorCount = sortModel.ToFloorCount,
+                                                                                FromFloorCount = sortModel.FromFloorCount,
+                                                                                ToPrice = sortModel.ToPrice,
+                                                                                FromPrice = sortModel.FromPrice,
+                                                                                ToSquare = sortModel.ToSquare,
+                                                                                FromSquare = sortModel.FromSquare
+                                                                            },
+                                                                            new { @class = "shr" })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink(page.ToString(), "List", new
+                                                                            {
+                                                                                SortOptions = sortModel.SortOptions,
+                                                                                SortOrder = sortModel.SortOrder,
+                                                                                IsEnableSort = sortModel.IsEnableSort,
+                                                                                CurrentPage = page,
+                                                                                PageSize = sortModel.PageSize,
+                                                                                CategoryId = sortModel.CategoryId,
+                                                                                SectionId = sortModel.SectionId,
+                                                                                CityId = sortModel.CityId,
+                                                                                sortModel.StringCountsRoom,
+                                                                                IsAuction = sortModel.IsAuction,
+                                                                                IsPerson = sortModel.IsPerson,
+                                                                                Street = sortModel.Street,
+                                                                                WithBasement = sortModel.WithBasement,
+                                                                                WithExtension = sortModel.WithExtension,
+                                                                                WithGarage = sortModel.WithGarage,
+                                                                                WithGarden = sortModel.WithGarden,
+                                                                                WithPhoto = sortModel.WithPhoto,
+                                                                                ToCeillingHeight = sortModel.ToCeillingHeight,
+                                                                                FromCeillingHeight = sortModel.FromCeillingHeight,
+                                                                                ToFloor = sortModel.ToFloor,
+                                                                                FromFloor = sortModel.FromFloor,
+                                                                                ToFloorCount = sortModel.ToFloorCount,
+                                                                                FromFloorCount = sortModel.FromFloorCount,
+                                                                                ToPrice = sortModel.ToPrice,
+                                                                                FromPrice = sortModel.FromPrice,
+                                                                                ToSquare = sortModel.ToSquare,
+                                                                                FromSquare = sortModel.FromSquare
+                                                                            })
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="alHScrollBar">
+                            <div class="alHScrollSlider" style="left: 0px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>

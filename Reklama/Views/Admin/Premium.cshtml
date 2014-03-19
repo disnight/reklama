@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Domain.Entity.Admin.Premium>
+
+@{
+    ViewBag.Title = "Список всех премиумов";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Список всех премиумов</h2>
+
+<p>
+    @Html.ActionLink("Создать новый", "PremiumCreate")
+</p>
+<table style="padding: 10px; border: 1px solid #000">
+    <tr>
+        <th style="padding: 10px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th style="padding: 10px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th style="padding: 10px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th style="padding: 10px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.Lifetime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td style="padding: 10px; border: 1px solid #000">
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td style="padding: 10px; border: 1px solid #000">
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td style="padding: 10px; border: 1px solid #000">
+            @Html.DisplayFor(modelItem => item.Cost)
+        </td>
+        <td style="padding: 10px; border: 1px solid #000">
+            @Html.DisplayFor(modelItem => item.Lifetime)
+        </td>
+        <td style="padding: 10px; border: 1px solid #000">
+            @Html.ActionLink("Редактировать", "PremiumEdit", new { id=item.Id }) |
+            @Html.ActionLink("Удалить", "PremiumDelete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

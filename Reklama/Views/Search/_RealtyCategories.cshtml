@@ -1,0 +1,53 @@
+﻿@using Reklama.Models.ViewModels.Realty
+@using Domain.Enums
+@model IQueryable<Domain.Entity.Realty.RealtyCategory>
+
+@{ 
+    var searchViewModel = (SearchRealtyViewModel)ViewBag.SearchViewModel;
+}
+<span class="hed0">Категории недвижимости:</span>
+@*<span class="hed1">@Html.ActionLink("Все разделы", "Catalog", "Realty", null, new { @class = "allSectionsLink" })</span>*@
+<div class="lMenu">
+    <ul>
+        @foreach (var category in Model)
+        {
+            <li><span>@Html.ActionLink(category.Name, "SearchRealty", new
+                 {
+                     // SearchViewModel
+                     Name = searchViewModel.Name,
+                     Category = CategorySearch.Realty,
+                     OnlyByName = searchViewModel.OnlyByName,
+
+                     SortOptions = searchViewModel.SortOptions,
+                     SortOrder = searchViewModel.SortOrder,
+                     IsEnableSort = searchViewModel.IsEnableSort,
+                     CurrentPage = 1,
+                     PageSize = searchViewModel.PageSize,
+                     CategoryId = category.Id,
+                     SectionId = searchViewModel.SectionId,
+                     CityId = searchViewModel.CityId,
+                     searchViewModel.StringCountsRoom,
+                     IsAuction = searchViewModel.IsAuction,
+                     IsPerson = searchViewModel.IsPerson,
+                     Street = searchViewModel.Street,
+                     WithBasement = searchViewModel.WithBasement,
+                     WithExtension = searchViewModel.WithExtension,
+                     WithGarage = searchViewModel.WithGarage,
+                     WithGarden = searchViewModel.WithGarden,
+                     WithPhoto = searchViewModel.WithPhoto,
+                     ToCeillingHeight = searchViewModel.ToCeillingHeight,
+                     FromCeillingHeight = searchViewModel.FromCeillingHeight,
+                     ToFloor = searchViewModel.ToFloor,
+                     FromFloor = searchViewModel.FromFloor,
+                     ToFloorCount = searchViewModel.ToFloorCount,
+                     FromFloorCount = searchViewModel.FromFloorCount,
+                     ToPrice = searchViewModel.ToPrice,
+                     FromPrice = searchViewModel.FromPrice,
+                     ToSquare = searchViewModel.ToSquare,
+                     FromSquare = searchViewModel.FromSquare
+                 })
+            </span>
+            </li>
+        }
+    </ul>
+</div>

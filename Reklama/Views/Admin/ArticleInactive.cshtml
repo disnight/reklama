@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Domain.Entity.Articles.Article>
+
+@{
+    ViewBag.Title = "Неактивные статьи";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Неактивные статьи</h2>
+
+<table style="padding: 5px; border: 1px solid #000">
+    <tr style="padding: 5px; border: 1px solid #000">
+        <th style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.ViewsCount)
+        </th>
+        <th style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr style="padding: 5px; border: 1px solid #000">
+        <td style="padding: 5px; border: 1px solid #000">
+            @Html.ActionLink(item.Name, "Details", "Article", new { id = item.Id }, null)
+        </td>
+        <td style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayFor(modelItem => item.ViewsCount)
+        </td>
+        <td style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayFor(modelItem => item.CreatedAt)
+        </td>
+        <td style="padding: 5px; border: 1px solid #000">
+            @Html.ActionLink("Активировать", "ArticleMakeActive", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

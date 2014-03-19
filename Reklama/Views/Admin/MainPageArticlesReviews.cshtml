@@ -1,0 +1,60 @@
+﻿@model Domain.Entity.Admin.MainPageArticleConfig
+@{
+    ViewBag.Title = "Настройки статей главной страницы";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Настройки статей главной страницы</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ArticleConfig</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Article1Id)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Article1Id, new { style = "width: 50px;" })
+            @Html.ValidationMessageFor(model => model.Article1Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Article2Id)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Article2Id, new { style = "width: 50px;" })
+            @Html.ValidationMessageFor(model => model.Article2Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Article3Id)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Article3Id, new { style = "width: 50px;" })
+            @Html.ValidationMessageFor(model => model.Article3Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Article4Id)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Article4Id, new { style = "width: 50px;" })
+            @Html.ValidationMessageFor(model => model.Article4Id)
+        </div>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+
+<br />
+@Html.ActionLink("Создать новую статью", "Create", "Article")
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

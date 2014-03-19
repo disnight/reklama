@@ -1,0 +1,54 @@
+﻿@model List<Domain.Entity.Announcements.Announcement>
+
+@{
+    Layout = null;
+}
+
+<div class="mainAdsBlock addStyleToday">
+    <div class="mArtHeader">
+        <span class="artHeader">
+            <img class="maHeaderL" src="/Images/System/maHeaderL.png" />
+            <img class="maHeaderR" src="/Images/System/maHeaderR.png" />
+            @Html.ActionLink("Объявления", "List", "Announcement")
+        </span>
+    </div>
+    <div class="mainAdsWrap">
+        <div class="mainAds">
+            <ul>
+                @foreach (var announcement in Model)
+                {
+                    <li>
+                        <div class="mAdsImg">
+                            <a href="Announcement/Details/@announcement.Id">
+                                @if (announcement.Images.Count != 0)
+                                {
+                                    <img src="@string.Concat("/", Reklama.ProjectConfiguration.Get.FilePaths["announcement_thumb"], "/", announcement.Images.OrderBy(x => x.CreatedAt).First().Link)" />
+                                }
+                                else
+                                {
+                                    <img src="~/Images/System/no_photo.png" />
+                                }
+                            </a>
+
+                        </div>
+                        <div class="mAdsText">
+                            <span>@Html.ActionLink(announcement.Name, "Details", "Announcement", new { id = announcement.Id }, null)</span>
+                            @Html.Partial("_PriceCurrencyPartial", new Reklama.Models.ViewModels.Shared.PriceCurrencyMainPageViewModel()
+                                                                                           {
+                                                                                               Currency = announcement.Currency,
+                                                                                               IsAuction = announcement.IsAuction,
+                                                                                               Price = announcement.Price,
+                                                                                               SectionName = announcement.Category.Name
+                                                                                           })
+                            <p class="author">
+                                @Html.ActionLink(announcement.User.Email, "Index", "Profile", new { id = announcement.UserId }, null)
+                                @string.Format("{0:dd.MM.yyyy HH:mm}", announcement.CreatedAt)
+                            </p>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <div class="allLink">@Html.ActionLink("Все объявления", "List", "Announcement")</div>
+        </div>
+    </div>
+</div>

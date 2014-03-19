@@ -1,0 +1,183 @@
+﻿@using Reklama.Models.ViewModels.Shared
+@using Reklama;
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>@ViewBag.Title</title>
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link rel="shortcut icon" href="/Images/System/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/Images/System/favicon.ico" type="image/x-icon" />
+    @Scripts.Render("~/Scripts/jquery-1.8.0.min.js")
+    @Styles.Render("~/Scripts/fancybox/jquery.fancybox.css")
+    @Scripts.Render("~/Scripts/jquery.textshadow.js")
+    @Scripts.Render("~/Scripts/jquery.equal-height-columns.js")
+    @Scripts.Render("~/Scripts/jquery.mousewheel-3.0.6.pack.js")
+    @Scripts.Render("~/Scripts/jquery.fancybox.js")
+    @Scripts.Render("~/Scripts/reactive.js")
+
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Admin.css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Html.RenderScripts()
+    @RenderSection("head", required: false)
+</head>
+<body>
+
+    @* TODO: Remove margin top *@
+    <div class="wrap" style="margin-top: 20px;">
+        <div class="wrapInner">
+            <div class="header">
+                <div class="headerBot">
+                    <div class="logo">
+                        <a href="/">
+                            <img src="/Images/System/logo1.png" /></a>
+                        @{ Html.RenderAction("UnderLogoMenu", "Menu"); }
+                    </div>
+                    <p><span>*</span> Администраторская часть сайта. Посторонним вход запрещен!</p>
+
+                    @Html.Partial("_SearchPartial", ((SearchViewModel)ViewBag.SearchViewModel ?? (new SearchViewModel())))
+
+                    @Html.Partial("_LoginMenuPartial")
+
+
+                    <div class="hMenu">
+                        <img class="hMenuL" src="/Images/System/hMenuL.png" />
+                        <img class="hMenuR" src="/Images/System/hMenuR.png" />
+                        <table>
+                            <tr>
+                                <td>@Html.ActionLink("Товары", "Catalog", "Product")</td>
+                                <td><a href="http://jay.reklama.tm/">Недвижимость</a></td>
+                                <td>@Html.ActionLink("Объявления", "List", "Announcement")</td>
+                                <td>@Html.ActionLink("Авто", "List", "Announcement", new { SectionId = 3 }, null)</td>
+                                <td>@Html.ActionLink("Статьи", "Index", "Article")</td>
+                                @*<td><a href="javascript:void(0)">Форум</a></td>*@
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    @* Выпадающий список с меню *@
+                    @{ Html.RenderAction("AllsDropDownMenu", "Menu"); }
+
+                </div>
+            </div>
+            <div class="middle">
+                <div class="backTop" style="display: block;"><a title="Вверх" href="javascript:void(0)"></a></div>
+
+                @if (TempData["notice"] != null)
+                {
+                    <div id="notice" style="width: 40%; margin: 10px auto; border: 1px solid green; padding: 20px; font-family: sans-serif; font-size: 14px; font-weight: bold; color: orangered;">
+                        @Html.Raw(TempData["notice"])
+                    </div>
+                }
+
+                @if (TempData["error"] != null)
+                {
+                    <div id="error" style="width: 40%; margin: 10px auto; border: 1px solid red; padding: 20px; font-family: sans-serif; font-size: 12px; font-weight: bold; color: mediumblue;">
+                        @Html.Raw(TempData["error"])
+                    </div>
+                }
+
+                <div id="adminMenu">
+                    <ul>
+                        @if(User.IsInRole("Administrator"))
+                        {
+                            <li>@Html.ActionLink("Общие настройки", "General", "Admin")</li>
+                            <li>@Html.ActionLink("Связать страницы", "Pages", "Admin")</li>
+                        }
+                        <li>@Html.ActionLink("Страницы", "PageIndex", "Admin")</li>
+                        @if(User.IsInRole("Administrator"))
+                        {
+                            <li>@Html.ActionLink("Управление меню", "MenuManage", "Admin")</li>
+                            <li>@Html.ActionLink("Управление валютами", "Currency", "Admin")</li>
+                            <li>@Html.ActionLink("Премиумы", "Premium", "Admin")</li>
+                            <li>@Html.ActionLink("Настройки объявлений", "AnnouncementConfig", "Admin")</li>
+                            <li>@Html.ActionLink("Настройки статей", "ArticleConfig", "Admin")</li>
+                            <li>@Html.ActionLink("Настройки каталога", "CatalogConfig", "Admin")</li>
+                        }
+                        <li>&nbsp;</li>
+                        @if(User.IsInRole("Administrator"))
+                        {
+                            <li>@Html.ActionLink("Пользователи", "Users", "Admin")</li>
+                        }
+                        <li>@Html.ActionLink("Неактивные объявления", "AnnouncementInactive", "Admin")</li>
+                        <li>@Html.ActionLink("Неактивные статьи", "ArticleInactive", "Admin")</li>
+                        <li>@Html.ActionLink("Неактивные товары", "InactiveProductsList", "Product", null, new { target = "_blank" })</li>
+                        <li>&nbsp;</li>
+                        @if(User.IsInRole("Administrator"))
+                        {
+                            <li>@Html.ActionLink("Настройка магазинов", "ListShop", "Admin")</li>
+                        }
+                        <li>@Html.ActionLink("Категории товаров", "ProductParamSection", "Admin")</li>
+                        <li>@Html.ActionLink("Частные характеристики подкатегории товаров", "ProductParamSubsection", "Admin")</li>
+                        <li>@Html.ActionLink("Единицы измерения", "Unit", "Admin")</li>
+                        <li>@Html.ActionLink("Параметры товара", "ProductParams", "Admin")</li>
+                        <li>@Html.ActionLink("Связка параметров категории", "ProductSectionParamRefSelectSelection", "Admin")</li>
+                        <li>@Html.ActionLink("Связка параметров подкатегории", "ProductSubsectionParamRefSelectSelection", "Admin")</li>
+                        <li>@Html.ActionLink("Создать товар", "ProductCreate", "Admin")</li>
+                        <li><br /><br /></li>
+                        <li><b>Главная страница:</b></li>
+                        <li>@Html.ActionLink("Популярные разделы каталога", "MainPagePopularSectionsInCatalog", "Admin")</li>
+                        <li>@Html.ActionLink("Новое в каталоге", "MainPageNewInCatalog", "Admin")</li>
+                        <li>@Html.ActionLink("Популярные товары", "MainPagePopularProducts", "Admin")</li>
+                        <li>@Html.ActionLink("Популярные объявления", "MainPagePopularAnnouncements", "Admin")</li>
+                        <li>@Html.ActionLink("Статьи", "MainPageArticlesReviews", "Admin")</li>
+                    </ul>
+                </div>
+                <div id="adminContent">
+                    @RenderBody()
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="footerOuter">
+            <div class="footer">
+                <div class="footerTop"></div>
+                <div class="bMenu">
+                    <table>
+                        <tr>
+                            <td>@Html.ActionLink("Товары", "Catalog", "Product")</td>
+                                <td><a href="http://jay.reklama.tm/">Недвижимость</a></td>
+                                <td>@Html.ActionLink("Объявления", "List", "Announcement")</td>
+                                <td>@Html.ActionLink("Авто", "List", "Announcement", new { SectionId = 3 }, null)</td>
+                                <td>@Html.ActionLink("Статьи", "Index", "Article")</td>
+                            @*<td><a href="javascript:void(0)">Форум</a></td>*@
+                        </tr>
+                    </table>
+                </div>
+                <div class="copyright">
+                    <div class="bLogo">
+                        <a href="/">
+                            <img src="/Images/System/logo1.png" /></a>
+                    </div>
+                    <p>www.reklama.tm</p>
+                    <p>&copy; 2012</p>
+                </div>
+                <div class="footerInfo">
+
+                    @* Footer Menu *@
+                    @{ Html.RenderAction("FooterMenu", "Menu"); }
+
+
+                    @* FooterBottomMenu *@
+                    @try { Html.RenderAction("FooterBottomMenu", "Menu"); }
+                    catch { }
+
+                </div>
+                @{ Html.RenderAction("ViewSocialLinks", "Links"); }
+
+            </div>
+        </div>
+
+
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/Scripts/jquery.fancybox.js")
+</body>
+</html>

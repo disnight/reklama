@@ -1,0 +1,88 @@
+﻿@using System.Globalization
+@model Domain.Entity.Other.Page
+
+@{ 
+    ViewBag.Title = @Model.Name;
+}
+
+
+
+<div class="catalogInner">
+    <div class="catalogInnerIn">
+    <table>
+        <tr>
+
+
+            @*            <td class="ci1">
+                <span class="hed1">Разделы</span>
+                <div class="lMenu"> 
+                    <ul>
+                        <li class="a"><span><a href="javascript:void(0)">Все новости</a></span></li>
+                        <li class="emptyLine"></li>
+                        <li><span><a href="javascript:void(0)">Новости</a></span></li>
+                        <li><span><a href="javascript:void(0)">Гаджеты и вендоры</a></span></li>
+                        <li><span><a href="javascript:void(0)">Операторы</a></span></li>
+                        <li><span><a href="javascript:void(0)">Игры</a></span></li>
+                    </ul>
+                </div>
+                <div class="leftActual">
+                    <p>Актуальное</p>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <img src="/Images/User/lAct1.jpg" />
+                                SMSZombie заразил 500 тыс. Android-устройств
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <img src="/Images/User/lAct1.jpg" />
+                                SMSZombie заразил 500 тыс. Android-устройств
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="leftDiscus">
+                    <p>Обсуждаемое</p>
+                    <ul>
+                        <li><a href="javascript:void(0)">Apple похвалила Lumia и Xperia arc: они не копируют iPhone</a></li>
+                        <li><a href="javascript:void(0)">Samsung DV100: доступная 16-Мп камера с двумя дисплеями</a></li>
+                        <li><a href="javascript:void(0)">Apple похвалила Lumia и Xperia arc: они не копируют iPhone</a></li>
+                        <li><a href="javascript:void(0)">Samsung DV100: доступная 16-Мп камера с двумя дисплеями</a></li>
+                    </ul>
+                </div>
+            </td>*@
+
+
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                    @Html.RouteLink("Главная страница", "Default")
+                    <span class="arr">&rarr;</span>
+                    Текст
+                </div>
+                <h1>@Model.Name</h1>
+                <div class="articleText">
+                    <div class="mArtDate">
+                        @Model.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
+                    </div>
+                    @*<img class="artImg" src="/Images/User/artImg1.jpg" />*@
+                    
+                    
+                    @Html.Raw(Model.Description)
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+    </div>
+
+
+@if(User.IsInRole("Administrator"))
+{
+    <p>
+        @Html.ActionLink("Редактировать", "PageEdit", "Admin", new {id = Model.Id}, null)
+    </p>
+}

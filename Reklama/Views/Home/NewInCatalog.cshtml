@@ -1,0 +1,32 @@
+﻿@model System.Linq.IQueryable<Domain.Entity.Admin.NewSectionInCatalog>
+
+@{
+    Layout = null;
+}
+
+<div class="popCatalogueRight">
+    <img class="pNewBgL" src="/Images/System/pNewBgL.png" />
+    <img class="pNewBgR" src="/Images/System/pNewBgR.png" />
+    <p>Новое в каталоге</p>
+    @if(Model != null)
+    {
+        <ul>
+
+        @foreach (var popularNew in Model)
+        {
+            var shopsProducts = popularNew.Category.Products.SelectMany(s => s.ShopProductRefs);
+            
+            <li>
+                    @Html.ActionLink(popularNew.Category.Name, "List", "Product", new {secondCategoryId = popularNew.SectionId}, null)
+                    <sup>&nbsp;
+                        @if (shopsProducts != null && shopsProducts.Any())
+                        {
+                            @:от @Convert.ToInt32(shopsProducts.Min(p => p.Price)).ToString() $
+                        }
+                    </sup>
+            </li>
+            
+        }
+        </ul>
+    }
+</div>

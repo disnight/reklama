@@ -1,0 +1,35 @@
+﻿@using Reklama
+@model IQueryable<Domain.Entity.Catalogs.CatalogCategory>
+
+@{
+    ViewBag.Title = "Каталог reklama.tm";
+}
+
+<div class="catalogMain">
+    <div class="cmTop">
+        @Html.Partial("_PlaceGoods")
+        <p class="orangeText">@Html.Raw(ProjectConfiguration.Get.CatalogConfig.PromoText)</p>
+    </div>
+    @foreach (var category in Model)
+    {
+        <p class="cmTitle">@category.Name</p>
+        <ul>
+            @foreach(var secondCategory in category.SecondCategories)
+            {
+                var shopsProducts = secondCategory.Products.SelectMany(s => s.ShopProductRefs);
+            <li>
+                @Html.ActionLink(secondCategory.Name, "List", new { secondCategoryId = secondCategory.Id } )
+                <sup><a href="javascript:void(0)">@if(shopsProducts != null && shopsProducts.Any())
+                                                     {
+                                                         @:от @Convert.ToInt32(shopsProducts.Min(p => p.Price)).ToString() $
+                                                     }</a></sup>
+                @if(secondCategory.isNew){
+                <a class="newImg" href="javascript:void(0)">
+                    <img src="/Images/System/new.png" /></a>
+                }
+            </li>
+            }
+        </ul>
+    }
+</div>
+<div class="middleBot"></div>

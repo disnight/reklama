@@ -1,0 +1,124 @@
+﻿@using Reklama
+@model Domain.Entity.Articles.Article
+
+@{
+    ViewBag.Title = "Редактирование статьи";
+}
+
+<h2>@Model.Name</h2>
+
+@using (Html.BeginForm("Edit", "Article", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Article</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div>
+            <span>Раздел</span>
+            @Html.DropDownList("SectionId", (SelectList)ViewBag.Sections, new { @class = "SectionList" })
+        </div>
+        <div>
+            <span>@Html.LabelFor(s => s.SubsectionId)</span>
+            @Html.DropDownList("SubsectionId", (SelectList)ViewBag.Subsections, new { @id = "SubsectionId" })
+            @Html.ValidationMessageFor(s => s.SubsectionId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SmallDescription)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.SmallDescription, new { style = "width:400px; height: 80px;" })
+            @Html.ValidationMessageFor(model => model.SmallDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description, new { style = "width:800px; height: 300px;" })
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Slug)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Slug)
+            @Html.ValidationMessageFor(model => model.Slug)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsActive)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsActive)
+            @Html.ValidationMessageFor(model => model.IsActive)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ViewsCount)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ViewsCount)
+            @Html.ValidationMessageFor(model => model.ViewsCount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreatedAt)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreatedAt)
+            @Html.ValidationMessageFor(model => model.CreatedAt)
+        </div>
+
+        @if (Model.Logo != null && !Model.Logo.Equals(string.Empty))
+        {
+            <div class="article_logo">
+                <img class="imgLogo" src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], Model.Logo)" />&nbsp;
+                <a href="#" class="delete_article_logo">Удалить картинку</a>
+            </div>
+        }
+        else
+        {
+            <div class="editor-label">
+                <label for="Logo">Изображение</label>
+            </div>
+            <div class="editor-field">
+                <input name="ArticleLogo" type="file">
+                <input id="Logo" name="Logo" value="" type="hidden">
+                <span class="field-validation-valid" data-valmsg-for="Logo" data-valmsg-replace="true"></span>
+            </div>
+        }
+
+        @Html.HiddenFor(model => model.Id)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/wysiwyg.js")
+    @*@Scripts.Render("~/Scripts/AnnouncementEdit.js")*@
+}
+
+@section head {
+    @Scripts.Render("~/Scripts/ckeditor/ckeditor.js")
+    @Scripts.Render("~/Scripts/ckfinder/ckfinder.js")
+    @Scripts.Render("~/Scripts/Article.js")
+}

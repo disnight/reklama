@@ -1,0 +1,135 @@
+﻿@using Domain.Entity.Catalogs
+@model Shop
+@{
+    ViewBag.Title = "Регистрационные данные";
+}
+
+<div class="catalogInner personal">
+    <table>
+        <tr>
+            <td class="ci1">
+                <div class="persLogo">
+                    <img src="@( Model.ImageLogo != null ? "/Images/Catalog/ShopLogos/" + Model.ImageLogo : "")" />
+                </div>
+                <p class="persLink">@Html.ActionLink("Страница на сайте", "Details", "Shop", new { id = Model.Id }, null)</p>
+                @*<p class="persTitleL">Заказать услугу</p>
+                <input type="button" class="adOnSite" value="Реклама на сайте" />
+                <input type="button" class="premiumProd" value="Премиум товар" />*@
+                <div class="persBord"></div>
+                <p class="persTitleL">Абонентская плата</p>
+                <div class="subscriberFee">
+                    <div class="mPrice1">
+                        <img class="mPriceL1" src="/Images/System/mPriceL1.png">
+                        <img class="mPriceR1" src="/Images/System/mPriceR1.png">
+                        @(ViewBag.MonthlyFee != null ? ViewBag.MonthlyFee : "0")
+                                        <span>USD</span>
+                    </div>
+                    @*<span class="priceMonth">июнь</span>*@
+                </div>
+                <div class="clear"></div><p>оплата производится в конце месяца (менеджер свяжется с вами).</p>
+                <div class="persBord"></div>
+                @*<p class="persTitleL">Служба поддержки</p>
+                    <div class="supService">
+                        <p>+ 375 29 <strong>555-00-00</strong></p>
+                        <p>+ 375 29 <strong>555-00-00</strong></p>
+                        <p>+ 375 29 <strong>555-00-00</strong></p>
+                        <p>+ 375 29 <strong>555-00-00</strong></p>
+                    </div>
+                    <div class="persBord"></div>
+                    <p class="persTitleL">Персональный менеджер</p>
+                    <div class="persManager">
+                        <img src="data/persManager.jpg" />
+                        <p>Иванова Анна Ивановна</p>
+                    </div>*@
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="persTop">
+                    <p class="persTitle">Панель управления магазином @Model.Name</p>
+                    @*<p>Тестовое пояснение о том как работать с этой страницей для рользователей хозяев магазинов на проекте. Тестовое пояснение о том как работать с этой страницей для пользователей хозяев магазинов на проекте. Тестовое пояснение о том как работать с</p>*@
+                </div>
+                <div class="persTabs">
+                    <ul>
+                        <li>
+                            <img class="persTabsL" src="/Images/System/persTabsL.png" />
+                            <img class="persTabsR" src="/Images/System/persTabsR.png" />
+                            @Html.ActionLink("Товары магазина", "ProductsShop", "Shop", new { id = Model.Id }, null)
+                        </li>
+                        <li>
+                            <img class="persTabsL" src="/Images/System/persTabsL.png" />
+                            <img class="persTabsR" src="/Images/System/persTabsR.png" />
+                            @Html.ActionLink("База товаров", "BaseProducts", "Shop", new { id = Model.Id }, null)
+                        </li>
+                        <li class="a">
+                            <img class="persTabsL" src="/Images/System/persTabsL.png" />
+                            <img class="persTabsR" src="/Images/System/persTabsR.png" />
+                            <a href="javascript:void(0)">Регистрационные данные</a>
+                        </li>
+                        <li>
+                            <img class="persTabsL" src="/Images/System/persTabsL.png" />
+                            <img class="persTabsR" src="/Images/System/persTabsR.png" />
+                            @Html.ActionLink("Страница магазина", "ViewShopPage", "Shop", new { id = Model.Id }, null)
+                        </li>
+                    </ul>
+                </div>
+                <div class="persBlock persData">
+                    <div class="persBlockTop">
+                        @using(Html.BeginForm("RegistrationDataEdit", "Shop" , FormMethod.Get))
+                        {
+                            <input type="submit" class="changeData" value="" />
+                            @Html.HiddenFor(x => x.Id)
+                        }
+                    </div>
+                    <div class="persProd">
+                        <div class="yellowInfo">@ViewBag.ChangeRegistrationDataHelp.Value</div>
+                        <table>
+                            <tr>
+                                <td><span>Название магазина:</span></td>
+                                <td>@Model.Name</td>
+                            </tr>
+                            <tr>
+                                <th>Контактные данные:</th>
+                            </tr>
+                            <tr>
+                                <td><span>Контактный телефон:</span></td>
+                                <td><strong>@Model.Phone</strong></td>
+                            </tr>
+                            <tr>
+                                <td><span>Электронная почта:</span></td>
+                                <td>@Model.User.Email</td>
+                            </tr>
+                            <tr>
+                                <th>Персональные данные:</th>
+                            </tr>
+                            <tr>
+                                <td><span>Фамилия Имя Отчество:</span></td>
+                                <td>@Model.FullName</td>
+                            </tr>
+                            <tr>
+                                <th>Данные организации:</th>
+                            </tr>
+                            <tr>
+                                <td><span>Название организации:</span></td>
+                                <td>@Model.CompanyName</td>
+                            </tr>
+                            <tr>
+                                <td><span>Город:</span></td>
+                                <td>@Model.City.Name</td>
+                            </tr>
+                            <tr>
+                                <td><span>Реквизиты:</span></td>
+                                <td>
+                                    @Model.Requisites
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="clear"></div> 
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>  
+<div class="middleBot"></div>

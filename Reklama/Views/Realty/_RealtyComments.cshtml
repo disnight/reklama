@@ -1,0 +1,145 @@
+﻿@using Reklama.Models.ViewModels.Realty
+@model PagedList.IPagedList<Domain.Entity.Realty.RealtyComment>
+
+<div class="itemResponse">
+    <div class="itemResponseHead"><span>Отзывы</span></div>
+    @if (!Model.Any())
+    {
+        <div class="itemNothingResponse">Отзывов пока еще никто не оставил</div>
+
+@* Add new comment *@
+        if (TempData["Comment"] == null)
+        {
+            @Html.Partial("_RealtyCommentCreate", new RealtyCommentViewModel() { RealtyId = (int)ViewBag.RealtyId })
+        }
+        else
+        {
+            @Html.Partial("_RealtyCommentCreate", new RealtyCommentViewModel() { RealtyId = (int)ViewBag.RealtyId, Comment = TempData["Comment"].ToString() })
+        }
+    }
+    else
+    {
+
+        for (int i = 0; i < Model.Count; i++)
+        {
+            string classGray = "itemResponseBlock gray";
+            string classBlock = "itemResponseBlock";
+
+
+        <div class="@((i % 2 == 0) ? @classGray : @classBlock)">
+            <div class="itemResponseBlockL">
+                <img src="@((Model.ElementAt(i).UserProfile.AvatarLink != null) ? "/Images/Users/Avatars/" + Model.ElementAt(i).UserProfile.AvatarLink : "/Images/System/no_photo.png")" class="avatar" />
+            </div>
+            <div class="itemResponseBlockR">
+                <span>
+                    @Html.ActionLink(
+                 string.Format("{0} {1}", Model.ElementAt(i).UserProfile.Surname ?? "",
+                 Model.ElementAt(i).UserProfile.Name == null || Model.ElementAt(i).UserProfile.Name == "" ? Model.ElementAt(i).UserProfile.Email : Model.ElementAt(i).UserProfile.Name),
+                            "Index", "Profile", new { id = Model.ElementAt(i).UserId }, null)
+                    @string.Format("{0:dd.MM.yyyy}", @Model.ElementAt(i).CreatedAt)
+                </span>
+                <p>@Model.ElementAt(i).Comment</p>
+
+                @if(User.IsInRole("Administrator") || User.IsInRole("Moderator")) {
+                    <p>
+                        @Html.ActionLink("Удалить", "Delete", "RealtyComment", new { commentId = @Model.ElementAt(i).Id }, null)
+                    </p>
+                }
+            </div>
+        </div>
+        <div class="clear"></div>
+        }
+                             
+        
+        
+@* Add new comment *@
+        if (TempData["Comment"] == null)
+        {
+            @Html.Partial("_RealtyCommentCreate", new RealtyCommentViewModel() { RealtyId = (int)ViewBag.RealtyId })
+        }
+        else
+        {
+            @Html.Partial("_RealtyCommentCreate", new RealtyCommentViewModel() { RealtyId = (int)ViewBag.RealtyId, Comment = TempData["Comment"].ToString() })
+        }
+        
+        
+        
+        
+        
+        <div class="pages">
+            <ul class="fastNav">
+                <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                <a class="page-prev" href="javascript:void(0)"></a>
+                <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
+
+                @for (int page = 1; page <= Model.PageCount; page++)
+                {
+                    <li>
+
+                        @if (page == Model.PageNumber)
+                        {
+                            @Html.ActionLink(page.ToString(), "Details", new
+                                                                             {
+                                                                                 id = (int)ViewBag.RealtyId,
+                                                                                 commentPage = page
+                                                                             },
+                                             new { @class = "hr" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink(page.ToString(), "Details", new
+                                                                             {
+                                                                                 id = (int)ViewBag.RealtyId,
+                                                                                 commentPage = page
+                                                                             })
+                        }
+                    </li>
+                }
+
+                <a class="page-next" href="javascript:void(0)"></a>
+            </ul>
+
+            <div class="pageslider">
+                <div class="pagesliderTop">
+                    <ul>
+                        @for (int page = 1; page <= Model.PageCount; page++)
+                        {
+                            <li>
+
+                                @if (page == Model.PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "Details", new
+                                                                                     {
+                                                                                         id = (int)ViewBag.RealtyId,
+                                                                                         commentPage = page
+                                                                                     },
+                                                     new { @class = "shr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "Details", new
+                                                                                     {
+                                                                                         id = (int)ViewBag.RealtyId,
+                                                                                         commentPage = page
+                                                                                     })
+                                }
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="alHScrollBar">
+                    <div class="alHScrollSlider" style="left: 0px;"></div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    }
+</div>
+
+@section head
+{
+    @Styles.Render("~/Content/Profile.css")
+}

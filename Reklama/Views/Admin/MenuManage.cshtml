@@ -1,0 +1,67 @@
+﻿@model Domain.Entity.Other.MenuPageRef
+
+@{
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+    ViewBag.Title = "Управление меню";
+}
+
+<h2>Manage</h2>
+
+<div id="MenusPagesRef">
+    @{  Html.RenderAction("MenusPages", "Admin");}
+</div>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <table>
+        <tr>
+            <td width="40%">Меню:</td>
+            <td width="40%">Страница:</td>
+            <td width="20%">Приоритет:</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DropDownList("MenuId", (SelectList) ViewBag.Menus)
+                @Html.ValidationMessageFor(m => m.MenuId)
+            </td>
+            <td>
+                @Html.DropDownList("PageId", (SelectList) ViewBag.Pages)
+                @Html.ValidationMessageFor(m => m.PageId)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.Priority)
+                @Html.ValidationMessageFor(m => m.Priority)
+            </td>
+        </tr>
+    </table>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+}
+
+<br /><br />
+@{ Html.RenderAction("ListMenus", "Menu"); }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+<style>
+    #MenusPagesRef td {
+        border: 1px solid #000;
+        padding: 10px;
+    }
+
+    #MenusPagesRef table {
+        border: 1px solid #000;
+        margin-bottom: 30px;
+    }
+
+    input {
+        border: 1px solid orangered;
+    }
+</style>

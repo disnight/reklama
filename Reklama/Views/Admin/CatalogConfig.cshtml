@@ -1,0 +1,58 @@
+﻿@model Domain.Entity.Admin.CatalogConfig
+
+@{
+    ViewBag.Title = "CatalogConfig";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Редактирование конфигурации каталога</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>CatalogConfig</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Slogan)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Slogan, new { style = "width: 500px;"})
+            @Html.ValidationMessageFor(model => model.Slogan)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PromoText)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.PromoText, new { style = "width: 500px; height: 100px;"})
+            @Html.ValidationMessageFor(model => model.PromoText)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.WarningText)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.WarningText, new { style = "width: 500px; height: 100px;"})
+            @Html.ValidationMessageFor(model => model.WarningText)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RegShopPromoText)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.RegShopPromoText, new { style = "width: 500px; height: 100px;"})
+            @Html.ValidationMessageFor(model => model.RegShopPromoText)
+        </div>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

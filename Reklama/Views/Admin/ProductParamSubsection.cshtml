@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Domain.Entity.Catalogs.CatalogParamSubsection>
+
+@{
+    ViewBag.Title = "Частные характеристики подкатегории товаров";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Частные характеристики подкатегории товаров</h2>
+
+<p>
+    @Html.ActionLink("Создать новую частную характеристику подкатегории товаров", "ProductParamSubsectionCreate")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.SecondCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Slogan)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @item.SecondCategory
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Slogan)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "ProductParamSubsectionEdit", new { id=item.Id }) |
+            @Html.ActionLink("Удалить", "ProductParamSubsectionDelete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

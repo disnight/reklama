@@ -1,0 +1,103 @@
+﻿@using System.Globalization
+@using Domain.Entity.Articles
+@using PagedList
+@using Reklama
+@model Domain.Entity.Articles.Article
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<div class="catalogInner">
+    <table>
+        <tr>
+           <td class="ci1">
+               @{
+                    try {
+                        Html.RenderAction("RenderSections", "Article", new { subsectionId = Model.SubsectionId });
+                    }
+                    catch {
+                        @: Unable to render the sections. Please, contact to administrator
+                    }
+                } 
+               @*
+                <div class="leftActual">
+                    <p>Актуальное</p>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <img src="/Images/User/lAct1.jpg" />
+                                SMSZombie заразил 500 тыс. Android-устройств
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <img src="/Images/User/lAct1.jpg" />
+                                SMSZombie заразил 500 тыс. Android-устройств
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="leftDiscus">
+                    <p>Обсуждаемое</p>
+                    <ul>
+                        <li><a href="javascript:void(0)">Apple похвалила Lumia и Xperia arc: они не копируют iPhone</a></li>
+                        <li><a href="javascript:void(0)">Samsung DV100: доступная 16-Мп камера с двумя дисплеями</a></li>
+                        <li><a href="javascript:void(0)">Apple похвалила Lumia и Xperia arc: они не копируют iPhone</a></li>
+                        <li><a href="javascript:void(0)">Samsung DV100: доступная 16-Мп камера с двумя дисплеями</a></li>
+                    </ul>
+                </div>
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>*@
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                    <a href="/">Главная страница</a>
+                    <span class="arr">&rarr;</span>
+                    @Html.ActionLink("Статьи", "Index", "Article")
+                    <span class="arr">&rarr;</span>
+                    @Model.Name
+                </div>
+                <h1>@Model.Name</h1>
+                <div class="articleText">
+                    <img class="artImg" src="@string.Concat('/', ProjectConfiguration.Get.FilePaths["articles"] + Model.Logo)" />
+                    <div class="mArtDate">
+                        @Model.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
+                    </div>
+                    @Html.Raw(Model.Description)
+                    <div class="itemInfoSoc">
+                        @Html.Partial("_SocialWidgetsPartial", new Reklama.Models.ViewModels.Shared.SocialWidgetsViewModel()
+                            {
+                                 Title = Model.Name,
+                                 Description = Model.SmallDescription,
+                                 ImageLink = "http://reklama.tm" + string.Concat('/', ProjectConfiguration.Get.FilePaths["articles"] + Model.Logo),
+                                 Link = "http://reklama.tm" + Url.Action("Details", "Article", new { id = Model.Id })
+                            })
+                        @*
+                        <div><a href="#">
+                            <img src="/Images/System/soc1.png" /></a></div>
+                        <div><a href="#">
+                            <img src="/Images/System/soc2.png" /></a></div>
+                        <div><a href="#">
+                            <img src="/Images/System/soc3.png" /></a></div>
+                        <div><a href="#">
+                            <img src="/Images/System/soc4.png" /></a></div>
+                        <div><a href="#">
+                            <img src="/Images/System/soc5.png" /></a></div>
+                        *@
+						<span class="tell">Рассказать друзьям:</span>
+                    </div>
+                </div>
+
+                @* List of comments *@
+                    @Html.Partial("_ArticleComments", (IPagedList<ArticleComment>)ViewBag.Comments ?? new PagedList<ArticleComment>(null, 1, 1))
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>
+@if(User.IsInRole("Administrator"))
+{
+    @Html.ActionLink("Редактировать", "Edit", "Article", new { id = Model.Id }, null) <br />
+    @Html.ActionLink("Удалить статью", "Delete", "Article", new { id = Model.Id }, null)
+}

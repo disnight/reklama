@@ -1,0 +1,35 @@
+﻿@using Reklama
+@model IEnumerable<Domain.Entity.Admin.PopularProduct>
+
+@{
+    Layout = null;
+}
+
+<div class="popProducts">
+    <p class="listTitle">Популярные товары</p>
+    @Html.ActionLink("Весь список", "PopularProducts","Product", null, new { @class="allList" })
+    
+    @if(Model != null)
+    {
+        <ul>
+            @foreach(var product in Model)
+            {
+                <li>
+                    <div>
+                        <a href="@Url.Action("Details", "Product", new { id = product.ProductId })">
+                            <span class="img">
+                                <img src="/@String.Concat(ProjectConfiguration.Get.FilePaths["product_thumb"], "/", product.Product.Image)" /></span>
+                            <div class="text">
+                                <p>@product.Product.Name</p>
+                                @if(product.Product.ShopProductRefs.Count > 0)
+                                {
+                                    @:от @Convert.ToInt32(product.Product.ShopProductRefs.Min(p => p.Price)).ToString() $
+                                }
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            }
+        </ul>
+    }
+</div>

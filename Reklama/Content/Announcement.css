@@ -1,0 +1,103 @@
+﻿.image_fields
+{
+    float: left;
+    width: 150px;
+}
+
+#CategoryButtons
+{
+    font-family: sans-serif;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    color: #999;
+}
+
+#CategoryButtons .item-container {
+    float: left;
+    padding: 0;
+    /*width: 225px;*/
+}
+
+    #CategoryButtons .item
+    {
+        clear: both;
+        margin: 0;
+        padding: 0;
+    }
+
+    #CategoryButtons label
+    {
+        border-radius: 3px;
+        border: 1px solid #D1D3D4;
+    }
+
+    /* hide input */
+    #CategoryButtons input.radio:empty
+    {
+        visibility: hidden;
+        /*margin-left: -999px;*/
+    }
+
+        /* style label */
+        #CategoryButtons input.radio:empty ~ label
+        {
+            position: relative;
+            float: left;
+            line-height: 2.5em;
+            text-indent: 3.25em;
+            margin-top: 0;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+            #CategoryButtons input.radio:empty ~ label:before
+            {
+                position: absolute;
+                display: block;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                content: '\2714';
+        text-indent: .9em;
+                color: #A9A9A9;
+                width: 2.5em;
+                background: #D1D3D4;
+                border-radius: 3px 0 0 3px;
+            }
+
+    /* toggle hover */
+    #CategoryButtons input.radio:hover:not(:checked) ~ label:before
+    {
+        content: '\2714';
+        text-indent: .9em;
+        color: #C2C2C2;
+    }
+
+    #CategoryButtons input.radio:hover:not(:checked) ~ label
+    {
+        color: #888;
+    }
+
+    /* toggle on */
+    #CategoryButtons input.radio:checked ~ label:before
+    {
+        content: '\2714';
+        text-indent: .9em;
+        color: #FFFFFF;
+        background-color: #ED6130;
+    }
+
+    #CategoryButtons input.radio:checked ~ label
+    {
+        color: #777;
+    }
+
+    /* radio focus */
+    #CategoryButtons input.radio:focus ~ label:before
+    {
+        box-shadow: 0 0 0 3px #999;
+    }

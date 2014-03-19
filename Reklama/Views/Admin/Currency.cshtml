@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Domain.Entity.Shared.Currency>
+
+@{
+    ViewBag.Title = "Управление валютами";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Управление валютами</h2>
+
+<p>
+    @Html.ActionLink("Создать новую валюту", "CurrencyCreate")
+</p>
+<table style="margin: 10px; border: 1px solid #000">
+    <tr>
+        <th style="padding: 10px;">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th style="padding: 10px;">
+            @Html.DisplayNameFor(model => model.Rate)
+        </th>
+        <th style="padding: 10px;"></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td style="padding: 10px;">
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td style="padding: 10px;">
+            @Html.DisplayFor(modelItem => item.Rate)
+        </td>
+        <td style="padding: 10px;">
+            @Html.ActionLink("Редактировать", "CurrencyEdit", new { id = item.Id })
+            @Html.ActionLink("Удалить", "CurrencyDelete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

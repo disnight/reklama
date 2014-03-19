@@ -1,0 +1,45 @@
+﻿@using Reklama.Models.ViewModels.Admin
+@model IEnumerable<Reklama.Models.ViewModels.Admin.PagesConfigViewModel>
+
+@{
+    ViewBag.Title = "Pages";
+}
+
+<h2>Конфигурация основных страниц</h2>
+
+<table>
+    <thead>
+        <th>Описание</th>
+        <th>Связываемая страница</th>
+        <th>Вкл?</th>
+        <th></th>
+    </thead>
+    <tbody>
+        @foreach (PagesConfigViewModel viewModel in Model)
+        {
+            <tr>
+                @using (Html.BeginForm())
+                {
+                    <td>@viewModel.PageConfig.Description</td>
+                          
+                    <td>
+                        <select name="page">
+                            @foreach (var page in viewModel.Pages)
+                            {
+                                <option value="@page.Id" @((viewModel.SelectedPageId == page.Id) ? "selected='selected'" : "")>@page.Name</option>
+                            }
+                        </select>
+                    </td>
+                    
+                    <td>
+                        <input type="checkbox" name="IsEnabled" id="IsEnabled" @((viewModel.PageConfig.IsEnable.Value) ? "checked='checked'" : "") />
+                    </td>
+                    <td>
+                        <input type="hidden" name="configId" id="ConfigId" value="@viewModel.PageConfig.Id" />
+                        <input type="submit" value="Применить" />
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

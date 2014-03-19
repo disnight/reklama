@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Domain.Entity.Other.MenuPageRef>
+
+@{
+    Layout = null;
+}
+
+<ul class="bFooterNav">
+    @foreach (var menuPageRef in Model)
+    {
+        <li>@Html.ActionLink(menuPageRef.Page.Name, "Details", "Page", new { id = menuPageRef.PageId }, null)</li>
+    }
+</ul>

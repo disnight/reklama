@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Domain.Entity.Shared.UserProfile>
+
+@{
+    ViewBag.Title = "Пользователи";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Пользователи (@Model.Count())</h2>
+
+<p>
+    @Html.ActionLink("Создать нового пользователя", "UsersCreate")
+</p>
+<table style="padding: 5px; border: 1px solid #000">
+    <tr style="padding: 5px; border: 1px solid #000">
+        <th style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th style="padding: 5px; border: 1px solid #000">
+           Активирован?
+        </th>
+        <th style="padding: 5px; border: 1px solid #000">
+           Дата регистрации
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr style="padding: 5px; border: 1px solid #000">
+        <td style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayFor(modelItem => item.Surname)
+        </td>
+        <td style="padding: 5px; border: 1px solid #000">
+            @if (WebSecurity.IsConfirmed(item.Email))
+            {
+                @:да
+            }
+            else {
+                <font color="red">нет</font>
+            }
+        </td>
+        <td style="padding: 5px; border: 1px solid #000">
+            @WebSecurity.GetCreateDate(item.Email)
+        </td>
+        <td style="padding: 5px; border: 1px solid #000">
+            @Html.ActionLink("Редактировать", "UsersEdit", new { id=item.UserId }) |
+            @Html.ActionLink("Изменить пароль", "UsersChangePassword", new { id=item.UserId }) |
+            @Html.ActionLink("Роли", "UsersRoles", new { id=item.UserId })
+        </td>
+    </tr>
+}
+</table>

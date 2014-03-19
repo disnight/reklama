@@ -1,0 +1,171 @@
+﻿@model Domain.Entity.Announcements.Announcement
+@using Reklama
+
+@{
+    ViewBag.Title = "Поднятие объявления";
+}
+
+<div class="siteMap">
+    <h1>Поднять объявление</h1>
+
+    <div class="adsChoose">
+        <div class="adsChooseL">
+            <a class="adsBut" href="javascript:void(0)">&nbsp;</a>
+            <a href="javascript:void(0)">Поднять объявление</a>
+            <p>объявление поднимается в списке</p>
+        </div>
+        <div class="adsChooseR inAct">
+            <a class="adsBut" href="javascript:void(0)">&nbsp;</a>
+            <a href="javascript:void(0)">Премиум объявление</a>
+            <p>на первых позициях списка</p>
+        </div>
+    </div>
+
+
+
+    @* Простое поднятие *@
+    <div class="adsSelect">
+        <span>Ваше объявление:</span>
+        <span>
+            @Html.ActionLink(string.Format("{0} (№ {1})", Model.Name, Model.Id), "Details", "Announcement", new { id = Model.Id }, null)
+        </span>
+
+        <div class="UpAnnouncementBlock">
+            @if (WebSecurity.CurrentUserId == Model.UserId || User.IsInRole("Administrator") || User.IsInRole("Moderator"))
+            {
+                int upTimeHours = Reklama.ProjectConfiguration.Get.GetConfigValue("UpTimeAnnouncement").ToInt32(null);
+                var time = DateTime.Now - Model.UpTime;
+                time = TimeSpan.FromHours(upTimeHours) - time;
+
+                using (Html.BeginForm("Up", "Announcement"))
+                {
+                    if (Model.UpTime <= DateTime.Now.AddHours(-upTimeHours) || User.IsInRole("Administrator") || User.IsInRole("Moderator"))
+                    {
+                        @Html.HiddenFor(x => x.Id);
+                        <input type="submit" value="" />
+                                    
+                        if ((User.IsInRole("Administrator") || User.IsInRole("Moderator")) && time.TotalSeconds > 0)
+                        {
+                            <div>
+                                <p><b>Поднять объявление (пользователю) можно будет через:  @time.Hours ч. @time.Minutes м.</b></p>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="error"><b>Поднять объявление можно будет через:  @time.Hours ч. @time.Minutes м.</b></p>
+                    }
+                }
+            }
+        </div>
+    </div>
+    <div class="adsText">
+        <span>*</span>
+        <p>Объявление будет поднято в списке и будет отображаться первым после объявлений со статусом «Премиум».</p>
+    </div>
+
+
+
+    @* Оплата премиумов *@
+    <div class="adsTable">
+        <table>
+            <tr>
+                <th>Тарифный план</th>
+                <th>Описание</th>
+                <th>Время действия</th>
+                <th>Сумма оплаты</th>
+                <th></th>
+            </tr>
+            <tr class="gray">
+                <td class="adsTar">
+                    <a href="/Images/User/adsTar.jpg">
+                        <img class="prem" src="/Images/System/prem1.png" />
+                        <span>@ProjectConfiguration.Get.AnnouncementConfig.Premium1.Name</span>
+                        <img src="/Images/System/premIcon.gif" />
+                    </a>
+                </td>
+                <td class="adsReview">
+                    <p>@ProjectConfiguration.Get.AnnouncementConfig.Premium1.Description</p>
+                </td>
+                <td class="adsDays">@(ProjectConfiguration.Get.AnnouncementConfig.Premium1.Lifetime / 24f) дней</td>
+                <td class="adsPrice">
+                    <div class="mPrice alSelect">
+                        <img src="/Images/System/mPriceL.png" class="mPriceL">
+                        <img src="/Images/System/mPriceR2.png" class="mPriceR2">
+                        @ProjectConfiguration.Get.AnnouncementConfig.Premium1.Cost
+                                                                <span>USD</span>
+                    </div>
+                </td>
+                <td class="adsButton">
+                    @using (Html.BeginForm("AnnouncementPayment", "Premium"))
+                    {
+                        @Html.Hidden("announcement_id", Model.Id)
+                        @Html.Hidden("premium_id", ProjectConfiguration.Get.AnnouncementConfig.Premium1Id)
+                        @Html.AntiForgeryToken()
+                        <input type="submit" value="" />
+                    }
+                </td>
+            </tr>
+            <table>
+                <tr>
+                    <td class="adsTar">
+                        <a href="/Images/User/adsTar.jpg">
+                            <img class="prem" src="/Images/System/prem2.png" />
+                            <span>@ProjectConfiguration.Get.AnnouncementConfig.Premium2.Name</span>
+                            <img src="/Images/System/premIcon.gif" />
+                        </a>
+                    </td>
+                    <td class="adsReview">@ProjectConfiguration.Get.AnnouncementConfig.Premium2.Description</td>
+                    <td class="adsDays">@(ProjectConfiguration.Get.AnnouncementConfig.Premium2.Lifetime / 24f) дней</td>
+                    <td class="adsPrice">
+                        <div class="mPrice alSelect">
+                            <img src="/Images/System/mPriceL.png" class="mPriceL">
+                            <img src="/Images/System/mPriceR2.png" class="mPriceR2">
+                            @ProjectConfiguration.Get.AnnouncementConfig.Premium2.Cost
+                                                                <span>USD</span>
+
+                        </div>
+                    </td>
+                    <td class="adsButton">
+                    @using (Html.BeginForm("AnnouncementPayment", "Premium"))
+                    {
+                        @Html.Hidden("announcement_id", Model.Id)
+                        @Html.Hidden("premium_id", ProjectConfiguration.Get.AnnouncementConfig.Premium2Id)
+                        @Html.AntiForgeryToken()
+                        <input type="submit" value="" />
+                    }
+                </td>
+                </tr>
+            </table>
+            <table>
+                <tr class="gray">
+                    <td class="adsTar">
+                        <a href="/Images/User/adsTar.jpg">
+                            <img class="prem" src="/Images/System/prem3.png" />
+                            <span>@ProjectConfiguration.Get.AnnouncementConfig.Premium3.Name</span>
+                            <img src="/Images/System/premIcon.gif" />
+                        </a>
+                    </td>
+                    <td class="adsReview">@ProjectConfiguration.Get.AnnouncementConfig.Premium3.Description</td>
+                    <td class="adsDays">@(ProjectConfiguration.Get.AnnouncementConfig.Premium3.Lifetime / 24f) дней</td>
+                    <td class="adsPrice">
+                        <div class="mPrice alSelect">
+                            <img src="/Images/System/mPriceL.png" class="mPriceL">
+                            <img src="/Images/System/mPriceR2.png" class="mPriceR2">
+                            @ProjectConfiguration.Get.AnnouncementConfig.Premium3.Cost
+                                                                <span>USD</span>
+
+                        </div>
+                    </td>
+                    <td class="adsButton">
+                    @using(Html.BeginForm("AnnouncementPayment", "Premium")) {
+                        @Html.Hidden("announcement_id", Model.Id)
+                        @Html.Hidden("premium_id", ProjectConfiguration.Get.AnnouncementConfig.Premium3Id)
+                        @Html.AntiForgeryToken()
+                        <input type="submit" value="" />
+                    }
+                </td>
+                </tr>
+            </table>
+    </div>
+</div>

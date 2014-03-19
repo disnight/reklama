@@ -1,0 +1,161 @@
+﻿@using Domain.Enums
+@using Reklama
+@model Domain.Entity.Catalogs.Product
+
+@{
+    ViewBag.Title = "Изображения товара";
+}
+
+<div class="catalogInner">
+
+
+    <table>
+        <tr>
+            <td class="ci1">
+                @Html.Partial("_PlaceGoods")
+                @Html.Partial("_Manufacturers", Model.SecondCategory)
+                @*
+                <div class="bestOffers">
+                    <em>Лучшие предложения</em>
+                    <div class="bestOffer">
+                        <div class="bestOfferImg"><a href="javascript:void(0)">
+                                                      <img src="/Images/System/best1.jpg" /></a></div>
+                        <div class="bestOfferText">
+                            <a href="javascript:void(0)">Sony PlayStation Portable (PSP-3000)</a>
+                            <span>от 200 $</span>
+                        </div>
+                    </div>
+                    <div class="bestOffer">
+                        <div class="bestOfferImg"><a href="javascript:void(0)">
+                                                      <img src="/Images/System/best1.jpg" /></a></div>
+                        <div class="bestOfferText">
+                            <a href="javascript:void(0)">Sony PlayStation Portable (PSP-3000)</a>
+                            <span>от 200 $</span>
+                        </div>
+                    </div>
+                    <p>Приведенные предложения продавцов являются рекламной информацией и их приглашением делать оферы. При покупке всегда запоминайте полное наименование юридического лица или ИП продавца. Обязательно уточняйте комплект поставки, цвет товара и иную информацию в процессе заказа.</p>
+                </div>
+*@
+            </td>
+            
+
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                    <a href="/">Главная страница</a>
+                    <span class="arr">&rarr;</span>
+                    @Html.ActionLink("Каталог товаров", "Catalog")
+                    <span class="arr">&rarr;</span>
+                    @Html.ActionLink(Model.SecondCategory.Name, "List", new { secondCategoryId = Model.SecondCategoryId })
+                    <span class="arr">&rarr;</span>
+                    @Model.Name - Фотографии
+                </div>
+                
+                @Html.Partial("_Product", Model,  (new ViewDataDictionary() { 
+                        new KeyValuePair<string, object>("productMenu", ProductMenu.Photo),
+                        new KeyValuePair<string, object>("isIssetInBookmarks", ViewBag.IsIssetInBookmark)
+                }))
+
+                <div class="prodList">
+                    <div class="itemPicsBig">
+
+
+                        <div class="itemPicsList2">
+
+                            <ul>
+@*                                    <li>
+                                        <div>
+                                            <span>
+                                                <a id="@string.Format("sl_{0}", 10002)" class="fLink" rel="fLink" href="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], Model.Image)">
+                                                               <img src="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], Model.Image)" />
+                                                            </a>
+                                             </span>   
+
+                                        </div>
+                                    </li>*@
+									
+                                @foreach (var image in Model.Images)
+                                {
+                                    <li>
+                                        <div>
+                                            <span>
+                                                <a id="@string.Format("sl_{0}", image.Id)" class="fLink" rel="fLink" href="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], image.Link)">
+                                                    @*<a id="sl_1" href="#">*@
+                                                    <img src="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], image.Link)" />
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="prodListIn" id="scrollbarX">
+
+
+                        <div class="viewport">
+                            <div class="overview">
+
+                                <ul>
+
+@*                                       <li>
+                                            <div>
+                                                <span>
+                                                <a id="@string.Format("sl_{0}", 10002)" class="fLink" rel="fLink" href="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], Model.Image)">
+                                                               <img src="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], Model.Image)" />
+                                                            </a>
+                                             </span>   
+
+
+                                            </div>
+                                        </li>*@
+
+                                    @foreach (var image in Model.Images)
+                                    {
+                                        <li>
+                                            <div>
+                                                <span>
+                                                    <a id="@string.Format("sl_{0}", image.Id)" class="fLink" rel="fLink" href="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], image.Link)">
+                                                                @*<a id="sl_1" href="#">*@
+                                                               <img src="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], image.Link)" />
+                                                            </a>
+                                                </span>
+
+                                            </div>
+                                        </li>
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="scrollbar">
+                            <div class="track">
+                                <div class="thumb">
+                                    <div class="end"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>
+
+
+@section Scripts{
+    @Scripts.Render("~/Scripts/cusel-min-2.5.js")
+    @Scripts.Render("~/Scripts/jquery.tinyscrollbar.min.js")
+    @Scripts.Render("~/Scripts/jquery.jcarousel.min.js")
+    @Styles.Render("~/Content/Cusel.css")
+    @Styles.Render("~/Content/Tinyscrollbar.css")
+}

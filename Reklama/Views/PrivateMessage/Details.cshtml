@@ -1,0 +1,82 @@
+﻿@model Domain.Entity.Shared.PrivateMessage
+@{
+    ViewBag.Title = Model.Subject;
+}
+
+<div class="catalogInner">
+    <table>
+        <tr>
+            <td colspan="3">
+
+                <div class="userAv2">
+
+                    <p>Личные сообщения                                    </p>
+
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="ci1 blue">
+                <div class="userMess">
+
+                    <ul>
+                        <li class="a">
+                            @Html.ActionLink(string.Format("Входящие ({0})", (int)ViewBag.InboxUnreadCount), "Index", "PrivateMessage")
+                        </li>
+                        <li>@Html.ActionLink("Отправленные", "Outbox", "PrivateMessage")</li>
+
+                    </ul>
+
+                </div>
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="userFull">
+
+                    <div class="messBlock">
+
+                        <div class="messBlockT">
+                            @using (Html.BeginForm("Create", "PrivateMessage", FormMethod.Get))
+                                            {
+                                @Html.Hidden("recepientId", Model.SenderId)   
+                                <input type="submit" value="Ответить" class="messBut" />
+                                            }
+                            @*@Html.ActionLink("удалить", "Delete", new { id = Model.Id })*@
+                        </div>
+
+                        <div class="messBlockL"><span>
+                            <img src="@((Model.Sender.AvatarLink != null) ? "/Images/Users/Avatars/" + @Model.Sender.AvatarLink : "/Images/System/userAv.png")" /></span></div>
+
+                        <div class="messBlockR">
+
+                            <div>@Model.Subject</div>
+                            <span>
+                                @Html.ActionLink(Model.Sender.ToString(), "Index", "Profile", new { id = Model.SenderId }, null)
+                                @string.Format("{0:dd.MM.yyyy} в {1:HH:mm}", Model.CreatedAt, Model.CreatedAt)</span>
+                            <p>@Html.Raw(Model.Message)</p>
+
+                        </div>
+
+                        <div class="messBlockT">
+                            @using (Html.BeginForm("Create", "PrivateMessage", FormMethod.Get))
+                                            {
+                                @Html.Hidden("recepientId", Model.SenderId)   
+                                <input type="submit" value="Ответить" class="messBut" />
+                                            }
+                        </div>
+
+                    </div>
+
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>
+
+@section head {
+    @Styles.Render("~/Content/PrivateMessage.css")
+}

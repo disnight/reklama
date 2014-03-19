@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Domain.Entity.Other.MenuPageRef>
+
+@{
+    Layout = null;
+}
+
+@try {
+    foreach (var menuPageRef in Model)
+    {
+    @Html.ActionLink(menuPageRef.Page.Name, "Details", "Page", new { id = menuPageRef.PageId }, null)
+    @:&nbsp;
+    }
+}
+catch
+{
+}

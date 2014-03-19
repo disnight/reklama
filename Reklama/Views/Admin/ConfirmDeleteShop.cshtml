@@ -1,0 +1,15 @@
+﻿@model Domain.Entity.Catalogs.Shop
+
+@{
+    ViewBag.Title = "Подтверждение удаления магазина" + Model.Name;
+}
+
+<h2>Подтверждение удаления магазина @Model.Name</h2>
+
+<div>
+    <p>Вы действительно хотите удалить магазин @Model.Name</p>
+
+    @Html.ActionLink("Да", "DeleteShop", "Admin", new { id = Model.Id }, null)
+    <strong>||</strong>
+    @Html.ActionLink("Нет", "ListShop", "Admin")
+</div>

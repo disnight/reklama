@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Domain.Entity.Catalogs.Shop>
+
+@{
+    ViewBag.Title = "Список магазинов";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Магазины (@Model.Count())</h2>
+
+<table style="padding: 5px; border: 1px solid #000">
+    <tr style="padding: 5px; border: 1px solid #000">
+        <th style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </th>
+        <th style="padding: 5px; border: 1px solid #000">Активирован?
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="padding: 5px; border: 1px solid #000">
+            <td style="padding: 5px; border: 1px solid #000">
+                @item.Id
+            </td>
+            <td style="padding: 5px; border: 1px solid #000">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td style="padding: 5px; border: 1px solid #000">
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td style="padding: 5px; border: 1px solid #000">
+                @if (item.IsActive)
+                {
+                    @:да
+            }
+                else
+                {
+                    <font color="red">нет</font>
+                }
+            </td>
+            <td style="padding: 5px; border: 1px solid #000">
+                @Html.ActionLink("Личный кабинет", "RegistrationData", "Shop", new { id = item.Id }, null)|
+                @(item.IsActive ? Html.ActionLink("Деактивировать", "ConfirmActivationShop", new { id = item.Id }) : Html.ActionLink("Активировать", "ConfirmActivationShop", new { id = item.Id }))|
+                @Html.ActionLink("Добавить категорию товара", "AddCategoryToShop", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

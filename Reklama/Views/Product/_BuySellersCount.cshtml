@@ -1,0 +1,14 @@
+﻿@model Domain.Entity.Catalogs.Product
+@{
+    Layout = null;
+}
+
+@if (Model.ShopProductRefs != null)
+{
+    <div class="prodToBuy">
+        <div class="buyProd">
+            @Html.ActionLink(" ", "Shops", new { id = Model.Id })
+        </div>
+        <div class="selNum">@Model.ShopProductRefs.Where(r => r.Shop.IsActive).Count() продавцов</div>
+    </div>
+}

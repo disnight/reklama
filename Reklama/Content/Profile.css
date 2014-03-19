@@ -1,0 +1,72 @@
+h2 {
+    margin: 10px;
+}
+
+#UserProfile {
+    margin: 10px;
+}
+
+#UserProfileLeft {
+    margin: 10px;
+    float: left;
+    width: 30%;
+}
+
+#UserProfileRight {
+    margin: 10px;
+    float: left;
+}
+
+#avatar {
+    float: left;
+    margin-right: 5px;
+}
+
+.avatar {
+    max-width: 120px;
+    max-height: 80px;
+}
+
+#load {
+    width: 100px;
+}
+
+#ProfileInfo {
+    float: left;
+}
+
+#ProfileInfo .name {
+    font-weight: bold;
+    color: steelblue;
+    margin-bottom: 5px;
+}
+
+#ProfileInfo .user_info {
+    color: rgb(107, 123, 137);
+    margin-top: 5px;
+}
+
+#ProfileInfo a.user_info {
+    color: rgb(107, 123, 175);
+    text-underline: single;
+}
+
+#ProfileInfo a.user_info:hover {
+    color: orangered;
+}
+
+.ManageProfileLinks {
+    margin: 10px 0 0 15px;
+}
+
+
+.text-box {
+    width: 150px;
+}
+
+
+#AboutMe pre {
+    font: 12px Arial;
+    color: rgba(130, 3, 3, 0.76);
+    margin-top: 20px;
+}

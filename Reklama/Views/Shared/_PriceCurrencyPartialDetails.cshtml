@@ -1,0 +1,29 @@
+﻿@using System.Globalization
+@model Reklama.Models.ViewModels.Shared.PriceCurrencyViewModel
+
+<div class="itemInfoTopR">
+
+    @if (Model.IsAuction)
+    {
+        <div class="tradeBlock">торг</div>
+    }
+    
+    @if (Model.Price.HasValue)
+    {
+        <div class="mPrice1 alSelect">
+            <img src="/Images/System/mPriceL1.png" class="mPriceL1">
+            <img src="/Images/System/mPriceR1.png" class="mPriceR1">
+        
+            <span class="price_value" value="@Model.Price.Value.ToString(CultureInfo.InvariantCulture)">@Math.Round(((decimal) Model.Currency.Rate*Model.Price.Value), 2).ToString("f2", CultureInfo.InvariantCulture)</span>
+
+            @{
+            Html.RenderAction("SwitcherList", "Currency"); 
+            }
+
+            <span>@Model.Currency.Name</span>
+
+        </div>
+    }
+</div>
+
+@Scripts.Render("~/Scripts/CurrencyDetails.js")

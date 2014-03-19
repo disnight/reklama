@@ -1,0 +1,50 @@
+﻿@using Domain.Entity.Catalogs
+@model Domain.Entity.Catalogs.CatalogSecondCategory
+
+@{
+    ViewBag.Title = "ProductParamSecondCategoryCreate";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+    var category = (CatalogCategory) ViewBag.Category;
+}
+
+<h2>Создание новой подкатегории категории "@category.Name"</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>CatalogSecondCategory</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.isNew)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.isNew)
+            @Html.ValidationMessageFor(model => model.isNew)
+        </div>
+
+        <p>
+            <input type="submit" value="Создать" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

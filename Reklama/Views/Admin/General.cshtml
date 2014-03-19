@@ -1,0 +1,48 @@
+﻿@model List<Domain.Entity.Admin.Config>
+@{
+    ViewBag.Title = "Общие настройки";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Общие настройки</h2>
+@using (@Html.BeginForm())
+{
+    <h3>@TempData["Message"]</h3>
+    <table>
+        <tr>
+            <th>Описание
+            </th>
+            <th>Разрешено
+            </th>
+            <th>Значение
+            </th>
+            <th></th>
+        </tr>
+
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            @Html.HiddenFor(model => Model[i].Id)
+            @Html.HiddenFor(model => Model[i].IsEnableValue)
+            @Html.HiddenFor(model => Model[i].Name)
+            <tr>
+                <td>
+                    @Html.TextBoxFor(model => Model[i].Description, new {  @readonly="readonly", @style="width: 400px;" })
+                </td>
+                <td>
+                    @if (Model[i].IsEnable != null)
+                    {
+                        @Html.CheckBox("[" + i + "]" + ".IsEnable", Model[i].IsEnable.Value)
+                    }
+                </td>
+                <td>
+                    @if (Model[i].IsEnableValue)
+                    {
+                        @Html.TextBoxFor(model => Model[i].Value)
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+    <input type="submit" value="Сохранить" />
+}

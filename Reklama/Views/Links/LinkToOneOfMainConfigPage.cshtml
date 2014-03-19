@@ -1,0 +1,11 @@
+﻿@model Domain.Entity.Admin.Config
+
+@{
+    Layout = null;
+    var page = (Domain.Entity.Other.Page) ViewBag.Page;
+}
+
+@if(Model.IsEnable.HasValue && Model.IsEnable.Value)
+{
+    @Html.ActionLink(page.Name, "Details", "Page", new {id = page.Id}, new { @class = ViewBag.CssClass, target = ViewBag.Target });
+}

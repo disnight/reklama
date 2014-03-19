@@ -1,0 +1,99 @@
+﻿@model Domain.Entity.Shared.UserProfile
+
+@{
+    ViewBag.Title = "Редактирование пользователя";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Редактирование пользователя @Model.Email</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>UserProfile</legend>
+
+        @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.Email)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Surname)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Surname)
+            @Html.ValidationMessageFor(model => model.Surname)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Skype)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Skype)
+            @Html.ValidationMessageFor(model => model.Skype)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Icq)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Icq)
+            @Html.ValidationMessageFor(model => model.Icq)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Phone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Phone)
+            @Html.ValidationMessageFor(model => model.Phone)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AvatarLink)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AvatarLink)
+            @Html.ValidationMessageFor(model => model.AvatarLink)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Site)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Site)
+            @Html.ValidationMessageFor(model => model.Site)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.About)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.About, new { style = "width: 300px; height: 100px;" })
+            @Html.ValidationMessageFor(model => model.About)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Birthday)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Birthday)
+            @Html.ValidationMessageFor(model => model.Birthday)
+        </div>
+
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

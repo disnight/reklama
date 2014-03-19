@@ -1,0 +1,18 @@
+﻿@model Reklama.Models.ViewModels.Shared.LocalPasswordModel
+@{
+    ViewBag.Title = "Manage Account";
+    Layout = null;
+}
+
+@if (ViewBag.HasLocalPassword)
+{
+    @Html.Partial("_ChangePasswordPartial")
+}
+else
+{ 
+    @Html.Partial("_SetPasswordPartial")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

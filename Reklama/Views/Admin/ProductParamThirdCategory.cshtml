@@ -1,0 +1,37 @@
+﻿@using Domain.Entity.Catalogs
+@model IEnumerable<Domain.Entity.Catalogs.CatalogThirdCategory>
+
+@{
+    ViewBag.Title = "ProductParamThirdCategory";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+    var secondCategory = (CatalogSecondCategory) ViewBag.SecondCategory;
+}
+
+<h2>Список производителей для "@secondCategory.Name"</h2>
+
+<p>
+    @Html.ActionLink("Создать", "ProductParamThirdCategoryCreate", new { secondCategoryId = secondCategory.Id })
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "ProductParamThirdCategoryEdit", new { id=item.Id }) |
+            @Html.ActionLink("Удалить", "ProductParamThirdCategoryDelete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+@Html.ActionLink("Вернуться к списку подкатегорий", "ProductParamSecondCategory", new {categoryId=secondCategory.CategoryId})

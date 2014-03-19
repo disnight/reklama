@@ -1,0 +1,40 @@
+﻿@using Domain.Entity.Catalogs
+@model IEnumerable<Domain.Entity.Catalogs.ProductSubsectionParamRef>
+
+@{
+    ViewBag.Title = "ProductSubsectionParamsRef";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+    var productSubsection = (CatalogParamSubsection) ViewBag.Subsection;
+}
+
+<h2>Параметры продуктов раздела "@productSubsection.Slogan"</h2>
+
+<p>
+    @Html.ActionLink("Добавить параметр", "ProductSubsectionParamsRefCreate", new { subsectionId = productSubsection.Id })
+</p>
+<table>
+    <tr>
+        <th>
+            Параметр
+        </th>
+        <th>
+            Подраздел
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.Param.Name
+        </td>
+        <td>
+            @item.Subsection.Name
+        </td>
+        <td>
+            @Html.ActionLink("Удалить", "ProductSubsectionParamsRefDelete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

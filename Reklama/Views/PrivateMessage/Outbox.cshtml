@@ -1,0 +1,212 @@
+﻿@model PagedList.IPagedList<Domain.Entity.Shared.PrivateMessage>
+@{
+    ViewBag.Title = "Мои отправленные сообщения";
+}
+
+<div class="catalogInner">
+    <table>
+        <tr>
+            <td colspan="3">
+
+                <div class="userAv2">
+
+                    <p>Отправленные личные сообщения</p>
+
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="ci1 blue">
+                <div class="userMess">
+
+                    <ul>
+                        <li>
+                            @Html.ActionLink(string.Format("Входящие ({0})", (int)ViewBag.InboxUnreadCount), "Index", "PrivateMessage")
+                        </li>
+                        <li class="a">@Html.ActionLink("Отправленные", "Outbox", "PrivateMessage")</li>
+
+                    </ul>
+
+                </div>
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="userFull">
+                    <div class="topPager">
+                        <div class="pages">
+                    <ul class="fastNav">
+                        <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                        <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                        <a class="page-prev" href="javascript:void(0)"></a>
+                        <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
+
+                        @for (int page = 1; page <= Model.PageCount; page++)
+                        {
+                            <li>
+
+                                @if (page == Model.PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "Index", new
+                                                                            {
+                                                                                page = page
+                                                                            },
+                                                                            new { @class = "hr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "Index", new
+                                                                            {
+                                                                                page = page
+                                                                            })
+                                }
+                            </li>
+                        }
+
+                        <a class="page-next" href="javascript:void(0)"></a>
+                    </ul>
+
+                    <div class="pageslider">
+                        <div class="pagesliderTop">
+                            <ul>
+                                @for (int page = 1; page <= Model.PageCount; page++)
+                                {
+                                    <li>
+
+                                        @if (page == Model.PageNumber)
+                                        {
+                                            @Html.ActionLink(page.ToString(), "Index", new
+                                                                            {
+                                                                                page = page 
+                                                                            },
+                                                                            new { @class = "shr" })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink(page.ToString(), "Index", new
+                                                                            {
+                                                                                page = page
+                                                                            })
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="alHScrollBar">
+                            <div class="alHScrollSlider" style="left: 0px;"></div>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="messTable">
+
+                        <table id="usTable">
+                            <thead>
+                                <tr>
+
+                                    <th class="mes1">
+                                        <input type="checkbox" value="" class="mesCheck" /></th>
+                                    <th class="mes2"><a href="javascript:void(0)">Выбрать все</a></th>
+                                    <th class="mes3">&nbsp;</th>
+                                    <th class="mes4"></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var message in Model)
+                                {
+                                    <tr@((!message.IsRead) ? " class=coloredTr" : "")>
+                                        <td class="mes1">
+                                            <input type="checkbox" value="" class="mesCheck" />
+                                        </td>
+                                        <td class="mes2">@Html.ActionLink(message.Recepient.ToString(), "Index", "Profile", new { id = message.RecepientId}, null)</td>
+                                        <td class="mes3">
+                                            @Html.ActionLink(message.Subject ?? "Ответ", "OutboxDetails", "PrivateMessage", new { id = message.Id }, null)
+                                        </td>
+                                        <td class="mes4">@string.Format("{0:dd.MM.yyyy}", message.CreatedAt)</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+                    <div class="topPager">
+                        <div class="pages">
+                    <ul class="fastNav">
+                        <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                        <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                        <a class="page-prev" href="javascript:void(0)"></a>
+                        <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
+
+                        @for (int page = 1; page <= Model.PageCount; page++)
+                        {
+                            <li>
+
+                                @if (page == Model.PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "Index", new
+                                                                            {
+                                                                                page = page
+                                                                            },
+                                                                            new { @class = "hr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "Index", new
+                                                                            {
+                                                                                page = page
+                                                                            })
+                                }
+                            </li>
+                        }
+
+                        <a class="page-next" href="javascript:void(0)"></a>
+                    </ul>
+
+                    <div class="pageslider">
+                        <div class="pagesliderTop">
+                            <ul>
+                                @for (int page = 1; page <= Model.PageCount; page++)
+                                {
+                                    <li>
+
+                                        @if (page == Model.PageNumber)
+                                        {
+                                            @Html.ActionLink(page.ToString(), "Index", new
+                                                                            {
+                                                                                page = page 
+                                                                            },
+                                                                            new { @class = "shr" })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink(page.ToString(), "Index", new
+                                                                            {
+                                                                                page = page
+                                                                            })
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="alHScrollBar">
+                            <div class="alHScrollSlider" style="left: 0px;"></div>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>
+
+@section head {
+    @Styles.Render("~/Content/PrivateMessage.css")
+}

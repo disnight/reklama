@@ -1,0 +1,16 @@
+﻿body {
+    background-color: #ffe1e1;
+}
+
+#adminMenu {
+    width: 15%;
+    float: left;
+    padding: 10px;
+}
+
+#adminContent {
+    width: auto;
+    float: left;
+    border-left: 1px solid #000;
+    padding: 10px;
+}

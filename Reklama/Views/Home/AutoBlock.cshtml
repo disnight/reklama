@@ -1,0 +1,56 @@
+﻿@model List<Domain.Entity.Announcements.Announcement>
+
+@{
+    Layout = null;
+}
+
+<div class="mainRealtyBlock mainAuto addStyleAuto">
+    <div class="mArtHeader">
+        <span class="artHeader">
+            <img class="maHeaderL" src="/Images/System/maHeaderL.png" />
+            <img class="maHeaderR" src="/Images/System/maHeaderR.png" />
+            @Html.ActionLink("Авто", "List", "Announcement", new { SectionId = 3 }, null)
+        </span>
+    </div>
+    <div class="mainRealtyWrap">
+        <div class="mainAds">
+            <ul>
+                @foreach (var auto in Model)
+                {
+                    <li>
+                        <div class="mAdsImg">
+                            <a href="Announcement/Details/@auto.Id">
+                                @if (auto.Images.Count != 0)
+                                {
+                                    <img src="@string.Concat("/", Reklama.ProjectConfiguration.Get.FilePaths["announcement_thumb"], "/", auto.Images.OrderBy(x => x.CreatedAt).First().Link)" />
+                                }
+                                else
+                                {
+                                    <img src="~/Images/System/no_photo.png" />
+                                }
+                            </a>
+
+                        </div>
+                        <div class="mAdsText">
+                            <span>@Html.ActionLink(auto.Name, "Details", "Announcement", new { id = auto.Id }, null)</span>
+                            @Html.Partial("_PriceCurrencyPartial", new Reklama.Models.ViewModels.Shared.PriceCurrencyMainPageViewModel()
+                                                                                           {
+                                                                                               Currency = auto.Currency,
+                                                                                               IsAuction = auto.IsAuction,
+                                                                                               Price = auto.Price,
+                                                                                               SectionName = auto.Category.Name
+                                                                                           })
+                            <p class="author">
+                                @Html.ActionLink(auto.User.Email, "Index", "Profile", new { id = auto.UserId }, null)
+                                @string.Format("{0:dd.MM.yyyy HH:mm}", auto.CreatedAt)
+                            </p>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <div class="allLink">@Html.ActionLink("Все объявления", "List", "Announcement", new { SectionId = 3 }, null)</div>
+        </div>
+        <img class="mRealtL" src="/Images/System/mRealtL2.png" />
+        <img class="mRealtR" src="/Images/System/mRealtR2.png" />
+    </div>
+</div>

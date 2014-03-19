@@ -1,0 +1,230 @@
+﻿@model PagedList.IPagedList<Domain.Entity.Catalogs.Product>
+@using Domain.Entity.Catalogs
+@{
+    var filterParams = (Reklama.Models.ViewModels.Catalog.FilterParams)ViewBag.FilterParams;
+    ViewBag.Title = "База товаров";
+}
+
+<div class="catalogInner personal">
+    <table>
+        <tr>
+            <td class="ci1">
+                <div class="persLogo">
+                    <img src="@( ViewBag.Shop.ImageLogo != null ? "/Images/Catalog/ShopLogos/" + ViewBag.Shop.ImageLogo : "")" />
+                </div>
+                <p class="persLink">@Html.ActionLink("Страница на сайте", "Details", "Shop", new { id = ViewBag.Shop.Id }, null)</p>
+                @*<p class="persTitleL">Заказать услугу</p>
+                <input type="button" class="adOnSite" value="Реклама на сайте" />
+                <input type="button" class="premiumProd" value="Премиум товар" />*@
+                <div class="persBord"></div>
+                <p class="persTitleL">Абонентская плата</p>
+                <div class="subscriberFee">
+                    <div class="mPrice1">
+                        <img class="mPriceL1" src="/Images/System/mPriceL1.png">
+                        <img class="mPriceR1" src="/Images/System/mPriceR1.png">
+                        @(ViewBag.MonthlyFee != null ? ViewBag.MonthlyFee : "0")
+                        <span>USD</span>
+                    </div>
+                    @*<span class="priceMonth">июнь</span>*@
+                </div>
+                <p>оплата производится в конце месяца (менеджер свяжется с вами).</p>
+                <div class="persBord"></div>
+                @*<p class="persTitleL">Служба поддержки</p>
+                <div class="supService">
+                    <p>+ 375 29 <strong>555-00-00</strong></p>
+                    <p>+ 375 29 <strong>555-00-00</strong></p>
+                    <p>+ 375 29 <strong>555-00-00</strong></p>
+                    <p>+ 375 29 <strong>555-00-00</strong></p>
+                </div>
+                <div class="persBord"></div>
+                <p class="persTitleL">Персональный менеджер</p>
+                <div class="persManager">
+                    <img src="data/persManager.jpg" />
+                    <p>Иванова Анна Ивановна</p>
+                </div>*@
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="persTop">
+                    <p class="persTitle">Панель управления магазином @ViewBag.Shop.Name</p>
+                    @*<p>Тестовое пояснение о том как работать с этой страницей для рользователей хозяев магазинов на проекте. Тестовое пояснение о том как работать с этой страницей для пользователей хозяев магазинов на проекте. Тестовое пояснение о том как работать с</p>*@
+                </div>
+                <div class="persTabs">
+                    <ul>
+                        <li>
+                            <img class="persTabsL" src="/Images/System/persTabsL.png" />
+                            <img class="persTabsR" src="/Images/System/persTabsR.png" />
+                            @Html.ActionLink("Товары магазина", "ProductsShop", "Shop", new { id = ViewBag.Shop.Id }, null)
+                        </li>
+                        <li class="a">
+                            <img class="persTabsL" src="/Images/System/persTabsL.png" />
+                            <img class="persTabsR" src="/Images/System/persTabsR.png" />
+                            <a href="javascript:void(0)">База товаров</a>
+                        </li>
+                        <li>
+                            <img class="persTabsL" src="/Images/System/persTabsL.png" />
+                            <img class="persTabsR" src="/Images/System/persTabsR.png" />
+                            @Html.ActionLink("Регистрационные данные", "RegistrationData", "Shop", new { id = ViewBag.Shop.Id }, null)
+                        </li>
+                        <li>
+                            <img class="persTabsL" src="/Images/System/persTabsL.png" />
+                            <img class="persTabsR" src="/Images/System/persTabsR.png" />
+                            @Html.ActionLink("Страница магазина", "ViewShopPage", "Shop", new { id = ViewBag.Shop.Id }, null)
+                        </li>
+                    </ul>
+                </div>
+                @using (Html.BeginForm("BaseProducts", "Shop", FormMethod.Get))
+                {
+                    <div class="persBlock persBase">
+                        <div class="persBlockTop">
+                            <div class="persSection">
+                                <span>Раздел каталога:</span>
+                                @Html.DropDownList("CategoryId", (SelectList)ViewBag.Categories)
+                            </div>
+                            <div class="persSection right">
+                                <span>Подраздел:</span>
+                                @Html.DropDownList("SecondCategoryId", (SelectList)ViewBag.SecondCategories)
+                            </div>
+                        </div>
+                        <div class="persProd">
+                            <div class="persProdSection">
+                                @if (ViewBag.ThirdCategories != null)
+                                {
+                                
+                                    <span>Производитель:</span>
+                                    @Html.DropDownList("ThirdCategoryId", (SelectList)ViewBag.ThirdCategories)
+                                
+                                }
+                            </div>
+                            <input type="submit" value="Сменить категорию" />
+                            @if (Model.Count != 0)
+                            {
+                                <ul>
+                                    @foreach (var item in Model)
+                                    {
+                                        <li>
+                                            <table>
+                                                <tr>
+                                                    <td class="ppInfo">
+                                                        <img src="/@String.Concat(Reklama.ProjectConfiguration.Get.FilePaths["product_thumb"], "/", item.Image)" />
+                                                        <span>@Html.ActionLink(@item.Name, "Details", "Product", new { id = item.Id }, null)</span>
+                                                        <div class="ppPriceChange">
+                                                            @if ((IEnumerable<ShopProductRef>)ViewBag.ShopProducts != null && 
+                                                                ((IEnumerable<ShopProductRef>)ViewBag.ShopProducts).Any(x => x.ProductId == item.Id))
+                                                            {
+                                                                <label class="text">товар в магазине </label>
+                                                                <input type="text" class="PriceProduct" name="PriceProduct" style="display: none"/>
+                                                                <input type="button" class="but delBut" ProductId="@item.Id" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <label class="text">цена:</label>
+                                                                <input type="text" class="PriceProduct" name="PriceProduct"/>
+                                                                <input type="button" class="but addBut" value="Добавить" ProductId="@item.Id" />
+                                                            }
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </li>
+                                    }
+                                </ul>
+                                <div class="pages">
+                                    <ul class="fastNav">
+                                        <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                                        <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                                        <a class="page-prev" href="javascript:void(0)"></a>
+                                        <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
+
+                                        @for (int page = 1; page <= Model.PageCount; page++)
+                                        {
+                                            <li>
+
+                                                @if (page == Model.PageNumber)
+                                                {
+                                                    @Html.ActionLink(page.ToString(), "BaseProducts", new
+                                                                            {
+                                                                                Id = filterParams.Id,
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                SecondCategoryId = filterParams.SecondCategoryId,
+                                                                                ThirdCategoryId = filterParams.ThirdCategoryId,
+                                                                                Page = page
+                                                                            },
+                                                                            new { @class = "hr" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink(page.ToString(), "BaseProducts", new
+                                                                            {
+                                                                                Id = filterParams.Id,
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                SecondCategoryId = filterParams.SecondCategoryId,
+                                                                                ThirdCategoryId = filterParams.ThirdCategoryId,
+                                                                                Page = page
+                                                                            })
+                                                }
+                                            </li>
+                                        }
+
+                                        <a class="page-next" href="javascript:void(0)"></a>
+                                    </ul>
+
+                                    <div class="pageslider">
+                                        <div class="pagesliderTop">
+                                            <ul>
+                                                @for (int page = 1; page <= Model.PageCount; page++)
+                                                {
+                                                    <li>
+
+                                                        @if (page == Model.PageNumber)
+                                                        {
+                                                            @Html.ActionLink(page.ToString(), "BaseProducts", new
+                                                                            {
+                                                                                Id = filterParams.Id,
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                SecondCategoryId = filterParams.SecondCategoryId,
+                                                                                ThirdCategoryId = filterParams.ThirdCategoryId,
+                                                                                Page = page
+                                                                            },
+                                                                            new { @class = "shr" })
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.ActionLink(page.ToString(), "BaseProducts", new
+                                                                            {
+                                                                                Id = filterParams.Id,
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                SecondCategoryId = filterParams.SecondCategoryId,
+                                                                                ThirdCategoryId = filterParams.ThirdCategoryId,
+                                                                                Page = page
+                                                                            })
+                                                        }
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                        <div class="alHScrollBar">
+                                            <div class="alHScrollSlider" style="left: 0px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <h3>Нет товаров в выбранной категории!</h3>   
+                            }
+                        </div>
+                    </div>
+                    @Html.Hidden("ShopId", (int)ViewBag.Shop.Id)
+                }
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/BaseProducts.js")
+}

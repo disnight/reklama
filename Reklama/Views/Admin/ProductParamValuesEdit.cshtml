@@ -1,0 +1,118 @@
+﻿@model Domain.Entity.Catalogs.Product
+
+@{
+    ViewBag.Title = "ProductParamValuesEdit";
+
+    var productParamValue = (IList<Domain.Entity.Catalogs.ProductParamValue>)ViewBag.ProductParamValues;
+}
+
+<h2>Характеристики товара `@Model.Name`</h2>
+
+<div class="catalogInner">
+    <table>
+        <tr>
+            <td class="ci3" valign="top">
+
+                <div class="prodTable">
+                    <table>
+                        <tr>
+                            <th>Общая информация</th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var productSectionParamRef in Model.Category.ProductCategoryParams)
+                        {
+                            <tr>
+                                <td>@productSectionParamRef.Param.Name</td>
+                                <td>
+                                    @{
+                                        var param = productParamValue.Where(p => p.ParamId == productSectionParamRef.ParamId)
+                                                .Where(p => !p.ParamSubsectionId.HasValue)
+                                                .FirstOrDefault();
+                                    }
+
+                                    @if (param != null)
+                                    {
+                                        @param.Value@:&nbsp;@param.Unit
+                                        @Html.ActionLink("Изменить", "ProductParamValueEdit", "Admin", new { id = param.Id}, new { @class = "paramEditLink" })
+                                        @Html.ActionLink("Удалить", "ProductParamValueDelete", "Admin", new { id = param.Id}, new { @class = "paramDeleteLink" })
+                                        productParamValue.Remove(param);
+                                    }
+                                    else
+                                    {
+                                        @:Не указано
+                                        @Html.ActionLink("Добавить", "ProductParamValueCreate", "Admin", new { productId = Model.Id, paramId = productSectionParamRef.ParamId }, new { @class = "paramAddLink" })
+                                    }
+                                </td>
+                            </tr>
+                        }
+
+                        @foreach (var paramSubsection in Model.SecondCategory.ParamSubsections)
+                        {
+                            if (paramSubsection.ProductSubsectionParamRefs.Count > 0)
+                            {
+                            <tr>
+                                <th>@paramSubsection.Name</th>
+                                <th></th>
+                            </tr>
+                            
+                                foreach (var subsectionParamRefs in paramSubsection.ProductSubsectionParamRefs)
+                                {
+                            <tr>
+                                <td>@subsectionParamRefs.Param.Name</td>
+
+                                <td>
+                                    @{
+                                        var param = productParamValue.Where(p => p.ParamId == subsectionParamRefs.ParamId)
+                                                .Where(p => p.ParamSubsectionId == subsectionParamRefs.SubsectionId)
+                                                .FirstOrDefault();
+                                    }
+
+                                    @if (param != null)
+                                    {
+                                        @param.Value@:&nbsp;@param.Unit
+                                        @Html.ActionLink("Изменить", "ProductParamValueEdit", "Admin", new { id = param.Id}, new { @class = "paramEditLink" })
+                                        @:&nbsp;&nbsp;&nbsp;
+                                        @Html.ActionLink("Удалить", "ProductParamValueDelete", "Admin", new { id = param.Id}, new { @class = "paramDeleteLink" })
+                                        productParamValue.Remove(param);
+                                    }
+                                    else
+                                    {
+                                        @:Не указано
+                                        @Html.ActionLink("Добавить", "ProductParamValueCreate", "Admin", new { productId = Model.Id, paramId = subsectionParamRefs.ParamId, paramSubsectionId = subsectionParamRefs.SubsectionId }, new { @class = "paramAddLink" })
+                                    }
+                                </td>
+                            </tr>
+                                }
+                            }
+                        }
+                    </table>
+                </div>
+
+
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>
+
+<style>
+    .paramAddLink {
+        right: 50px;
+        color: #0094ff;
+    }
+
+    .paramEditLink {
+        right: 150px;
+        color: #f00;
+        margin-left: 15px;
+        padding-left: 15px;
+    }
+
+    .paramDeleteLink {
+        right: 50px;
+        color: #808080;
+        margin-left: 15px;
+        padding-left: 15px;
+    }
+</style>

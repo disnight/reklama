@@ -1,0 +1,72 @@
+﻿@using Reklama
+@model Domain.Entity.Announcements.Announcement
+
+<li class="@ViewData["class"]">
+    @if(ViewData["class"].Equals("blueBord")) {
+        <img class="blueFlag" src="/Images/System/blueFlag.png" />
+    }
+    <table>
+        <tr>
+            <td class="ciImg">
+                <a href="http://reklama.tm/Announcement/Details/@Model.Id">
+                    @if (Model.Images.Count != 0)
+                    {
+                        <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["announcement_thumb"], "/", Model.Images.OrderBy(x => x.CreatedAt).First().Link)" />
+                    }
+                    else
+                    {
+                        <img src="/Images/System/no_photo.png" />
+                    }
+                </a>
+            </td>
+            <td class="ciText">
+                <div>
+                    <span class="ciName">
+                        @Html.ActionLink(Model.Name, "Details", "Announcement", new { id = Model.Id }, null)
+                        <span>@Model.Id</span>
+                    </span>
+                    <div class="ciType">
+                        <span class="sale">@Model.Category.Name</span>
+                    </div>
+                    <p>
+                        @Model.SmallDescription
+                        @Html.ActionLink("Читать подробнее", "Details", "Announcement", new { id = Model.Id }, null)
+                    </p>
+                    <div class="ciRate">
+                        <span>
+                            <img src="/Images/System/foto.png" />
+                            <span style="margin: 0; padding: 0;">Фото</span>
+                            <sup>@Model.Images.Count</sup>
+                        </span>
+                        <img src="/Images/System/book.png" />
+                        <span style="margin: 0; padding: 0;">Комментарии</span>
+                        <sup>
+                            @if (Model.Comments == null)
+                            {
+                                @:0
+                                                        }
+                            else
+                            {
+                                @Model.Comments.Count
+                            }
+                        </sup>
+                    </div>
+                    <div class="ciAuthor">
+                        @Html.ActionLink(Model.User.ToString(), "Index", "Profile", new { id = Model.UserId }, null)
+                        @string.Format("{0:dd.MM.yyyy HH:mm}", Model.CreatedAt)
+                    </div>
+                </div>
+            </td>
+            <td class="ciOffers ciRealt">
+
+                @Html.Partial("_PriceCurrencyPartialList", new Reklama.Models.ViewModels.Shared.PriceCurrencyViewModel()
+                                                                                           {
+                                                                                               Currency = Model.Currency,
+                                                                                               IsAuction = Model.IsAuction,
+                                                                                               Price = Model.Price
+                                                                                           })
+
+            </td>
+        </tr>
+    </table>
+</li>

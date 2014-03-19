@@ -1,0 +1,40 @@
+﻿@model List<Domain.Entity.Admin.PopularAnnouncement>
+@using System.Globalization;
+@{
+    Layout = null;
+}
+
+<div class="popProducts popPrivate">
+    <p class="listTitle">Лучшие частные предложения</p>
+    @Html.ActionLink("Весь список", "AnnouncementList", null, new { @class = "allList" })
+    <ul>
+        @foreach (var announcement in Model)
+        {
+            <li>
+                <div>
+                    <a href="Announcement/Details/@announcement.AnnouncementId">
+                        <span class="img">
+                            @if (announcement.Announcement.Images.Count != 0)
+                            {
+                                <img src="@string.Concat("/", Reklama.ProjectConfiguration.Get.FilePaths["announcement_thumb"], "/", announcement.Announcement.Images.OrderBy(x => x.CreatedAt).First().Link)" />
+                            }
+                            else
+                            {
+                                <img src="~/Images/System/no_photo.png" />
+                            }
+                        </span>
+                        <div class="type">
+                            <span class="sale">@announcement.Announcement.Category.Name</span>
+                            @if (announcement.Announcement.IsAuction)
+                            {<span class="auction">ТОРГ</span>}
+                        </div>
+                        <div class="text">
+                            <p>@announcement.Announcement.Name</p>
+                            @( announcement.Announcement.Price.HasValue ? Math.Round(announcement.Announcement.Price.Value, 2).ToString("f2", CultureInfo.InvariantCulture) + "$" : "" )
+                        </div>
+                    </a>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

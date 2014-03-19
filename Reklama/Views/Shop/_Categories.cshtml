@@ -1,0 +1,21 @@
+﻿@model List<Domain.Entity.Catalogs.ShopCategoryRef>
+@using Domain.Entity.Catalogs
+<div class="lMenu2">
+    <ul>
+        @foreach (var category in (List<CatalogCategory>)ViewBag.Categories)
+        {
+            <li>
+                <span><a href="javascript:void(0)">@category.Name</a></span>
+                <ul class="lMenu2Second">
+                    @{
+            var secondCategories = Model.Where(x => x.Category.CategoryId == category.Id);
+            foreach (var secondCategory in secondCategories)
+            {
+                        <li>@Html.ActionLink(@secondCategory.Category.Name, "ProductsShop", "Product", new Reklama.Models.ViewModels.Catalog.ProductsShopFilterParams() { ShopId = secondCategory.ShopId, SecondCategoryId = secondCategory.CategoryId }, null)</li>
+            }
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,112 @@
+﻿@model Domain.Entity.Other.Page
+
+@{
+    ViewBag.Title = "Создание текстовой страницы";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Создание текстовой страницы</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <table width="80%" class="tableCreatePage">
+        <tr>
+            <td width="auto">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Name)
+                </div>
+            </td>
+            <td width="90%">
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Name, new { style = "width:500px;" })
+                </div>
+            </td>
+            <td width="auto">
+                @Html.ValidationMessageFor(model => model.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Description)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.Description, new { style = "width:1000px; height: 300px;" })
+            
+                </div>
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Description)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.IsActive)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.IsActive)
+            
+                </div>
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.IsActive)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Slug)
+                </div>
+            </td>
+            <td>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.Slug, new { style = "width:500px;" })
+            
+                </div>
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Slug)
+            </td>
+        </tr>
+        
+        @Html.AntiForgeryToken()
+        
+        <tr>
+            <td colspan="3">
+                <input type="submit" value="Сохранить" />
+            </td>
+        </tr>
+
+    </table>
+}
+
+<div>
+    @Html.ActionLink("Обратно к списку", "PageIndex", "Admin")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/wysiwyg.js")
+}
+
+@section head {
+    @Scripts.Render("~/Scripts/ckeditor/ckeditor.js")
+    @Scripts.Render("~/Scripts/ckfinder/ckfinder.js")
+}
+
+<style>
+    .tableCreatePage {
+        margin: 10px auto;
+    }
+
+    .tableCreatePage tr td {
+        margin: 10px;
+        padding: 10px;
+    }
+</style>

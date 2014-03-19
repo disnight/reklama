@@ -1,0 +1,27 @@
+﻿@using Domain.Enums
+@using Reklama.Models.ViewModels.Shared
+@model Reklama.Models.ViewModels.Shared.SearchViewModel
+
+<div class="searchBlock">
+    @using (Html.BeginRouteForm("Search", FormMethod.Get))
+    {
+        
+        <div class="hSearch">
+            @Html.TextBoxFor(m => m.Name, new { @class = "hSearchText" })
+            <input type="submit" name="hSearchSub" class="hSearchSub" value=" " />
+        </div>
+        <ul class="SearchUlBlock">
+            <li @((Model.Category.Equals(CategorySearch.Product)) ? "class=a" : "") name="@CategorySearch.Product"><span>Товары</span></li>
+            <li @((Model.Category.Equals(CategorySearch.Realty)) ? "class=a" : "") name="@CategorySearch.Realty"><span>Недвижимость</span></li>
+            <li @((Model.Category.Equals(CategorySearch.Announcement) || Model.Category.Equals(CategorySearch.Auto)) ? "class=a" : "") name="@CategorySearch.Announcement"><span>Объявления</span></li>
+            <li @((Model.Category.Equals(CategorySearch.Article)) ? "class=a" : "") name="@CategorySearch.Article"><span>Статьи</span></li>
+        </ul>
+        @Html.HiddenFor(m => m.Category, new { id = "SearchCategory" })
+        <div class="hSearchOnly">
+            @Html.CheckBoxFor(m => m.OnlyByName, new { id = "hSearchCheck" })
+            @Html.LabelFor(m => m.OnlyByName)
+        </div>
+    }
+</div>
+
+@Scripts.Render("~/Scripts/Search.js")

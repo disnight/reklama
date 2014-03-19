@@ -1,0 +1,82 @@
+﻿@using Domain.Entity.Catalogs
+@model IEnumerable<Domain.Entity.Admin.PopularProduct>
+
+@{
+    ViewBag.Title = "Популярные товары";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+    IQueryable<CatalogCategory> categories = (IQueryable<CatalogCategory>)ViewBag.Categories;
+}
+
+<h2>Популярные товары</h2>
+
+<p>
+    <form action="@Url.Action("MainPagePopularProductsCreate", "Admin")">
+        <select class="categoryId">
+            @foreach (var category in categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select><br />
+        <select name="subcategoryId" id="subcategoryId" disabled="disabled"></select><br />
+        <input type="submit" value="Просмотерть и добавить" />
+    </form>
+</p><br /><br />
+<table>
+    <tr>
+        <th>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Product.Name, "Details", "Product", new { id = item.ProductId }, null)
+        </td>
+        <td>
+            @Html.ActionLink("Удалить", "MainPagePopularProductsDelete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+        function sendQuery(selectedItemValue) {
+            var url = "/AjaxServices/GetCatalogSecondCategory";
+
+            $.post(
+                url,
+                { categoryId: selectedItemValue },
+                function (data) {
+                    $.fn.loadSubsectionBox(data);
+                }
+            );
+        }
+
+        var selected = $('.categoryId').val();
+        sendQuery(selected);
+
+        $('.categoryId').change(function () {
+            var selected = $.attr(this, 'value');
+            sendQuery(selected);
+        });
+        
+
+        $.fn.loadSubsectionBox = function (data) {
+            $("#subcategoryId").html("");
+            $("#subcategoryId").attr("disabled", "disabled");
+
+            if (data.length > 0) {
+                $("#subcategoryId").attr("disabled", false);
+
+                for (var i = 0; i < data.length; i++) {
+                    $("#subcategoryId").append("<option value='" + data[i].Id + "'>" + data[i].Name + "</option>");
+                }
+            }
+        };
+    });
+</script>

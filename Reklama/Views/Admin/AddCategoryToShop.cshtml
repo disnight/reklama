@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Domain.Entity.Catalogs.CatalogSecondCategory>
+@using Domain.Entity.Catalogs;
+
+@{
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+    ViewBag.Title = "Добавление категорий магазину " + ViewBag.Shop.Name;
+}
+
+<h2>Добавление категорий магазину @ViewBag.Shop.Name</h2>
+
+<table style="padding: 5px; border: 1px solid #000">
+    <tr style="padding: 5px; border: 1px solid #000">
+        <th style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th style="padding: 5px; border: 1px solid #000">Основаная категория
+        </th>
+        <th style="padding: 5px; border: 1px solid #000">
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th style="padding: 5px; border: 1px solid #000">Добавить
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="padding: 5px; border: 1px solid #000">
+            <td style="padding: 5px; border: 1px solid #000">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td style="padding: 5px; border: 1px solid #000">
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td style="padding: 5px; border: 1px solid #000">
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td style="padding: 5px; border: 1px solid #000">
+                <div class="ppPriceChange">
+
+                    @if (((IEnumerable<ShopCategoryRef>)ViewBag.ShopCategories).Any(x => x.CategoryId == item.Id))
+                    {
+                        <input type="button" class="but delBut" CategoryId="@item.Id" />
+                    }
+                    else
+                    {
+                        <input type="button" class="but addBut" value="Добавить" CategoryId="@item.Id" />
+                    }
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+@Html.Hidden("ShopId", (int)ViewBag.Shop.Id)
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/ShopCategories.js")
+}

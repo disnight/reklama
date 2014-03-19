@@ -1,0 +1,101 @@
+﻿@model Reklama.Models.ViewModels.Shared.PrivateMessageViewModel
+
+@{
+    ViewBag.Title = "Отправить сообщение";
+}
+
+
+<div class="catalogInner">
+    <table>
+        <tr>
+            <td colspan="3">
+
+                <div class="userAv2">
+
+                    <p>Личные сообщения</p>
+
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="ci1 blue">
+                <div class="userMess">
+
+                                        <ul>
+                        <li>
+                            @Html.ActionLink(string.Format("Входящие ({0})", (int)ViewBag.InboxUnreadCount), "Index", "PrivateMessage")
+                        </li>
+                        <li>@Html.ActionLink("Отправленные", "Outbox", "PrivateMessage")</li>
+
+                    </ul>
+
+                </div>
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="userFull">
+
+                    <div class="messBlock">
+
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.ValidationSummary(true)
+                            <div class="messBlockT">
+                                <input type="submit" value="Ответить" class="messBut" />
+                                <a href="javascript:void(0)">удалить</a>
+                            </div>
+                                    
+                            <div class="messBlockM">
+
+                                <div>
+                                    <span>Кому</span>
+                                    @Html.TextBoxFor(model => model.Recepient, new { disabled = "disabled", @class="messText" })
+                                    @Html.ValidationMessageFor(model => model.Recepient)
+                                </div>
+                                <div>
+                                    <span>От</span>
+                                    @Html.TextBoxFor(model => model.Sender, new { disabled = "disabled", @class="messText" })
+                        @Html.ValidationMessageFor(model => model.Sender)
+                                </div>
+                                <div>
+                                    <span>Тема</span>
+                                    @Html.TextBoxFor(model => model.Subject, new { @class="messText" })
+                        @Html.ValidationMessageFor(model => model.Subject)
+                                </div>
+                                <div>
+                                    <span>Сообщение</span>
+                                    @Html.TextAreaFor(model => model.Message, new { /*style = "width:800px; height: 300px;", id = "ckedtorarea"*/ })
+                                    @Html.ValidationMessageFor(model => model.Message)
+                                </div>
+                                @Html.HiddenFor(m => m.RecepientId)
+                @Html.AntiForgeryToken()
+                            </div>
+                                        
+                            <div class="messBlockT">
+                                <input type="submit" value="Ответить" class="messBut" />
+
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/wysiwyg.js")
+}
+
+@section head
+{
+    @Styles.Render("~/Content/PrivateMessage.css")
+    @Scripts.Render("~/Scripts/tiny_mce/tiny_mce.js")
+}

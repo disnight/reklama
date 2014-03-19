@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Domain.Entity.Other.Page>
+
+@{
+    ViewBag.Title = "Список текстовых страниц";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Список текстовых страниц</h2>
+
+<p>
+    @Html.ActionLink("Создать новую страницу", "PageCreate", "Admin")
+</p><br /><br />
+<table>
+    <tr>
+        <th width="50%">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th width="20%">
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th width="30%"></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Name, "Details", "Page", new { Id = item.Id }, null)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "PageEdit", "Admin",new { id=item.Id }, null) |
+            @Html.ActionLink("Details", "Details", "Page", new { id=item.Id }, null) |
+            @Html.ActionLink("Delete", "PageDelete", "Admin", new { id=item.Id }, null)
+        </td>
+    </tr>
+}
+
+</table>

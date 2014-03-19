@@ -1,0 +1,83 @@
+﻿@using Domain.Entity.Announcements
+@model IEnumerable<Domain.Entity.Admin.PopularAnnouncement>
+
+@{
+    ViewBag.Title = "Популярные объявления";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+    IQueryable<Section> sections = (IQueryable<Section>)ViewBag.Sections;
+}
+
+<h2>Популярные объявления</h2>
+
+<p>
+    <form action="@Url.Action("MainPagePopularAnnouncementCreate", "Admin")">
+        <select class="sectionId">
+            @foreach (var _section in sections)
+            {
+                <option value="@_section.Id">@_section.Name</option>
+            }
+        </select><br />
+        <select name="subsectionId" id="subsectionId" disabled="disabled"></select><br />
+        <input type="submit" value="Просмотерть и добавить" />
+    </form>
+</p><br /><br />
+<table>
+    <tr>
+        <th>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Announcement.Name, "Details", "Announcement", new { id = item.AnnouncementId }, null)
+            </td>
+            <td>
+                @Html.ActionLink("Удалить", "MainPagePopularAnnouncementsDelete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+        function sendQuery(selectedItemValue) {
+            var url = "/AjaxServices/GetSubsections";
+
+            $.post(
+                url,
+                { sectionId: selectedItemValue },
+                function (data) {
+                    $.fn.loadSubsectionBox(data);
+                }
+            );
+        }
+
+        var selected = $('.sectionId').val();
+        sendQuery(selected);
+        
+        $('.sectionId').change(function () {
+            var selected = $.attr(this, 'value');
+            sendQuery(selected);
+        });
+
+
+        $.fn.loadSubsectionBox = function (data) {
+            $("#subsectionId").html("");
+            $("#subsectionId").attr("disabled", "disabled");
+
+            if (data.length > 0) {
+                $("#subsectionId").attr("disabled", false);
+
+                for (var i = 0; i < data.length; i++) {
+                    $("#subsectionId").append("<option value='" + data[i].Id + "'>" + data[i].Name + "</option>");
+                }
+            }
+        };
+    });
+</script>

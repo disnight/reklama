@@ -1,0 +1,54 @@
+﻿@using System.Globalization
+@using Domain.Entity.Announcements
+@model IQueryable<Domain.Entity.Announcements.Section>
+
+@{
+    ViewBag.Title = "Каталог reklama.tm";
+}
+
+<div class="middle">
+    <div class="catalogMain">  
+        <div class="cmTop">
+            <div class="placeGoods sec">@Html.ActionLink(" ", "Create", "Announcement")</div>
+            
+        </div>
+        
+        @foreach(Section s in Model)
+        {
+            <p class="cmTitle">@s.Name</p>
+            if (s.Subsections == null)
+            {
+                continue;
+            }
+            <ul>
+                @foreach (Subsection subsection in s.Subsections)
+                {
+                    <li>
+                        @*<a href="javascript:void(0)">@subsection.Name</a>*@
+                        @Html.ActionLink(subsection.Name, "List", "Announcement", new { SectionId = s.Id, SubsectionId = subsection.Id }, null)
+                        <sup>
+                            <a href="javascript:void(0)">
+                                @*@{
+                                    decimal? price = @subsection.Announcements.Where(a => a.Price.HasValue).Where(a => a.Price > 0).Min(a => a.Price);
+                                }
+                                @if(price.HasValue)
+                                {
+                                    @: от @price.Value.ToString("f2", CultureInfo.InvariantCulture) $
+                                }*@
+                                
+                                @subsection.Announcements.Count(a => a.IsActive)
+
+                            </a>
+                        </sup>
+                        
+                        @if(subsection.IsNew)
+                        {
+                            <a class="newImg" href="javascript:void(0)"><img src="/Images/System/new.png"/></a>
+                        }
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+    <div class="middleBot"></div>
+</div>

@@ -1,0 +1,31 @@
+﻿@using Reklama
+@model Domain.Entity.Catalogs.Product
+
+@{
+    ViewBag.Title = "ProductAddPhoto";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Картинки товара</h2>
+
+Товар №<span id="ProductId" value="@Model.Id">@Model.Id</span>: <strong>@Model.Name</strong>
+
+<div id="ProductImages">
+    @foreach (var image in Model.Images)
+    {
+        <div class="productImage">
+            <img class="productImage" src="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], image.Link)" />&nbsp;
+            <a href="#" class="productImageRemove" onClick="return $.fn.removeImage($(this));">Удалить</a>
+        </div>
+    }
+</div>
+<br />
+<input class="regBut1" type="button" value="Загрузить" />
+<img id="load" src="loadstop.gif" class="unvisible" />
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/ajaxupload.js")
+    @Scripts.Render("~/Scripts/ProductImage.js")
+}

@@ -1,0 +1,98 @@
+﻿@model Domain.Entity.Realty.Realty
+
+<div class="itemInfo">
+    <div class="itemInfoTop">
+        <div class="itemInfoTopL">
+            <div><span>@Model.Name</span></div>
+            <p>@ViewBag.SectionName</p>
+        </div>
+        <div class="itemInfoTopR ciOffers">
+            @if (Model.ForDays)
+            {
+                <p>в сутки</p>
+            }
+            @if (Model.IsAuction)
+            {
+                <div class="tradeBlock">торг</div>
+            }
+            <div class="mPrice1 alSelect">
+                <img src="~/Images/System/mPriceL1.png" class="mPriceL1">
+                <img src="~/Images/System/mPriceR1.png" class="mPriceR1">
+                @Model.Price
+                <span>@ViewBag.CurrencyName</span>
+            </div>
+        </div>
+    </div>
+    <div class="itemInfoFull">
+        <div id="description">
+            <ul>
+                <li><span>Город: @ViewBag.CityName</span></li>
+                @if (Model.RoomsCount != null)
+                { <li><span>Количество комнат: @Model.RoomsCount</span></li>}
+                @if (Model.Square != null)
+                { <li><span>Площадь: @Model.Square</span></li>}
+                @if (Model.FloorCount != null)
+                { <li><span>Этажей в доме: @Model.FloorCount</span></li>}
+                @if (Model.Floor != null)
+                { <li><span>На каком этаже: @Model.Floor</span></li>}
+                @if (Model.CeillingHeight != null)
+                { <li><span>Высота потолков: @Model.CeillingHeight</span></li>}
+                @if (Model.WithExtension != false)
+                { <li><span>Пристройка: да</span></li>}
+                @if (Model.WithBasement != false)
+                { <li><span>Подвал: да</span></li>}
+                @if (Model.WithGarage != false)
+                { <li><span>Гараж: да</span></li>}
+                @if (Model.WithGarden != false)
+                { <li><span>Огород: да</span></li>}
+            </ul>
+            <div class="clear"></div>
+            @Model.Description
+        </div>
+    </div>
+</div>
+@if (ViewBag.Photos != null)
+{
+    <div class="itemPics">
+        <div class="itemPicsBig">
+            <div class="itemPicsList2">
+                <ul>
+                    @foreach (var photo in ViewBag.Photos)
+                    {
+                        <li>
+                            <div>
+                                <span>
+                                    <img src="~/Images/Users/@photo" /></span>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="itemPicsList" id="scrollbarX">
+            <div class="viewport">
+                <div class="overview">
+
+                    <ul>
+                        @foreach (var photo in ViewBag.Photos)
+                        {
+                            <li class="a">
+                                <div>
+                                    <span><a id="sl_1" href="#">
+                                        <img src="~/Images/Users/@photo" /></a></span>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="scrollbar">
+                <div class="track">
+                    <div class="thumb">
+                        <div class="end"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

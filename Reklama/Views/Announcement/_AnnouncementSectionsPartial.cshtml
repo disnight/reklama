@@ -1,0 +1,34 @@
+﻿@using Reklama.Models.SortModels
+@using Reklama.Models.ViewModels.Announcement
+@model IEnumerable<Domain.Entity.Announcements.Section>
+
+@{ 
+    var filterParams = (FilterParams) ViewBag.FilterParams;
+}
+<span class="hed0">Разделы объявлений:</span> 
+<span class="hed1">@Html.ActionLink("Все разделы", "Catalog", "Announcement", null, new { @class = "allSectionsLink" })<em>&nbsp;</em></span>
+<div class="lMenu">
+    <ul>
+
+        @foreach (var s in Model)
+        {
+            <li><span>@Html.ActionLink(s.Name, "List", new
+                                                                            {
+                                                                                IsEnabledFilter = filterParams.IsEnabledFilter,
+                                                                                CityId = filterParams.CityId,
+                                                                    PriceStart = filterParams.PriceStart,
+                                                                    PriceEnd = filterParams.PriceEnd,
+                                                                    HasPhoto = filterParams.HasPhoto,
+                                                                    HasAuction = filterParams.HasAuction,
+                                                                                SortOrder = filterParams.SortOrder, 
+                                                                                SortOptions = filterParams.SortOptions, 
+                                                                                SectionId = s.Id,
+                                                                                //SubsectionId = filterParams.SubsectionId,   // NEED TO BE NULL !!!
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                CurrentPage = 1,
+                                                                                PageSize = filterParams.PageSize
+                                                                            }, (s.Id.Equals(filterParams.SectionId)) ? new { @class = "sectionSelected", style = "color: #F00;" } : null)</span></li>
+        }
+
+    </ul>
+</div>

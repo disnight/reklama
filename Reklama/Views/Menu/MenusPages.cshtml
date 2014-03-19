@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Domain.Entity.Other.MenuPageRef>
+
+@{
+    Layout = null;
+}
+
+<h3>Связанные меню-страницы</h3>
+<table>
+    <tr>
+        <td width="30%">Меню:</td>
+        <td width="30%">Страница:</td>
+        <td width="20%">Приоритет:</td>
+        <td width="20%">Действие</td>
+    </tr>
+
+    @foreach (var menuPage in Model)
+    {
+        <tr>
+            <td>@menuPage.Menu.Name</td>
+            <td>@menuPage.Page.Name</td>
+            <td>@menuPage.Priority</td>
+            <td>@Html.ActionLink("Удалить", "Delete", "Menu", new { id = menuPage.Id }, null)</td>
+        </tr>
+    }
+
+</table>

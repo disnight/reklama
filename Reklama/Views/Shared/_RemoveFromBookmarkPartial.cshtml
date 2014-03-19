@@ -1,0 +1,10 @@
+﻿@model Reklama.Models.SortModels.CategorySearchSortModel
+
+<div>
+    <input class="delBut" id="delBut" type="button" value="" identifier="@Model.Id" category="@Model.Category">
+    <p>из закладок</p>
+</div>
+
+@section head {
+    @Scripts.Render("~/Scripts/Bookmark.js")
+}

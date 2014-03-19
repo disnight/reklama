@@ -1,0 +1,94 @@
+﻿@model Domain.Entity.Shared.UserProfile
+
+@{
+    ViewBag.Title = "Удаление пользователя " + Model.Email;
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>UserProfile</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Surname)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Surname)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Skype)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Skype)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Icq)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Icq)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Phone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Phone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AvatarLink)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AvatarLink)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedAt)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreatedAt)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Site)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Site)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.About)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.About)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Birthday)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Birthday)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" />
+    </p>
+}

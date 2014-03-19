@@ -1,0 +1,44 @@
+﻿@using Reklama.Models.ViewModels.Shared
+    @if (Request.IsAuthenticated)
+    {
+        
+        <div class="logRegIn">
+            <div class="logRegImg">
+                @* TODO: AddUserImage *@
+                <img src="/Images/System/people.png" />
+            </div>
+                        <div class="logRegLinks">
+                            @Html.ActionLink(User.Identity.Name, "Index", "Profile", new { id = WebSecurity.CurrentUserId }, new { @class = "logRegName" })
+                            <span class="CountOfNewPrivateMessages">
+                                @{ Html.RenderAction("CountMyUnreadMessages", "PrivateMessage"); }
+                            </span>
+                            <p>
+                                <table>
+                                    <tr>
+                                        <td style="padding-right: 20px;"><a href="http://reklama.tm/My/Announcements">Мои объявления</a></td>
+                                        <td>@using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <a href="javascript:document.getElementById('logoutForm').submit()"><img src="/Images/System/logOut.png"/>Выйти</a>
+                                    }</td>
+                                    </tr>    
+                                </table>
+                            </p>
+                        </div>
+                    </div>
+    }
+    else
+    {
+        <div class="logReg">
+        <p><span><a class="loginLink" href="#loginWindow">Вход</a> / <a class="regLink" href="#regWindow">Регистрация</a></span></p>
+        
+        <div id="loginWindow" style="display: none;">
+            @Html.Partial("_LoginPartial", new LoginModel())
+        </div>
+        <div id="regWindow" style="display: none;">
+            @Html.Partial("_RegistrationPartial", new RegisterModel())
+        </div>
+        
+        </div>
+    }
+

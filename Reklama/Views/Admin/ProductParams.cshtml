@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Domain.Entity.Catalogs.ProductParam>
+
+@{
+    ViewBag.Title = "Параметры товара";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Параметры товара</h2>
+
+<p>
+    @Html.ActionLink("Создать новый параметр товара", "ProductParamsCreate")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "ProductParamsEdit", new { id=item.Id }) |
+            @Html.ActionLink("Удалить", "ProductParamsDelete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

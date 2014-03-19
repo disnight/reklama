@@ -1,0 +1,98 @@
+﻿@model Domain.Entity.Announcements.Announcement
+@using System.Globalization
+@using Reklama
+@using Reklama.Models.ViewModels.Payment
+
+@{
+    ViewBag.Title = "Поднятие объявления";
+    var paymentModel = (PaymentViewModel) ViewBag.PaymentModel;
+}
+
+<div class="siteMap">
+    <h1>Поднять объявление</h1>
+
+    <div class="adsChoose">
+        <div class="adsChooseL inAct">
+            <a class="adsBut" href="javascript:void(0)">&nbsp;</a>
+            <a href="javascript:void(0)">Поднять объявление</a>
+            <p>объявление поднимается в списке</p>
+        </div>
+        <div class="adsChooseR">
+            <a class="adsBut" href="javascript:void(0)">&nbsp;</a>
+            <a href="javascript:void(0)">Премиум объявление</a>
+            <p>на первых позициях списка</p>
+        </div>
+    </div>
+
+
+
+    @* Простое поднятие *@
+    <div class="adsSelect">
+        <span>Ваше объявление:</span>
+        <span>
+            @Html.ActionLink(string.Format("{0} (№ {1})", Model.Name, Model.Id), "Details", "Announcement", new { id = Model.Id }, null)
+        </span>
+
+        <div class="UpAnnouncementBlock">
+            @if (WebSecurity.CurrentUserId == Model.UserId || User.IsInRole("Administrator") || User.IsInRole("Moderator"))
+            {
+                int upTimeHours = Reklama.ProjectConfiguration.Get.GetConfigValue("UpTimeAnnouncement").ToInt32(null);
+                var time = DateTime.Now - Model.UpTime;
+                time = TimeSpan.FromHours(upTimeHours) - time;
+
+                using (Html.BeginForm("Up", "Announcement"))
+                {
+                    if (Model.UpTime <= DateTime.Now.AddHours(-upTimeHours) || User.IsInRole("Administrator") || User.IsInRole("Moderator"))
+                    {
+                        @Html.HiddenFor(x => x.Id);
+                        <input type="submit" value="" />
+                                    
+                        if ((User.IsInRole("Administrator") || User.IsInRole("Moderator")) && time.TotalSeconds > 0)
+                        {
+                            <div>
+                                <p><b>Поднять объявление (пользователю) можно будет через:  @time.Hours ч. @time.Minutes м.</b></p>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="error"><b>Поднять объявление можно будет через:  @time.Hours ч. @time.Minutes м.</b></p>
+                    }
+                }
+            }
+        </div>
+    </div>
+    <div class="adsText">
+        <span>*</span>
+        <p>Объявление будет поднято в списке и будет отображаться первым после объявлений со статусом «Премиум».</p>
+    </div>
+
+
+
+    @* Оплата премиумов *@
+    <div class="adsTable">
+        <table>
+        <tr class="gray">
+            <td class="adsTar">
+                <script language='javascript' type='text/javascript' src='@string.Format(@"https://auth.robokassa.ru/Merchant/Handler/MrchSumPreview.ashx?MrchLogin={0}&OutSum={1}&InvId={2}&Desc={3}&ShpAdId={4}&ShpPremiumId={5}&ShpSectionId={6}&ShpSiteCategory={7}&SignatureValue={8}&Encoding={9}", paymentModel.Login, paymentModel.Sum, paymentModel.InvId, paymentModel.Desc, paymentModel.ShpAdId, paymentModel.ShpPremiumId, paymentModel.ShpSectionId, paymentModel.ShpSiteCategory, paymentModel.GenerateHash1(), paymentModel.Encoding)'></script>
+            </td>
+        </tr>
+            </table>
+    </div>
+</div>
+<div class="clear"></div>
+
+
+
+@if(User.IsInRole("Administrator")) {
+    <div class="admin-ups">
+        <h5>Установка премиума админом</h5>
+        @using (Html.BeginForm("AnnouncementPremiumUp", "Admin"))
+        {
+            @Html.Hidden("announcementId", paymentModel.ShpAdId)
+            @Html.Hidden("premiumId", paymentModel.ShpPremiumId)
+            @Html.Hidden("sectionId", paymentModel.ShpSectionId)
+            <input type="submit" value="Бесплатно поднять :)" />
+        }
+    </div>
+}

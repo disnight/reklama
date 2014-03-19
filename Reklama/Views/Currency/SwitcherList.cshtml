@@ -1,0 +1,18 @@
+﻿@using System.Globalization
+@model IQueryable<Domain.Entity.Shared.Currency>
+
+@{
+    Layout = null;
+}
+
+<div class="mPriceList">
+    <ul class="parentCurrency">
+        @try
+        {
+            foreach (var currency in Model)
+            {
+                <li class="currency" rate="@currency.Rate.ToString(CultureInfo.InvariantCulture)">@currency.Name</li>
+            }
+        }catch{}
+    </ul>
+</div>

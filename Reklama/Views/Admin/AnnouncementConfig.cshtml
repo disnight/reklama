@@ -1,0 +1,73 @@
+﻿@model Domain.Entity.Admin.AnnouncementConfig
+
+@{
+    ViewBag.Title = "Конфигурация доски объявлений";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Конфигурация доски объявлений</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>AnnouncementConfig</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Slogan)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Slogan, new { style = "width: 500px" })
+            @Html.ValidationMessageFor(model => model.Slogan)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Premium1Id)
+        </div>
+        <div class="editor-field">
+            <select name="Premium1Id">
+                @foreach (Domain.Entity.Admin.Premium p in (IQueryable<Domain.Entity.Admin.Premium>)ViewBag.Premiums)
+                {
+                    <option value="@p.Id" @((p.Id == Model.Premium1Id) ? "selected=\"selected\"" : "")>@p.Name</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.Premium1Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Premium2Id)
+        </div>
+        <div class="editor-field">
+            <select name="Premium2Id">
+                @foreach (Domain.Entity.Admin.Premium p in (IQueryable<Domain.Entity.Admin.Premium>)ViewBag.Premiums)
+                {
+                    <option value="@p.Id" @((p.Id == Model.Premium2Id) ? "selected=\"selected\"" : "")>@p.Name</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.Premium2Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Premium3Id)
+        </div>
+        <div class="editor-field">
+            <select name="Premium3Id">
+                @foreach (Domain.Entity.Admin.Premium p in (IQueryable<Domain.Entity.Admin.Premium>)ViewBag.Premiums)
+                {
+                    <option value="@p.Id" @((p.Id == Model.Premium3Id) ? "selected=\"selected\"" : "")>@p.Name</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.Premium3Id)
+        </div>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

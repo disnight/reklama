@@ -1,0 +1,254 @@
+﻿@model Domain.Entity.Realty.Realty
+@using Domain.Entity.Realty
+@using Reklama.Models.ViewModels.Shared
+@using PagedList
+@using Reklama.Models.SortModels
+@using Domain.Enums
+@{
+    ViewBag.Title = "Reklama.tm  " + Model.Name;
+}
+<div class="catalogInner">
+    <table>
+        <tr>
+            <td class="ci1 blue">
+                <div class="placeGoods sec">
+                    <a href="http://reklama.tm/Realty/Create"></a>
+                </div>
+                @Html.Partial("_RealtyCategories", (object)ViewBag.Categories)
+                @Html.Partial("_RealtySortByParams", (object)ViewBag.SortModel)
+
+                @*<div class="lBan">
+                    <a href="javascript:void(0)">
+                        <img src="~/Images/System/ban120600.jpg" /></a>
+                </div>*@
+                @Html.Partial("_YandexDirectPartial")
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="~/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                    @Html.ActionLink("Главная страница", "Index", "Home")
+                    <span class="arr">&rarr;</span>
+                    @Html.ActionLink("Недвижимость", "List", "Realty")
+                    <span class="arr">&rarr;</span>
+                    @Model.Name
+                </div>
+                <div class="clear"></div>
+
+
+                <div class="ciPage">
+                    <div class="itemInfo">
+                        <div class="itemInfoTop">
+                            <div class="itemInfoTopL">
+                                <div><span>@Model.Name</span>№@Model.Id</div>
+                                <p>@Model.RealtySection.Name</p>
+                            </div>
+                            <div class="itemInfoTopR ciOffers">
+                                @if (Model.ForDays)
+                                {
+                                    <p>в сутки</p>
+                                }
+@* PriceCurrency Block *@
+                                @Html.Partial("_PriceCurrencyPartialDetails", new PriceCurrencyViewModel() { IsAuction = Model.IsAuction, Price = Model.Price, Currency = Model.Currency })
+                            </div>
+                        </div>
+                        <div class="itemInfoBtm">
+                            <p>@Model.SmallDescription</p>
+                            @* Link for Add-To-Bookmarks *@
+                            @if ((bool)ViewBag.IsIssetInBookmark)
+                            {
+                                <p>В закладках</p>
+                            }
+                            else
+                            {
+                                if (WebSecurity.IsAuthenticated)
+                                {
+                                <div id="addToBookmarks" identifier="@Model.Id" category="@CategorySearch.Realty">
+                                    <a class="addToBook" href="#">
+                                        <img src="/Images/System/plus.gif" />
+                                        <span>Добавить в закладки</span>
+                                    </a>
+                                </div>
+                                }
+                            }
+
+                            @Html.Partial("_SocialWidgetsPartial", new SocialWidgetsViewModel()
+                            {
+                                Title = Model.Name,
+                                Description = Model.SmallDescription,
+                                ImageLink = (Model.Photos != null && Model.Photos.Count > 0) ? "http://reklama.tm" + string.Concat('/', Reklama.ProjectConfiguration.Get.FilePaths["users"] + Model.Photos.ElementAt(0).Link) : "/Images/System/logo1.png",
+                                Link = "http://reklama.tm" + Url.Action("Details", "Realty", new { id = Model.Id })
+                            })
+                        </div>
+                    </div>
+                    <div class="sellerInfo">
+                        <img class="selBtm" src="~/Images/System/selBtm.gif" />
+                        <div class="sellerInfoL">
+                            <div class="sellerPhoto">
+                                <img src="@((Model.UserProfile.AvatarLink != null) ? "/Images/Users/Avatars/" + Model.UserProfile.AvatarLink : "/Images/System/no_photo.png")" />
+                            </div>
+                            <div class="sellerText">
+                                @*<div>@Html.ActionLink(Model.UserProfile.ToString(), "Index", "Profile", new { id = Model.UserId }, new { @class = "user-info-link" })</div>*@
+                                <p>
+                                    @if (Model.IsDisplayPhone)
+                                    {
+                                        <p>
+                                            Телефон:
+                                        <b>@Model.Phone</b>
+                                        </p>
+                                    }
+                                </p>
+                                <p>E-mail: @Model.UserProfile.Email</p>
+                            </div>
+                        </div>
+                        <div class="sellerInfoM">
+                            <ul>
+                                <li><a href="#">
+                                    <img src="~/Images/System/sel1.gif" /><a href="@Url.Action("Index", "Profile", new { id = Model.UserId })"><span>Профиль</span></a></li>
+                                <li><a href="#">
+                                    <img src="~/Images/System/sel2.gif" /><a href="@Url.Action("Create", "PrivateMessage", new { recepientId = Model.UserId })"><span>Написать сообщение</span></a></li>
+                                <li><a href="#">
+                                    <img src="~/Images/System/sel3.gif" /><span>Город:@Model.City.Name</span></a></li>
+                                @if (Model.AgencyName != null)
+                                {
+                                    <li><a href="#">
+                                        <img src="~/Images/System/sel3.gif" /><span>Агенство:@Model.AgencyName</span></a></li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="sellerInfoR">
+                            <div>
+                                <img src="~/Images/System/sel4.gif" />размещено -<span>@string.Format("{0:dd.MM.yyyy HH:mm}", Model.CreatedAt)</span>
+                            </div>
+                            <div>
+                                <img src="~/Images/System/sel5.gif" />просмотров -<em>@Model.Views</em>
+                            </div>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                if (WebSecurity.CurrentUserId == Model.UserId || User.IsInRole("Administrator") || User.IsInRole("Moderator"))
+                                {
+                                <div>
+                                    <img src="/Images/System/sel2.gif" />
+                                    <a href="http://reklama.tm/Realty/Edit/@Model.Id">редактировать</a>
+                                </div>
+                                <div>
+                                    <img src="/Images/System/sel2.gif" />
+                                    @Html.ActionLink("удалить", "Delete", "Realty", new { id = Model.Id }, null)
+                                </div>
+                                }
+                            }
+                            <div class="UpRealtyBlock">
+                                @if (WebSecurity.CurrentUserId == Model.UserId || User.IsInRole("Administrator"))
+                                {
+                                    var time = DateTime.Now - Model.UpTime;
+                                    time = TimeSpan.FromHours(ViewBag.UpTimeHours) - time;
+                                    using (Html.BeginForm("Up", "Realty"))
+                                    {
+                                        if (Model.UpTime <= DateTime.Now.AddHours(-ViewBag.UpTimeHours) || User.IsInRole("Administrator") || User.IsInRole("Moderator"))
+                                        {
+                                    @Html.HiddenFor(x => x.Id);
+                                    <input type="submit" value="Поднять объявление" />
+                                                              if ((User.IsInRole("Administrator") || User.IsInRole("Moderator")) && time.TotalSeconds > 0)
+                                                              {
+                                    <div>
+                                        <p><b>Поднять объявление можно будет через:  @time.Hours ч. @time.Minutes м.</b></p>
+                                    </div>
+                                                              }
+                                        }
+                                        else
+                                        {
+                                    <p><b>Поднять объявление можно будет через:  @time.Hours ч. @time.Minutes м.</b></p>
+                                        }
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="itemInfoFull">
+                        <pre> @Model.Description </pre>
+                    </div>
+                    <div class="itemInfoPoints">
+                        <div class="pointY pointW">@Model.RealtyCategory.Name </div>
+                        @if (Model.Street != null)
+                        { <div class="pointY pointW">Улица: @Model.Street</div>}
+                        @if (Model.RoomsCount != null)
+                        { <div class="pointY pointW">Количество комнат: @((Model.RoomsCount > 0) ? Model.RoomsCount.ToString() : ">5")</div>}
+                        @if (Model.Square != null)
+                        { <div class="pointY pointW">Площадь: @Model.Square м<sup>2</sup> </div>}
+                        @if (Model.FloorCount != null)
+                        { <div class="pointY pointW">Этажей в доме: @Model.FloorCount</div>}
+                        @if (Model.Floor != null)
+                        { <div class="pointY pointW">На каком этаже: @Model.Floor</div>}
+                        @if (Model.CeillingHeight != null)
+                        { <div class="pointY pointW">Высота потолков: @Model.CeillingHeight м</div>}
+                        <div class="@(Model.WithExtension != false ? "pointY" : "pointN")"><b>Пристройка</b></div>
+                        <div class="@(Model.WithBasement != false ? "pointY" : "pointN")"><b>Подвал</b></div>
+                        <div class="@(Model.WithGarage != false ? "pointY" : "pointN")"><b>Гараж</b></div>
+                        <div class="@(Model.WithGarden != false ? "pointY" : "pointN")"><b>Огород</b></div>
+                        <div class="clear"></div>
+                    </div>
+                    @if (Model.Photos.Count() != 0)
+                    {
+                        <div class="itemPics">
+                            <div class="itemPicsBig">
+                                <div class="itemPicsList2">
+                                    <ul>
+                                        @foreach (var photo in Model.Photos.OrderBy(i => i.CreatedAt))
+                                        {
+                                            <li>
+                                                <div>
+                                                    <span>
+                                                        <img src="~/Images/Realty/@photo.Link" /></span>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="itemPicsList" id="scrollbarX">
+                                <div class="viewport">
+                                    <div class="overview">
+
+                                        <ul>
+                                            @foreach (var photo in Model.Photos.OrderBy(i => i.CreatedAt))
+                                            {
+                                                <li class="a">
+                                                    <div>
+                                                        <span>
+                                                            <a id="@string.Format("sl_{0}", photo.Id)" class="fLink" rel="fLink" href="/Images/Realty/@photo.Link">
+                                                                <img src="~/Images/Realty/@photo.Link" />
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="scrollbar">
+                                    <div class="track">
+                                        <div class="thumb">
+                                            <div class="end"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+@* List of comments *@
+                    @Html.Partial("_RealtyComments", (IPagedList<RealtyComment>)ViewBag.Comments ?? new PagedList<RealtyComment>(null, 1, 1))
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>
+@section Scripts{
+    @Scripts.Render("~/Scripts/cusel-min-2.5.js")
+    @Scripts.Render("~/Scripts/jquery.tinyscrollbar.min.js")
+    @Scripts.Render("~/Scripts/jquery.jcarousel.min.js")
+    @Scripts.Render("~/Scripts/RealtyBookmark.js")
+    @Styles.Render("~/Content/Cusel.css")
+    @Styles.Render("~/Content/Tinyscrollbar.css")
+}

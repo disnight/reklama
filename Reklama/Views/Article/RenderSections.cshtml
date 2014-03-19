@@ -1,0 +1,43 @@
+﻿@using Reklama.Models.SortModels.Article
+@model IQueryable<Domain.Entity.Articles.ArticleSection>
+
+@{
+    Layout = null;
+    var sectionId = ViewBag.SectionId;
+    var subsectionId = ViewBag.SubsectionId;
+    var sortModel = new ArticleSortModel();
+}
+
+<span class="hed1">Разделы</span>
+<div class="lMenu2">
+    <ul>
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var s in Model)
+            {
+            <li @((sectionId != null && s.Id == sectionId) ? "class=a" : "")>
+                <span><a href="javascript:void(0)">@s.Name</a></span>
+                <ul class="lMenu2Second">
+                    @if (s.Subsections != null && s.Subsections.Count > 0)
+                    {
+                        foreach (var subsection in s.Subsections)
+                        {
+                            <li>
+                                @Html.ActionLink(subsection.Name, "Index", new
+                                    {
+                                        PageSize = sortModel.PageSize,
+                                        CurrentPage = 1,
+                                        SubsectionId = subsection.Id
+                                    }, new
+                                    {
+                                        @class = (subsectionId != null && subsectionId == subsection.Id) ? "error" : ""
+                                    })
+                            </li>
+                        }
+                    }
+                </ul>
+            </li>
+            }
+        }
+    </ul>
+</div>

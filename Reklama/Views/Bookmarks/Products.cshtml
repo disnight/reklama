@@ -1,0 +1,169 @@
+﻿@using Domain.Entity.Announcements;
+@using Domain.Enums
+@using Reklama
+@using Reklama.Models.SortModels
+@using Reklama.Models.ViewModels.Shared
+@model PagedList.IPagedList<Domain.Entity.Catalogs.Product>
+@{
+    var sortModel = (PagerSortModel)ViewBag.SortModel;
+}
+
+<div class="catalogInner">
+    <table>
+        <tr>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                </div>
+                <h1>@ViewBag.Title</h1>
+                <div class="booksTabs">
+                    <ul>
+                        <li class="a">@Html.RouteLink("Товары", "MyProductBookmarks")</li>
+                        <li>@Html.RouteLink("Недвижимость", "MyRealtyBookmarks")</li>
+                        <li>@Html.RouteLink("Объявления", "MyAnnouncementBookmarks")</li>
+                        @*<li><a href="javascript:void(0)">Авто</a></li>
+                        <li><a href="javascript:void(0)">Купить</a></li>*@
+                    </ul>
+                </div>
+                <div class="ciList myBookm">
+                    <ul>
+                        @foreach (var product in Model)
+                        {
+                            <li>
+                                <table>
+                                    <tr>
+                                        <td class="ciImg">
+                                            <a href="@Url.Action("Details", "Product", new { id = product.Id })">
+                                                <img src="/@string.Concat(Reklama.ProjectConfiguration.Get.FilePaths["products"], product.Image)" /></a>
+                                        </td>
+                                        <td class="ciText">
+                                            <div>
+                                                <span class="ciName">@Html.ActionLink(product.Name, "Details", "Product", new { id = product.Id }, null)</span>
+                                                <p>@product.SmallDescription ...@Html.ActionLink("Читать подробнее", "Details",  "Product", new { id = product.Id }, null)</p>
+                                                <div class="ciRate">
+                                                    <span>
+                                                        <img src="/Images/System/file.png" />
+                                                        @Html.ActionLink("Характеристики", "Details",  "Product", new { id = product.Id }, null)
+                                                    </span>
+                                                    <span>
+                                                        <img src="/Images/System/foto.png" />
+                                                        @Html.ActionLink("Фото", "Photos",  "Product", new { id = product.Id }, null)
+                                                        <sup>@(product.Images.Count + 1)</sup>
+                                                    </span>
+                                                    <span>
+                                                        @if (product.ReviewLink != null && !product.ReviewLink.IsEmpty())
+                                                        {
+                                                            <img src="/Images/System/page.png" />
+                                                            <a href="@product.ReviewLink">Обзор</a>
+                                                        }
+                                                    </span>
+                                                    <span>
+                                                        <img src="/Images/System/book.png" />
+                                                        @Html.ActionLink("Отзывы", "Feedbacks",  "Product", new { id = product.Id }, null)
+                                                        <sup>@product.Feedbacks.Count</sup>
+                                                    </span>
+                                                    @*                                                                <span>
+                                                                    <img src="/Images/System/talk.png" />
+                                                                    <a href="javascript:void(0)">Обсуждениe</a>
+                                                                    <sup>88</sup>
+                                                                </span>*@
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                        <td class="ciOffers">
+                                            @Html.Partial("~/Views/Product/_ProductCurrencyPartialList.cshtml", product)
+                                            @Html.Partial("~/Views/Product/_BuySellersCount.cshtml", product)
+                                        </td>
+                                        <td class="ciInfo">
+                                            @Html.Partial("_RemoveFromBookmarkPartial", new CategorySearchSortModel()
+                                                                                            {
+                                                                                                Id = product.Id,
+                                                                                                Category = CategorySearch.Product
+                                                                                            })
+                                        </td>
+                                    </tr>
+                                </table>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="pages">
+                    <ul class="fastNav">
+                        <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                        <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                        <a class="page-prev" href="javascript:void(0)"></a>
+                        <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
+
+                        @for (int page = 1; page <= Model.PageCount; page++)
+                        {
+                            <li>
+
+                                @if (page == Model.PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "Products", new
+                                                                            {
+                                                                                CurrentPage = page,
+                                                                                PageSize = sortModel.PageSize
+                                                                            },
+                                                                            new { @class = "hr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "Products", new
+                                                                            {
+                                                                                CurrentPage = page,
+                                                                                PageSize = sortModel.PageSize
+                                                                            })
+                                }
+                            </li>
+                        }
+
+                        <a class="page-next" href="javascript:void(0)"></a>
+                    </ul>
+
+                    <div class="pageslider">
+                        <div class="pagesliderTop">
+                            <ul>
+                                @for (int page = 1; page <= Model.PageCount; page++)
+                                {
+                                    <li>
+
+                                        @if (page == Model.PageNumber)
+                                        {
+                                            @Html.ActionLink(page.ToString(), "Products", new
+                                                                            {
+                                                                                CurrentPage = page,
+                                                                                PageSize = sortModel.PageSize
+                                                                            },
+                                                                            new { @class = "shr" })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink(page.ToString(), "Products", new
+                                                                            {
+                                                                                CurrentPage = page,
+                                                                                PageSize = sortModel.PageSize
+                                                                            })
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="alHScrollBar">
+                            <div class="alHScrollSlider" style="left: 0px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>
+
+
+@section head {
+    @Scripts.Render("~/Scripts/Bookmark.js")
+}

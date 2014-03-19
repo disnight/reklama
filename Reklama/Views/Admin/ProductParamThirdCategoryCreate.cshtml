@@ -1,0 +1,39 @@
+﻿@using Domain.Entity.Catalogs
+@model Domain.Entity.Catalogs.CatalogThirdCategory
+
+@{
+    ViewBag.Title = "ProductParamThirdCategoryCreate";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+    var secondCategory = (CatalogSecondCategory) ViewBag.SecondCategory;
+}
+
+<h2>Создание категории 3 уровня (производитель)<br /> для раздела "@secondCategory.Name"</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>CatalogThirdCategory</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.SecondCategoryId)
+            @Html.ValidationMessageFor(model => model.SecondCategoryId)
+        </div>
+
+        <p>
+            <input type="submit" value="Создать" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

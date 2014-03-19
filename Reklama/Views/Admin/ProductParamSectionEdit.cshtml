@@ -1,0 +1,34 @@
+﻿@model Domain.Entity.Catalogs.CatalogCategory
+
+@{
+    ViewBag.Title = "Редактировать характеристику категории товаров";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Редактировать характеристику категории товаров</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Редактировать характеристику категории товаров</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,227 @@
+﻿@model Domain.Entity.Shared.UserProfile
+
+@{
+    ViewBag.Title = "Редактирование профиля";
+}
+
+
+<div id="UserProfile" identifier="@Model.UserId" class="catalogInner">
+    <table>
+        <tr>
+            <td class="ci1 blue">
+                <div class="userAv" id="avatar">
+                    <p>@Model</p>
+                    <span>
+                        <img src="@((Model.AvatarLink != null) ? "/Images/Users/Avatars/" + @Model.AvatarLink : "/Images/System/userAv.png")" class="avatar" align="left" />
+                        <img id="load" src="loadstop.gif" class="unvisible" />
+                    </span>
+                </div>
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="userFull">
+
+                    @*<div class="userStatus">
+                        @Membership.GetUser(Model.Email).IsOnline
+                    </div>*@
+
+                    @if (User.Identity.IsAuthenticated && WebSecurity.IsCurrentUser(Model.Email))
+                    {
+                        <div class="userChange">
+                            @Html.ActionLink("Редактировать личные данные", "Edit", "Profile", new { id = Model.UserId }, null)
+                        </div>
+                    }
+
+                    <div class="userShortInfo">
+
+                        <div class="userShortInfoL">
+
+                            <div><span>Учетная запись</span>№ @Model.UserId</div>
+                            <div><span>Зарегистрирован</span>@string.Format("{0:dd.MM.yyyy}", WebSecurity.GetCreateDate(Model.Email))</div>
+                            @if (Model.Birthday.HasValue)
+                            {
+                                <div><span>День рождения</span>@string.Format("{0:dd.MM.yyyy}", Model.Birthday)</div>
+                            }
+
+                            <div id="ProfileInfo">
+                                @if (Model.Site != null)
+                                {
+                                    <p class="user_info">
+                                        <a href="@(Model.Site.Contains("http") ? Model.Site : "http://" + Model.Site)" class="user_info">@Model.Site</a>
+                                    </p>
+                                }
+
+                                @if (Model.Phone != null)
+                                {
+                                    <p class="user_info">Телефон: @Model.Phone</p>
+                                }
+
+                                @if (Model.Skype != null)
+                                {
+                                    <p class="user_info">Skype: @Model.Skype</p>
+                                }
+
+                                @if (Model.Icq != null)
+                                {
+                                    <p class="user_info">Icq: @Model.Icq</p>
+                                }
+                            </div>
+                            <div class="clear"></div>
+
+                            @if (Model.UserId != WebSecurity.CurrentUserId)
+                            {
+                                <div><span>@Html.ActionLink("Послать сообщение", "Create", "PrivateMessage", new { recepientId = Model.UserId }, new { style = "user_info" })</span></div>
+                            }
+                        </div>
+
+                        <div class="userShortInfoR">
+                            @if (Model.UserId == WebSecurity.CurrentUserId)
+                            {
+                            
+
+                                <div>
+                                    @{
+                                int unreadMessagesCount = Model.PrivateMessages.Count(m => m.IsRead.Equals(false));
+                                string unreadMessages = (unreadMessagesCount > 0) ? string.Format(" ({0})", unreadMessagesCount) : "";
+                                        @Html.ActionLink(string.Format("Мои сообщения{0}", unreadMessages), "Index", "PrivateMessage", null, new { @class = "userGr" })
+                                    }
+                                </div>
+                                <div>@Html.RouteLink("Мои объявления", "MyAnnouncements")</div>
+                                <div>@Html.RouteLink("Закладки", "MyAnnouncementBookmarks", null, new { @class = "userRed" })</div>
+                                <div>@Html.RouteLink("Недвижимость", "MyRealty")</div>
+@*                            <div><a href="javascript:void(0)">Автообъявления</a></div>
+                            <div><a href="javascript:void(0)">Отзывы</a></div>*@
+
+                            
+                            }
+
+                        </div>
+
+                        @if (Model.About != null)
+                        {
+                            <div id="AboutMe">
+                                <pre>@Model.About</pre>
+                            </div>
+                        }
+
+                    </div>
+
+
+                    <div class="userMoreInfo">
+
+                        <div class="userMoreInfoTabs">
+
+                            <ul>
+
+                                <li class="a"><a rel="sh1" href="javascript:void(0)">Личные данные</a></li>
+                                <li><a rel="sh2" href="javascript:void(0)">Пароль</a></li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="userMoreInfoCont">
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.ValidationSummary(true)
+                                <div class="showBlock" id="sh1">
+
+
+
+
+                                    <fieldset>
+                                        <legend>UserProfile</legend>
+                                        <div class="editor-label">
+                                            <span>@Html.LabelFor(model => model.Name)</span>
+                                            @Html.EditorFor(model => model.Name)
+                                            @Html.ValidationMessageFor(model => model.Name)
+                                        </div>
+
+                                        <div class="editor-label">
+                                            <span>@Html.LabelFor(model => model.Surname)</span>
+                                            @Html.EditorFor(model => model.Surname)
+                                            @Html.ValidationMessageFor(model => model.Surname)
+                                        </div>
+
+                                        <div class="editor-label">
+                                            <span>@Html.LabelFor(model => model.Skype)</span>
+                                            @Html.EditorFor(model => model.Skype)
+                                            @Html.ValidationMessageFor(model => model.Skype)
+                                        </div>
+
+                                        <div class="editor-label">
+                                            <span>@Html.LabelFor(model => model.Icq)</span>
+                                            @Html.EditorFor(model => model.Icq)
+                                            @Html.ValidationMessageFor(model => model.Icq)
+                                        </div>
+
+                                        <div class="editor-label">
+                                            <span>@Html.LabelFor(model => model.Phone)</span>
+                                            @Html.EditorFor(model => model.Phone)
+                                            @Html.ValidationMessageFor(model => model.Phone)
+                                        </div>
+
+                                        <div class="editor-label">
+                                            <span>@Html.LabelFor(model => model.Site)</span>
+                                            @Html.EditorFor(model => model.Site)
+                                            @Html.ValidationMessageFor(model => model.Site)
+                                        </div>
+
+                                        <div class="editor-label">
+                                            <span>@Html.LabelFor(model => model.About)</span>
+                                            @Html.TextAreaFor(model => model.About, new { style = "width: 500px;height: 100px;" })
+                                            @Html.ValidationMessageFor(model => model.About)
+                                        </div>
+
+                                        <div class="editor-label">
+                                            <span>@Html.LabelFor(model => model.Birthday)</span>
+                                            @Html.EditorFor(model => model.Birthday)
+                                            @Html.ValidationMessageFor(model => model.Birthday)
+                                        </div>
+
+                                        @Html.HiddenFor(model => model.UserId)
+                                        @Html.HiddenFor(m => m.Email)
+                                        @Html.HiddenFor(m => m.AvatarLink)
+                                        @Html.AntiForgeryToken()
+
+                                    </fieldset>
+
+                                    <div class="userSave">
+                                        <input type="submit" value="Сохранить" />
+                                    </div>
+
+                                </div>
+                            }
+
+
+
+
+                            <div class="showBlock" id="sh2">
+
+                                <div>
+
+                                    @{ Html.RenderAction("Manage", "Account"); }
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@section head
+{
+    @Styles.Render("~/Content/Profile.css")
+}

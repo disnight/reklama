@@ -1,0 +1,266 @@
+﻿@model Domain.Entity.Catalogs.Shop
+
+@{
+    ViewBag.Title = "Магазин " + Model.Name;
+}
+
+<div class="catalogInner inShop">
+    <table>
+        <tr>
+            <td class="ci1">
+                <span class="hed1">@Model.Name</span>
+                <div class="lMenu2">
+                    <ul>
+                        <li class="a">
+                            <span><a href="javascript:void(0)">Телефоны</a></span>
+                            <ul class="lMenu2Second">
+                                <li><a href="javascript:void(0)">Мобильные телефоны</a></li>
+                                <li><a href="javascript:void(0)">Радио телефоны</a></li>
+                                <li><a href="javascript:void(0)">Проводные телефоны</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span><a href="javascript:void(0)">Фотоаппараты</a></span>
+                            <ul class="lMenu2Second">
+                                <li><a href="javascript:void(0)">Мобильные телефоны</a></li>
+                                <li><a href="javascript:void(0)">Радио телефоны</a></li>
+                                <li><a href="javascript:void(0)">Проводные телефоны</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span><a href="javascript:void(0)">Бытовая техника</a></span>
+                            <ul class="lMenu2Second">
+                                <li><a href="javascript:void(0)">Мобильные телефоны</a></li>
+                                <li><a href="javascript:void(0)">Радио телефоны</a></li>
+                                <li><a href="javascript:void(0)">Проводные телефоны</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span><a href="javascript:void(0)">Холодильники</a></span>
+                            <ul class="lMenu2Second">
+                                <li><a href="javascript:void(0)">Мобильные телефоны</a></li>
+                                <li><a href="javascript:void(0)">Радио телефоны</a></li>
+                                <li><a href="javascript:void(0)">Проводные телефоны</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span><a href="javascript:void(0)">Компьютеры</a></span>
+                            <ul class="lMenu2Second">
+                                <li><a href="javascript:void(0)">Мобильные телефоны</a></li>
+                                <li><a href="javascript:void(0)">Радио телефоны</a></li>
+                                <li><a href="javascript:void(0)">Проводные телефоны</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                @*<div class="lBan">
+                    <a href="javascript:void(0)">
+                        <img src="/Images/System/ban120600.jpg" /></a>
+                </div>*@
+                <div class="lDirect">
+                    <script type="text/javascript"><!--
+    google_ad_client = "ca-pub-5065653014339218";
+    /* ReklamaAdSense */
+    google_ad_slot = "4682848889";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+                    </script>
+                    <script type="text/javascript"
+                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                    </script>
+                </div>
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                    <a href="index.html">Главная страница</a>
+                    <span class="arr">&rarr;</span>
+                    @Model.Name
+                </div>
+                <h1>Магазин @Model.Name</h1>
+@*                <div class="shopStars">
+                    <img src="/Images/System/shopStarOn.png" /><img src="/Images/System/shopStarOn.png" /><img src="/Images/System/shopStarOn.png" /><img src="/Images/System/shopStarOn.png" /><img src="/Images/System/shopStar.png" />
+                </div>*@
+                <div class="shopBlock">
+                    <div class="shopBlockTop">
+                        <div class="sbtLeft">
+                            <div class="shopLog">
+                                <a href="javascript:void(0)">
+                                   <img class="logoShop" src="@(Model.ImageLogo != null ? "/Images/Catalog/ShopLogos/" + Model.ImageLogo : "")" /></a>
+                            </div>
+                            <ul>
+                                <li>
+                                    <img src="/Images/System/world.png" />Сайт: <a href="javascript:void(0)">upgrade.by</a></li>
+                                <li>
+                                    <img src="/Images/System/post.png" />E-mail: <a href="mailto:mail@mail.com">mail@mail.com</a></li>
+                                <li>
+                                    <img src="/Images/System/skype.png" />Skype: dailsa</li>
+                                <li>
+                                    <img src="/Images/System/icq.png" />ICQ: 24353462</li>
+                            </ul>
+                        </div>
+                        <div class="sbtCenter">
+                            <div class="shopTime">
+                                <p>Режим работы:</p>
+                                <span>пн</span>
+                                <span>вт</span>
+                                <span>ср</span>
+                                <span>чт</span>
+                                <span>пт</span>
+                                <span>сб</span>
+                                <span class="no">вс</span>
+                            </div>
+                            <ul>
+                                <li>+ 375 29 <strong>555-00-00</strong></li>
+                                <li>+ 375 29 <strong>555-00-00</strong></li>
+                                <li>+ 375 29 <strong>555-00-00</strong></li>
+                                <li>+ 375 29 <strong>555-00-00</strong></li>
+                            </ul>
+                        </div>
+                        <div class="sbtRight">
+                            <p>ИП Луцкевич Алеся Николаевна</p>
+                            <p>Свидетельство о регистрации 56434738</p>
+                            <p>г. Узда, ул. Победы д. 63</p>
+                        </div>
+                    </div>
+                    <p>Компания <strong>upgrade.by</strong> образована в 2007 году и с тех пор успешно развивается на рынке компьютерной и мультимедийной техники.</p>
+                    <p>Мы поставляем на рынок только сертифицированную, белую технику. Соответственно приобретая товары у нас Вы получаете гарантию от официальных, авторизованных, сервис-центров фирм-производителей. И можете быть уверены, что в случае каких-либо неполадок в оборудовании</p>
+                    <p>Наш сайт upgrade.by это мультибрэндовый специализированный современный магазин, в котором можно найти не только различные модели ноутбуков и комплектующие, но и разнообразные периферийные устройста, мониторы. У нас представлены большинство всемирно известныx брендов: Hewlett-Packard, Asus, Acer, Dell, Samsung, Toshiba, LG, Epson и другие.</p>
+                    <p>Если Вы еще не определились с моделью, предлагаем Вам воспользоваться помощью наших консультантов. Они помогут Вам сделать правильный выбор. </p>
+                    <p>Так же у нас можно оформить товар в кредит, условия кредита смотрите на сайте компании (upgrade.by).</p>
+                    <div class="itemResponse">
+                        <div class="itemResponseHead"><span>Отзывы</span></div>
+                        <div class="itemResponseBlock gray">
+                            <div class="itemResponseBlockL">
+                                <img src="/Images/System/seller1.jpg" />
+                            </div>
+                            <div class="itemResponseBlockR">
+                                <div class="inRespStars">
+                                    <img src="/Images/System/stars.png" /><img src="/Images/System/stars.png" /><img src="/Images/System/stars.png" /><img src="/Images/System/stars.png" /><img src="/Images/System/starsOff.png" />
+                                </div>
+                                <span><a href="#">Василий Обломов</a>19 августа 2012 в 23:18</span>
+                                <p>Транспортное сообщение между Аксаковщиной и Минском осуществляют пригородные автобосу и маршруты. Остановка общественного транспорта - прямо в деревне. На автомобиле до Аксаковщины 15 минут езды, причем все время по отличной асфальтированной дороге: сначала гродненская трасса, затем поворот на саму деревню.</p>
+                            </div>
+                        </div>
+                        <div class="itemResponseBlock">
+                            <div class="itemResponseBlockL">
+                                <img src="/Images/System/seller1.jpg" />
+                            </div>
+                            <div class="itemResponseBlockR">
+                                <div class="inRespStars">
+                                    <img src="/Images/System/stars.png" /><img src="/Images/System/stars.png" /><img src="/Images/System/stars.png" /><img src="/Images/System/stars.png" /><img src="/Images/System/starsOff.png" />
+                                </div>
+                                <span><a href="#">Василий Обломов</a>19 августа 2012 в 23:18</span>
+                                <p>Купил я такой месяц назад, умерла внутрянняя память (!), сама по себе, взяла и сдохла. Начал разбираться в проблеме, не ожидал, что так много таких телефонов умирает по этой проблеме, очевидный заводской брак. Проблема не лечится, кроме как заменой системной платы, которая стоит как сам телефон. Покупая данный аппарат скрестите пальцы, что бы вам не попался такой, т.к. с шило-гарантиями от наших продавцов придётся повоевать с сервис центрами. И вообще это не первый прецедент с продукцией компании Samsung.</p>
+                            </div>
+                        </div>
+                        <div class="itemResponseBlock gray">
+                            <div class="itemResponseBlockL">
+                                <img src="/Images/System/seller1.jpg" />
+                            </div>
+                            <div class="itemResponseBlockR">
+                                <div class="inRespStars">
+                                    <img src="/Images/System/stars.png" /><img src="/Images/System/stars.png" /><img src="/Images/System/stars.png" /><img src="/Images/System/stars.png" /><img src="/Images/System/starsOff.png" />
+                                </div>
+                                <span><a href="#">Василий Обломов</a>19 августа 2012 в 23:18</span>
+                                <p>Наконец-то он у меня появился мой любимый белый дружок! Я безумно счастлива! Он просто летает, супер быстрый,экран-огонь! Не задумчивый, в отличии от моего предыдущего Galay Spica. Это действительно лучший телефон на данный момент. А всякие мелкие штучки типа бегущей по экрану водной ряби и остановке музыки при переворачивании вниз экраном-это очень приятно. В общем, для меня это идеал телефона! Я уже писала как счастлива???Ах,да писала)) И никакая это не ЛОПАТА, а супер лёгкая и удобная во всех отношениях вещь! Если денег не жалко-это ваш выбор! Он просто не может разочаровать!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pages">
+                    <ul class="fastNav">
+                        <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                        <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                        <a class="page-prev" href="javascript:void(0)"></a>
+                        <li><a href="javascript:void(0)">1</a></li>
+                        <li><a href="javascript:void(0)">2</a></li>
+                        <li><a href="javascript:void(0)">3</a></li>
+                        <li><a href="javascript:void(0)">4</a></li>
+                        <li><a href="javascript:void(0)">5</a></li>
+                        <li><a href="javascript:void(0)">6</a></li>
+                        <li><a href="javascript:void(0)">7</a></li>
+                        <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
+                        <li><a href="javascript:void(0)">8</a></li>
+                        <li><a href="javascript:void(0)">9</a></li>
+                        <li><a href="javascript:void(0)">10</a></li>
+                        <li><a href="javascript:void(0)">11</a></li>
+                        <li><a href="javascript:void(0)">12</a></li>
+                        <li><a href="javascript:void(0)">13</a></li>
+                        <li><a href="javascript:void(0)">14</a></li>
+                        <li><a href="javascript:void(0)">15</a></li>
+                        <li><a class="hr" href="javascript:void(0)">16</a></li>
+                        <a class="page-next" href="javascript:void(0)"></a>
+                    </ul>
+                    <div class="pageslider">
+                        <div class="pagesliderTop">
+                            <ul>
+                                <li><a href="javascript:void(0)">1</a></li>
+                                <li><a href="javascript:void(0)">2</a></li>
+                                <li><a href="javascript:void(0)">3</a></li>
+                                <li><a href="javascript:void(0)">4</a></li>
+                                <li><a href="javascript:void(0)">5</a></li>
+                                <li><a href="javascript:void(0)">6</a></li>
+                                <li><a href="javascript:void(0)">7</a></li>
+                                <li><a href="javascript:void(0)">8</a></li>
+                                <li><a href="javascript:void(0)">9</a></li>
+                                <li><a href="javascript:void(0)">10</a></li>
+                                <li><a href="javascript:void(0)">11</a></li>
+                                <li><a href="javascript:void(0)">12</a></li>
+                                <li><a href="javascript:void(0)">13</a></li>
+                                <li><a href="javascript:void(0)">14</a></li>
+                                <li><a class="shr" href="javascript:void(0)">15</a></li>
+                                <li><a href="javascript:void(0)">16</a></li>
+                                <li><a href="javascript:void(0)">17</a></li>
+                                <li><a href="javascript:void(0)">18</a></li>
+                                <li><a href="javascript:void(0)">19</a></li>
+                                <li><a href="javascript:void(0)">20</a></li>
+                            </ul>
+                        </div>
+                        <div class="alHScrollBar">
+                            <div class="alHScrollSlider" style="left: 0px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="itemResponseAdd forShop">
+                    <em>Оставить отзыв</em>
+                    <form>
+
+                        <div class="respArea">
+                            <textarea></textarea>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="respStars">
+                            <p>Ваша оценка магазина:</p>
+                            <div class="reStars starsInput">
+                                <input type="hidden" value="" name="stars" />
+                                <a href="javascript:void(0)"></a>
+                                <a href="javascript:void(0)"></a>
+                                <a href="javascript:void(0)"></a>
+                                <a href="javascript:void(0)"></a>
+                                <a href="javascript:void(0)"></a>
+                            </div>
+                        </div>
+                        <div class="regCapcha">
+                            <p>Введите защитный код</p>
+                            <p>
+                                <img src="data/capcha.jpg" /><input type="text" name="regCap" id="regCap" />
+                            </p>
+                            <div class="refresh">
+                                <span>Обновить</span>
+                            </div>
+                        </div>
+                        <div class="respSubm">
+                            <input type="submit" value="" />
+                        </div>
+
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>

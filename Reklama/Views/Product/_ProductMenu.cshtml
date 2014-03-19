@@ -1,0 +1,52 @@
+﻿@using Domain.Enums
+@model Domain.Entity.Catalogs.Product
+@{
+    Layout = null;
+}
+
+<div class="prodTopR">
+    <ul>
+        <li><a @(((ProductMenu)ViewData["productMenu"] == ProductMenu.Characteristics) ? "class=act" : "" ) href="@Url.Action("Details", new { id = Model.Id })">
+                <img src="/Images/System/file.png" /><span>Характеристики</span></a>
+            @if (User.IsInRole("Administrator"))
+        {
+            <li>
+                @Html.ActionLink("Редактировать", "ProductParamValuesEdit", "Admin", new { id = Model.Id }, new { style = "color:#00A;" })
+            </li>
+        }
+        </li>
+        <li>
+            <a @(((ProductMenu)ViewData["productMenu"] == ProductMenu.Photo) ? "class=act" : "" ) href="@Url.Action("Photos", new { id = Model.Id })">
+                <img src="/Images/System/foto.png" />
+                <span>Фото</span>
+            </a>
+            <sup>@(Model.Images.Count+1)</sup>
+            @if (User.IsInRole("Administrator"))
+            {
+                <br />
+                @Html.ActionLink("Добавить фото", "ProductAddPhoto", "Admin", new { id = Model.Id }, new { style = "color:#00A;", target = "_blank" })
+            }
+        </li>
+        @if(Model.ReviewLink != null && !Model.ReviewLink.IsEmpty())
+        {
+            <li>
+                <a @(((ProductMenu) ViewData["productMenu"] == ProductMenu.Review) ? "class=act" : "" ) href="@Model.ReviewLink">
+                    <img src="/Images/System/page.png" /><span>Обзор</span>
+                </a>
+            </li>
+        }
+        <li><a @(((ProductMenu)ViewData["productMenu"] == ProductMenu.Feedback) ? "class=act" : "" ) href="@Url.Action("Feedbacks", new { id = Model.Id })">
+            <img src="/Images/System/book.png" /><span>Отзывы</span></a><sup>@Model.Feedbacks.Count</sup></li>
+        @*<li><a href="javascript:void(0)">
+                <img src="/Images/System/talk.png" /><span>Обсуждение</span></a><sup>88</sup>
+        </li>*@
+        @if (User.IsInRole("Administrator"))
+        {
+            <li>
+                @Html.ActionLink("Редактировать товар", "ProductEdit", "Admin", new { id = Model.Id }, new { style = "color:#00A;" })
+            </li>
+        }
+                <li><a @(((ProductMenu)ViewData["productMenu"] == ProductMenu.Shops) ? "class=act" : "" ) href="@Url.Action("Shops", new { id = Model.Id })">
+            <img src="/Images/System/book.png" /><span>Магазины</span></a><sup>@Model.ShopProductRefs.Where(r => r.Shop.IsActive).Count()</sup></li>
+    </ul>
+</div>

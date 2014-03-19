@@ -1,0 +1,113 @@
+﻿@using System.Globalization
+@using Reklama
+@{
+    Layout = null;
+}
+
+<div class="mainArticlesBlock">
+    <div class="mArtHeader">
+        <span class="artHeader">
+            <img class="maHeaderL" src="/Images/System/maHeaderL.png" />
+            <img class="maHeaderR" src="/Images/System/maHeaderR.png" />
+            @Html.ActionLink("Статьи", "Index", "Article")
+        </span>
+        @*<p>Крупная недвижимость на <a href="javascript:void(0)">site.loc</a></p>*@
+    </div>
+    
+    @try
+    {
+        if (ProjectConfiguration.Get.MainPageArticleConfig.Article1 != null)
+        {
+            <div class="mainArticle">
+                <div class="mArtImg">
+                    <a href="@Url.Action("Details", "Article", new {id = ProjectConfiguration.Get.MainPageArticleConfig.Article1.Id})">
+                        <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], ProjectConfiguration.Get.MainPageArticleConfig.Article1.Logo)" /></a>
+                </div>
+                <h2> @Html.ActionLink(ProjectConfiguration.Get.MainPageArticleConfig.Article1.Name, "Details", "Article", new {id = ProjectConfiguration.Get.MainPageArticleConfig.Article1.Id}, null)</h2>
+                <p>
+                    @ProjectConfiguration.Get.MainPageArticleConfig.Article1.SmallDescription
+                    <br />
+                    @Html.ActionLink("Читать полностью", "Details", "Article", new {id = ProjectConfiguration.Get.MainPageArticleConfig.Article1.Id}, null)
+                </p>
+                <div class="mArtDate">
+                    @ProjectConfiguration.Get.MainPageArticleConfig.Article1.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
+                    <a href="javascript:void(0)">Комментариев: @ProjectConfiguration.Get.MainPageArticleConfig.Article1.Comments.Count</a>
+                </div>
+            </div>
+        }
+
+        <div class="mainArticlesList">
+                                <ul>
+                                    @if (ProjectConfiguration.Get.MainPageArticleConfig.Article2 != null)
+                                    {
+                                        <li>
+                                                <div class="malImg">
+                                                    <a href="@Url.Action("Details", "Article", new {id = ProjectConfiguration.Get.MainPageArticleConfig.Article2.Id})">
+                                                        <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], ProjectConfiguration.Get.MainPageArticleConfig.Article2.Logo)" />
+                                                    </a>
+                                                </div>
+                                                <div class="malText">
+                                                    <h3>
+                                                        @Html.ActionLink(ProjectConfiguration.Get.MainPageArticleConfig.Article2.Name, "Details", "Article", new {id = ProjectConfiguration.Get.MainPageArticleConfig.Article2.Id}, null)
+                                                        <a class="commentIcon" href="javascript:void(0)"><span>@ProjectConfiguration.Get.MainPageArticleConfig.Article2.Comments.Count</span></a>
+                                                    </h3>
+                                                    <p>
+                                                        @ProjectConfiguration.Get.MainPageArticleConfig.Article2.SmallDescription
+                                                        <br />@Html.ActionLink("Читать полностью", "Details", "Article", new {id = ProjectConfiguration.Get.MainPageArticleConfig.Article2.Id}, null)
+                                                    </p>
+                                                    <div class="malDate">
+                                                        @ProjectConfiguration.Get.MainPageArticleConfig.Article2.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
+                                                    </div>
+                                                </div>
+                                            </li>
+                                    }
+                                    @if (ProjectConfiguration.Get.MainPageArticleConfig.Article3 != null)
+                                    {
+                                        <li>
+                                                <div class="malImg">
+                                                    <a href="@Url.Action("Details", "Article", new {id = ProjectConfiguration.Get.MainPageArticleConfig.Article3.Id}, null)">
+                                                        <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], ProjectConfiguration.Get.MainPageArticleConfig.Article3.Logo)" />
+                                                    </a>
+                                                </div>
+                                                <div class="malText">
+                                                    <h3>
+                                                        @Html.ActionLink(ProjectConfiguration.Get.MainPageArticleConfig.Article3.Name, "Details", "Article", new {id = ProjectConfiguration.Get.MainPageArticleConfig.Article3.Id}, null)
+                                                        <a class="commentIcon" href="javascript:void(0)"><span>@ProjectConfiguration.Get.MainPageArticleConfig.Article3.Comments.Count</span></a>
+                                                    </h3>
+                                                    <p>
+                                                        @ProjectConfiguration.Get.MainPageArticleConfig.Article3.SmallDescription
+                                                        <br />@Html.ActionLink("Читать полностью", "Details", "Article", new {id = ProjectConfiguration.Get.MainPageArticleConfig.Article3.Id}, null)
+                                                    </p>
+                                                    <div class="malDate">
+                                                        @ProjectConfiguration.Get.MainPageArticleConfig.Article3.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
+                                                    </div>
+                                                </div>
+                                            </li>
+                                    }
+                                    @if (ProjectConfiguration.Get.MainPageArticleConfig.Article4 != null)
+                                    {
+                                        <li>
+                                                <div class="malImg">
+                                                    <a href="@Url.Action("Details", "Article", new {id = ProjectConfiguration.Get.MainPageArticleConfig.Article4.Id})">
+                                                        <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], ProjectConfiguration.Get.MainPageArticleConfig.Article4.Logo)" />
+                                                    </a>
+                                                </div>
+                                                <div class="malText">
+                                                    <h3>
+                                                        @Html.ActionLink(ProjectConfiguration.Get.MainPageArticleConfig.Article4.Name, "Details", "Article", new {id = ProjectConfiguration.Get.MainPageArticleConfig.Article4.Id}, null)
+                                                        <a class="commentIcon" href="javascript:void(0)"><span>@ProjectConfiguration.Get.MainPageArticleConfig.Article4.Comments.Count</span></a>
+                                                    </h3>
+                                                    <p>
+                                                        @ProjectConfiguration.Get.MainPageArticleConfig.Article4.SmallDescription
+                                                        <br />@Html.ActionLink("Читать полностью", "Details", "Article", new {id = ProjectConfiguration.Get.MainPageArticleConfig.Article4.Id}, null)
+                                                    </p>
+                                                    <div class="malDate">
+                                                        @ProjectConfiguration.Get.MainPageArticleConfig.Article4.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
+                                                    </div>
+                                                </div>
+                                            </li>
+                                    }
+                                </ul>
+                            </div>
+    } catch (Exception e){}
+</div>

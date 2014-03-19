@@ -1,0 +1,56 @@
+﻿@model Domain.Entity.Shared.UserProfile
+
+@{
+    ViewBag.Title = "UsersRoles";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Пользователь "@Model.Email"</h2>
+
+@{ Html.RenderAction("RenderUsersRoles", "Admin", new { id = Model.UserId }); }
+
+<br />
+<br />
+
+<div id="users-add-role">
+    @using (Html.BeginForm("UsersAddRole", "Admin"))
+    {
+        <b>Добавить роль пользователю</b><br />
+        <select name="role">
+            @foreach (var role in Roles.GetAllRoles().Except(Roles.GetRolesForUser(Model.Email)))
+            {   
+                <option value="@role">@role</option>
+            }
+        </select>
+        <input type="hidden" name="email" value="@Model.Email" /><br />
+        <input type="hidden" name="id" value="@Model.UserId" />
+        <input type="submit" value="Добавить роль" />
+    }
+</div>
+<div id="users-drop-role">
+    @using (Html.BeginForm("UsersDropRole", "Admin"))
+    {
+        <b>Удалить пользователя из роли</b><br />
+        <select name="role">
+            @foreach (var role in Roles.GetRolesForUser(Model.Email))
+            {   
+                <option value="@role">@role</option>
+            }
+        </select>
+        <input type="hidden" name="email" value="@Model.Email" /><br />
+        <input type="hidden" name="id" value="@Model.UserId" />
+        <input type="submit" value="Удалить роль" />
+    }
+</div>
+<div class="clear"></div>
+
+<style>
+    #users-add-role {
+        width: 200px;
+        float: left;
+    }
+    #users-drop-role {
+        width: 230px;
+        float: left;
+    }
+</style>

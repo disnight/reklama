@@ -1,0 +1,228 @@
+﻿@model PagedList.IPagedList<Domain.Entity.Catalogs.Product>
+@using Reklama.Models.ViewModels.Catalog;
+
+@{
+    //var secondCategory = (Domain.Entity.Catalogs.CatalogSecondCategory)ViewBag.SecondCategory;
+    //var filter = (Reklama.Models.ViewModels.Catalog.ProductsFilterParams)ViewBag.Filter;
+    var searchViewModel = (Reklama.Models.ViewModels.Shared.SearchViewModel)ViewBag.SearchViewModel;
+    ViewBag.Title = "Результаты поиска";
+}
+
+<div class="catalogInner">
+    <table>
+        <tr>
+            @*<td class="ci1">
+                <div class="placeGoods">
+                    <a href="javascript:void(0)"></a>
+                </div>
+
+                @Html.Partial("_Manufacturers", secondCategory)*@
+
+                @*<div class="leftProd">
+                                    <ul>
+                                        <li>
+                                            <div>
+                                                <a href="javascript:void(0)">
+                                                    <span class="img">
+                                                        <img src="data/lProd1.jpg">
+                                                    </span>
+                                                    <div class="text">
+                                                        <p>National Geographic NG 5159</p>
+                                                        от 150 $
+                                                    </div>
+                                                    <div class="lShop">
+                                                        <a href="javascript:void(0)">ООО «Диалса»</a>
+                                                        <p>+375 29 555-00-00</p>
+                                                        <p>+375 29 555-00-00</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div>
+                                                <a href="javascript:void(0)">
+                                                    <span class="img">
+                                                        <img src="data/lProd2.jpg">
+                                                    </span>
+                                                    <div class="text">
+                                                        <p>Nokia Lumia 800</p>
+                                                        от 380 $
+                                                    </div>
+                                                </a>                                                    
+                                                <div class="lShop">
+                                                    <a href="javascript:void(0)">ООО «Диалса»</a>
+                                                    <p>+375 29 555-00-00</p>
+                                                    <p>+375 29 555-00-00</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>*@
+
+                @*<div class="lBan">
+                                    <a href="javascript:void(0)"><img src="/Images/System/ban120600.jpg" /></a>
+                                </div>*@
+                @*@Html.Partial("_YandexDirectPartial")
+            </td>*@
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                    <a href="/">Главная страница</a>
+                    <span class="arr">&rarr;</span>
+                    @Html.ActionLink("Каталог товаров", "Catalog", "Product")
+                    <span class="arr">&rarr;</span>
+                    Результаты поиска
+                </div>
+                <h1>Результаты поиска</h1>
+                
+                <div class="ciList">
+                    <ul>
+                        @if(Model.Count > 0)
+                        {
+                            foreach (var product in Model)
+                            {
+                                <li>
+                                    <table>
+                                        <tr>
+                                            <td class="ciImg">
+                                                <a href="@Url.Action("Details", "Product", new {id = product.Id})">
+                                                    <img src="/@string.Concat(Reklama.ProjectConfiguration.Get.FilePaths["products"], product.Image)" /></a>
+                                            </td>
+                                            <td class="ciText">
+                                                <div>
+                                                    <span class="ciName">@Html.ActionLink(product.Name, "Details", "Product", new {id = product.Id}, null)</span>
+                                                    <p>@product.SmallDescription ...@Html.ActionLink("Читать подробнее", "Details", "Product", new {id = product.Id}, null)</p>
+                                                    <div class="ciRate">
+                                                        <span>
+                                                            <img src="/Images/System/file.png" />
+                                                            @Html.ActionLink("Характеристики", "Details", "Product", new {id = product.Id}, null)
+                                                        </span>
+                                                        <span>
+                                                            <img src="/Images/System/foto.png" />
+                                                            @Html.ActionLink("Фото", "Photos", "Product", new {id = product.Id}, null)
+                                                            <sup>@(product.Images.Count + 1)</sup>
+                                                        </span>
+                                                        <span>
+                                                            @if (product.ReviewLink != null && !product.ReviewLink.IsEmpty())
+                                                            {
+                                                                <img src="/Images/System/page.png" />
+                                                                <a href="@product.ReviewLink">Обзор</a>
+                                                            }
+                                                        </span>
+                                                        <span>
+                                                            <img src="/Images/System/book.png" />
+                                                            @Html.ActionLink("Отзывы", "Feedbacks", "Product", new {id = product.Id}, null)
+                                                            <sup>@product.Feedbacks.Count</sup>
+                                                        </span>
+                                                        @*                                                                <span>
+                                                                    <img src="/Images/System/talk.png" />
+                                                                    <a href="javascript:void(0)">Обсуждениe</a>
+                                                                    <sup>88</sup>
+                                                                </span>*@
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        
+                                            <td class="ciOffers">
+                                                @Html.Partial("~/Views/Product/_ProductCurrencyPartialList.cshtml", product)
+                                                @Html.Partial("~/Views/Product/_BuySellersCount.cshtml", product)
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <p class="searchInfo">Ничего не найдено. Попробуйте сформулировать запрос иначе.</p>
+                        }
+                    </ul>
+                </div>
+
+
+
+                <div class="pages">
+                    <ul class="fastNav">
+                        <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                        <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                        <a class="page-prev" href="javascript:void(0)"></a>
+                        <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
+
+                        @for (int page = 1; page <= Model.PageCount; page++)
+                        {
+                            <li>
+
+                                @if (page == Model.PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "List", new
+                                                                            {
+                                                                                name = searchViewModel.Name,
+                                                                                onlyByName = searchViewModel.OnlyByName,
+                                                                                currentPage = page,
+                                                                                pageSize = searchViewModel.PageSize
+                                                                            },
+                                                                            new { @class = "hr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "List", new
+                                                                            {
+                                                                                name = searchViewModel.Name,
+                                                                                onlyByName = searchViewModel.OnlyByName,
+                                                                                currentPage = page,
+                                                                                pageSize = searchViewModel.PageSize
+                                                                            })
+                                }
+                            </li>
+                        }
+
+                        <a class="page-next" href="javascript:void(0)"></a>
+                    </ul>
+
+                    <div class="pageslider">
+                        <div class="pagesliderTop">
+                            <ul>
+                                @for (int page = 1; page <= Model.PageCount; page++)
+                                {
+                                    <li>
+
+                                        @if (page == Model.PageNumber)
+                                        {
+                                            @Html.ActionLink(page.ToString(), "List", new
+                                                                            {
+                                                                                name = searchViewModel.Name,
+                                                                                onlyByName = searchViewModel.OnlyByName,
+                                                                                currentPage = page,
+                                                                                pageSize = searchViewModel.PageSize
+                                                                            },
+                                                                            new { @class = "shr" })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink(page.ToString(), "List", new
+                                                                            {
+                                                                                name = searchViewModel.Name,
+                                                                                onlyByName = searchViewModel.OnlyByName,
+                                                                                currentPage = page,
+                                                                                pageSize = searchViewModel.PageSize
+                                                                            })
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="alHScrollBar">
+                            <div class="alHScrollSlider" style="left: 0px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>

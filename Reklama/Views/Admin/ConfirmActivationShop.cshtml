@@ -1,0 +1,25 @@
+﻿@model Domain.Entity.Catalogs.Shop
+
+@{
+    ViewBag.Title = "Подтверждение активации магазина" + Model.Name;
+}
+
+<h2>Подтверждение активации магазина @Model.Name</h2>
+
+<div>
+    @if(Model.IsActive)
+    {
+        <p>Вы действительно хотите деактивировать магазин @Model.Name</p>
+        
+        @Html.ActionLink("Да","DeactivationShop", "Admin", new { id = Model.Id }, null) 
+            <strong>||</strong> 
+        @Html.ActionLink("Нет","ListShop", "Admin")
+    }
+    else
+    {
+        <p>Вы действительно хотите активировать магазин @Model.Name</p>
+        @Html.ActionLink("Да","ActivationShop", "Admin", new { id = Model.Id }, null) 
+            <strong>||</strong>  
+        @Html.ActionLink("Нет","ListShop", "Admin")
+    }
+</div>

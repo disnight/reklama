@@ -1,0 +1,14 @@
+﻿@model Domain.Entity.Realty.Realty
+
+@{
+    ViewBag.Title = "Удаление объявления";
+}
+
+<h2>Удаление объявления</h2>
+
+<h3>Вы уверены, что хотите удалить объявление `@Model.Name`?</h3>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" />
+    </p>
+}

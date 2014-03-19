@@ -1,0 +1,50 @@
+﻿@using Domain.Entity.Catalogs
+@model IEnumerable<Domain.Entity.Catalogs.CatalogSecondCategory>
+
+@{
+    ViewBag.Title = "ProductParamSecondCategory";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+    var category = (CatalogCategory) ViewBag.Category;
+}
+
+<h2>Подкатегории от "@category.Name"</h2>
+
+<p>
+    @Html.ActionLink("Создать", "ProductParamSecondCategoryCreate", new { categoryId = category.Id })
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            Новый?
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isNew)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "ProductParamSecondCategoryEdit", new { id=item.Id }) |
+                @Html.ActionLink("Удалить", "ProductParamSecondCategoryDelete", new { id=item.Id }) |
+                @Html.ActionLink("Производители", "ProductParamThirdCategory", new { secondCategoryId=item.Id })
+            </td>
+        </tr>
+    }
+</table>
+
+<br />
+@Html.ActionLink("Вернуться к списку категорий", "ProductParamSection")

@@ -1,0 +1,186 @@
+﻿@model Reklama.Models.ViewModels.Realty.SearchRealtyViewModel
+
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<div class="realtyForm">
+    <p class="rfTitle">
+        Подбор<br />
+        по параметрам
+    </p>
+    @using (@Html.BeginForm("SearchRealty", "Search", FormMethod.Get))
+    {
+        <div class="realtyFilters realtyType">
+            <label>Категория:</label>
+            <div>
+                @Html.DropDownList("CategoryId", @Model.Categories, new { @class = "category" })
+            </div>
+        </div>
+        <div class="realtyFilters realtyPrice">
+            <label>Стоимость:</label>
+            <div>
+                <ul>
+                    <li>
+                        <span>от</span>
+                        @Html.TextBoxFor(x => x.FromPrice)
+                    </li>
+                    <li>
+                        <span>до</span>
+                        @Html.TextBoxFor(x => x.ToPrice)
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="realtyFilters realtyCity">
+            <label>Город:</label>
+            <div>
+                @Html.DropDownList("CityId", Model.Cities, new { @class = "city" })
+            </div>
+        </div>
+        <div class="realtyFilters realtyStreet">
+            <label>Улица:</label>
+            <div>
+                @Html.TextBoxFor(x => x.Street)
+            </div>
+        </div>
+        <div class="realtyFilters realtyRooms">
+            <label>Количество комнат:</label>
+            <div>
+                <ul>
+                    
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <li>
+                            @Html.CheckBoxFor(x => x.CountsRoom[i], new { @class = "rooms" + i})
+                            <span>@i</span>
+                        </li>
+                    }
+                    
+                    <li>
+                        @Html.CheckBoxFor(x => x.CountsRoom[0], new { @class = "roomsMore" })
+                        <span>>5</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="realtyFilters realtyArea">
+            <label>Площадь:</label>
+            <div>
+                <ul>
+                    <li>
+                        <span>от</span>
+                        @Html.TextBoxFor(x => x.FromSquare)
+                    </li>
+                    <li>
+                        <span>до</span>
+                        @Html.TextBoxFor(x => x.ToSquare)
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="realtyFilters realtyFloor">
+            <label>Этажей в доме:</label>
+            <div>
+                <ul>
+                    <li>
+                        <span>от</span>
+                        @Html.TextBoxFor(x => x.FromFloorCount)
+                    </li>
+                    <li>
+                        <span>до</span>
+                        @Html.TextBoxFor(x => x.ToFloorCount)
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="realtyFilters realtyFloorLike">
+            <label>Предпочтительный этаж</label>
+            <div>
+                <ul>
+                    <li>
+                        <span>от</span>
+                        @Html.TextBoxFor(x => x.FromFloor)
+                    </li>
+                    <li>
+                        <span>до</span>
+                        @Html.TextBoxFor(x => x.ToFloor)
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="realtyFilters realtyHeight">
+            <label>Высота потолков</label>
+            <div>
+                <ul>
+                    <li>
+                        <span>от</span>
+                        @Html.TextBoxFor(x => x.FromCeillingHeight)
+                    </li>
+                    <li>
+                        <span>до</span>
+                        @Html.TextBoxFor(x => x.ToCeillingHeight)
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="realtyFilters realtyMore">
+            <label>Дополнительно:</label>
+            <div>
+                <ul>
+                    <li>
+                        @Html.CheckBoxFor(x => x.WithExtension, new { @class = "more1" })
+                        <span>с пристройкой</span>
+                    </li>
+                    <li>
+                        @Html.CheckBoxFor(x => x.WithGarage, new { @class = "more2" })
+                        <span>с гаражом</span>
+                    </li>
+                    <li>
+                        @Html.CheckBoxFor(x => x.WithBasement, new { @class = "more3" })
+                        <span>с подвалом</span>
+                    </li>
+                    <li>
+                        @Html.CheckBoxFor(x => x.WithGarden, new { @class = "more4" })
+                        <span>с огородом</span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="realtyFilters realtyMore2">
+
+            <div>
+                <ul>
+                    <li>
+                        @Html.CheckBoxFor(x => x.WithPhoto, new { @class = "more21" })
+                        <span>Объявления с фотографиями</span>
+                    </li>
+                    <li>
+                        @Html.CheckBoxFor(x => x.IsPerson, new { @class = "more22" })
+                        <span>Только частные объявления</span>
+                    </li>
+                    <li>
+                        @Html.CheckBoxFor(x => x.IsAuction, new { @class = "more23" })
+                        <span>Только с возможностью торга</span>
+                    </li>
+
+
+                </ul>
+                @Html.HiddenFor(x => x.SortOptions)
+                @Html.HiddenFor(x => x.SortOrder)
+                @Html.HiddenFor(x => x.CurrentPage)
+                @Html.HiddenFor(x => x.PageSize)
+                @Html.HiddenFor(x => x.Name)
+                @Html.HiddenFor(x => x.Category)
+                @Html.HiddenFor(x => x.OnlyByName)
+            </div>
+        </div>
+        <div class="realtyFilters realtySubmit">
+
+            <div>
+                <input type="submit" name="subm" class="subm" value="" />
+            </div>
+        </div>
+    }
+</div>

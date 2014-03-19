@@ -1,0 +1,318 @@
+﻿@using Domain.Enums
+@using Reklama
+@using Reklama.Models.ViewModels.Catalog
+@using PagedList;
+@model Domain.Entity.Catalogs.Product
+
+@*
+    Код этой страницы был написан под впечатлением после ознакомления с процессом
+    разработки в компании reactive.by
+    Пожалуйста, не повторяйте такого никогда!
+*@
+
+@{
+    ViewBag.Title = string.Format("{0} / Магазины - www.reklama.tm", Model.Name);
+    var filter = (Reklama.Models.ViewModels.Catalog.ProductsFilterParams)ViewBag.Filter;
+    
+    var shopProductRefs = Model.ShopProductRefs.Where(s => s.Shop.IsActive).AsQueryable();
+    
+    if(filter.SortOptions == SortOptionsParams.ByName) {
+        if(filter.SortOrder == SortOrderParams.Ascending) {
+            shopProductRefs = shopProductRefs.OrderBy(a => a.Shop.Name);
+        }
+        else {
+            shopProductRefs = shopProductRefs.OrderByDescending(s => s.Shop.Name);
+        }
+    }
+    else {
+        if(filter.SortOrder == SortOrderParams.Ascending) {
+            shopProductRefs = shopProductRefs.OrderBy(s => s.Price);
+        }
+        else {
+            shopProductRefs = shopProductRefs.OrderByDescending(s => s.Price);
+        }
+    }
+    
+    var shopProductsRefs = shopProductRefs.ToPagedList(filter.Page, filter.PageSize);
+}
+
+<div class="catalogInner">
+    <table>
+        <tr>
+           <td class="ci1">
+                @Html.Partial("_PlaceGoods")
+                @Html.Partial("_Manufacturers", Model.SecondCategory)
+@*            
+                <div class="bestOffers">
+                    <em>Лучшие предложения</em>
+                    <div class="bestOffer">
+                        <div class="bestOfferImg"><a href="javascript:void(0)">
+                            <img src="/Images/System/best1.jpg" /></a></div>
+                        <div class="bestOfferText">
+                            <a href="javascript:void(0)">Sony PlayStation Portable (PSP-3000)</a>
+                            <span>от 200 $</span>
+                        </div>
+                    </div>
+                    <div class="bestOffer">
+                        <div class="bestOfferImg"><a href="javascript:void(0)">
+                            <img src="/Images/System/best1.jpg" /></a></div>
+                        <div class="bestOfferText">
+                            <a href="javascript:void(0)">Sony PlayStation Portable (PSP-3000)</a>
+                            <span>от 200 $</span>
+                        </div>
+                    </div>
+                    <p>Приведенные предложения продавцов являются рекламной информацией и их приглашением делать оферы. При покупке всегда запоминайте полное наименование юридического лица или ИП продавца. Обязательно уточняйте комплект поставки, цвет товара и иную информацию в процессе заказа.</p>
+                </div>*@
+
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                    <a href="/">Главная страница</a>
+                    <span class="arr">&rarr;</span>
+                    @Html.ActionLink("Каталог товаров", "Catalog")
+                    <span class="arr">&rarr;</span>
+                    @Html.ActionLink(Model.SecondCategory.Name, "List", new { secondCategoryId = Model.SecondCategoryId })
+                    <span class="arr">&rarr;</span>
+                    @Model.Name - Магазины
+                </div>
+                
+                @Html.Partial("_Product", Model,  (new ViewDataDictionary() { 
+                        new KeyValuePair<string, object>("productMenu", ProductMenu.Shops),
+                        new KeyValuePair<string, object>("isIssetInBookmarks", ViewBag.IsIssetInBookmark)
+                }))
+
+                
+                
+<div class="prodList">
+                                    <div class="shopHeadOut">
+                                        <div class="shopHead"><span>Магазины</span></div>
+                                        <em>*</em>
+                                        <p>@Html.Raw(ProjectConfiguration.Get.CatalogConfig.WarningText)</p>
+                                    </div> 
+                                    <div class="hed2">
+                    <div class="ciSort">
+                        <span>Сортировать по:</span>
+                        <ul>
+                            <li @((filter.SortOptions == Domain.Enums.SortOptionsParams.ByPrice) ? "class=a" : "")>
+                                <img class="ciSortL" src="/Images/System/ciSortL.png"><img class="ciSortR" src="/Images/System/ciSortR.png"><a href="@Url.Action("Shops", new ProductsFilterParams()
+                                                                                                                                                {
+                                                                                                                                                    Page = filter.Page,
+                                                                                                                                                    PageSize = filter.PageSize,
+                                                                                                                                                    SortOptions = Domain.Enums.SortOptionsParams.ByPrice,
+                                                                                                                                                    SortOrder = filter.SortOrder
+                                                                                                                                                })"><span>цене</span></a></li>
+                            <li @((filter.SortOptions == Domain.Enums.SortOptionsParams.ByName) ? "class=a" : "")>
+                                <img class="ciSortL" src="/Images/System/ciSortL.png"><img class="ciSortR" src="/Images/System/ciSortR.png"><a href="@Url.Action("Shops", new ProductsFilterParams()
+                                                                                                                                                {
+                                                                                                                                                    Page = filter.Page,
+                                                                                                                                                    PageSize = filter.PageSize,
+                                                                                                                                                    SortOptions = Domain.Enums.SortOptionsParams.ByName,
+                                                                                                                                                    SortOrder = filter.SortOrder
+                                                                                                                                                })"><span>названию</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="retSort down">
+                        @if (filter.SortOrder == Domain.Enums.SortOrderParams.Ascending)
+                        {
+                            <a href="@Url.Action("Shops", new ProductsFilterParams()
+                                {
+                                    Page = filter.Page,
+                                    PageSize = filter.PageSize,
+                                    SortOptions = filter.SortOptions,
+                                    SortOrder = Domain.Enums.SortOrderParams.Descending
+                                })">
+                                по убыванию
+                            </a><span>&nbsp;</span>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Shops", new ProductsFilterParams()
+                                {
+                                    Page = filter.Page,
+                                    PageSize = filter.PageSize,
+                                    SortOptions = filter.SortOptions,
+                                    SortOrder = Domain.Enums.SortOrderParams.Ascending
+                                })">
+                                по возрастанию
+                            </a><span>&nbsp;</span>
+                        }
+                    </div>
+                    <div class="ciShowBy">
+                        <span>Показать на странице:</span>
+                        <ul>
+                            @for (int i = 0; i < 3; i++)
+                            {
+                                <li @((filter.PageSize == Reklama.ProjectConfiguration.Get.ItemsOnPage[i]) ? "class=a" : "")>
+                                    <a href="@Url.Action("Shops", new ProductsFilterParams()
+                                        {
+                                            Page = filter.Page,
+                                            PageSize = Reklama.ProjectConfiguration.Get.ItemsOnPage[i],
+                                            SortOptions = filter.SortOptions,
+                                            SortOrder = filter.SortOrder
+                                        })">
+                                        <span>@Reklama.ProjectConfiguration.Get.ItemsOnPage[i]</span></a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                                    <div class="ciList">
+                                    <ul>
+                                        @foreach (var shop in shopProductsRefs)
+                                        {
+                                        <li>
+                                            <table>
+                                                <tr>
+                                                    <td class="shopPrice">
+ 
+    <div class="mPrice">
+        <img class="mPriceL" src="/Images/System/mPriceL.png" />
+        <img class="mPriceR2" src="/Images/System/mPriceR2.png" />
+        
+        <label class="price_value" value="@shop.Price.ToString(System.Globalization.CultureInfo.InvariantCulture)">@Math.Round(((decimal)shop.Price), 2).ToString("f2", System.Globalization.CultureInfo.InvariantCulture)</label>
+        <span class="price_list_click">
+            <span>USD</span>
+
+        @try{ Html.RenderAction("SwitcherList", "Currency"); }catch{}
+        </span>
+    </div>
+
+@Scripts.Render("~/Scripts/CurrencyList.js")
+                                                    </td>
+                                                    <td class="shopCont">
+                                                        <div class="shopLogo"><a href="@Url.Action("Details", "Shop", new { id = shop.ShopId })">
+                                                            <img src="/@((shop.Shop.ImageLogo != null) ? string.Concat(ProjectConfiguration.Get.FilePaths["shopLogo"], shop.Shop.ImageLogo) : "Images/System/no_logo.png")" /></a></div>  
+                                                        @if(shop.Shop.Phone != null && !shop.Shop.Phone.IsEmpty()) {
+                                                        <p>@shop.Shop.Phone</p>     
+                                                        }
+                                                        @if(shop.Shop.Skype != null && !shop.Shop.Skype.IsEmpty()) {                                      
+                                                        <p>Skype: @shop.Shop.Skype</p> 
+                                                        }
+                                                        @if (shop.Shop.Icq != null && !shop.Shop.Icq.IsEmpty())
+                                                        {
+                                                        <p>ICQ: @shop.Shop.Icq</p>
+                                                        }
+                                                        @if (shop.Shop.Site != null && !shop.Shop.Site.IsEmpty())
+                                                        {
+                                                        <p><a href="@(shop.Shop.Site.Contains("http://") ? shop.Shop.Site : "http://" + shop.Shop.Site)">@shop.Shop.Site</a></p> 
+                                                        }
+                                                    </td>
+                                                    <td class="shopInfo">
+                                                                                    
+                                                        <div class="workTime">
+                                                            <p>Режим работы:</p>
+                                                            <div class="shopTime">
+                                <span class="@(shop.Shop.Monday ? "" : "no")">Пн</span>
+                                <span class="@(shop.Shop.Tuesday ? "" : "no")">Вт</span>
+                                <span class="@(shop.Shop.Wednesday ? "" : "no")">Ср</span>
+                                <span class="@(shop.Shop.Thursday ? "" : "no")">Чт</span>
+                                <span class="@(shop.Shop.Friday ? "" : "no")">Пт</span>
+                                <span class="@(shop.Shop.Saturday ? "" : "no")">Сб</span>
+                                <span class="@(shop.Shop.Sunday ? "" : "no")">Вс</span>
+                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="workStars">
+                                                            <p>
+                                                                <a href="@Url.Action("Details", "Shop", new { id = shop.ShopId })">@shop.Shop.Name</a>
+                                                            </p>
+                                                        </div>
+
+                                                        <div class="workResponse">
+                                                            <a href="@Url.Action("Details", "Shop", new { id = shop.ShopId })"><img src="/Images/System/book.png" /><span>Отзывы</span></a><sup>@shop.Shop.Comments.Count</sup>
+                                                        </div>
+                                                    </td>
+                                                    <td class="shopText">
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </li>
+                                        } 
+                                    </ul>
+                                </div>
+                  
+                                </div> 
+                
+                <div class="pages">
+                    <ul class="fastNav">
+                        <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                        <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                        <a class="page-prev" href="javascript:void(0)"></a>
+                        <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
+
+                        @for (int page = 1; page <= ((IPagedList<Domain.Entity.Catalogs.ShopProductRef>)shopProductsRefs).PageCount; page++)
+                        {
+                            <li>
+
+                                @if (page == ((IPagedList<Domain.Entity.Catalogs.ShopProductRef>)shopProductsRefs).PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "Shops", new
+                                                                            {
+                                                                                Page = page,
+                                                                                PageSize = filter.PageSize,
+                                                                                SortOptions = filter.SortOptions,
+                                                                                SortOrder = filter.SortOrder
+                                                                            },
+                                                                            new { @class = "hr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "Shops", new
+                                                                            {
+                                                                                Page = page,
+                                                                                PageSize = filter.PageSize,
+                                                                                SortOptions = filter.SortOptions,
+                                                                                SortOrder = filter.SortOrder
+                                                                            })
+                                }
+                            </li>
+                        }
+
+                        <a class="page-next" href="javascript:void(0)"></a>
+                    </ul>
+
+                    <div class="pageslider">
+                        <div class="pagesliderTop">
+                            <ul>
+                                @for (int page = 1; page <= ((IPagedList<Domain.Entity.Catalogs.ShopProductRef>)shopProductsRefs).PageCount; page++)
+                                {
+                                    <li>
+
+                                        @if (page == ((IPagedList<Domain.Entity.Catalogs.ShopProductRef>)shopProductsRefs).PageNumber)
+                                        {
+                                            @Html.ActionLink(page.ToString(), "Shops", new
+                                                                            {
+                                                                                Page = page,
+                                                                                PageSize = filter.PageSize,
+                                                                                SortOptions = filter.SortOptions,
+                                                                                SortOrder = filter.SortOrder
+                                                                            },
+                                                                            new { @class = "shr" })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink(page.ToString(), "Shops", new
+                                                                            {
+                                                                                Page = page,
+                                                                                PageSize = filter.PageSize,
+                                                                                SortOptions = filter.SortOptions,
+                                                                                SortOrder = filter.SortOrder
+                                                                            })
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="alHScrollBar">
+                            <div class="alHScrollSlider" style="left: 0px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>

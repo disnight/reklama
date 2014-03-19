@@ -1,0 +1,47 @@
+﻿@using Reklama.Models.ViewModels.Realty
+@model IQueryable<Domain.Entity.Realty.RealtyCategory>
+
+@{ 
+    var sortModel = (RealtySortByParams)ViewBag.SortModel;
+}
+<span class="hed0">Категории недвижимости:</span>
+@*<span class="hed1">@Html.ActionLink("Все разделы", "Catalog", "Realty", null, new { @class = "allSectionsLink" })</span>*@
+<div class="lMenu">
+    <ul>
+        @foreach (var category in Model)
+        {
+            <li><span>@Html.ActionLink(category.Name, "List", new
+                 {
+                     SortOptions = sortModel.SortOptions,
+                     SortOrder = sortModel.SortOrder,
+                     IsEnableSort = sortModel.IsEnableSort,
+                     CurrentPage = 1,
+                     PageSize = sortModel.PageSize,
+                     CategoryId = category.Id,
+                     SectionId = sortModel.SectionId,
+                     CityId = sortModel.CityId,
+                     sortModel.StringCountsRoom,
+                     IsAuction = sortModel.IsAuction,
+                     IsPerson = sortModel.IsPerson,
+                     Street = sortModel.Street,
+                     WithBasement = sortModel.WithBasement,
+                     WithExtension = sortModel.WithExtension,
+                     WithGarage = sortModel.WithGarage,
+                     WithGarden = sortModel.WithGarden,
+                     WithPhoto = sortModel.WithPhoto,
+                     ToCeillingHeight = sortModel.ToCeillingHeight,
+                     FromCeillingHeight = sortModel.FromCeillingHeight,
+                     ToFloor = sortModel.ToFloor,
+                     FromFloor = sortModel.FromFloor,
+                     ToFloorCount = sortModel.ToFloorCount,
+                     FromFloorCount = sortModel.FromFloorCount,
+                     ToPrice = sortModel.ToPrice,
+                     FromPrice = sortModel.FromPrice,
+                     ToSquare = sortModel.ToSquare,
+                     FromSquare = sortModel.FromSquare
+                 })
+            </span>
+            </li>
+        }
+    </ul>
+</div>

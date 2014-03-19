@@ -1,0 +1,110 @@
+﻿@model Domain.Entity.Catalogs.Product
+
+@{
+    ViewBag.Title = "Редактирование товара";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Редактирование `@Model.Name`</h2>
+
+@using (Html.BeginForm("ProductEdit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Product</legend>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Name, new { style= "width: 300px;" } )
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SmallDescription)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.SmallDescription, new { style= "width: 300px; height: 70px;" })
+            @Html.ValidationMessageFor(model => model.SmallDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description, new { style= "width: 700px; height: 250px;" })
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CategoryId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CategoryId", (SelectList) ViewBag.Categories)
+            @Html.ValidationMessageFor(model => model.CategoryId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SecondCategoryId)
+        </div>
+        <div class="editor-field">
+            <select id="SecondCategoryId" class="SecondCategoryId" name="SecondCategoryId" disabled="disabled"></select>
+            @Html.ValidationMessageFor(model => model.SecondCategoryId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ThirdCategoryId)
+        </div>
+        <div class="editor-field">
+            <select id="ThirdCategoryId" name="ThirdCategoryId" disabled="disabled"></select>
+            @Html.ValidationMessageFor(model => model.ThirdCategoryId)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Image)
+        </div>
+        <div class="editor-field">
+            <input type="file" name="Image" value="-1" />
+            @Html.ValidationMessageFor(model => model.Image)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ReviewLink)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ReviewLink)
+            @Html.ValidationMessageFor(model => model.ReviewLink)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsActive)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsActive)
+            @Html.ValidationMessageFor(model => model.IsActive)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreatedAt)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreatedAt)
+            @Html.ValidationMessageFor(model => model.CreatedAt)
+        </div>
+
+        @Html.HiddenFor(model => model.Id)
+        <input type="hidden" name="Image" value="-1"/>
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("К описанию товара", "Details", "Product", new  { id = Model.Id }, null)
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/Product.js")
+} 

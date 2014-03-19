@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Domain.Entity.Other.Menu>
+
+@{
+    Layout = null;
+}
+
+
+<div id="ListMenus">
+    <table>
+        @foreach(var menu in Model)
+        {
+            <tr>
+                <td valign="middle">
+                    @menu.Name
+                </td>
+                <td valign="middle">
+                    @menu.Description
+                </td>
+                <td>
+                    <img src="/Images/System/@menu.Image" />
+                </td>
+            </tr>
+        }
+    </table>
+</div>

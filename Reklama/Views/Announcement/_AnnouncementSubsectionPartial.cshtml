@@ -1,0 +1,37 @@
+﻿@using Domain.Entity.Announcements
+@using Reklama.Models.SortModels
+@using Reklama.Models.ViewModels.Announcement
+@model IEnumerable<Domain.Entity.Announcements.Subsection>
+
+@{
+    var filterParams = (FilterParams)ViewBag.FilterParams;
+}
+
+<div class="hedList">
+    <ul>
+        @foreach (Subsection subsection in ViewBag.Subsections)
+        {
+            <li>@Html.ActionLink(subsection.Name, "List", new
+                                                              {
+                                                                  IsEnabledFilter = filterParams.IsEnabledFilter,
+                                                                  CityId = filterParams.CityId,
+                                                                  PriceStart = filterParams.PriceStart,
+                                                                  PriceEnd = filterParams.PriceEnd,
+                                                                  HasPhoto = filterParams.HasPhoto,
+                                                                  HasAuction = filterParams.HasAuction,
+                                                                  SortOrder = filterParams.SortOrder,
+                                                                  SortOptions = filterParams.SortOptions,
+                                                                  SectionId = filterParams.SectionId,
+                                                                  SubsectionId = subsection.Id,
+                                                                  CategoryId = filterParams.CategoryId,
+                                                                  CurrentPage = 1,
+                                                                  PageSize = filterParams.PageSize
+                                                              },
+                                 (subsection.Id.Equals(filterParams.SubsectionId) ? new { @class = "sectionSelected", style = "color: #F00;" } : null)
+                     )</li>
+        }
+    </ul>
+    
+    <div class="more10"><a href="#" class="someMore hiddenList">Остальные</a></div>
+
+</div>

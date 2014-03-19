@@ -1,0 +1,487 @@
+﻿@using Domain.Entity.Announcements;
+@using Domain.Enums
+@using Reklama
+@using Reklama.Models.SortModels
+@using Reklama.Models.ViewModels.Announcement
+@using Reklama.Models.ViewModels.Shared
+@model PagedList.IPagedList<Domain.Entity.Announcements.Announcement>
+
+@{
+    ViewBag.Title = "Объявления";
+
+    var filterParams = (FilterParams)ViewBag.FilterParams;
+    var searchModel = (SearchViewModel)ViewBag.SearchViewModel;
+}
+
+
+
+<div class="catalogInner">
+    <table>
+        <tr>
+            <td class="ci1 blue">
+                <div class="placeGoods sec">
+                    @Html.ActionLink(" ", "Create")
+                </div>
+
+
+                @** Need ViewBag.SortModel *@
+                @Html.Partial("_AnnouncementSectionsPartial", (object)ViewBag.Sections)
+
+
+                @* Need ViewBag.Cities *@
+                @Html.Partial("_AnnouncementSortByParams", filterParams)
+
+
+
+                <!-- banners -->
+                @*                <div class="lBan">
+                    <a href="javascript:void(0)">
+                        <img src="/Images/System/ban120600.jpg" /></a>
+                </div>*@
+
+                @Html.Partial("_YandexDirectPartial")
+
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                    @Html.ActionLink("Главная страница", "Index", "Home")
+                    <span class="arr">&rarr;</span>
+
+                    @if(filterParams.SectionId.HasValue) {
+                        @Html.ActionLink("Объявления", "List", "Acnnouncement")
+                        var sectionName = filterParams.GetSection().Name;
+                        @:<span class="arr">&rarr;</span>
+                        if(filterParams.SubsectionId.HasValue) {
+                            @Html.ActionLink(sectionName, "List", "Announcement", new { IsEnabledFilter=filterParams.IsEnabledFilter, HasPhoto=filterParams.HasPhoto, HasAuction=filterParams.HasAuction,SortOrder=filterParams.SortOrder,SortOptions=filterParams.SortOptions,SectionId=filterParams.SectionId,CurrentPage=filterParams.CurrentPage,PageSize=filterParams.PageSize }, null)
+                        }
+                        else {
+                            @sectionName
+                        }
+                    }
+                    else {
+                        @:Объявления
+                    }
+                    @if(filterParams.SubsectionId.HasValue) {
+                        @:<span class="arr">&rarr;</span>
+                        @*Html.ActionLink(filterParams.GetSubsection().Name, "List", "Announcement", new { IsEnabledFilter=filterParams.IsEnabledFilter, HasPhoto=filterParams.HasPhoto, HasAuction=filterParams.HasAuction,SortOrder=filterParams.SortOrder,SortOptions=filterParams.SortOptions,SectionId=filterParams.SectionId, SubsectionId=filterParams.SubsectionId,CurrentPage=filterParams.CurrentPage,PageSize=filterParams.PageSize }, null)*@
+                        @filterParams.GetSubsection().Name
+                    }
+                </div>
+                <h1>Объявления</h1>
+
+                @** Need ViewBag.SortModel *@
+                @if (filterParams.SectionId.HasValue)
+                {
+                    @Html.Partial("_AnnouncementSubsectionPartial", (object)ViewBag.Subsections)
+                }
+
+
+                <div class="clear"></div>
+                <div class="hed3">
+                    <ul>
+                        <li @if (!filterParams.CategoryId.HasValue)
+                            {
+                                @:class="a"
+                            }>
+
+                            @Html.ActionLink("ВСЕ", "List", new
+                                                                {
+                                                                    IsEnabledFilter = filterParams.IsEnabledFilter,
+                                                                    CityId = filterParams.CityId,
+                                                                    PriceStart = filterParams.PriceStart,
+                                                                    PriceEnd = filterParams.PriceEnd,
+                                                                    HasPhoto = filterParams.HasPhoto,
+                                                                    HasAuction = filterParams.HasAuction,
+                                                                    SortOrder = filterParams.SortOrder,
+                                                                    SortOptions = filterParams.SortOptions,
+                                                                    SectionId = filterParams.SectionId,
+                                                                    SubsectionId = filterParams.SubsectionId,
+                                                                    CurrentPage = 1,
+                                                                    PageSize = filterParams.PageSize
+                                                                })
+                        </li>
+                        @foreach (Category category in ViewBag.Categories)
+                        {
+                            <li @if (filterParams.CategoryId.HasValue && filterParams.CategoryId.Value == category.Id)
+                                { 
+                                    @:class="a" 
+                                }
+                                >
+                                @Html.ActionLink(category.Name, "List", new
+                                                                            {
+                                                                                IsEnabledFilter = filterParams.IsEnabledFilter,
+                                                                                CityId = filterParams.CityId,
+                                                                                PriceStart = filterParams.PriceStart,
+                                                                                PriceEnd = filterParams.PriceEnd,
+                                                                                HasPhoto = filterParams.HasPhoto,
+                                                                                HasAuction = filterParams.HasAuction,
+                                                                                SortOrder = filterParams.SortOrder,
+                                                                                SortOptions = filterParams.SortOptions,
+                                                                                SectionId = filterParams.SectionId,
+                                                                                SubsectionId = filterParams.SubsectionId,
+                                                                                CategoryId = category.Id,
+                                                                                CurrentPage = 1,
+                                                                                PageSize = filterParams.PageSize
+                                                                            })
+                            </li>
+                        }
+                    </ul>
+
+                    @* Как поднять объявление *@
+                    @{ Html.RenderAction("LinkToOneOfMainConfigPage", "Links", new { mainPageName = "HowToUpAnnouncement", cssClass = "howUp", target = "_blank" }); }
+                </div>
+                <div class="hed2">
+                    <div class="ciSort">
+                        <span>Сортировать по:</span>
+                        <ul>
+
+                            <li 
+                                @if (filterParams.SortOptions == SortOptionsParams.ByPrice)
+                                {
+                                    @:class="a"
+                                }
+                                >
+                                <img class="ciSortL" src="/Images/System/ciSortL.png">
+                                <img class="ciSortR" src="/Images/System/ciSortR.png">
+                                <span>@Html.ActionLink("цене", "List", new
+                                                                           {
+                                                                               IsEnabledFilter = filterParams.IsEnabledFilter,
+                                                                               CityId = filterParams.CityId,
+                                                                               PriceStart = filterParams.PriceStart,
+                                                                               PriceEnd = filterParams.PriceEnd,
+                                                                               HasPhoto = filterParams.HasPhoto,
+                                                                               HasAuction = filterParams.HasAuction,
+                                                                               SortOrder = filterParams.SortOrder,
+                                                                               SortOptions = SortOptionsParams.ByPrice,
+                                                                               SectionId = filterParams.SectionId,
+                                                                               SubsectionId = filterParams.SubsectionId,
+                                                                               CategoryId = filterParams.CategoryId,
+                                                                               CurrentPage = 1,
+                                                                               PageSize = filterParams.PageSize
+                                                                           },
+                                                                         new { @class = "a_ads_list_sort_params" })
+
+                                </span>
+                            </li>
+
+                            <li 
+                                @if (filterParams.SortOptions == SortOptionsParams.ByDate)
+                                {
+                                    @:class="a"
+                                }
+                                >
+
+                                <img class="ciSortL" src="/Images/System/ciSortL.png">
+                                <img class="ciSortR" src="/Images/System/ciSortR.png">
+                                <span>@Html.ActionLink("дате", "List", new
+                                                                            {
+                                                                                IsEnabledFilter = filterParams.IsEnabledFilter,
+                                                                                CityId = filterParams.CityId,
+                                                                                PriceStart = filterParams.PriceStart,
+                                                                                PriceEnd = filterParams.PriceEnd,
+                                                                                HasPhoto = filterParams.HasPhoto,
+                                                                                HasAuction = filterParams.HasAuction,
+                                                                                SortOrder = filterParams.SortOrder,
+                                                                                SortOptions = SortOptionsParams.ByDate,
+                                                                                SectionId = filterParams.SectionId,
+                                                                                SubsectionId = filterParams.SubsectionId,
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                CurrentPage = 1,
+                                                                                PageSize = filterParams.PageSize
+                                                                            }, new { @class = "a_ads_list_sort_params" })</span>
+                            </li>
+
+                            <li 
+                                @if (filterParams.SortOptions == SortOptionsParams.ByName)
+                                {
+                                    @:class="a"
+                                }
+                            >
+                                <img class="ciSortL" src="/Images/System/ciSortL.png">
+                                <img class="ciSortR" src="/Images/System/ciSortR.png">
+                                <span>@Html.ActionLink("названию", "List", new
+                                                                            {
+                                                                                IsEnabledFilter = filterParams.IsEnabledFilter,
+                                                                                CityId = filterParams.CityId,
+                                                                                PriceStart = filterParams.PriceStart,
+                                                                                PriceEnd = filterParams.PriceEnd,
+                                                                                HasPhoto = filterParams.HasPhoto,
+                                                                                HasAuction = filterParams.HasAuction,
+                                                                                SortOrder = filterParams.SortOrder,
+                                                                                SortOptions = SortOptionsParams.ByName,
+                                                                                SectionId = filterParams.SectionId,
+                                                                                SubsectionId = filterParams.SubsectionId,
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                CurrentPage = 1,
+                                                                                PageSize = filterParams.PageSize
+                                                                            }, new { @class = "a_ads_list_sort_params" })</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="retSort
+                        @if (filterParams.SortOrder == SortOrderParams.Descending)
+                        {
+                            @:down
+                        }
+                        else
+                        {
+                            @:up
+                        }
+                    ">
+
+                        @if (filterParams.SortOrder == SortOrderParams.Descending)
+                        {
+                            @Html.ActionLink("по возрастанию", "List", new
+                                                                            {
+                                                                                IsEnabledFilter = filterParams.IsEnabledFilter,
+                                                                                CityId = filterParams.CityId,
+                                                                                PriceStart = filterParams.PriceStart,
+                                                                                PriceEnd = filterParams.PriceEnd,
+                                                                                HasPhoto = filterParams.HasPhoto,
+                                                                                HasAuction = filterParams.HasAuction,
+                                                                                SortOrder = SortOrderParams.Ascending,
+                                                                                SortOptions = filterParams.SortOptions,
+                                                                                SectionId = filterParams.SectionId,
+                                                                                SubsectionId = filterParams.SubsectionId,
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                CurrentPage = 1,
+                                                                                PageSize = filterParams.PageSize
+                                                                            })
+                            <span></span>
+                        }
+                        else
+                        {
+                            @Html.ActionLink("по убыванию", "List", new
+                                                                            {
+                                                                                IsEnabledFilter = filterParams.IsEnabledFilter,
+                                                                                CityId = filterParams.CityId,
+                                                                                PriceStart = filterParams.PriceStart,
+                                                                                PriceEnd = filterParams.PriceEnd,
+                                                                                HasPhoto = filterParams.HasPhoto,
+                                                                                HasAuction = filterParams.HasAuction,
+                                                                                SortOrder = SortOrderParams.Descending,
+                                                                                SortOptions = filterParams.SortOptions,
+                                                                                SectionId = filterParams.SectionId,
+                                                                                SubsectionId = filterParams.SubsectionId,
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                CurrentPage = 1,
+                                                                                PageSize = filterParams.PageSize
+                                                                            })
+                            <span></span>
+                        }
+                    </div>
+                    <div class="ciShowBy">
+                        <span>Показать на странице:</span>
+                        <ul>
+                            @foreach (byte pageSize in ProjectConfiguration.Get.ItemsOnPage)
+                            {
+                                <li
+                                    @if (filterParams.PageSize == pageSize)
+                                    {
+                                        @: class="a"
+                                    }
+                                    >
+                                    <span>
+                                        @Html.ActionLink(pageSize.ToString(), "List", new
+                                                                                        {
+                                                                                            IsEnabledFilter = filterParams.IsEnabledFilter,
+                                                                                            CityId = filterParams.CityId,
+                                                                                            PriceStart = filterParams.PriceStart,
+                                                                                            PriceEnd = filterParams.PriceEnd,
+                                                                                            HasPhoto = filterParams.HasPhoto,
+                                                                                            HasAuction = filterParams.HasAuction,
+                                                                                            SortOrder = filterParams.SortOptions,
+                                                                                            SortOptions = filterParams.SortOptions,
+                                                                                            SectionId = filterParams.SectionId,
+                                                                                            SubsectionId = filterParams.SubsectionId,
+                                                                                            CategoryId = filterParams.CategoryId,
+                                                                                            CurrentPage = filterParams.CurrentPage,
+                                                                                            PageSize = pageSize
+                                                                                        })
+                                    </span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="ciList doska">
+                    <ul>
+                        @if (ViewBag.Premium1Ads != null || ViewBag.Premium2Ads != null || ViewBag.Premium3Ads != null || Model.Count() != 0)
+                        {
+@* Premium1 Ads *@
+                            if (ViewBag.Premium1Ads != null)
+                            {
+                                foreach (var premium in (IQueryable<Announcement>)ViewBag.Premium1Ads)
+                                {
+                                    var dictionary = new ViewDataDictionary<string>();
+                                    dictionary.Add("class", "blueBord");
+                                @Html.Partial("_Ad", premium, dictionary);
+                                }
+                            }
+
+
+
+@* Premium2 Ads *@
+                            if (ViewBag.Premium2Ads != null)
+                            {
+                                foreach (var premium in (IQueryable<Announcement>)ViewBag.Premium2Ads)
+                                {
+                                    var dictionary = new ViewDataDictionary<string>();
+                                    dictionary.Add("class", "greenBord");
+                                @Html.Partial("_Ad", premium, dictionary);
+                                }
+                            }
+
+
+@* Premium3 Ads *@
+                            if (ViewBag.Premium3Ads != null)
+                            {
+                                foreach (var premium in (IQueryable<Announcement>)ViewBag.Premium3Ads)
+                                {
+                                    var dictionary = new ViewDataDictionary<string>();
+                                    dictionary.Add("class", "yellowBord");
+                                @Html.Partial("_Ad", premium, dictionary);
+                                }
+                            }
+
+
+
+
+@* Standard Ads *@
+                            foreach (var announcement in Model)
+                            {
+                                var dictionary = new ViewDataDictionary<string>();
+                                dictionary.Add("class", "");
+                                @Html.Partial("_Ad", announcement, dictionary);
+                            }
+                        }
+                        else
+                        {
+                            <p class="searchInfo">Ничего не найдено. Попробуйте сформулировать запрос иначе.</p>
+                        }
+                    </ul>
+                </div>
+
+
+
+
+                <div class="pages">
+                    <ul class="fastNav">
+                        <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                        <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                        <a class="page-prev" href="javascript:void(0)"></a>
+                        <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
+
+                        @for (int page = 1; page <= Model.PageCount; page++)
+                        {
+                            <li>
+
+                                @if (page == Model.PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "List", new
+                                                                            {
+                                                                                IsEnabledFilter = filterParams.IsEnabledFilter,
+                                                                                CityId = filterParams.CityId,
+                                                                                PriceStart = filterParams.PriceStart,
+                                                                                PriceEnd = filterParams.PriceEnd,
+                                                                                HasPhoto = filterParams.HasPhoto,
+                                                                                HasAuction = filterParams.HasAuction,
+                                                                                SortOrder = filterParams.SortOptions,
+                                                                                SortOptions = filterParams.SortOptions,
+                                                                                SectionId = filterParams.SectionId,
+                                                                                SubsectionId = filterParams.SubsectionId,
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                CurrentPage = page,
+                                                                                PageSize = filterParams.PageSize
+                                                                            },
+                                                                            new { @class = "hr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "List", new
+                                                                            {
+                                                                                IsEnabledFilter = filterParams.IsEnabledFilter,
+                                                                                CityId = filterParams.CityId,
+                                                                                PriceStart = filterParams.PriceStart,
+                                                                                PriceEnd = filterParams.PriceEnd,
+                                                                                HasPhoto = filterParams.HasPhoto,
+                                                                                HasAuction = filterParams.HasAuction,
+                                                                                SortOrder = filterParams.SortOptions,
+                                                                                SortOptions = filterParams.SortOptions,
+                                                                                SectionId = filterParams.SectionId,
+                                                                                SubsectionId = filterParams.SubsectionId,
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                CurrentPage = page,
+                                                                                PageSize = filterParams.PageSize
+                                                                            })
+                                }
+                            </li>
+                        }
+
+                        <a class="page-next" href="javascript:void(0)"></a>
+                    </ul>
+
+                    <div class="pageslider">
+                        <div class="pagesliderTop">
+                            <ul>
+                                @for (int page = 1; page <= Model.PageCount; page++)
+                                {
+                                    <li>
+
+                                        @if (page == Model.PageNumber)
+                                        {
+                                            @Html.ActionLink(page.ToString(), "List", new
+                                                                            {
+                                                                                IsEnabledFilter = filterParams.IsEnabledFilter,
+                                                                                CityId = filterParams.CityId,
+                                                                                PriceStart = filterParams.PriceStart,
+                                                                                PriceEnd = filterParams.PriceEnd,
+                                                                                HasPhoto = filterParams.HasPhoto,
+                                                                                HasAuction = filterParams.HasAuction,
+                                                                                SortOrder = filterParams.SortOptions,
+                                                                                SortOptions = filterParams.SortOptions,
+                                                                                SectionId = filterParams.SectionId,
+                                                                                SubsectionId = filterParams.SubsectionId,
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                CurrentPage = page,
+                                                                                PageSize = filterParams.PageSize
+                                                                            },
+                                                                            new { @class = "shr" })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink(page.ToString(), "List", new
+                                                                            {
+                                                                                IsEnabledFilter = filterParams.IsEnabledFilter,
+                                                                                CityId = filterParams.CityId,
+                                                                                PriceStart = filterParams.PriceStart,
+                                                                                PriceEnd = filterParams.PriceEnd,
+                                                                                HasPhoto = filterParams.HasPhoto,
+                                                                                HasAuction = filterParams.HasAuction,
+                                                                                SortOrder = filterParams.SortOptions,
+                                                                                SortOptions = filterParams.SortOptions,
+                                                                                SectionId = filterParams.SectionId,
+                                                                                SubsectionId = filterParams.SubsectionId,
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                CurrentPage = page,
+                                                                                PageSize = filterParams.PageSize
+                                                                            })
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="alHScrollBar">
+                            <div class="alHScrollSlider" style="left: 0px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>

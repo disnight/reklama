@@ -1,0 +1,58 @@
+﻿@model Domain.Entity.Catalogs.CatalogSecondCategory
+
+@{
+    ViewBag.Title = "ProductParamSecondCategoryEdit";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Редактирование категории каталога второго уровня - "@Model.Name"</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>CatalogSecondCategory</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            Выберите категорию каталога первого уровня
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CategoryId", (SelectList) ViewBag.Categories)
+            @Html.ValidationMessageFor(model => model.CategoryId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.isNew)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.isNew)
+            @Html.ValidationMessageFor(model => model.isNew)
+        </div>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

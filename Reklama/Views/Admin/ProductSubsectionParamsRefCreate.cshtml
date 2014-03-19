@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Domain.Entity.Catalogs.ProductParam>
+
+@{
+    ViewBag.Title = "ProductSubsectionParamsRefCreate";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Добавить параметр</h2>
+
+<div style="width: 700px; border: 1px solid black; padding: 10px;">
+    @using(Html.BeginForm())
+    {
+        <select name="paramId">
+            @foreach(var param in Model)
+            {
+                <option value="@param.Id">@param.Name</option>
+            }
+        </select>
+        
+        @Html.Hidden("subsectionId", (int)ViewBag.SubsectionId)
+        <input type="submit" value="Добавить параметр"/>
+    }
+</div>
+
+

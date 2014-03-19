@@ -1,0 +1,98 @@
+﻿@model Domain.Entity.Catalogs.Shop
+@using Domain.Entity.Catalogs
+@using PagedList;
+@{
+    ViewBag.Title = "Магазин " + Model.Name;
+}
+
+<div class="catalogInner inShop">
+    <table>
+        <tr>
+            <td class="ci1">
+                <span class="hed1">@Model.Name</span>
+                @{Html.RenderAction("ViewCategories", new { shopId = Model.Id });}
+@*                <div class="lMenu2">
+                    <ul>
+                        @foreach (var category in (List<CatalogCategory>)ViewBag.Categories)
+                        {
+                            <li>
+                                <span><a href="javascript:void(0)">@category.Name</a></span>
+                                <ul class="lMenu2Second">
+                                    @{
+                                        var secondCategories = ((List<ShopCategoryRef>)ViewBag.SecondCategories).Where(x => x.Category.CategoryId == category.Id);
+                                        foreach (var secondCategory in secondCategories)
+                                        {
+                                        <li>@Html.ActionLink(@secondCategory.Category.Name, "ProductsShop", "Product", new Reklama.Models.ViewModels.Catalog.ProductsShopFilterParams() { ShopId = Model.Id, SecondCategoryId = secondCategory.CategoryId }, null)</li>
+                                        }
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </div>*@
+                @*<div class="lBan">
+                    <a href="javascript:void(0)">
+                        <img src="/Images/System/ban120600.jpg" /></a>
+                </div>*@
+                @Html.Partial("_YandexDirectPartial")
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                    <a href="/">Главная страница</a>
+                    <span class="arr">&rarr;</span>
+                    @Model.Name
+                </div>
+                <h1>Магазин @Model.Name</h1>
+                @*                <div class="shopStars">
+                    <img src="/Images/System/shopStarOn.png" /><img src="/Images/System/shopStarOn.png" /><img src="/Images/System/shopStarOn.png" /><img src="/Images/System/shopStarOn.png" /><img src="/Images/System/shopStar.png" />
+                </div>*@
+                <div class="shopBlock">
+                    <div class="shopBlockTop">
+                        <div class="sbtLeft">
+                            <div class="shopLog">
+                                <a href="javascript:void(0)">
+                                    <img class="logoShop" src="@(Model.ImageLogo != null ? "/Images/Catalog/ShopLogos/" + Model.ImageLogo : "")" /></a>
+                            </div>
+                            <ul>
+                                @if (Model.Site != null)
+                                { <li>
+                                    <img src="/Images/System/world.png" />Сайт: <a href="@(Model.Site.Contains("http://") ? Model.Site : "http://" + Model.Site)">@Model.Site</a></li> }
+                                <li>
+                                    <img src="/Images/System/post.png" />E-mail: <a href="mailto:@Model.User.Email">@Model.User.Email</a></li>
+                                @if (Model.Skype != null)
+                                { <li>
+                                    <img src="/Images/System/skype.png" />Skype: @Model.Skype</li> }
+                                @if (Model.Icq != null)
+                                { <li>
+                                    <img src="/Images/System/icq.png" />ICQ: @Model.Icq</li> }
+                            </ul>
+                        </div>
+                        <div class="sbtCenter">
+                            <div class="shopTime">
+                                <span class="@(Model.Monday ? "" : "no")">Пн</span>
+                                <span class="@(Model.Tuesday ? "" : "no")">Вт</span>
+                                <span class="@(Model.Wednesday ? "" : "no")">Ср</span>
+                                <span class="@(Model.Thursday ? "" : "no")">Чт</span>
+                                <span class="@(Model.Friday ? "" : "no")">Пт</span>
+                                <span class="@(Model.Saturday ? "" : "no")">Сб</span>
+                                <span class="@(Model.Sunday ? "" : "no")">Вс</span>
+                            </div>
+                            <ul>
+                                @Model.Phone
+                            </ul>
+                        </div>
+                        <div class="sbtRight">
+                            <p>@Model.Requisites</p>
+                        </div>
+                    </div>
+                    <div>@Model.Description</div>
+                    <d@* List of comments *@
+                    @Html.Partial("_ShopComments", (IPagedList<ShopComment>)ViewBag.Comments ?? new PagedList<ShopComment>(null, 1, 1))
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>

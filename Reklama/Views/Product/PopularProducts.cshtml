@@ -1,0 +1,80 @@
+﻿@model System.Linq.IQueryable<Domain.Entity.Admin.PopularProduct>
+@using Reklama.Models.ViewModels.Catalog;
+
+@{
+    ViewBag.Title = "Все популярные товары";
+}
+
+<div class="catalogInner">
+    <table>
+        <tr>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                    <a href="/">Главная страница</a>
+                    <span class="arr">&rarr;</span>
+                    @Html.ActionLink("Каталог товаров", "Catalog")
+                    <span class="arr">&rarr;</span>
+                    Все популярные товары
+                </div>
+                <h1>Все популярные товары</h1>
+                <div class="ciList">
+                    <ul>
+                        @foreach (var product in Model)
+                        {
+                            <li>
+                                <table>
+                                    <tr>
+                                        <td class="ciImg">
+                                            <a href="@Url.Action("Details", new { id = product.Id })">
+                                                <img src="/@String.Concat(Reklama.ProjectConfiguration.Get.FilePaths["product_thumb"], "/", product.Product.Image)" /></a>
+                                        </td>
+                                        <td class="ciText">
+                                            <div>
+                                                <span class="ciName">@Html.ActionLink(product.Product.Name, "Details", new { id = product.Id })</span>
+                                                <p>@product.Product.SmallDescription ...@Html.ActionLink("Читать подробнее", "Details", new { id = product.Id })</p>
+                                                <div class="ciRate">
+                                                    <span>
+                                                        <img src="/Images/System/file.png" />
+                                                        @Html.ActionLink("Характеристики", "Details", new { id = product.Id })
+                                                    </span>
+                                                    <span>
+                                                        <img src="/Images/System/foto.png" />
+                                                        @Html.ActionLink("Фото", "Photos", new { id = product.Id })
+                                                        <sup>@(product.Product.Images.Count + 1)</sup>
+                                                    </span>
+                                                    <span>
+                                                        
+                                                        @if (product.Product.ReviewLink != null && !product.Product.ReviewLink.IsEmpty())
+                                                        {
+                                                            <img src="/Images/System/page.png" />
+                                                            <a href="@product.Product.ReviewLink">Обзор</a>
+                                                        }
+                                                    </span>
+                                                    <span>
+                                                        <img src="/Images/System/book.png" />
+                                                        @Html.ActionLink("Отзывы", "Feedbacks", new { id = product.Id })
+                                                        <sup>@product.Product.Feedbacks.Count</sup>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="ciOffers">
+                                            @Html.Partial("_ProductCurrencyPartialList", product.Product)
+                                            @Html.Partial("_BuySellersCount", product.Product)
+                                        </td>
+                                    </tr>
+                                </table>
+                            </li>
+                        }
+                        
+                    </ul>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>

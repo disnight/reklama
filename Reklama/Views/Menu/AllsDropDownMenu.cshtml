@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Domain.Entity.Other.MenuPageRef>
+
+@{
+    Layout = null;
+}
+
+<div class="hMenuList">
+    <a class="a" href="javascript:void(0)">Все</a>
+    <div class="hmlWind">
+        <a href="javascript:void(0)">Все</a>
+        <ul>
+            <li>@Html.ActionLink("Товары", "Catalog", "Product")</li>
+            <li><a href="http://jay.reklama.tm/">Недвижимость</a></li>
+            <li>@Html.ActionLink("Объявления", "List", "Announcement")</li>
+            <li>@Html.ActionLink("Авто", "List", "Announcement", new { SectionId = 3 }, null)</li>
+            <li>@Html.ActionLink("Статьи", "Index", "Article")</li>
+            @*<li><a href="javascript:void(0)">Форум</a></li>*@
+
+            @try
+            {
+                foreach (var menuPageRef in Model)
+                {
+                <li>@Html.ActionLink(menuPageRef.Page.Name, "Details", "Page", new { id = menuPageRef.PageId }, null)</li>
+                }
+            }
+            catch { }
+        </ul>
+    </div>
+</div>

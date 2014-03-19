@@ -1,0 +1,50 @@
+﻿@model Domain.Entity.Catalogs.CatalogParamSubsection
+
+@{
+    ViewBag.Title = "Редактировать частную характеристику подкатегории товаров";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Редактировать частную характеристику подкатегории товаров</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Редактировать частную характеристику подкатегории товаров</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SecondCategory)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("SecondCategoryId", (SelectList)ViewBag.ProductParamCategories)
+            @Html.ValidationMessageFor(model => model.SecondCategoryId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Slogan)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Slogan)
+            @Html.ValidationMessageFor(model => model.Slogan)
+        </div>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

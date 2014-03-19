@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{65C95BB4-F6B9-43B1-8CB3-44341A9C9D2E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Domain</RootNamespace>
+    <AssemblyName>Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entity\Admin\ActualArticle.cs" />
+    <Compile Include="Entity\Admin\AnnouncementConfig.cs" />
+    <Compile Include="Entity\Admin\AnnouncementsPremiumsRef.cs" />
+    <Compile Include="Entity\Admin\ArticleAndReviewBlock.cs" />
+    <Compile Include="Entity\Admin\ArticleConfig.cs" />
+    <Compile Include="Entity\Admin\Banner.cs" />
+    <Compile Include="Entity\Admin\BannerSection.cs" />
+    <Compile Include="Entity\Admin\CatalogConfig.cs" />
+    <Compile Include="Entity\Admin\GraphicBannerWithText.cs" />
+    <Compile Include="Entity\Admin\MainPageArticleConfig.cs" />
+    <Compile Include="Entity\Admin\NewInCatalog.cs" />
+    <Compile Include="Entity\Admin\NewSectionInCatalog.cs" />
+    <Compile Include="Entity\Admin\Payment.cs" />
+    <Compile Include="Entity\Admin\PopularAnnouncement.cs" />
+    <Compile Include="Entity\Admin\PopularProduct.cs" />
+    <Compile Include="Entity\Admin\PopularSectionInCatalog.cs" />
+    <Compile Include="Entity\Admin\PopularSubsection.cs" />
+    <Compile Include="Entity\Admin\Premium.cs" />
+    <Compile Include="Entity\Admin\TopForumTopic.cs" />
+    <Compile Include="Entity\Announcements\Announcement.cs" />
+    <Compile Include="Entity\Announcements\AnnouncementBookmark.cs" />
+    <Compile Include="Entity\Announcements\AnnouncementComment.cs" />
+    <Compile Include="Entity\Announcements\AnnouncementImage.cs" />
+    <Compile Include="Entity\Announcements\AnnouncementPayment.cs" />
+    <Compile Include="Entity\Announcements\AnnouncementPaymentHistory.cs" />
+    <Compile Include="Entity\Articles\Article.cs" />
+    <Compile Include="Entity\Articles\ArticleComment.cs" />
+    <Compile Include="Entity\Articles\ArticleSection.cs" />
+    <Compile Include="Entity\Articles\ArticleSubsection.cs" />
+    <Compile Include="Entity\Catalogs\CatalogCategory.cs" />
+    <Compile Include="Entity\Catalogs\CatalogParamSubsection.cs" />
+    <Compile Include="Entity\Catalogs\CatalogSecondCategory.cs" />
+    <Compile Include="Entity\Catalogs\CatalogThirdCategory.cs" />
+    <Compile Include="Entity\Catalogs\Product.cs" />
+    <Compile Include="Entity\Catalogs\ProductBookmark.cs" />
+    <Compile Include="Entity\Catalogs\ProductFeedback.cs" />
+    <Compile Include="Entity\Catalogs\ProductImage.cs" />
+    <Compile Include="Entity\Catalogs\ProductParam.cs" />
+    <Compile Include="Entity\Catalogs\ProductParamValue.cs" />
+    <Compile Include="Entity\Catalogs\ProductSectionParamRef.cs" />
+    <Compile Include="Entity\Catalogs\ProductSubsectionParamRef.cs" />
+    <Compile Include="Entity\Catalogs\Shop.cs" />
+    <Compile Include="Entity\Catalogs\ShopCategoryRef.cs" />
+    <Compile Include="Entity\Catalogs\ShopComment.cs" />
+    <Compile Include="Entity\Catalogs\ShopProductRef.cs" />
+    <Compile Include="Entity\Catalogs\Unit.cs" />
+    <Compile Include="Entity\Common\Computer.cs" />
+    <Compile Include="Entity\Common\ComputerAnnouncementRef.cs" />
+    <Compile Include="Entity\Common\ComputerRealtyRef.cs" />
+    <Compile Include="Entity\Common\GroupedSelectList.cs" />
+    <Compile Include="Entity\Other\Menu.cs" />
+    <Compile Include="Entity\Other\MenuPageRef.cs" />
+    <Compile Include="Entity\Other\Page.cs" />
+    <Compile Include="Entity\Realty\Realty.cs" />
+    <Compile Include="Entity\Realty\RealtyBookmark.cs" />
+    <Compile Include="Entity\Realty\RealtyCategory.cs" />
+    <Compile Include="Entity\Realty\RealtyComment.cs" />
+    <Compile Include="Entity\Realty\RealtyPayment.cs" />
+    <Compile Include="Entity\Realty\RealtyPaymentHistory.cs" />
+    <Compile Include="Entity\Realty\RealtyPhoto.cs" />
+    <Compile Include="Entity\Realty\RealtySection.cs" />
+    <Compile Include="Entity\Shared\BaseEntity.cs" />
+    <Compile Include="Entity\Announcements\Category.cs" />
+    <Compile Include="Entity\Shared\City.cs" />
+    <Compile Include="Entity\Admin\Config.cs" />
+    <Compile Include="Entity\Shared\Currency.cs" />
+    <Compile Include="Entity\Shared\Day.cs" />
+    <Compile Include="Entity\Announcements\Section.cs" />
+    <Compile Include="Entity\Announcements\Subsection.cs" />
+    <Compile Include="Entity\Shared\PrivateMessage.cs" />
+    <Compile Include="Entity\Shared\SearchProviderEntity.cs" />
+    <Compile Include="Entity\Shared\UserProfile.cs" />
+    <Compile Include="Enums\CategorySearch.cs" />
+    <Compile Include="Enums\MenuPositionsStruct.cs" />
+    <Compile Include="Enums\PaymentStatus.cs" />
+    <Compile Include="Enums\ProductMenu.cs" />
+    <Compile Include="Enums\SortOptionsParams.cs" />
+    <Compile Include="Enums\SortOrderParams.cs" />
+    <Compile Include="Interface\ISearch.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Admin\IAnnouncementConfigRepository.cs" />
+    <Compile Include="Repository\Admin\IActualArticleRepository.cs" />
+    <Compile Include="Repository\Admin\IAnnouncementsPremiumsRefRepository.cs" />
+    <Compile Include="Repository\Admin\IArticleAndReviewBlockRepository.cs" />
+    <Compile Include="Repository\Admin\IArticleConfigRepository.cs" />
+    <Compile Include="Repository\Admin\IBannerRepository.cs" />
+    <Compile Include="Repository\Admin\IBannerSectionRepository.cs" />
+    <Compile Include="Repository\Admin\ICatalogConfigRepository.cs" />
+    <Compile Include="Repository\Admin\IConfigRepository.cs" />
+    <Compile Include="Repository\Admin\IGraphicBannerWithTextRepository.cs" />
+    <Compile Include="Repository\Admin\IMainPageArticleConfigRepository.cs" />
+    <Compile Include="Repository\Admin\INewInCatalogRepository.cs" />
+    <Compile Include="Repository\Admin\INewSectionInCatalogRepository.cs" />
+    <Compile Include="Repository\Admin\IPaymentRepository.cs" />
+    <Compile Include="Repository\Admin\IPopularAnnouncementRepository.cs" />
+    <Compile Include="Repository\Admin\IPopularProductRepository.cs" />
+    <Compile Include="Repository\Admin\IPopularSectionInCatalogRepository.cs" />
+    <Compile Include="Repository\Admin\IPopularSubsectionRepository.cs" />
+    <Compile Include="Repository\Admin\IPremiumRepository.cs" />
+    <Compile Include="Repository\Admin\ITopForumTopicRepository.cs" />
+    <Compile Include="Repository\Announcements\IAnnouncementBookmarkRepository.cs" />
+    <Compile Include="Repository\Announcements\IAnnouncementCommentRepository.cs" />
+    <Compile Include="Repository\Announcements\IAnnouncementImageRepository.cs" />
+    <Compile Include="Repository\Articles\IArticleCommentRepository.cs" />
+    <Compile Include="Repository\Articles\IArticleRepository.cs" />
+    <Compile Include="Repository\Articles\IArticleSectionRepository.cs" />
+    <Compile Include="Repository\Articles\IArticleSubsectionRepository.cs" />
+    <Compile Include="Repository\Catalogs\ICatalogCategoryRepository.cs" />
+    <Compile Include="Repository\Catalogs\ICatalogParamSubsectionRepository.cs" />
+    <Compile Include="Repository\Catalogs\ICatalogSecondCategoryRepository.cs" />
+    <Compile Include="Repository\Catalogs\ICatalogThirdCategoryRepository.cs" />
+    <Compile Include="Repository\Catalogs\IProductBookmarkRepository.cs" />
+    <Compile Include="Repository\Catalogs\IProductFeedbackRepository.cs" />
+    <Compile Include="Repository\Catalogs\IProductImageRepository.cs" />
+    <Compile Include="Repository\Catalogs\IProductParamRepository.cs" />
+    <Compile Include="Repository\Catalogs\IProductParamValueRepository.cs" />
+    <Compile Include="Repository\Catalogs\IProductRepository.cs" />
+    <Compile Include="Repository\Catalogs\IProductSectionParamRefRepository.cs" />
+    <Compile Include="Repository\Catalogs\IProductSubsectionParamRefRepository.cs" />
+    <Compile Include="Repository\Catalogs\IShopProductRefRepository.cs" />
+    <Compile Include="Repository\Catalogs\IShopRepository.cs" />
+    <Compile Include="Repository\Catalogs\IUnitRepository.cs" />
+    <Compile Include="Repository\Catalogs\IShopCommentRepository.cs" />
+    <Compile Include="Repository\Catalogs\IShopCategoryRefRepository.cs" />
+    <Compile Include="Repository\Other\IComputerAnnouncementRefRepository.cs" />
+    <Compile Include="Repository\Other\IComputerRealtyRefRepository.cs" />
+    <Compile Include="Repository\Other\IComputerRepository.cs" />
+    <Compile Include="Repository\Other\IMenuPageRefRepository.cs" />
+    <Compile Include="Repository\Other\IMenuRepository.cs" />
+    <Compile Include="Repository\Other\IPageRepository.cs" />
+    <Compile Include="Repository\Announcements\IAnnouncementRepository.cs" />
+    <Compile Include="Repository\Announcements\ICategoryRepository.cs" />
+    <Compile Include="Repository\Announcements\ISectionRepository.cs" />
+    <Compile Include="Repository\Announcements\ISubsectionRepository.cs" />
+    <Compile Include="Repository\Realty\IRealtyBookmarkRepository.cs" />
+    <Compile Include="Repository\Realty\IRealtyCategoryRepository.cs" />
+    <Compile Include="Repository\Realty\IRealtyCommentRepository.cs" />
+    <Compile Include="Repository\Realty\IRealtyPaymentHistoryRepository.cs" />
+    <Compile Include="Repository\Realty\IRealtyPaymentRepository.cs" />
+    <Compile Include="Repository\Realty\IRealtyPhotoRepository.cs" />
+    <Compile Include="Repository\Realty\IRealtyRepository.cs" />
+    <Compile Include="Repository\Realty\IRealtySectionRepository.cs" />
+    <Compile Include="Repository\Shared\ICityRepository.cs" />
+    <Compile Include="Repository\Shared\ICurrencyRepository.cs" />
+    <Compile Include="Repository\Shared\IPrivateMessageRepository.cs" />
+    <Compile Include="Repository\Shared\IProfileRepository.cs" />
+    <Compile Include="Repository\Shared\IRepository.cs" />
+    <Compile Include="Utils\UniqueCompIDUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

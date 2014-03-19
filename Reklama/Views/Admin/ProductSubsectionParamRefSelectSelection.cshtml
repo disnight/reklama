@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Domain.Entity.Catalogs.CatalogParamSubsection>
+
+@{
+    ViewBag.Title = "ProductSubsectionParamRefSelectSelection";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Выберите подраздел</h2>
+
+<div style="width: 700px; border: 1px solid black; padding: 10px;">
+    @using (Html.BeginForm("ProductSubsectionParamsRef", "Admin", FormMethod.Get))
+    {
+        <select name="subsectionId">
+            @foreach (var s in Model)
+            {
+                <option value="@s.Id">@s.Slogan</option>
+            }
+        </select>
+        <input type="submit" value="Просмотреть"/>
+    }
+</div>
