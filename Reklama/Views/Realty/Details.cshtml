@@ -95,11 +95,14 @@
                                     {
                                         <p>
                                             Телефон:
-                                        <b>@Model.Phone</b>
+                                            <b>@Model.Phone</b>
                                         </p>
                                     }
                                 </p>
-                                <p>E-mail: @Model.UserProfile.Email</p>
+                                @if (WebSecurity.CurrentUserId != -1)
+                                {
+                                    <p>E-mail: @Model.UserProfile.Email</p>
+                                }
                             </div>
                         </div>
                         <div class="sellerInfoM">
@@ -124,9 +127,9 @@
                             <div>
                                 <img src="~/Images/System/sel5.gif" />просмотров -<em>@Model.Views</em>
                             </div>
-                            @if (User.Identity.IsAuthenticated)
+                            @if (User.Identity.IsAuthenticated || ViewBag.IsUserCanEditRealty)
                             {
-                                if (WebSecurity.CurrentUserId == Model.UserId || User.IsInRole("Administrator") || User.IsInRole("Moderator"))
+                                if (WebSecurity.CurrentUserId == Model.UserId || User.IsInRole("Administrator") || User.IsInRole("Moderator") || ViewBag.IsUserCanEditRealty)
                                 {
                                 <div>
                                     <img src="/Images/System/sel2.gif" />

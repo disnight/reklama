@@ -9,6 +9,12 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
+<style>
+    input.input-validation-error + label {
+        border: 1px solid #E80C4D !important;
+    }
+</style>
+
 <div class="register">
     <h1>Новое объявление</h1>
     <div class="registerIn">
@@ -24,7 +30,7 @@
                         @Html.ValidationSummary()
                         <span>Лицо:</span>
                         @Html.RadioButtonFor(x => x.IsAgency, false, new { Class = "Personal", Checked = "checked" }) частное
-                    @Html.RadioButtonFor(x => x.IsAgency, true, new { Class = "Agency" }) агенство
+                        @Html.RadioButtonFor(x => x.IsAgency, true, new { Class = "Agency" }) агенство
                     </div>
                     <div id="AgencyNameDiv" hidden>
                         <div class="rightText">
@@ -36,25 +42,48 @@
                     <div>
                         <span>Категория:</span>
                         @Html.DropDownListFor(x => x.CategoryId, new SelectList((ViewBag.Categories), "Id", "Name"), "Выберите категорию")
-                        @Html.ValidationMessageFor(x => x.CategoryId)
+                        
+                        <div class="rightText">
+                            @Html.ValidationMessageFor(x => x.CategoryId)
+                        </div>
                     </div>
 
                     <div>
                         <span>Раздел:</span>
-                        @Html.DropDownListFor(x => x.SectionId, new SelectList((ViewBag.Sections), "Id", "Name"), "Выберите раздел", new { Class = "SectionList" })
+                        
+                        <div id="CategoryButtons">
+                            @foreach (var item in new SelectList((ViewBag.Sections), "Id", "Name"))
+                            {
+                                <div class="item-container">
+                                    <div class="item">
+                                        @*<input id="categoryButtom1" class="radio" type="radio" value="1" name="Category">
+                                        <label for="categoryButtom1">Продам</label>*@
+                                        @Html.RadioButtonFor(m => m.SectionId, item.Value, new { id = "categoryButtom" + item.Value, name = "SectionId", @class = "radio" })
+                                        @Html.LabelFor(m => m, item.Text, new { @for = "categoryButtom" + item.Value })
+                                    </div>
+                                </div>
+                            }
+                            <div style="clear: both; padding: 0; height: 0; min-height: 0;"></div>
+                            <div style="padding-left: 210px; padding-bottom: 0;">@Html.ValidationMessageFor(s => s.SectionId)</div>
+                            <label for="pertin1" hidden id="ForDaysLabel">@Html.CheckBoxFor(x => x.ForDays, new { Id = "ForDays" })На сутки</label>
+                            
+                        </div>
+                        
+                        @* @Html.DropDownListFor(x => x.SectionId, new SelectList((ViewBag.Sections), "Id", "Name"), "Выберите раздел", new { Class = "SectionList" })
                         <br />
                         @Html.ValidationMessageFor(x => x.SectionId)
-                        <label for="pertin1" hidden id="ForDaysLabel">@Html.CheckBoxFor(x => x.ForDays, new { Id = "ForDays" })На сутки</label>
+                        <label for="pertin1" hidden id="ForDaysLabel">@Html.CheckBoxFor(x => x.ForDays, new { Id = "ForDays" })На сутки</label>*@
                     </div>
                 </div>
                 <div class="borderReg">
                     <div>
                         <div class="rightText">
                             Покупатель не захочет собирать дополнительную информацию о нужном ему товаре и сразу купит у вас. Кроме того, подробное описание товара оставляет хорошее впечатление о продавце - покупатель будет спокоен. 
+                            <br/>@Html.ValidationMessageFor(x => x.CityId)
                         </div>
                         <span>Город:</span>
                         @Html.DropDownListFor(x => x.CityId, new SelectList((ViewBag.Cities), "Id", "Name"), "Выберите город")
-                        @Html.ValidationMessageFor(x => x.CityId)
+                        
                     </div>
                     <div>
                         <span>Улица:</span>
@@ -167,11 +196,11 @@
                             {
                                 foreach (string image in (IEnumerable<string>)ViewBag.UploadedImages)
                                 {
-                                <div class="image_fields">
-                                    <img class="realtyImage" src="/Images/Realty/@image"/>
-                                    <input type="hidden" name="images[]" value="@image" /><br />
-                                    <a href="#" class="image_remove" onclick="return $.fn.removeImage($(this));">Удалить</a>
-                                </div>
+                                    <div class="image_fields">
+                                        <img class="realtyImage" src="/Images/Realty/@image"/>
+                                        <input type="hidden" name="images[]" value="@image" /><br />
+                                        <a href="#" class="image_remove" onclick="return $.fn.removeImage($(this));">Удалить</a>
+                                    </div>
                                 }
                             }
                         </div>

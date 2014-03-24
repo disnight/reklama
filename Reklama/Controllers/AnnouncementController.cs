@@ -153,7 +153,7 @@ namespace Reklama.Controllers
             {
                 var images = collection["images[]"];
                 var id = _repository.Save(model, images);
-                if (id > 0 && ProjectConfiguration.IsAnonymousUserAllowed)
+                if (id > 0 && WebSecurity.CurrentUserId == -1 && ProjectConfiguration.IsAnonymousUserAllowed)
                 {
                     var compKey = Domain.Utils.FingerPrint.Value();
                     var comp = _computerRepository.GetByComputerKey(compKey);
@@ -199,9 +199,12 @@ namespace Reklama.Controllers
             if (announcement == null) return HttpNotFound();
 
             var isAnonumousUserCanEdit = _anonymousUserService.IsUserCanEdit(id);
-            if (!isAnonumousUserCanEdit && (WebSecurity.CurrentUserId != announcement.UserId && !User.IsInRole("Administrator") && !User.IsInRole("Moderator")))
+            if (WebSecurity.CurrentUserId != announcement.UserId && !User.IsInRole("Administrator") && !User.IsInRole("Moderator"))
             {
-                return HttpNotFound();
+                if (!isAnonumousUserCanEdit)
+                {
+                    return HttpNotFound();
+                }
             }
 
             if(announcement.Price.HasValue && !announcement.Currency.Rate.Equals(1.0f))
@@ -209,7 +212,7 @@ namespace Reklama.Controllers
                 announcement.Price = Math.Round((decimal)announcement.Price*(decimal) announcement.Currency.Rate, 2);
             }
 
-            if (announcement.User.UserId != -1 && announcement.Phone == null || announcement.Phone.Equals(string.Empty))
+            if (announcement.User.UserId != -1 && (announcement.Phone == null || announcement.Phone.Equals(string.Empty)))
             {
                 announcement.Phone = announcement.User.Phone;
             }
@@ -250,7 +253,7 @@ namespace Reklama.Controllers
 
             var isAnonumousUserCanEdit = _anonymousUserService.IsUserCanEdit(model.Id);
 
-            if (!ProjectConfiguration.IsAnonymousUserAllowed || !isAnonumousUserCanEdit)
+            if (!ProjectConfiguration.IsAnonymousUserAllowed && !isAnonumousUserCanEdit)
             {
                 if (model.UserId != WebSecurity.CurrentUserId && !User.IsInRole("Administrator") && !User.IsInRole("Moderator"))
                 {
@@ -397,10 +400,15 @@ namespace Reklama.Controllers
         public ActionResult Delete(int id = 0)
         {
             var announcement = _repository.Read(id);
+            if (announcement == null) return HttpNotFound();
 
-            if (announcement == null || (WebSecurity.CurrentUserId != announcement.UserId && !User.IsInRole("Administrator")))
+            var isAnonumousUserCanEdit = _anonymousUserService.IsUserCanEdit(id);
+            if (WebSecurity.CurrentUserId != announcement.UserId && !User.IsInRole("Administrator"))
             {
-                return HttpNotFound();
+                if (!isAnonumousUserCanEdit)
+                {
+                    return HttpNotFound();
+                }
             }
 
             return View(announcement);
@@ -411,10 +419,15 @@ namespace Reklama.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             var announcement = _repository.Read(id);
+            if (announcement == null) return HttpNotFound();
 
-            if (announcement == null || (WebSecurity.CurrentUserId != announcement.UserId && !User.IsInRole("Administrator")))
+            var isAnonumousUserCanEdit = _anonymousUserService.IsUserCanEdit(id);
+            if (WebSecurity.CurrentUserId != announcement.UserId && !User.IsInRole("Administrator"))
             {
-                return HttpNotFound();
+                if (!isAnonumousUserCanEdit)
+                {
+                    return HttpNotFound();
+                }
             }
 
             try
@@ -506,7 +519,7 @@ namespace Reklama.Controllers
 
 
         [HttpPost]
-        [Authorize]
+        [CustomAnnouncementEditAuth]
         public ActionResult Up(int id)
         {
             var announcement = _repository.Read(id);

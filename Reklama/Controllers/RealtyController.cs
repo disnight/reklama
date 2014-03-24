@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Domain.Entity.Common;
 using Domain.Entity.Realty;
 using Domain.Entity.Shared;
 using Domain.Repository.Admin;
@@ -12,6 +13,7 @@ using Domain.Repository.Shared;
 using System.IO;
 using Reklama.Attributes;
 using Reklama.Models.SortModels;
+using Reklama.Services;
 using WebMatrix.WebData;
 using PagedList;
 using Reklama.Models;
@@ -36,6 +38,7 @@ namespace Reklama.Controllers
         private readonly IProfileRepository _profileRepository;
         private readonly IComputerRepository _computerRepository;
         private readonly IComputerRealtyRefRepository _computerRealtyRefRepository;
+        private readonly AnonymousUserService _anonymousUserService = new AnonymousUserService();
 
         public RealtyController(IRealtyRepository realtyRepository, ICityRepository cityRepository,
                                 IRealtyCategoryRepository categoryRepository, IRealtySectionRepository sectionRepository,
@@ -77,8 +80,8 @@ namespace Reklama.Controllers
 
         public ActionResult RedirectToSubdomain(string actionName, string id)
         {
-            string url = "http://jay.reklama.tm/";
-            url += actionName == null ? "" : actionName;
+            var url = "http://jay.reklama.tm/";
+            url += actionName ?? "";
             url += id == null ? "" : "/" + id;
             return Redirect(url);
         }
@@ -89,11 +92,8 @@ namespace Reklama.Controllers
             ViewBag.Categories = _categoryRepository.Read();
             ViewBag.Cities = _cityRepository.Read();
             ViewBag.Sections = _sectionRepository.Read();
-            if (sortModel == null)
-                ViewBag.SortModel = new RealtySortByParams();
-            else
-                ViewBag.SortModel = sortModel;
-            if (sortModel.IsEnableSort)
+            ViewBag.SortModel = sortModel ?? new RealtySortByParams();
+            if (sortModel != null && sortModel.IsEnableSort)
             {
                 realty = _realtyRepository.SortByParams(realty, sortModel.CategoryId, sortModel.CityId, sortModel.FromPrice, sortModel.ToPrice, sortModel.CountsRoom,
                                                          sortModel.FromSquare, sortModel.ToSquare, sortModel.FromFloorCount, sortModel.ToFloorCount, sortModel.FromFloor,
@@ -132,6 +132,7 @@ namespace Reklama.Controllers
                 return HttpNotFound();
             }
 
+            ViewBag.IsUserCanEditRealty = _anonymousUserService.IsUserCanEditRealty(realty.Id);
             realty.Views++;
             _realtyRepository.SaveIgnoreCurrency(realty);
             ViewBag.RealtyPhotos = _photoRepository.ReadByRealty(realty.Id).ToArray();
@@ -163,7 +164,7 @@ namespace Reklama.Controllers
                 model.Phone = user.Phone;
                 model.IsDisplayPhone = true;
             }
-            
+
             ViewBag.Cities = _cityRepository.Read();
             ViewBag.Sections = _sectionRepository.Read();
             ViewBag.Categories = _categoryRepository.Read();
@@ -183,15 +184,43 @@ namespace Reklama.Controllers
             {
                 ModelState.AddModelError("AgencyName", "Поле 'Название агенства' обязательно для заполнения");
             }
+            //ViewBag.cError = "ModelState.IsValid = ";
             if (ModelState.IsValid)
             {
+                //ViewBag.cError += "true; ";
                 realty.CreatedAt = realty.UpTime = DateTime.Now;
                 realty.ExpiredAt = DateTime.Now.AddDays(int.Parse(ProjectConfiguration.Get.GetConfigValue("ExpiredAtRealty").ToString()));
                 realty.UserId = WebSecurity.CurrentUserId;
                 realty.Views = 0;
                 realty.IsActive = true;
                 var images = collection["images[]"];
+                //ViewBag.cError += "Pre Save; ";
                 int id = _realtyRepository.Save(realty, images);
+                //ViewBag.cError += "Save complite; id = " + id;
+                if (id > 0 && WebSecurity.CurrentUserId == -1 && ProjectConfiguration.IsAnonymousUserAllowed)
+                {
+                    //ViewBag.cError += "Save comp init; ";
+                    var compKey = Domain.Utils.FingerPrint.Value();
+                    var comp = _computerRepository.GetByComputerKey(compKey);
+                    int dbCompID;
+                    if (comp == null)
+                    {
+                        dbCompID = _computerRepository.Save(new Computer
+                        {
+                            Key = compKey
+                        });
+                    }
+                    else
+                    {
+                        dbCompID = comp.Id;
+                    }
+                    _computerRealtyRefRepository.Save(new ComputerRealtyRef
+                    {
+                        RealtyId = id,
+                        ComputerId = dbCompID
+                    });
+                }
+
                 //return RedirectToAction("Details", "Realty", new { Id = id });
                 return Redirect("http://jay.reklama.tm/Details/" + id);
             }
@@ -217,7 +246,7 @@ namespace Reklama.Controllers
         //}
 
         [HttpPost]
-        [Authorize]
+        [CustomRealtyEditAuth]
         public ActionResult Up(int id)
         {
             var realty = _realtyRepository.Read(id);
@@ -226,8 +255,8 @@ namespace Reklama.Controllers
             {
                 return HttpNotFound();
             }
-
-            if ((WebSecurity.CurrentUserId == realty.UserId && realty.UpTime <= DateTime.Now.AddHours(-int.Parse(ProjectConfiguration.Get.GetConfigValue("UpTimeRealty").ToString()))
+            var isRealtyUserCanEdit = _anonymousUserService.IsUserCanEditRealty(id);
+            if (((WebSecurity.CurrentUserId == realty.UserId || isRealtyUserCanEdit) && realty.UpTime <= DateTime.Now.AddHours(-int.Parse(ProjectConfiguration.Get.GetConfigValue("UpTimeRealty").ToString()))
                 || User.IsInRole("Administrator")
                 || User.IsInRole("Moderator")))
             {
@@ -250,14 +279,20 @@ namespace Reklama.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [CustomRealtyEditAuth]
         public ActionResult Edit(int id)
         {
             var realty = _realtyRepository.Read(id);
+            if (realty == null) return HttpNotFound();
 
-            if (realty == null ||(WebSecurity.CurrentUserId != realty.UserId && !User.IsInRole("Administrator")) && !User.IsInRole("Moderator"))
+            var isRealtyUserCanEdit = _anonymousUserService.IsUserCanEditRealty(id);
+            if (WebSecurity.CurrentUserId != realty.UserId && !User.IsInRole("Administrator") && !User.IsInRole("Moderator"))
             {
-                return HttpNotFound();
+                if (!isRealtyUserCanEdit)
+                {
+                    return HttpNotFound();
+                }
+                
             }
 
             if (realty.Price.HasValue && !realty.Currency.Rate.Equals(1.0f))
@@ -265,7 +300,7 @@ namespace Reklama.Controllers
                 realty.Price = Math.Round((decimal)realty.Price * (decimal)realty.Currency.Rate, 2);
             }
 
-            if (realty.Phone == null || realty.Phone.Equals(string.Empty))
+            if (realty.UserId != -1 && (realty.Phone == null || realty.Phone.Equals(string.Empty)))
             {
                 realty.Phone = realty.UserProfile.Phone;
             }
@@ -274,22 +309,27 @@ namespace Reklama.Controllers
             ViewBag.Sections = _sectionRepository.Read();
             ViewBag.Categories = _categoryRepository.Read();
             ViewBag.Currencies = _currencyRepository.Read();
-            ViewBag.UploadedImages = (realty!= null) ? from photo in realty.Photos select photo.Link : null;
+            ViewBag.UploadedImages = from photo in realty.Photos select photo.Link;
 
             return View(realty);
         }
 
 
         [HttpPost]
-        [Authorize]
+        [CustomRealtyEditAuth]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Realty model, FormCollection collection)
         {
             var realty = _realtyRepository.Read(model.Id);
+            if (realty == null) return HttpNotFound();
 
-            if (realty == null || (WebSecurity.CurrentUserId != realty.UserId && !User.IsInRole("Administrator")) && !User.IsInRole("Moderator"))
+            var isRealtyUserCanEdit = _anonymousUserService.IsUserCanEditRealty(model.Id);
+            if (WebSecurity.CurrentUserId != realty.UserId && !User.IsInRole("Administrator") && !User.IsInRole("Moderator"))
             {
-                return HttpNotFound();
+                if (!isRealtyUserCanEdit)
+                {
+                    return HttpNotFound();
+                }
             }
 
             model.ExpiredAt = DateTime.Now.AddDays(int.Parse(ProjectConfiguration.Get.GetConfigValue("ExpiredAtRealty").ToString()));
@@ -330,10 +370,15 @@ namespace Reklama.Controllers
         public ActionResult Delete(int id = 0)
         {
             var realty = _realtyRepository.Read(id);
+            if (realty == null) return HttpNotFound();
 
-            if (realty == null || (WebSecurity.CurrentUserId != realty.UserId && !User.IsInRole("Administrator")) && !User.IsInRole("Moderator"))
+            var isRealtyUserCanEdit = _anonymousUserService.IsUserCanEditRealty(id);
+            if (WebSecurity.CurrentUserId != realty.UserId && !User.IsInRole("Administrator") && !User.IsInRole("Moderator"))
             {
-                return HttpNotFound();
+                if (!isRealtyUserCanEdit)
+                {
+                    return HttpNotFound();
+                }
             }
 
             return View(realty);
@@ -345,6 +390,7 @@ namespace Reklama.Controllers
 
             try
             {
+
                 _bookmarkRepository.Save(new RealtyBookmark()
                                                     {
                                                         RealtyId = model.Id,
@@ -363,10 +409,15 @@ namespace Reklama.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             var realty = _realtyRepository.Read(id);
+            if (realty == null) return HttpNotFound();
 
-            if (realty == null || (WebSecurity.CurrentUserId != realty.UserId && !User.IsInRole("Administrator")) && !User.IsInRole("Moderator"))
+            var isRealtyUserCanEdit = _anonymousUserService.IsUserCanEditRealty(id);
+            if (WebSecurity.CurrentUserId != realty.UserId && !User.IsInRole("Administrator") && !User.IsInRole("Moderator"))
             {
-                return HttpNotFound();
+                if (!isRealtyUserCanEdit)
+                {
+                    return HttpNotFound();
+                }
             }
 
             try

@@ -442,9 +442,8 @@
                                                     </span>
                                                 </div>
                                                 <div class="ciAuthor">
-                                                    @if (realty.UserId != -1)
-                                                    {
-                                                        if (realty.IsAgency)
+                                                    
+                                                        @if (realty.IsAgency)
                                                         {
                                                             <span>агенство</span>
                                                             @Html.ActionLink(realty.AgencyName, "Index", "Profile", new { id = realty.UserId }, null)
@@ -452,9 +451,12 @@
                                                         else
                                                         {
                                                             <span>частное</span>
-                                                            @Html.ActionLink(realty.UserProfile.Email, "Index", "Profile", new { id = realty.UserId }, null)
+                                                            if (realty.UserId != -1)
+                                                             {
+                                                                 @Html.ActionLink(realty.UserProfile.Email, "Index", "Profile", new {id = realty.UserId}, null)
+                                                             }
                                                         } 
-                                                    }
+                                                    
 
                                                     @string.Format("{0:dd.MM.yyyy HH:mm}", realty.CreatedAt)
                                                 </div>

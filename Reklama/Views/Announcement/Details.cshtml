@@ -119,7 +119,10 @@
                                         <b>@Model.Phone</b>
                                     </p>
                                 }
-                                <p>E-mail: @Model.User.Email</p>
+                                @if (WebSecurity.CurrentUserId != -1)
+                                {
+                                    <p>E-mail: @Model.User.Email</p>
+                                }
                             </div>
                         </div>
 

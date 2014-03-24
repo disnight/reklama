@@ -8,6 +8,12 @@
     ViewBag.Title = "Создание нового объявления";
 }
 
+<style>
+    input.input-validation-error + label {
+        border: 1px solid #E80C4D !important;
+    }
+</style>
+
 <div class="register">
     <h1>Новое объявление</h1>
     <div class="registerIn">
@@ -36,6 +42,8 @@
                                     </div>
                                 </div>
                             }
+                            @Html.ValidationMessageFor(s => s.CategoryId)
+                            
                             <div style="clear: both; padding: 0; height: 0; min-height: 0;"></div>
                         </div>
 

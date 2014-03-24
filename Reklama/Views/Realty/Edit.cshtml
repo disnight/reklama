@@ -33,12 +33,31 @@
                 </div>
                 
                 <div>
-                    <span>Раздел:</span>
-                    @Html.DropDownListFor(x => x.SectionId, new SelectList((ViewBag.Sections), "Id", "Name"), "Выберите раздел", new { Class = "SectionList" })
-                    <br />
-                    <div>@Html.ValidationMessageFor(x => x.SectionId)</div>
-                    <label for="pertin1" hidden id="ForDaysLabel">@Html.CheckBoxFor(x => x.ForDays, new { Id = "ForDays" })На сутки</label>
-                </div>
+                        <span>Раздел:</span>
+                        
+                        <div id="CategoryButtons">
+                            @foreach (var item in new SelectList((ViewBag.Sections), "Id", "Name"))
+                            {
+                                <div class="item-container">
+                                    <div class="item">
+                                        @*<input id="categoryButtom1" class="radio" type="radio" value="1" name="Category">
+                                        <label for="categoryButtom1">Продам</label>*@
+                                        @Html.RadioButtonFor(m => m.SectionId, item.Value, new { id = "categoryButtom" + item.Value, name = "SectionId", @class = "radio" })
+                                        @Html.LabelFor(m => m, item.Text, new { @for = "categoryButtom" + item.Value })
+                                    </div>
+                                </div>
+                            }
+                            <div style="clear: both; padding: 0; height: 0; min-height: 0;"></div>
+                            <div style="padding-left: 210px; padding-bottom: 0;">@Html.ValidationMessageFor(s => s.SectionId)</div>
+                            <label for="pertin1" hidden id="ForDaysLabel">@Html.CheckBoxFor(x => x.ForDays, new { Id = "ForDays" })На сутки</label>
+                            
+                        </div>
+                        
+                       @* @Html.DropDownListFor(x => x.SectionId, new SelectList((ViewBag.Sections), "Id", "Name"), "Выберите раздел", new { Class = "SectionList" })
+                        <br />
+                        @Html.ValidationMessageFor(x => x.SectionId)
+                        <label for="pertin1" hidden id="ForDaysLabel">@Html.CheckBoxFor(x => x.ForDays, new { Id = "ForDays" })На сутки</label>*@
+                    </div>
                
                 <div class="borderReg">
                     <div>
