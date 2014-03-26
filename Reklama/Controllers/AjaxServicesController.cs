@@ -240,6 +240,7 @@ namespace Reklama.Controllers
 
             try
             {
+                uploader.Convert(530, 350);
                 uploader.Save("users");
                 uploader.Convert(ProjectConfiguration.Get.AnnouncementImageWidth, ProjectConfiguration.Get.AnnouncementImageHeight);
                 uploader.Save("announcement_thumb");

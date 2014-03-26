@@ -21,7 +21,7 @@
             @using (Html.BeginForm())
             {
                 @Html.ValidationSummary(true)
-                <div class="borderReg">
+                <div class="borderReg head">
                     <div>
                         <span>Раздел сайта:</span>
                         <input class="regRad" id="regRad" name="regRad" type="radio" checked="checked" value="" /><label
@@ -90,7 +90,8 @@
                 <div class="borderReg">
 
                     <div>
-                        <span class="regBrown">@Html.LabelFor(n => n.Name)</span>
+                        @*<span class="regBrown">@Html.LabelFor(n => n.Name)</span>*@
+                        <div class="label-container">@Html.LabelFor(n => n.Name)</div>
                         @Html.TextBoxFor(model => model.Name, new { @class = "regInp2" })
                         <p>не более 64 символов</p>
                         <div class="rightText">
@@ -99,18 +100,8 @@
                     </div>
 
                     <div>
-                        <span>@Html.LabelFor(m => m.SmallDescription)</span>
-                        @Html.TextAreaFor(m => m.SmallDescription)
-                        <p>не более 255 символов</p>
-                        <div class="rightText">
-                            Краткое описание позволит пользователю сразу сориентироваться в сущности объявления.
-                            Старайтесь писать кратко и лаконично, не нужно путать краткое описание с подробным.<br />
-                            @Html.ValidationMessageFor(m => m.SmallDescription)
-                        </div>
-                    </div>
-                    <div>
-                        <span>@Html.LabelFor(m => m.Description)</span>
-                        @Html.TextAreaFor(m => m.Description)
+                        <div class="label-container">@Html.LabelFor(m => m.Description)</div>
+                        @Html.TextAreaFor(m => m.Description, new { @class = "message" })
                         <p>не более 1800 символов</p>
                         <div class="rightText">
                             Покупатель не захочет собирать дополнительную информацию о нужном ему товаре и сразу
@@ -121,13 +112,22 @@
 
                     </div>
 
-
+                    <div>
+                        <div class="label-container">@Html.LabelFor(m => m.SmallDescription)</div>
+                        @Html.TextAreaFor(m => m.SmallDescription, new { @class = "desc" })
+                        <p>не более 255 символов</p>
+                        <div class="rightText">
+                            Краткое описание позволит пользователю сразу сориентироваться в сущности объявления.
+                            Старайтесь писать кратко и лаконично, не нужно путать краткое описание с подробным.<br />
+                            @Html.ValidationMessageFor(m => m.SmallDescription)
+                        </div>
+                    </div>
 
                 </div>
                 <div class="borderReg">
 
                     <div>
-                        <span class="regRed">@Html.LabelFor(m => m.Price)</span>
+                        <div class="regRed label-container">@Html.LabelFor(m => m.Price)</div>
                         @Html.TextBoxFor(m => m.Price, new { @class = "regInp1", data_val_number = "Должно быть введено вещественное число" })&nbsp;
                         @Html.DropDownList("CurrencyId", (SelectList)ViewBag.Currencies, new { @style = "width: 100px;" })
                         <p class="check">
@@ -141,14 +141,14 @@
                         </div>
                         <div>
                             <br />
-                            <span class="regBrown">@Html.LabelFor(n => n.Phone)</span>
-                            @Html.TextBoxFor(model => model.Phone, new { @class = "regInp2" })
-                            <p>не более 32 символов</p>
+                            <div class="regBrown label-container">@Html.LabelFor(n => n.Phone)</div>
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1" })
                             <div class="rightText">@Html.ValidationMessageFor(n => n.Name)</div>
                         </div>
-                        <div>
+                        <div style="display: none;">
                             <p class="check" style="margin-top: -15px;">
-                                @Html.CheckBoxFor(m => m.IsDisplayPhone)
+                                <input type="checkbox" checked="checked" name="IsDisplayPhone" id="IsDisplayPhone"/>
+                                @*@Html.CheckBoxFor(m => m.IsDisplayPhone, new { @checked = "checked"})*@
                                 @Html.LabelFor(m => m.IsDisplayPhone)
                             </p>
                         </div>

@@ -106,21 +106,18 @@
                     </div>  
 
                     <div>
-                        <span>Краткое описание:</span>
-                        <div>@Html.TextAreaFor(x => x.SmallDescription)</div>
-                        <p>не более 600 символов</p>
-                        <div class="rightText">Краткое описание позволит пользователю сразу сориентироваться в сущности объявления. Старайтесь писать кратко и лаконично, не нужно путать краткое описание с подробным. <br /> @Html.ValidationMessageFor(x => x.SmallDescription)</div>
-
-
-                    </div>
-                    <div>
                         <span>Подробное описание:</span>
                         @Html.TextAreaFor(x => x.Description)
                         <p>не более 1800 символов</p>
                         <div class="rightText">Покупатель не захочет собирать дополнительную информацию о нужном ему товаре и сразу купит у вас. Кроме того, подробное описание товара оставляет хорошее впечатление о продавце - покупатель будет спокоен. <br /> @Html.ValidationMessageFor(x => x.Description)</div>
-
                     </div>
 
+                    <div>
+                        <span>Краткое описание:</span>
+                        <div>@Html.TextAreaFor(x => x.SmallDescription)</div>
+                        <p>не более 600 символов</p>
+                        <div class="rightText">Краткое описание позволит пользователю сразу сориентироваться в сущности объявления. Старайтесь писать кратко и лаконично, не нужно путать краткое описание с подробным. <br /> @Html.ValidationMessageFor(x => x.SmallDescription)</div>
+                    </div>
 
 
                 </div>

@@ -20,7 +20,7 @@
     <div class="registerIn">
         <div class="registerInW">
             <form id="formCreate" action="/Realty/Create" method="post">
-                <div class="borderReg">
+                <div class="borderReg head">
                     <div>
                         <span>Раздел сайта:</span>
                         <input class="regRad" id="regRad" name="regRad" type="radio" value="" /><label for="regRad">объявления</label>
@@ -124,53 +124,52 @@
                 <div class="borderReg">
 
                     <div>
-                        <span class="regBrown">Заголовок:</span>
+                        <div class="regBrown label-container">Заголовок:</div>
                         @Html.TextBoxFor(x => x.Name, new { Class = "regInp2" })
                         <p>не более 180 символов</p>
                         <div class="rightText">Заголовок - самая заметная часть объявления.<br />
                             @Html.ValidationMessageFor(x => x.Name)</div>
                     </div>
-
+                    
                     <div>
-                        <span>Краткое описание:</span>
-                        <div>@Html.TextAreaFor(x => x.SmallDescription)</div>
-                        <p>не более 600 символов</p>
-                        <div class="rightText">Краткое описание позволит пользователю сразу сориентироваться в сущности объявления. Старайтесь писать кратко и лаконично, не нужно путать краткое описание с подробным.
-                            <br />
-                            @Html.ValidationMessageFor(x => x.SmallDescription)</div>
-
-
-                    </div>
-                    <div>
-                        <span>Подробное описание:</span>
-                        @Html.TextAreaFor(x => x.Description)
+                        <div class="label-container">Подробное описание:</div>
+                        @Html.TextAreaFor(x => x.Description, new { @class = "message" })
                         <p>не более 1800 символов</p>
                         <div class="rightText">Покупатель не захочет собирать дополнительную информацию о нужном ему товаре и сразу купит у вас. Кроме того, подробное описание товара оставляет хорошее впечатление о продавце - покупатель будет спокоен.
                             <br />
                             @Html.ValidationMessageFor(x => x.Description)</div>
-
                     </div>
 
-
+                    <div>
+                        <div class="label-container">Краткое описание:</div>
+                        <div>@Html.TextAreaFor(x => x.SmallDescription, new { @class = "desc" })</div>
+                        <p>не более 600 символов</p>
+                        <div class="rightText">Краткое описание позволит пользователю сразу сориентироваться в сущности объявления. Старайтесь писать кратко и лаконично, не нужно путать краткое описание с подробным.
+                            <br />
+                            @Html.ValidationMessageFor(x => x.SmallDescription)</div>
+                    </div>
 
                 </div>
                 <div class="borderReg">
 
                     <div>
-                        <span class="regRed">Цена:</span>
+                        <div class="regRed label-container">Цена:</div>
                         @Html.TextBoxFor(x => x.Price, new { Class = "regInp1" })
                         @Html.DropDownListFor(x => x.CurrencyId, new SelectList(ViewBag.Currencies, "Id", "Name"), new { Class = "pType" })
                         <p class="check">@Html.CheckBoxFor(x => x.IsAuction)<label for="pertin">Торг уместен</label></p>
                         
                         <div><br />
-                            <span class="regBrown">@Html.LabelFor(n => n.Phone)</span>
-                            @Html.TextBoxFor(model => model.Phone, new { @class = "regInp2" })
-                            <p>не более 32 символов</p>
+                            <div class="regBrown label-container">@Html.LabelFor(n => n.Phone)</div>
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1" })
                             <div class="rightText">@Html.ValidationMessageFor(n => n.Name)</div>
                         </div>
                         <br />
 
-                        <p class="check" style="margin-top: -15px;">@Html.CheckBoxFor(x => x.IsDisplayPhone)<label for="pertin">Показывать мой номер телефона</label></p>
+                        <p class="check" style="margin-top: -15px; display: none;">
+                            <input type="checkbox" checked="checked" name="IsDisplayPhone" id="IsDisplayPhone"/>
+                            @*@Html.CheckBoxFor(x => x.IsDisplayPhone, new { @checked = "checked" })*@
+                            <label for="pertin">Показывать мой номер телефона</label>
+                        </p>
                         <div class="rightText">Если вы не укажете реальную стоимость, при сортировке по цене, покупатель не найдет ваше объявление. Цена  «1 у.е.»  отпугивает покупателя своей несерьезностью.
                             <br />
                             @Html.ValidationMessageFor(x => x.Price) </div>

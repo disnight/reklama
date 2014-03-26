@@ -4549,12 +4549,12 @@ a.addToBook span {
             .registerInW div.borderReg div.rightText {
                 color: #4c4c4c;
                 font: 11px Arial;
-                left: 610px;
+                left: 845px;
                 float: none;
                 margin-right: 10px;
                 clear: none;
                 width: auto;
-                top: -3px;
+                top: 22px;
                 position: absolute;
             }
 
@@ -4635,11 +4635,16 @@ a.addToBook span {
         border: 1px solid #C9D1D6;
     }
 
+    .registerInW div input.regInp1 + p {
+        margin-left: 77px;
+        width: 150px;
+    }
+
     .registerInW div input.regInp2 {
         color: #4c4c4c;
         font: 12px Arial;
         padding: 3px 5px;
-        width: 338px;
+        width: 810px;
         background: url("/Images/System/regInpBg.png") repeat-x scroll 0 top #ffffff;
         border: 1px solid #C9D1D6;
     }
@@ -4665,7 +4670,7 @@ a.addToBook span {
 
     .registerInW div textarea {
         height: 122px;
-        width: 338px;
+        width: 810px;
         resize: none;
         overflow: auto;
         font: 12px Arial;
@@ -4678,14 +4683,18 @@ a.addToBook span {
     .registerInW div label {
         margin-top: 3px;
         float: left;
-        width: 105px;
+        /*width: 105px;*/
+    }
+
+    .registerInW .borderReg.head label {
+       width: 105px;
     }
 
 .registerInW p {
     text-align: right;
     color: #4c4c4c;
     font: 11px Arial;
-    width: 350px;
+    width: 610px;
     margin-left: 210px;
     margin-top: 4px;
     margin-bottom: -6px;
@@ -4705,16 +4714,18 @@ a.addToBook span {
         margin-left: 210px;
         margin-top: 4px;
         margin-bottom:0; /*исправлено*/
+        display: inline;
+        margin-left: 0;
     }
 
-        .registerInW p.check label {
+    .registerInW p.check label {
             float: none;
             color: #ff732e;
             font: bold 12px Arial;
         }
 
         .registerInW p.check input {
-            float: left;
+            /*float: left;*/
             vertical-align: middle;
             margin: 1px 8px 0 0;
         }
@@ -6957,3 +6968,11 @@ span.tell{
 /**/
 
 /**/
+
+.registerInW div.borderReg div.label-container {
+    color: #4C4C4C;
+    font: bold 13px Arial;
+    height: 20px;
+    margin-top: 3px;
+    padding-bottom: 0;
+}

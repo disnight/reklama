@@ -13,7 +13,7 @@
         <ul class="SearchUlBlock">
             <li @((Model.Category.Equals(CategorySearch.Product)) ? "class=a" : "") name="@CategorySearch.Product"><span>Товары</span></li>
             <li @((Model.Category.Equals(CategorySearch.Realty)) ? "class=a" : "") name="@CategorySearch.Realty"><span>Недвижимость</span></li>
-            <li @((Model.Category.Equals(CategorySearch.Announcement) || Model.Category.Equals(CategorySearch.Auto)) ? "class=a" : "") name="@CategorySearch.Announcement"><span>Объявления</span></li>
+            <li @((Model.Category.Equals(CategorySearch.Announcement) || Model.Category.Equals(CategorySearch.Auto)) ? "class=a" : "") name="@CategorySearch.Announcement"><span>Объявления/Авто</span></li>
             <li @((Model.Category.Equals(CategorySearch.Article)) ? "class=a" : "") name="@CategorySearch.Article"><span>Статьи</span></li>
         </ul>
         @Html.HiddenFor(m => m.Category, new { id = "SearchCategory" })

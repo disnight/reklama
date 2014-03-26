@@ -1577,6 +1577,7 @@
     <Content Include="Scripts\ckfinder\skins\v1\skin.js" />
     <Content Include="Scripts\ckfinder\skins\v1\uipanel.css" />
     <Content Include="Scripts\ckfinder\translations.txt" />
+    <Content Include="Scripts\common.js" />
     <Content Include="Scripts\CurrencyDetails.js" />
     <Content Include="Scripts\cusel-min-2.5.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

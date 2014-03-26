@@ -72,6 +72,16 @@
                     </div>
 
                     <div>
+                        <span>@Html.LabelFor(m => m.Description)</span>
+                        @Html.TextAreaFor(m => m.Description)
+                        <p>не более 1800 символов</p>
+                        <div class="rightText">
+                            Покупатель не захочет собирать дополнительную информацию о нужном ему товаре и сразу купит у вас. Кроме того, подробное описание товара оставляет хорошее впечатление о продавце - покупатель будет спокоен.<br />
+                            @Html.ValidationMessageFor(m => m.Description)
+                        </div>
+                    </div>
+
+                    <div>
                         <span>@Html.LabelFor(m => m.SmallDescription)</span>
                         @Html.TextAreaFor(m => m.SmallDescription)
                         <p>не более 600 символов</p>
@@ -80,18 +90,6 @@
                             @Html.ValidationMessageFor(m => m.SmallDescription)
                         </div>
                     </div>
-                    <div>
-                        <span>@Html.LabelFor(m => m.Description)</span>
-                        @Html.TextAreaFor(m => m.Description)
-                        <p>не более 1800 символов</p>
-                        <div class="rightText">
-                            Покупатель не захочет собирать дополнительную информацию о нужном ему товаре и сразу купит у вас. Кроме того, подробное описание товара оставляет хорошее впечатление о продавце - покупатель будет спокоен.<br />
-                            @Html.ValidationMessageFor(m => m.Description)
-                        </div>
-
-                    </div>
-
-
 
                 </div>
                 <div class="borderReg">
