@@ -12,6 +12,8 @@ namespace Domain.Entity.Announcements
     {
         public string Link { get; set; }
         public int AnnouncementId { get; set; }
+        
+        public bool? IsTitular { get; set; }
         public DateTime CreatedAt { get; set; }
 
         [ForeignKey("AnnouncementId")]

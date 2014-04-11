@@ -133,6 +133,7 @@
     <Compile Include="Entity\Shared\SearchProviderEntity.cs" />
     <Compile Include="Entity\Shared\UserProfile.cs" />
     <Compile Include="Enums\CategorySearch.cs" />
+    <Compile Include="Enums\ImagesType.cs" />
     <Compile Include="Enums\MenuPositionsStruct.cs" />
     <Compile Include="Enums\PaymentStatus.cs" />
     <Compile Include="Enums\ProductMenu.cs" />

@@ -1,0 +1,330 @@
+﻿<input type="button" class="regBut1" onclick="document.getElementById('myfile').click();" />
+<div id="ng-app" ng-app="app">
+    <!-- id="ng-app" IE<8 -->
+    <div ng-controller="TestController">
+        <input ng-file-select type="file" name="myfile" id="myfile" multiple style="display: none;" />
+        <ul>
+            @if (ViewBag.UploadedImages != null)
+                {
+                    foreach (string image in (IEnumerable<string>)ViewBag.UploadedImages)
+                    {
+                        <li>
+                            <div class="thumb-container">
+                                <div class="loading">&nbsp;</div>
+                                <a href="#" class="button remove" title="удалить" onclick="javascript: removePreloadedImage(this); return false;">
+                                    <img src="/Images/icons/remove_256.png" height="24" width="24" /></a>
+                                <div>
+                                    <div>
+                                        <div align="center" style="overflow: hidden;">
+                                            <img class="announcementImage" height="100" src="@((string)ViewBag.ImagePath + image.Split(';')[0])"/>
+                                            <input type="hidden" class="uploadedImage" name="images[]" value="@image" />
+                                        </div>
+                                    </div>
+
+                                    <section class="container">
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 100%;"></div>
+                                        </div>
+                                    </section>
+                                    <div align="center">
+                                        <a href="#" class="titular-button" 
+                                            @if (image.Split(';').Length > 1 && image.Split(';')[1] == "true")
+                                            {
+                                                @:style="display: none;"
+                                            }
+                                            onclick="makeTitularPreloadedImage(this); return false;">
+                                            Сделать титульной</a>
+                                        <span 
+                                            @if (image.Split(';').Length > 1 && image.Split(';')[1] == "true")
+                                            {
+                                                @:style="display: initial;"
+                                            }
+                                            class="titular-label" >
+                                            титульная
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                }
+
+
+            <li ng-repeat="item in uploader.queue">
+                
+                <div class="thumb-container">
+                    <div class="loading">&nbsp;</div>
+                    <a href="#" class="button remove" title="удалить" onclick="javascript: removeImage('{{ item.file.name }}'); return false;"
+                       ng-click="item.remove()">
+                        <img src="/Images/icons/remove_256.png" height="24" width="24" /></a>
+
+                    <div>
+                        <div ng-show="controller.isImage(item.file)">
+                            <div ng-show="uploader.isHTML5" align="center"  style="overflow: hidden;" ng-thumb="{ file: item.file, height: 100 }">
+                            </div>
+                        </div>
+
+                        <section class="container" data-loadingfilename="{{ item.file.name }}">
+                            <div class="progress">
+                                <div class="progress-bar" ng-style="{ 'width': item.progress + '%' }"></div>
+                            </div>
+                        </section>
+                        <div align="center">
+                            <a href="#" class="titular-button" onclick="javascript: makeTitular('{{ item.file.name }}', this); return false;">Сделать титульной</a>
+                            <span class="titular-label">титульная</span>
+                        </div>
+                    </div>
+
+                </div>
+                @* <div>
+                    <button ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                        Upload</button>
+                    <button ng-click="item.cancel()" ng-disabled="!item.isUploading">Cancel</button>
+                    <button ng-click="item.remove()">Remove</button>
+                </div>*@
+            </li>
+        </ul>
+        @*<div>
+            <button ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">Upload all</button>
+            <button ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">Cancel all</button>
+            <button ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">Remove all</button>
+        </div>*@
+    </div>
+</div>
+<div id="imageContainer" style="display: none;"></div>
+
+<script type="text/javascript">
+    var currentAction = "@ViewContext.Controller.ValueProvider.GetValue("action").RawValue";
+    var currentController = "@ViewContext.Controller.ValueProvider.GetValue("controller").RawValue";
+    
+
+    function removeImage(fileName) {
+        var selector = ".uploadedImage[data-filename='" + fileName + "']";
+        var file = $(selector);
+        if (file) {
+            remove(file.val());
+            file.remove();
+        }
+        return false;
+    }
+    
+    function removePreloadedImage(obj) {
+        $(obj).parent().parent().remove();
+    }
+
+    function makeTitularPreloadedImage(obj) {
+        $(".titular-label").hide();
+        $('.titular-button').show();
+
+        var all = $(".uploadedImage");
+        for (var i = 0; i < all.length; i++) {
+            var temp = $(all[i]).val().split(';');
+            if (temp[1]) {
+                $(all[i]).val(temp[0]);
+            }
+        }
+
+        var inp = $(obj).parent().parent().find('input[type=hidden]');
+        if (inp) {
+            var val = inp.val();
+            var newVal = val + ";true";
+            inp.val(newVal);
+            
+            $(obj).hide();
+            $(obj).parent().find('.titular-label').show();
+            return false;
+        }
+        
+
+    }
+
+    function makeTitular(fileName, innerObj) {
+        $(".titular-label").hide();
+        $('.titular-button').show();
+        
+        var all = $(".uploadedImage");
+        for (var i = 0; i < all.length; i++) {
+            var temp = $(all[i]).val().split(';');
+            if (temp[1]) {
+                $(all[i]).val(temp[0]);
+            }
+        }
+
+        var selector = ".uploadedImage[data-filename='" + fileName + "']";
+        var obj = $(selector);
+        if (obj) {
+            var val = obj.val();
+            var newVal = val + ";true";
+            obj.val(newVal);
+        }
+        $(innerObj).hide();
+        $(innerObj).parent().find('.titular-label').show();
+        return false;
+    }
+    
+    function remove(image) {
+        jQuery.ajax({
+            type: "POST",
+            url: "/AjaxServices/RemoveImage",
+            data: "{image:'" + image + "', cAction:'" + currentAction + "', cController:'" + currentController + "'}",
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            success: function (data) {
+                if (data.d) {
+                    jQuery(".didNotFind").hide();
+                    jQuery('.showMoreRow').before(data.d.html);
+                    if (!data.d.isHasMore) {
+                        jQuery('.showMoreRow').hide();
+                        if (filters.currentPage == 1 && !data.d.any) {
+                            jQuery(".didNotFind").show();
+                        }
+                    } else {
+                        jQuery('.showMoreRow').show();
+                    }
+                } else {
+
+                }
+            }
+        });
+        return false;
+    }
+</script>
+
+<style type="text/css">
+    
+    
+     #ng-app ul
+     {
+         padding-top: 10px;
+     }
+
+    #ng-app ul li
+    {
+        display: inline;
+    }
+
+    #ng-app .thumb-container
+    {
+        display: inline-block;
+        padding: 0 5px;
+        margin: 0 5px;
+        padding: 10px;
+        border: 2px solid #F27011;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        position: relative;
+        /*height: 145px;*/
+        width: 150px;
+        overflow: hidden;
+    }
+
+    #ng-app .thumb-container .loading
+    {
+        position: absolute;
+        top: 50px;
+        left: 60px;
+        width: 50px;
+        height: 50px;
+        background: url('/Images/icons/loading.gif') no-repeat;
+        background-size: cover;
+        display: none;
+    }
+
+    #ng-app .thumb-container .titular-label
+    {
+        display: none;
+    }
+
+    #ng-app .thumb-container .button.remove
+    {
+        display: none;
+    }
+
+    #ng-app .thumb-container:hover .button.remove
+    {
+        display: initial;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        right: 10px;
+        top: 2px;
+    }
+
+    .container
+    {
+        margin: 10px auto;
+        width: 130px;
+        text-align: center;
+    }
+
+    .container .progress
+    {
+        margin: 0 auto;
+        width: 120px;
+        padding-bottom: 4px !important;
+    }
+
+    .progress
+    {
+        padding: 4px !important;
+        background: rgba(0, 0, 0, 0.02);
+        border-radius: 6px;
+        -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .progress-bar
+    {
+        position: relative;
+        height: 5px;
+        border-radius: 4px;
+        -webkit-transition: 0.4s linear;
+        -moz-transition: 0.4s linear;
+        -o-transition: 0.4s linear;
+        transition: 0.4s linear;
+        -webkit-transition-property: width, background-color;
+        -moz-transition-property: width, background-color;
+        -o-transition-property: width, background-color;
+        transition-property: width, background-color;
+        -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .progress-bar:before, .progress-bar:after
+    {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .progress-bar:before
+    {
+        bottom: 0;
+        /*background: url("../img/stripes.png") 0 0 repeat;*/
+        border-radius: 4px 4px 0 0;
+    }
+
+    .progress-bar:after
+    {
+        z-index: 2;
+        bottom: 45%;
+        border-radius: 4px;
+        background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+        background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+        background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+        background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+    }
+
+    .progress > .progress-bar
+    {
+        width: 0%;
+        background-color: #f27011;
+    }
+
+    /*.container .progress .progress-bar[style="width: 100%;"] {
+        display: none;
+    }*/
+</style>

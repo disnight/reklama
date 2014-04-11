@@ -13,6 +13,7 @@ namespace Domain.Entity.Realty
         public DateTime CreatedAt { get; set; }
         public string Link { get; set; }
         public int RealtyId { get; set; }
+        public bool? IsTitular { get; set; }
 
         [ForeignKey("RealtyId")]
         public virtual Realty Realty { get; set; }

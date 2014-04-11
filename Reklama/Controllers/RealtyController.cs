@@ -12,6 +12,7 @@ using Domain.Repository.Realty;
 using Domain.Repository.Shared;
 using System.IO;
 using Reklama.Attributes;
+using Reklama.Core.UploadImages;
 using Reklama.Models.SortModels;
 using Reklama.Services;
 using WebMatrix.WebData;
@@ -185,6 +186,7 @@ namespace Reklama.Controllers
                 ModelState.AddModelError("AgencyName", "Поле 'Название агенства' обязательно для заполнения");
             }
             //ViewBag.cError = "ModelState.IsValid = ";
+            ModelState.Remove("IsDisplayPhone");
             if (ModelState.IsValid)
             {
                 //ViewBag.cError += "true; ";
@@ -193,6 +195,7 @@ namespace Reklama.Controllers
                 realty.UserId = WebSecurity.CurrentUserId;
                 realty.Views = 0;
                 realty.IsActive = true;
+                realty.IsDisplayPhone = true;
                 var images = collection["images[]"];
                 //ViewBag.cError += "Pre Save; ";
                 int id = _realtyRepository.Save(realty, images);
@@ -309,7 +312,8 @@ namespace Reklama.Controllers
             ViewBag.Sections = _sectionRepository.Read();
             ViewBag.Categories = _categoryRepository.Read();
             ViewBag.Currencies = _currencyRepository.Read();
-            ViewBag.UploadedImages = from photo in realty.Photos select photo.Link;
+            ViewBag.ImagePath = ImageProvider.PublicRealtyImagesPath;
+            ViewBag.UploadedImages = from photo in realty.Photos select photo.Link + ";" + photo.IsTitular.ToString().ToLower();
 
             return View(realty);
         }
@@ -338,7 +342,9 @@ namespace Reklama.Controllers
             model.UpTime = realty.UpTime;
             model.Views = realty.Views;
             model.CreatedAt = realty.CreatedAt;
+            model.IsDisplayPhone = true;
 
+            ModelState.Remove("IsDisplayPhone");
             if (ModelState.IsValid)
             {
                 var images = collection["images[]"];

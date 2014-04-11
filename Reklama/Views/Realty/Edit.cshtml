@@ -14,26 +14,28 @@
     <div class="registerIn">
         <div class="registerInW">
             <form id="@Model.Id" action="/Realty/Edit/@Model.Id" method="post" novalidate="novalidate">
-                <div>
-                    @Html.ValidationSummary()
-                    <span>Лицо:</span>
-                    @Html.RadioButtonFor(x => x.IsAgency, false, new { Class = "Personal", Checked = "checked" }) частное
+                <div class="borderReg head">
+                    <div class="fieldItem">
+                        @Html.ValidationSummary()
+                        <span class="field-title">Лицо:</span>
+                        @Html.RadioButtonFor(x => x.IsAgency, false, new { Class = "Personal", Checked = "checked" })
+                        частное
                     @Html.RadioButtonFor(x => x.IsAgency, true, new { Class = "Agency" }) агенство
-                </div>
-                <div id="AgencyNameDiv" hidden>
-                    <div class="rightText">
-                        <br />@Html.ValidationMessageFor(x => x.AgencyName)</div>
-                    <span>Название агенства:</span>
-                    @Html.TextBoxFor(x => x.AgencyName, new { Class = "regInp2", Id = "AgencyName" })
-                </div>
-                <div>
-                    <span>Категория:</span>
-                    @Html.DropDownListFor(x => x.CategoryId, new SelectList((ViewBag.Categories), "Id", "Name"), "Выберите категорию")
-                    <div>@Html.ValidationMessageFor(x => x.CategoryId)</div>
-                </div>
-                
-                <div>
-                        <span>Раздел:</span>
+                    </div>
+                    <div class="fieldItem" id="AgencyNameDiv" hidden>
+                        <div class="rightText">
+                            <br />@Html.ValidationMessageFor(x => x.AgencyName)
+                        </div>
+                        <span class="field-title">Название агенства:</span>
+                        @Html.TextBoxFor(x => x.AgencyName, new { Class = "regInp2", Id = "AgencyName" })
+                    </div>
+                    <div class="fieldItem">
+                        <span class="field-title">Категория:</span>
+                        @Html.DropDownListFor(x => x.CategoryId, new SelectList((ViewBag.Categories), "Id", "Name"), "Выберите категорию")
+                        <div>@Html.ValidationMessageFor(x => x.CategoryId)</div>
+                    </div>
+                    <div class="fieldItem">
+                        <span class="field-title">Раздел:</span>
                         
                         <div id="CategoryButtons">
                             @foreach (var item in new SelectList((ViewBag.Sections), "Id", "Name"))
@@ -52,68 +54,62 @@
                             <label for="pertin1" hidden id="ForDaysLabel">@Html.CheckBoxFor(x => x.ForDays, new { Id = "ForDays" })На сутки</label>
                             
                         </div>
-                        
-                       @* @Html.DropDownListFor(x => x.SectionId, new SelectList((ViewBag.Sections), "Id", "Name"), "Выберите раздел", new { Class = "SectionList" })
-                        <br />
-                        @Html.ValidationMessageFor(x => x.SectionId)
-                        <label for="pertin1" hidden id="ForDaysLabel">@Html.CheckBoxFor(x => x.ForDays, new { Id = "ForDays" })На сутки</label>*@
                     </div>
+                </div>
                
                 <div class="borderReg">
-                    <div>
+                    <div class="fieldItem">
                         <div class="rightText">
                             Покупатель не захочет собирать дополнительную информацию о нужном ему товаре и сразу купит у вас. Кроме того, подробное описание товара оставляет хорошее впечатление о продавце - покупатель будет спокоен. 
                         </div>
-                        <span>Город:</span>
+                        <span class="field-title">Город:</span>
                         @Html.DropDownListFor(x => x.CityId, new SelectList((ViewBag.Cities), "Id", "Name"), "Выберите город")
                         <div>@Html.ValidationMessageFor(x => x.CityId)</div>
                     </div>
-                    <div>
-                        <span>Улица:</span>
+                    <div class="fieldItem">
+                        <span class="field-title">Улица:</span>
                         @Html.TextBoxFor(x => x.Street, new { Class = "regInp1" })
                         <div>@Html.ValidationMessageFor(x => x.Street)</div>
                     </div>
-                    <div>
-                        <span>Количество комнат:</span>
+                    <div class="fieldItem">
+                        <span class="field-title">Количество комнат:</span>
                         @for (int i = 1; i <= 5; i++)
                         {
                             @Html.RadioButtonFor(x => x.RoomsCount, i) @i
                         }
                         @Html.RadioButtonFor(x => x.RoomsCount, 0)>5
                     </div>
-                    <div><span>Площадь:</span>@Html.TextBoxFor(x => x.Square, new { Class = "regInp3" })м<sup>2</sup> <div>@Html.ValidationMessageFor(x => x.Square)</div></div>
-                    <div><span>Этажей в доме:</span>@Html.TextBoxFor(x => x.FloorCount, new { Class = "regInp3" }) <div>@Html.ValidationMessageFor(x => x.FloorCount)</div></div>
-                    <div><span>На каком этаже:</span>@Html.TextBoxFor(x => x.Floor, new { Class = "regInp3" }) <div>@Html.ValidationMessageFor(x => x.Floor)</div></div>
-                    <div><span>Высота потолков:</span>@Html.TextBoxFor(x => x.CeillingHeight, new { Class = "regInp3" })м <div>@Html.ValidationMessageFor(x => x.CeillingHeight)</div></div>
+                    <div class="fieldItem"><span class="field-title">Площадь:</span>@Html.TextBoxFor(x => x.Square, new { Class = "regInp3" })м<sup>2</sup> <div>@Html.ValidationMessageFor(x => x.Square)</div></div>
+                    <div class="fieldItem"><span class="field-title">Этажей в доме:</span>@Html.TextBoxFor(x => x.FloorCount, new { Class = "regInp3" }) <div>@Html.ValidationMessageFor(x => x.FloorCount)</div></div>
+                    <div class="fieldItem"><span class="field-title">На каком этаже:</span>@Html.TextBoxFor(x => x.Floor, new { Class = "regInp3" }) <div>@Html.ValidationMessageFor(x => x.Floor)</div></div>
+                    <div class="fieldItem"><span class="field-title">Высота потолков:</span>@Html.TextBoxFor(x => x.CeillingHeight, new { Class = "regInp3" })м <div>@Html.ValidationMessageFor(x => x.CeillingHeight)</div></div>
+                    <div class="fieldItem">
+                        <span class="field-title">Дополнительно:</span>
+                        @Html.CheckBoxFor(x => x.WithExtension, new {id = "addit1", @class="checkbox-input"})<label class="checkbox-label" for="addit1">с пристройкой</label>
+                        @Html.CheckBoxFor(x => x.WithBasement, new {id = "addit2", @class="checkbox-input"})<label class="checkbox-label" for="addit2">с подвалом</label>
+                        @Html.CheckBoxFor(x => x.WithGarage, new {id = "addit3", @class="checkbox-input"})<label class="checkbox-label" for="addit3">с гаражом</label>
+                        @Html.CheckBoxFor(x => x.WithGarden, new {id = "addit4", @class="checkbox-input"})<label class="checkbox-label" for="addit4">с огородом</label>
+                    </div>
                 </div>
-                <div>
-                    <span>Дополнительно:</span>
-                    <label for="addit1">@Html.CheckBoxFor(x => x.WithExtension)с пристройкой</label>
-                    <label for="addit2">@Html.CheckBoxFor(x => x.WithBasement)с подвалом</label>
-                    <br />
-                    <br />
-                    <label for="addit3">@Html.CheckBoxFor(x => x.WithGarage)с гаражом</label>
-                    <label for="addit4">@Html.CheckBoxFor(x => x.WithGarden)с огородом</label>
-
-                </div>
+                
                 <div class="borderReg">
 
-                    <div>
-                        <span class="regBrown">Заголовок:</span>
+                    <div class="fieldItem">
+                        <div class="regBrown label-container">Заголовок:</div>
                         @Html.TextBoxFor(x => x.Name, new { Class = "regInp2" })
                         <p>не более 180 символов</p>
                         <div class="rightText">Заголовок - самая заметная часть объявления.<br /> @Html.ValidationMessageFor(x => x.Name)</div>
                     </div>  
 
-                    <div>
-                        <span>Подробное описание:</span>
+                    <div class="fieldItem">
+                        <div class="label-container">Подробное описание:</div>
                         @Html.TextAreaFor(x => x.Description)
                         <p>не более 1800 символов</p>
                         <div class="rightText">Покупатель не захочет собирать дополнительную информацию о нужном ему товаре и сразу купит у вас. Кроме того, подробное описание товара оставляет хорошее впечатление о продавце - покупатель будет спокоен. <br /> @Html.ValidationMessageFor(x => x.Description)</div>
                     </div>
 
-                    <div>
-                        <span>Краткое описание:</span>
+                    <div class="fieldItem">
+                        <div class="regBrown label-container">Краткое описание:</div>
                         <div>@Html.TextAreaFor(x => x.SmallDescription)</div>
                         <p>не более 600 символов</p>
                         <div class="rightText">Краткое описание позволит пользователю сразу сориентироваться в сущности объявления. Старайтесь писать кратко и лаконично, не нужно путать краткое описание с подробным. <br /> @Html.ValidationMessageFor(x => x.SmallDescription)</div>
@@ -123,27 +119,25 @@
                 </div>
                 <div class="borderReg">
 
-                    <div>
-                        <span class="regRed">Цена:</span>
+                    <div class="fieldItem">
+                        <div class="regRed label-container">Цена:</div>
                         @Html.TextBoxFor(x => x.Price, new { Class = "regInp1" })
                         @Html.DropDownListFor(x => x.CurrencyId, new SelectList(ViewBag.Currencies, "Id", "Name"), new { Class = "pType" })
                         <p class="check">@Html.CheckBoxFor(x => x.IsAuction)<label for="pertin">Торг уместен</label></p><br />
                         <div><br />
-                            <span class="regBrown">@Html.LabelFor(n => n.Phone)</span>
-                            @Html.TextBoxFor(model => model.Phone, new { @class = "regInp2" })
-                            <p>не более 32 символов</p>
+                            <div class="regBrown label-container">@Html.LabelFor(n => n.Phone)</div>
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1" })
                             <div class="rightText">@Html.ValidationMessageFor(n => n.Name)</div>
                         </div>
-                        <p class="check" style="margin-top: -15px;">@Html.CheckBoxFor(x => x.IsDisplayPhone)<label for="pertin">Показывать мой номер телефона</label></p>
                         <div class="rightText">Если вы не укажете реальную стоимость, при сортировке по цене, покупатель не найдет ваше объявление. Цена  «1 у.е.»  отпугивает покупателя своей несерьезностью. <br /> @Html.ValidationMessageFor(x => x.Price) </div>
                     </div>
 
                 </div>
                 <div class="borderReg">
 
-                    <div>
-                        <span>Фотографии:</span>
-                        <div>
+                    <div class="fieldItem">
+                        <span class="field-title">Фотографии:</span>
+                        @*<div>
                             <input class="regBut1" type="button" value="" />jpeg, png, gif не более 1MB
                         </div>
                         <img id="load" class="unvisible" />
@@ -166,11 +160,12 @@
                                 </div>
                                 }
                             }
-                        </div>
+                        </div>*@
+                         @Html.Partial("_FileUpload")
                     </div>
 
                 </div>
-                <div id="image_fields"></div>
+                @*<div id="image_fields"></div>*@
                 @Html.AntiForgeryToken()
                 <div class="regBtm">
                     <p>
@@ -185,7 +180,7 @@
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/Scripts/ajaxupload.js")
+   @* @Scripts.Render("~/Scripts/ajaxupload.js")*@
     @Scripts.Render("~/Scripts/RealtyEdit.js")
     @Scripts.Render("~/Scripts/Preview.js")
 }

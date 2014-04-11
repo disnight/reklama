@@ -16,6 +16,7 @@ namespace Reklama.Models.Mappers
             Property(r => r.CreatedAt).IsRequired();
             Property(r => r.Link).IsRequired().HasMaxLength(255);
             Property(r => r.RealtyId).IsRequired();
+            Property(a => a.IsTitular).IsOptional();
         }
     }
 }

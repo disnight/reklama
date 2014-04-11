@@ -4527,26 +4527,31 @@ a.addToBook span {
         width: 60px;
     }
 
-.registerInW div {
+/*.registerInW div {
     color: #4c4c4c;
     font: 11px Arial;
     padding-bottom: 25px;
-}
+}*/
 
-    .registerInW div.borderReg {
+    .registerInW .borderReg {
         border-top: 1px solid #d7dde0;
         padding-top: 24px;
         padding-bottom: 0;
         margin-right: 35px;
+        /*color: #4c4c4c;
+        font: 11px Arial;
+        padding-bottom: 25px;*/
     }
 
-        .registerInW div.borderReg div {
+        .registerInW .borderReg .fieldItem {
             min-height: 20px;
-            
             position: relative;
+            color: #4c4c4c;
+    font: 11px Arial;
+    padding-bottom: 25px;
         }
 
-            .registerInW div.borderReg div.rightText {
+            .registerInW .borderReg .rightText {
                 color: #4c4c4c;
                 font: 11px Arial;
                 left: 845px;
@@ -4556,20 +4561,27 @@ a.addToBook span {
                 width: auto;
                 top: 22px;
                 position: absolute;
+                color: #4c4c4c;
+    font: 11px Arial;
+    padding-bottom: 25px;
             }
 
-    .registerInW div.regBtm {
+    .registerInW .regBtm {
         width: 580px;
         margin: 35px 0 0;
         padding: 0;
+
+        color: #4c4c4c;
+        font: 11px Arial;
+        padding-bottom: 25px;
     }
 
-        .registerInW div.regBtm a {
+        .registerInW .regBtm a {
             color: #004bb9;
             font: 12px Arial;
         }
 
-        .registerInW div.regBtm input {
+        .registerInW .regBtm input {
             padding: 0;
             margin-left: 211px;
             background: url(/Images/System/regBut2.gif) no-repeat top left transparent;
@@ -4579,7 +4591,7 @@ a.addToBook span {
             height: 55px;
         }
 
-            .registerInW div.regBtm input.regBut3 {
+            .registerInW .regBtm input.regBut3 {
                 padding: 0;
                 margin-left: 43px;
                 background: url(/Images/System/regBut3.gif) no-repeat top left transparent;
@@ -4589,7 +4601,7 @@ a.addToBook span {
                 height: 55px;
             }
 
-        .registerInW div.regBtm p {
+        .registerInW .regBtm p {
             width: 350px;
             margin-left: 210px;
             margin-top: 10px;
@@ -4597,8 +4609,8 @@ a.addToBook span {
             color: #6f6f6f;
             font: 11px Arial;
         }
-
-    .registerInW div span {
+         
+    .registerInW .borderReg .field-title {
         color: #4c4c4c;
         font: bold 13px Arial;
         float: left;
@@ -4607,15 +4619,15 @@ a.addToBook span {
         height: 35px;
     }
 
-        .registerInW div span.regBrown {
+        .registerInW .borderReg .field-title.regBrown {
             color: #713918;
         }
 
-        .registerInW div span.regRed {
+        .registerInW .borderReg .field-title.regRed {
             color: #ff3b38;
         }
 
-    .registerInW div em {
+    .registerInW .borderReg em {
         margin-left: 210px;
         color: #546d7f;
         font: bold 16px Arial;
@@ -4624,7 +4636,7 @@ a.addToBook span {
         width: 400px;
     }
 
-    .registerInW div input.regInp1 {
+    .registerInW .borderReg input.regInp1 {
         color: #4c4c4c;
         font: 12px Arial;
         padding: 3px 5px;
@@ -4635,12 +4647,12 @@ a.addToBook span {
         border: 1px solid #C9D1D6;
     }
 
-    .registerInW div input.regInp1 + p {
+    .registerInW .borderReg input.regInp1 + p {
         margin-left: 77px;
         width: 150px;
     }
 
-    .registerInW div input.regInp2 {
+    .registerInW .borderReg input.regInp2 {
         color: #4c4c4c;
         font: 12px Arial;
         padding: 3px 5px;
@@ -4649,7 +4661,7 @@ a.addToBook span {
         border: 1px solid #C9D1D6;
     }
 	
-	.registerInW div select.regInp2 {
+	.registerInW .borderReg select.regInp2 {
         color: #4c4c4c;
         font: 12px Arial;
         padding: 10px 50px;
@@ -4658,7 +4670,7 @@ a.addToBook span {
         border: 1px solid #C9D1D6;
     }
 
-    .registerInW div input.regBut1 {
+    .registerInW .borderReg input.regBut1 {
         width: 174px;
         height: 29px;
         border: none;
@@ -4668,7 +4680,7 @@ a.addToBook span {
         background: url(/Images/System/regBut1.gif) no-repeat top left transparent;
     }
 
-    .registerInW div textarea {
+    .registerInW .borderReg textarea {
         height: 122px;
         width: 810px;
         resize: none;
@@ -4680,10 +4692,20 @@ a.addToBook span {
         padding: 3px 5px;
     }
 
-    .registerInW div label {
+    .registerInW .borderReg label {
         margin-top: 3px;
         float: left;
         /*width: 105px;*/
+    }
+
+     .registerInW .borderReg label.checkbox-label {
+        margin-top: 3px;
+        float: none;
+    }  
+     .registerInW .borderReg .checkbox-input {
+        position: relative;
+        vertical-align: middle;
+        bottom: 1px;
     }
 
     .registerInW .borderReg.head label {
@@ -4750,7 +4772,7 @@ a.addToBook span {
     width: 203px;
 }
 
-.registerInW div input.regInp3 {
+.registerInW .borderReg input.regInp3 {
     color: #4c4c4c;
     font: 12px Arial;
     padding: 3px 5px;
@@ -6959,15 +6981,28 @@ span.tell{
 
 
 /*отступы для флажков*/
-.wrapInner {
+body {
+    padding: 0 3%;
+    width: 94%;
+}
+/* .wrapInner {
     padding: 0 30px;
+} */
+
+/* о проекте???? */
+
+.promoVisual {
+    float: none;
+    height: 200px;
+    margin: 0 auto;
+    width: 920px;
 }
 
-/**/
+.promoBot {
+    width: 100%;
+}
 
-/**/
-
-/**/
+/* загрузка фото */
 
 .registerInW div.borderReg div.label-container {
     color: #4C4C4C;
@@ -6975,4 +7010,9 @@ span.tell{
     height: 20px;
     margin-top: 3px;
     padding-bottom: 0;
+}
+.image_fields
+{
+    float: left;
+    width: 150px;
 }

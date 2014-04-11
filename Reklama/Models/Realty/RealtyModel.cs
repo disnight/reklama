@@ -286,12 +286,19 @@ namespace Reklama.Models.Realty
             if (imageNamesSeparated != null)
             {
                 var imagesNames = imageNamesSeparated.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                var images = imagesNames.Select(image => new RealtyPhoto
+                var result = new List<RealtyPhoto>();
+                foreach (var s in imagesNames)
                 {
-                    CreatedAt = DateTime.Now,
-                    Link = image
-                }).ToList();
-                realty.Photos = images;
+                    var obj = s.Split(';');
+                    var image = new RealtyPhoto { CreatedAt = DateTime.Now, Link = obj[0], IsTitular = false };
+                    if (obj.Length > 1)
+                    {
+                        image.IsTitular = obj[1] == "true";
+                    }
+                    result.Add(image);
+                }
+
+                realty.Photos = result;
             }
 
             return Save(realty);

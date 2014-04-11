@@ -415,7 +415,7 @@
                                             <a href="Realty/Details/@realty.Id">
                                                 @if (realty.Photos.Count != 0)
                                                 {
-                                                    <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["realty_thumb"], "/", realty.Photos.OrderBy(x => x.CreatedAt).First().Link)" />
+                                                    <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["realty_thumb"], "/", realty.Photos.Any(q => q.IsTitular.HasValue && q.IsTitular.Value) ? realty.Photos.First(q => q.IsTitular.HasValue && q.IsTitular.Value).Link : realty.Photos.OrderBy(x => x.CreatedAt).First().Link)" />
                                                 }
                                                 else
                                                 {

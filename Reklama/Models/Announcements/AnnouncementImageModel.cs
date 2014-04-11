@@ -5,6 +5,7 @@ using System.Web;
 using Domain.Entity.Announcements;
 using Domain.Repository.Announcements;
 using Reklama.Models.Shared;
+using WebGrease.Css.Extensions;
 
 namespace Reklama.Models.Announcements
 {
@@ -19,23 +20,25 @@ namespace Reklama.Models.Announcements
         {
             if (imageNamesSeparated != null)
             {
-                var images = imageNamesSeparated.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                var images = new Dictionary<string, bool>();
+                imageNamesSeparated.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ForEach(q => images.Add(q.Split(';')[0], (q.Split(';').Length > 1) && q.Split(';')[1] == "true"));
                 var issetImages = from i in ReadByAnnouncement(announcementId) select i.Link;
                 var imagesSet = new HashSet<string>(issetImages);
 
                 foreach (var image in images)
                 {
-                    if (imagesSet.Contains(image)) continue;
-
-                    Save(new AnnouncementImage
+                    var obj = new AnnouncementImage
                     {
-                        AnnouncementId = announcementId,
                         CreatedAt = DateTime.Now,
-                        Link = image
-                    });
+                        Link = image.Key,
+                        IsTitular = image.Value,
+                        AnnouncementId = announcementId
+                    };
+
+                    InsertOrUpdate(obj);
                 }
                 
-                var imagesToDeleteLink = imagesSet.Except(images).ToArray();
+                var imagesToDeleteLink = imagesSet.Except(images.Select(q => q.Key)).ToArray();
                 DeleteImages(announcementId, imagesToDeleteLink);
             }
         }
@@ -57,6 +60,20 @@ namespace Reklama.Models.Announcements
                 Context.Set<AnnouncementImage>().Where(a => a.AnnouncementId == announcementId).First(
                     a => a.Link.Equals(imageWithoutPath));
             Delete(announcementImage);
+        }
+
+        public void InsertOrUpdate(AnnouncementImage image)
+        {
+            var obj = Context.Set<AnnouncementImage>().Include("Announcement").FirstOrDefault(a => a.AnnouncementId == image.AnnouncementId && a.Link == image.Link);
+            if (obj != null)
+            {
+                obj.IsTitular = image.IsTitular;
+                Save(obj);
+            }
+            else
+            {
+                Save(image);
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ using Domain.Repository.Articles;
 using Domain.Repository.Shared;
 using Domain.Repository.Realty;
 using Domain.Repository.Catalogs;
+using Reklama.Core.UploadImages;
 using Reklama.Models.SortModels;
 using WebMatrix.WebData;
 using Reklama.Models;
@@ -27,6 +28,7 @@ namespace Reklama.Controllers
     public class AjaxServicesController : Controller
     {
         private ReklamaContext rc = new ReklamaContext();
+        private readonly ImageProvider _imageProvider = new ImageProvider();
 
         private ISubsectionRepository _subsectionRepository;
         private IProfileRepository _profileRepository;
@@ -50,7 +52,7 @@ namespace Reklama.Controllers
         private readonly IProductRepository _productRepository;
 
         public AjaxServicesController(
-            ISubsectionRepository subsectionRepository, 
+            ISubsectionRepository subsectionRepository,
             IProfileRepository profileRepository,
             IAnnouncementBookmarkRepository announcementBookmarkRepository,
             IAnnouncementRepository announcementRepository,
@@ -146,11 +148,11 @@ namespace Reklama.Controllers
 
             var subsections = new List<object>();
 
-            foreach(var s in _subsectionRepository.ReadBySection(sectionId).OrderBy(s => s.Name))
+            foreach (var s in _subsectionRepository.ReadBySection(sectionId).OrderBy(s => s.Name))
             {
                 subsections.Add(new { Id = s.Id, Name = s.Name });
             }
-            
+
             return Json(subsections);
         }
 
@@ -245,7 +247,51 @@ namespace Reklama.Controllers
                 uploader.Convert(ProjectConfiguration.Get.AnnouncementImageWidth, ProjectConfiguration.Get.AnnouncementImageHeight);
                 uploader.Save("announcement_thumb");
             }
-            catch(Exception)
+            catch (Exception)
+            {
+                return Json(new { status = "fail" }, "text/html");
+            }
+            return Json(result, "text/html");
+        }
+
+        /// <summary>
+        /// Асинхронная загрузка пользовательских файлов на сервер
+        /// Загружает файлы изображений для объявлений Announcement
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult angularUploadFile(string cAction, string cController)
+        {
+            var file = Request.Files.Get("file");
+            var uploader = new ImageUploader(file);
+
+            var result = new
+            {
+                filename = uploader.Name,
+                contentType = uploader.ContentType,
+                contentLength = uploader.ContentLength,
+                newFilename = uploader.UniqueName
+            };
+
+            try
+            {
+                switch (cController)
+                {
+                    case "Announcement":
+                        uploader.Convert(530, 350);
+                        uploader.Save("users");
+                        uploader.Convert(ProjectConfiguration.Get.AnnouncementImageWidth, ProjectConfiguration.Get.AnnouncementImageHeight);
+                        uploader.Save("announcement_thumb");
+                        break;
+                    case "Realty":
+                        uploader.Save("realty");
+                        uploader.Convert(ProjectConfiguration.Get.RealtyImageWidth, ProjectConfiguration.Get.RealtyImageHeight);
+                        uploader.Save("realty_thumb");
+                        break;
+                }
+
+            }
+            catch (Exception)
             {
                 return Json(new { status = "fail" }, "text/html");
             }
@@ -317,6 +363,21 @@ namespace Reklama.Controllers
             return Json(result, "text/html");
         }
 
+        public JsonResult RemoveImage(string image, string cAction, string cController)
+        {
+            var result = false;
+            switch (cController)
+            {
+                case "Announcement":
+                    result = _imageProvider.RemoveImage(image, ImagesType.Anouncement);
+                    break;
+                case "Realty":
+                    result = _imageProvider.RemoveImage(image, ImagesType.Realty);
+                    break;
+            }
+            return Json(!result ? new { status = "fail" } : new { status = "success" }, "text/html");
+        }
+
 
         /**
          * Удаление изображения для объявления
@@ -368,7 +429,7 @@ namespace Reklama.Controllers
         {
             var article = _articleRepository.Read(articleId);
 
-            if(article == null)
+            if (article == null)
             {
                 return Json(new { status = "fail" }, "text/html");
             }
@@ -400,12 +461,12 @@ namespace Reklama.Controllers
             {
                 var announcement = _announcementRepository.Read(id);
 
-                if(announcement == null)
+                if (announcement == null)
                 {
                     throw new Exception();
                 }
 
-                if(announcement.UserId != WebSecurity.CurrentUserId && !User.IsInRole("Administrator"))
+                if (announcement.UserId != WebSecurity.CurrentUserId && !User.IsInRole("Administrator"))
                 {
                     throw new Exception();
                 }
@@ -527,7 +588,7 @@ namespace Reklama.Controllers
 
             if ((WebSecurity.CurrentUserId == announcement.UserId)
                 && announcement.UpTime <= DateTime.Now.AddHours(-upTimeAnnouncement)
-                || User.IsInRole("Administrator") 
+                || User.IsInRole("Administrator")
                 || User.IsInRole("Moderator")
             )
             {
@@ -539,7 +600,7 @@ namespace Reklama.Controllers
                     _announcementRepository.Save(announcement);
                     return Json(new { status = "success", timeToUp = upTimeAnnouncement }, "text/html");
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     return Json(new { status = "fail" }, "text/html");
                 }
@@ -605,9 +666,9 @@ namespace Reklama.Controllers
                 _profileRepository.UpdateAvatar(userId, uploader.UniqueName);
                 uploader.Save("avatars");
             }
-            catch(Exception)
+            catch (Exception)
             {
-                return Json(new {status = "fail"}, "text/html");
+                return Json(new { status = "fail" }, "text/html");
             }
 
             var result = new
@@ -678,7 +739,7 @@ namespace Reklama.Controllers
                                                                      UserId = WebSecurity.CurrentUserId
                                                                  });
                         break;
-                    
+
                     case CategorySearch.Realty:
                         _realtyBookmarkRepository.Save(new RealtyBookmark()
                                                             {
@@ -728,7 +789,7 @@ namespace Reklama.Controllers
                             status = "fail";
                         }
                         break;
-                    
+
                     case CategorySearch.Realty:
                         try
                         {
@@ -833,7 +894,7 @@ namespace Reklama.Controllers
         {
             var secondCategories = new List<object>();
 
-            foreach(var c in _catalogSecondCategoryRepository.ReadByCategory(categoryId))
+            foreach (var c in _catalogSecondCategoryRepository.ReadByCategory(categoryId))
             {
                 secondCategories.Add(new { Id = c.Id, Name = c.Name });
             }
@@ -875,7 +936,7 @@ namespace Reklama.Controllers
 
             try
             {
-                _shopProductRefRepository.Save(new ShopProductRef() { ProductId = productId, ShopId = shopId , Price = price});
+                _shopProductRefRepository.Save(new ShopProductRef() { ProductId = productId, ShopId = shopId, Price = price });
             }
             catch
             {
@@ -1152,20 +1213,20 @@ namespace Reklama.Controllers
 
                         if (Width > maxWidth)
                         {
-                            float koef = (float) Width/maxWidth;
+                            float koef = (float)Width / maxWidth;
                             Width = maxWidth;
-                            Height = (int) (Height/koef);
+                            Height = (int)(Height / koef);
                         }
 
-                        if (Height > maxHeight && Height <= 2*maxHeight)
+                        if (Height > maxHeight && Height <= 2 * maxHeight)
                         {
-                            float koef = (float) Height/maxHeight;
+                            float koef = (float)Height / maxHeight;
                             Height = maxHeight;
-                            Width = (int) (Width/koef);
+                            Width = (int)(Width / koef);
                         }
-                        else if (Height > 2*maxHeight)
+                        else if (Height > 2 * maxHeight)
                         {
-                            Height = 2*maxHeight;
+                            Height = 2 * maxHeight;
                         }
 
                         var target = new Bitmap(Width, Height);
@@ -1184,7 +1245,8 @@ namespace Reklama.Controllers
                                 ProjectConfiguration.Get.FilePaths["base"] +
                                 ProjectConfiguration.Get.FilePaths["product_thumb"], image));
                     }
-                }catch{}
+                }
+                catch { }
             }
 
             Response.Output.Write("Ваш бы*лоКод успешно выполнен");

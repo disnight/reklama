@@ -53,34 +53,34 @@
 	
     var button = $('.regBut1'), interval;
 
-    $.ajax_upload(button, {
-        action: '/AjaxServices/UploadFile',
-        name: 'myfile',
-        data: { x: 3 },
-        onSubmit: function (file, ext) {
-            // показываем картинку загрузки файла
-            $("img#load").attr("src", "/Images/System/loader.gif").attr("class", "visible");
-            $("#uploadButton font").text('Загрузка');
+    //$.ajax_upload(button, {
+    //    action: '/AjaxServices/UploadFile',
+    //    name: 'myfile',
+    //    data: { x: 3 },
+    //    onSubmit: function (file, ext) {
+    //        // показываем картинку загрузки файла
+    //        $("img#load").attr("src", "/Images/System/loader.gif").attr("class", "visible");
+    //        $("#uploadButton font").text('Загрузка');
 
-            /*
-             * Выключаем кнопку на время загрузки файла
-             */
-            this.disable();
+    //        /*
+    //         * Выключаем кнопку на время загрузки файла
+    //         */
+    //        this.disable();
 
-        },
-        onComplete: function (file, response) {
-            var resp = JSON.parse(response);
+    //    },
+    //    onComplete: function (file, response) {
+    //        var resp = JSON.parse(response);
             
-            // убираем картинку загрузки файла
-            $("img#load").attr("class", "unvisible");
-            $("#uploadButton font").text('Загрузить');
+    //        // убираем картинку загрузки файла
+    //        $("img#load").attr("class", "unvisible");
+    //        $("#uploadButton font").text('Загрузить');
 
-            // снова включаем кнопку
-            this.enable();
-            // показываем что файл загружен
-            $('#imagePreview').removeClass('unvisible').addClass('visible');
+    //        // снова включаем кнопку
+    //        this.enable();
+    //        // показываем что файл загружен
+    //        $('#imagePreview').removeClass('unvisible').addClass('visible');
 
-            $('#imagePreview').append('<div class="image_fields"><img class="announcementImage" src="/Images/Users/' + resp.newFilename + '"/><input type="hidden" name="images[]" value="' + resp.newFilename + '" /><br /><a href="#" class="image_remove" onClick="return $.fn.removeImage($(this));">Удалить</a></div>');
-        }
-    });
+    //        $('#imagePreview').append('<div class="image_fields"><img class="announcementImage" src="/Images/Users/' + resp.newFilename + '"/><input type="hidden" name="images[]" value="' + resp.newFilename + '" /><br /><a href="#" class="image_remove" onClick="return $.fn.removeImage($(this));">Удалить</a></div>');
+    //    }
+    //});
 });

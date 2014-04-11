@@ -12,6 +12,7 @@ using Domain.Repository.Announcements;
 using Domain.Repository.Other;
 using Domain.Repository.Shared;
 using Reklama.Attributes;
+using Reklama.Core.UploadImages;
 using Reklama.Filters;
 using Reklama.Models;
 using Reklama.Models.SortModels;
@@ -143,12 +144,14 @@ namespace Reklama.Controllers
             model.IsActive = true;
             model.UserId = WebSecurity.CurrentUserId;
             model.ViewsCount = 0;
+            model.IsDisplayPhone = true;
 
             if (model.SubsectionId == 0 || model.SectionId == 0)
             {
                 ModelState.AddModelError("SectionId", "Необходимо указать раздел");
             }
 
+            ModelState.Remove("IsDisplayPhone");
             if (ModelState.IsValid)
             {
                 var images = collection["images[]"];
@@ -222,7 +225,8 @@ namespace Reklama.Controllers
             //PopulateSubsectionDropDownList(announcement.SectionId, announcement.Subsection);
             PopulateCityDropDownList(announcement.City);
             PopulateCurrencyDropDownList(announcement.Currency);
-            ViewBag.UploadedImages = (announcement.Images != null) ? from image in announcement.Images select image.Link : null;
+            ViewBag.ImagePath = ImageProvider.PublicAnouncementImagesPath;
+            ViewBag.UploadedImages = (announcement.Images != null) ? from image in announcement.Images select image.Link + ";" + image.IsTitular.ToString().ToLower() : null;
 
             return View(announcement);
         }
@@ -245,8 +249,10 @@ namespace Reklama.Controllers
 
             model.SectionId = sectionID;
             model.SubsectionId = subSectionID;
-            model.ExpiredAt = DateTime.Now.AddDays(int.Parse(_configRepository.ReadByName("ExpiredAtAnnouncement").Value));
+            model.ExpiredAt =
+                DateTime.Now.AddDays(int.Parse(_configRepository.ReadByName("ExpiredAtAnnouncement").Value));
             model.IsActive = true;
+            model.IsDisplayPhone = true;
 
             //TODO: Check is it need -->
             //model.UserId = (User.IsInRole("Administrator") || User.IsInRole("Moderator")) ? model.UserId : WebSecurity.CurrentUserId;
@@ -266,6 +272,7 @@ namespace Reklama.Controllers
                 ModelState.AddModelError("SubsectionId", "Необходимо указать подраздел");
             }
 
+            ModelState.Remove("IsDisplayPhone");
             if (ModelState.IsValid)
             {
                 var images = collection["images[]"];

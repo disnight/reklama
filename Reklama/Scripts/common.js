@@ -10,11 +10,11 @@
 
                 var limit = 100; //parseInt($(desc).attr('maxlength'));
 
-                $(desc).live('focus', function () {
+                $(document).on('focus', desc, function () {
                     $(desc).addClass('active');
                 });
 
-                $(mess).live('keyup', function () {
+                $(document).on('keyup', mess, function () {
                     if (!$(desc).hasClass('active')) {
                         var s = $(this).val();
                         while (s.indexOf("\n") > -1)

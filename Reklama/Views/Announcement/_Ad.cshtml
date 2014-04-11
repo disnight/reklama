@@ -11,7 +11,7 @@
                 <a href="/Announcement/Details/@Model.Id">
                     @if (Model.Images.Count != 0)
                     {
-                        <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["announcement_thumb"], "/", Model.Images.OrderBy(x => x.CreatedAt).First().Link)" />
+                        <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["announcement_thumb"], "/", Model.Images.Any(q => q.IsTitular.HasValue && q.IsTitular.Value) ? Model.Images.First(q => q.IsTitular.HasValue && q.IsTitular.Value).Link : Model.Images.OrderBy(x => x.CreatedAt).First().Link)" />
                     }
                     else
                     {

@@ -14,5 +14,6 @@ namespace Domain.Repository.Announcements
         void SaveManyImages(int announcementId, string imageNamesSeparated);
         void DeleteImages(int announcementId, string[] images);
         void DeleteImage(int announcementId, string image);
+        void InsertOrUpdate(AnnouncementImage image);
     }
 }

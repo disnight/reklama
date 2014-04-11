@@ -14,6 +14,7 @@ namespace Reklama.Models.Mappers
             HasKey(a => a.Id);
 
             Property(a => a.Link).IsRequired().HasMaxLength(255).IsUnicode();
+            Property(a => a.IsTitular).IsOptional();
         }
      }
 }

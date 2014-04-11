@@ -22,21 +22,19 @@
             {
                 @Html.ValidationSummary(true)
                 <div class="borderReg head">
-                    <div>
-                        <span>Раздел сайта:</span>
+                    <div class="fieldItem">
+                        <span class="field-title">Раздел сайта:</span>
                         <input class="regRad" id="regRad" name="regRad" type="radio" checked="checked" value="" /><label
                             for="regRad">объявления</label>
                         <input class="regRad" id="regRad2" name="regRad" type="radio" value="" /><label for="regRad2">недвижимость</label>
                     </div>
-                    <div>
-                        <span>@Html.LabelFor(c => c.CategoryId)</span>
+                    <div  class="fieldItem">
+                        <span class="field-title">@Html.LabelFor(c => c.CategoryId)</span>
                         <div id="CategoryButtons">
                             @foreach (var item in (SelectList)ViewBag.Categories)
                             {
                                 <div class="item-container">
                                     <div class="item">
-                                        @*<input id="categoryButtom1" class="radio" type="radio" value="1" name="Category">
-                                        <label for="categoryButtom1">Продам</label>*@
                                         @Html.RadioButtonFor(m => m.CategoryId, item.Value, new { id = "categoryButtom" + item.Value, name = "CategoryId", @class = "radio" })
                                         @Html.LabelFor(m => m, item.Text, new { @for = "categoryButtom" + item.Value })
                                     </div>
@@ -48,10 +46,10 @@
                         </div>
 
                     </div>
-                    <div>
+                    <div class="fieldItem">
                         <input type="hidden" id="SectionId" value="0"/>
                     <input type="hidden" id="SubsectionId" value="0"/>
-                        <span>@Html.LabelFor(s => s.SectionId)</span>
+                        <span class="field-title">@Html.LabelFor(s => s.SectionId)</span>
                         <select id="newSectionId" name="newSectionId" >
                             <option value="">Выбирете раздел</option>
                             @foreach (var item in (List<GroupedSelectList>)ViewBag.Sections)
@@ -67,29 +65,15 @@
                         @* @Html.DropDownList("SectionId", (SelectList)ViewBag.Sections, new { @class = "SectionList" })
                         @Html.ValidationMessageFor(s => s.SectionId)*@
                     </div>
-@*                    <div>
-                        <span>@Html.LabelFor(s => s.SubsectionId)</span>
-                        @if (ViewBag.Subsections == null)
-                        {
-                            <select id="SubsectionId" name="SubsectionId" disabled="disabled"></select>
-                        }
-                        else
-                        {
-                            @Html.DropDownList("SubsectionId", (SelectList)ViewBag.Subsections)
-                            @Html.ValidationMessageFor(s => s.SubsectionId)
-                        }
-                    </div>*@
-
-                    <div>
-                        <span>@Html.LabelFor(s => s.CityId)</span>
+                    <div class="fieldItem">
+                        <span class="field-title">@Html.LabelFor(s => s.CityId)</span>
                         @Html.DropDownList("CityId", (SelectList)ViewBag.Cities)
                         @Html.ValidationMessageFor(s => s.CityId)
                     </div>
                 </div>
                 
                 <div class="borderReg">
-
-                    <div>
+                    <div class="fieldItem">
                         @*<span class="regBrown">@Html.LabelFor(n => n.Name)</span>*@
                         <div class="label-container">@Html.LabelFor(n => n.Name)</div>
                         @Html.TextBoxFor(model => model.Name, new { @class = "regInp2" })
@@ -98,8 +82,7 @@
                             Заголовок - самая заметная часть объявления.<br />@Html.ValidationMessageFor(n => n.Name)
                         </div>
                     </div>
-
-                    <div>
+                    <div class="fieldItem">
                         <div class="label-container">@Html.LabelFor(m => m.Description)</div>
                         @Html.TextAreaFor(m => m.Description, new { @class = "message" })
                         <p>не более 1800 символов</p>
@@ -111,8 +94,7 @@
                         </div>
 
                     </div>
-
-                    <div>
+                    <div class="fieldItem">
                         <div class="label-container">@Html.LabelFor(m => m.SmallDescription)</div>
                         @Html.TextAreaFor(m => m.SmallDescription, new { @class = "desc" })
                         <p>не более 255 символов</p>
@@ -122,11 +104,9 @@
                             @Html.ValidationMessageFor(m => m.SmallDescription)
                         </div>
                     </div>
-
                 </div>
                 <div class="borderReg">
-
-                    <div>
+                    <div class="fieldItem">
                         <div class="regRed label-container">@Html.LabelFor(m => m.Price)</div>
                         @Html.TextBoxFor(m => m.Price, new { @class = "regInp1", data_val_number = "Должно быть введено вещественное число" })&nbsp;
                         @Html.DropDownList("CurrencyId", (SelectList)ViewBag.Currencies, new { @style = "width: 100px;" })
@@ -145,22 +125,13 @@
                             @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1" })
                             <div class="rightText">@Html.ValidationMessageFor(n => n.Name)</div>
                         </div>
-                        <div style="display: none;">
-                            <p class="check" style="margin-top: -15px;">
-                                <input type="checkbox" checked="checked" name="IsDisplayPhone" id="IsDisplayPhone"/>
-                                @*@Html.CheckBoxFor(m => m.IsDisplayPhone, new { @checked = "checked"})*@
-                                @Html.LabelFor(m => m.IsDisplayPhone)
-                            </p>
-                        </div>
-
+                       
                     </div>
-
                 </div>
                 <div class="borderReg">
-
-                    <div>
-                        <span>Фотографии:</span>
-                        <input class="regBut1" type="button" value="" />
+                    <div class="fieldItem">
+                        <span class="field-title">Фотографии:</span>
+                        @*  <input class="regBut1" type="button" value="" />
                         <img id="load" src="loadstop.gif" class="unvisible" />
                         <div class="rightText">
                             Фотографии работают гораздо лучше, чем самый талантливый текст. Взглянув на фотографию
@@ -183,7 +154,8 @@
                                 </div>
                                 }
                             }
-                        </div>
+                        </div>*@
+                        @Html.Partial("_FileUpload")
                     </div>
                 </div>
                 
@@ -204,7 +176,10 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/Scripts/ajaxupload.js")
+ 
     @Scripts.Render("~/Scripts/Announcement.js")
     @Styles.Render("~/Content/Announcement.css")
-}
+} 
+
+@*  @Scripts.Render("~/Scripts/ajaxupload.js")*@
+@*@Scripts.Render("~/Scripts/tinymce/tinymce.min.js")*@

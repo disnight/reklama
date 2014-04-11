@@ -6,7 +6,7 @@
     
     var selectedSiteCategory = (ViewBag.SelectedSiteCategory != null) ? (CategorySearch)ViewBag.SelectedSiteCategory : CategorySearch.Index;
 }
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -15,6 +15,11 @@
     <meta content="" name="description">
     <link rel="shortcut icon" href="/Images/System/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="/Images/System/favicon.ico" type="image/x-icon" />
+    
+    <!--[if lt IE 9]>
+@Scripts.Render("~/Scripts/html5shiv.js")
+<![endif]-->
+    
     @Scripts.Render("~/Scripts/jquery-1.8.0.min.js")
     @Scripts.Render("~/Scripts/common.js")
     @Styles.Render("~/Scripts/fancybox/jquery.fancybox.css")
@@ -29,6 +34,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Html.RenderScripts()
     @RenderSection("head", required: false)
+    @Styles.Render("~/Scripts/tinymce/skins/lightgray/skin.min.css")
 </head>
 <body>
 
@@ -246,12 +252,16 @@
 
 
     </div>
-    @Scripts.Render("~/bundles/jquery")
+@*    @Scripts.Render("~/bundles/jquery")*@
     @RenderSection("scripts", required: false)
     @Scripts.Render("~/Scripts/jquery.fancybox.js")
     @Scripts.Render("/Scripts/slides.min.jquery.js")
 
-
+    @Scripts.Render("~/Scripts/angular/es5-shim.min.js")
+    @Scripts.Render("~/Scripts/angular/angular.min.js")
+    @Scripts.Render("~/Scripts/angular/angular-file-upload.js")
+    @Scripts.Render("~/Scripts/angular/controllers.js")
+    @Scripts.Render("~/Scripts/angular/directives.js")
     
 
     <!-- Yandex.Metrika counter -->

@@ -65,11 +65,19 @@ namespace Reklama.Models.Announcements
             if (imageNamesSeparated != null)
             {
                 var imagesNames = imageNamesSeparated.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                var images = imagesNames.Select(image => new AnnouncementImage
-                                                             {
-                                                                 CreatedAt = DateTime.Now, Link = image
-                                                             }).ToList();
-                announcement.Images = images;
+                var result = new List<AnnouncementImage>();
+                foreach (var s in imagesNames)
+                {
+                    var obj = s.Split(';');
+                    var image = new AnnouncementImage {CreatedAt = DateTime.Now, Link = obj[0], IsTitular = false};
+                    if (obj.Length > 1)
+                    {
+                        image.IsTitular = obj[1] == "true";
+                    }
+                    result.Add(image);
+                }
+                
+                announcement.Images = result;
             }
 
             return Save(announcement);

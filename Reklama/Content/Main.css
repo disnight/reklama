@@ -52,18 +52,19 @@
   јвто-высота у попул€рных разделов
 */
 .AddStylePopCatalogueTop{
-	padding: 0;
+	padding: 0 0 10px; /* TODO: chenged by andrey */
 }
 
 .AddStylePopCatalogueTop .popCatalogueRight{
 	height: auto;
     padding: 19px 0 20px;
+	overflow: hidden; /* TODO: chenged by andrey */
 }
 
 
-.popCatalogueBot {
+/* .popCatalogueBot {
     margin: 10px 0 0;
-}
+} */
 /**************************************************
   Ѕаннеры
 */

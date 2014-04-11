@@ -21,14 +21,14 @@
         <div class="registerInW">
             <form id="formCreate" action="/Realty/Create" method="post">
                 <div class="borderReg head">
-                    <div>
-                        <span>Раздел сайта:</span>
+                    <div class="fieldItem">
+                        <span class="field-title">Раздел сайта:</span>
                         <input class="regRad" id="regRad" name="regRad" type="radio" value="" /><label for="regRad">объявления</label>
                         <input class="regRad" id="regRad2" name="regRad" type="radio" checked="checked" value="" /><label for="regRad2">недвижимость</label>
                     </div>
-                    <div>
+                    <div class="fieldItem">
                         @Html.ValidationSummary()
-                        <span>Лицо:</span>
+                        <span class="field-title">Лицо:</span>
                         @Html.RadioButtonFor(x => x.IsAgency, false, new { Class = "Personal", Checked = "checked" }) частное
                         @Html.RadioButtonFor(x => x.IsAgency, true, new { Class = "Agency" }) агенство
                     </div>
@@ -36,11 +36,11 @@
                         <div class="rightText">
                             <br />@Html.ValidationMessageFor(x => x.AgencyName)
                         </div>
-                        <span>Название агенства:</span>
+                        <span class="field-title">Название агенства:</span>
                         @Html.TextBoxFor(x => x.AgencyName, new { Class = "regInp2", Id = "AgencyName" })
                     </div>
-                    <div>
-                        <span>Категория:</span>
+                    <div class="fieldItem">
+                        <span class="field-title">Категория:</span>
                         @Html.DropDownListFor(x => x.CategoryId, new SelectList((ViewBag.Categories), "Id", "Name"), "Выберите категорию")
                         
                         <div class="rightText">
@@ -48,8 +48,8 @@
                         </div>
                     </div>
 
-                    <div>
-                        <span>Раздел:</span>
+                    <div class="fieldItem">
+                        <span class="field-title">Раздел:</span>
                         
                         <div id="CategoryButtons">
                             @foreach (var item in new SelectList((ViewBag.Sections), "Id", "Name"))
@@ -76,43 +76,43 @@
                     </div>
                 </div>
                 <div class="borderReg">
-                    <div>
+                    <div class="fieldItem">
                         <div class="rightText">
                             Покупатель не захочет собирать дополнительную информацию о нужном ему товаре и сразу купит у вас. Кроме того, подробное описание товара оставляет хорошее впечатление о продавце - покупатель будет спокоен. 
                             <br/>@Html.ValidationMessageFor(x => x.CityId)
                         </div>
-                        <span>Город:</span>
+                        <span class="field-title">Город:</span>
                         @Html.DropDownListFor(x => x.CityId, new SelectList((ViewBag.Cities), "Id", "Name"), "Выберите город")
                         
                     </div>
-                    <div>
-                        <span>Улица:</span>
+                    <div class="fieldItem">
+                        <span class="field-title">Улица:</span>
                         @Html.TextBoxFor(x => x.Street, new { Class = "regInp1" })
                         @Html.ValidationMessageFor(x => x.Street)
                     </div>
-                    <div>
-                        <span>Количество комнат:</span>
+                    <div class="fieldItem">
+                        <span class="field-title">Количество комнат:</span>
                         @for (int i = 1; i <= 5; i++)
                         {
                             @Html.RadioButtonFor(x => x.RoomsCount, i) @i
                         }
                         @Html.RadioButtonFor(x => x.RoomsCount, 0)>5
                     </div>
-                    <div><span>Площадь:</span>@Html.TextBoxFor(x => x.Square, new { Class = "regInp3" })м<sup>2</sup>
+                    <div class="fieldItem"><span class="field-title">Площадь:</span>@Html.TextBoxFor(x => x.Square, new { Class = "regInp3" })м<sup>2</sup>
                         @Html.ValidationMessageFor(x => x.Square)
                     </div>
-                    <div><span>Этажей в доме:</span>@Html.TextBoxFor(x => x.FloorCount, new { Class = "regInp3" })
+                    <div class="fieldItem"><span class="field-title">Этажей в доме:</span>@Html.TextBoxFor(x => x.FloorCount, new { Class = "regInp3" })
                         @Html.ValidationMessageFor(x => x.FloorCount)
                     </div>
-                    <div><span>На каком этаже:</span>@Html.TextBoxFor(x => x.Floor, new { Class = "regInp3" })
+                    <div class="fieldItem"><span class="field-title">На каком этаже:</span>@Html.TextBoxFor(x => x.Floor, new { Class = "regInp3" })
                         @Html.ValidationMessageFor(x => x.Floor)
                     </div>
-                    <div><span>Высота потолков:</span>@Html.TextBoxFor(x => x.CeillingHeight, new { Class = "regInp3" })м
+                    <div class="fieldItem"><span class="field-title">Высота потолков:</span>@Html.TextBoxFor(x => x.CeillingHeight, new { Class = "regInp3" })м
                         @Html.ValidationMessageFor(x => x.CeillingHeight)
                     </div>
                 </div>
                 <div>
-                    <span>Дополнительно:</span>
+                    <span class="field-title">Дополнительно:</span>
                     <label for="addit1">@Html.CheckBoxFor(x => x.WithExtension)с пристройкой</label>
                     <label for="addit2">@Html.CheckBoxFor(x => x.WithBasement)с подвалом</label>
                     <br />
@@ -123,7 +123,7 @@
                 </div>
                 <div class="borderReg">
 
-                    <div>
+                    <div class="fieldItem">
                         <div class="regBrown label-container">Заголовок:</div>
                         @Html.TextBoxFor(x => x.Name, new { Class = "regInp2" })
                         <p>не более 180 символов</p>
@@ -131,7 +131,7 @@
                             @Html.ValidationMessageFor(x => x.Name)</div>
                     </div>
                     
-                    <div>
+                    <div class="fieldItem">
                         <div class="label-container">Подробное описание:</div>
                         @Html.TextAreaFor(x => x.Description, new { @class = "message" })
                         <p>не более 1800 символов</p>
@@ -140,7 +140,7 @@
                             @Html.ValidationMessageFor(x => x.Description)</div>
                     </div>
 
-                    <div>
+                    <div class="fieldItem">
                         <div class="label-container">Краткое описание:</div>
                         <div>@Html.TextAreaFor(x => x.SmallDescription, new { @class = "desc" })</div>
                         <p>не более 600 символов</p>
@@ -152,7 +152,7 @@
                 </div>
                 <div class="borderReg">
 
-                    <div>
+                    <div class="fieldItem">
                         <div class="regRed label-container">Цена:</div>
                         @Html.TextBoxFor(x => x.Price, new { Class = "regInp1" })
                         @Html.DropDownListFor(x => x.CurrencyId, new SelectList(ViewBag.Currencies, "Id", "Name"), new { Class = "pType" })
@@ -165,11 +165,6 @@
                         </div>
                         <br />
 
-                        <p class="check" style="margin-top: -15px; display: none;">
-                            <input type="checkbox" checked="checked" name="IsDisplayPhone" id="IsDisplayPhone"/>
-                            @*@Html.CheckBoxFor(x => x.IsDisplayPhone, new { @checked = "checked" })*@
-                            <label for="pertin">Показывать мой номер телефона</label>
-                        </p>
                         <div class="rightText">Если вы не укажете реальную стоимость, при сортировке по цене, покупатель не найдет ваше объявление. Цена  «1 у.е.»  отпугивает покупателя своей несерьезностью.
                             <br />
                             @Html.ValidationMessageFor(x => x.Price) </div>
@@ -178,9 +173,9 @@
                 </div>
                 <div class="borderReg">
 
-                    <div>
-                        <span>Фотографии:</span>
-                        <div>
+                    <div class="fieldItem">
+                        <span class="field-title">Фотографии:</span>
+                        @* <div>
                             <input class="regBut1" type="button" value="" />jpeg, png, gif не более 1MB
                         </div>
                         <img id="load" class="unvisible" />
@@ -202,11 +197,12 @@
                                     </div>
                                 }
                             }
-                        </div>
+                        </div>*@
+                         @Html.Partial("_FileUpload")
                     </div>
 
                 </div>
-                <div id="image_fields"></div>
+               @* <div id="image_fields"></div>*@
                 @Html.AntiForgeryToken()
                 <div class="regBtm">
                     <p>
@@ -222,6 +218,6 @@
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/Scripts/ajaxupload.js")
+   @* @Scripts.Render("~/Scripts/ajaxupload.js")*@
     @Scripts.Render("~/Scripts/Realty.js")
 }
