@@ -59,6 +59,11 @@ namespace Domain.Entity.Announcements
         [StringLength(32, ErrorMessage = "Максимальная длина поля - 32 символа")]
         public string Phone { get; set; }
 
+        [Display(Name = "Имя (по желанию)")]
+        public string ContactName { get; set; }
+
+        [Display(Name = "E-mail (по желанию)")]
+        public string ContactEmail { get; set; }
 
         [ForeignKey("SectionId")]
         public virtual Section Section { get; set; }

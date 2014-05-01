@@ -30,8 +30,22 @@
                 });
             }
         },
+        
+        initCommon: function () {
+            $("#rules").change(function () {
+                var sub = $("#createSubmit");
+                if (sub.prop('disabled')) {
+                    $(sub).removeClass("disabled");
+                    $(sub).prop('disabled', false);
+                } else {
+                    $(sub).addClass("disabled");
+                    $(sub).prop('disabled', true);
+                }
+            });
+        },
 
         init: function () {
+            $.initCommon();
             $.initAutoFieldFill();
         }
     });

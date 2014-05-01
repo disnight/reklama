@@ -44,6 +44,14 @@
             @Html.EditorFor(model => model.isNew)
             @Html.ValidationMessageFor(model => model.isNew)
         </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.isActive)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.isActive)
+            @Html.ValidationMessageFor(model => model.isActive)
+        </div>
 
         @Html.HiddenFor(model => model.Id)
 

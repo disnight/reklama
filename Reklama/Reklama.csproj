@@ -418,6 +418,14 @@
     <Compile Include="Migrations\201404110748442_Add_IsTitular_To_Realty.Designer.cs">
       <DependentUpon>201404110748442_Add_IsTitular_To_Realty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201404140832043_Add_ContactName_And_ComtactEmail.cs" />
+    <Compile Include="Migrations\201404140832043_Add_ContactName_And_ComtactEmail.Designer.cs">
+      <DependentUpon>201404140832043_Add_ContactName_And_ComtactEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404190815444_Add_IsActive_To_Suncategory.cs" />
+    <Compile Include="Migrations\201404190815444_Add_IsActive_To_Suncategory.Designer.cs">
+      <DependentUpon>201404190815444_Add_IsActive_To_Suncategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Admin\ActualArticleModel.cs" />
@@ -2116,6 +2124,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201404110748442_Add_IsTitular_To_Realty.resx">
       <DependentUpon>201404110748442_Add_IsTitular_To_Realty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404140832043_Add_ContactName_And_ComtactEmail.resx">
+      <DependentUpon>201404140832043_Add_ContactName_And_ComtactEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404190815444_Add_IsActive_To_Suncategory.resx">
+      <DependentUpon>201404190815444_Add_IsActive_To_Suncategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

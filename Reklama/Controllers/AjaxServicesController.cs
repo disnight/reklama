@@ -284,6 +284,7 @@ namespace Reklama.Controllers
                         uploader.Save("announcement_thumb");
                         break;
                     case "Realty":
+                        uploader.Convert(530, 350);
                         uploader.Save("realty");
                         uploader.Convert(ProjectConfiguration.Get.RealtyImageWidth, ProjectConfiguration.Get.RealtyImageHeight);
                         uploader.Save("realty_thumb");

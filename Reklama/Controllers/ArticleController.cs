@@ -48,6 +48,7 @@ namespace Reklama.Controllers
 
         public ActionResult Index(ArticleSortModel sortModel = null)
         {
+            ViewBag.IsVisibleBest = Request.QueryString["v"] != null && Request.QueryString["v"] == "1";
             IEnumerable<Article> bestArticles;
             IEnumerable<Article> articles = _articleRepository.Read().ToArray();
 

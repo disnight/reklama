@@ -124,12 +124,22 @@
                         @Html.TextBoxFor(x => x.Price, new { Class = "regInp1" })
                         @Html.DropDownListFor(x => x.CurrencyId, new SelectList(ViewBag.Currencies, "Id", "Name"), new { Class = "pType" })
                         <p class="check">@Html.CheckBoxFor(x => x.IsAuction)<label for="pertin">Торг уместен</label></p><br />
-                        <div><br />
+                        <div class="rightText">Если вы не укажете реальную стоимость, при сортировке по цене, покупатель не найдет ваше объявление. Цена  «1 у.е.»  отпугивает покупателя своей несерьезностью. <br /> @Html.ValidationMessageFor(x => x.Price) </div>
+                    </div>
+                    <div class="fieldItem">
                             <div class="regBrown label-container">@Html.LabelFor(n => n.Phone)</div>
                             @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1" })
                             <div class="rightText">@Html.ValidationMessageFor(n => n.Name)</div>
                         </div>
-                        <div class="rightText">Если вы не укажете реальную стоимость, при сортировке по цене, покупатель не найдет ваше объявление. Цена  «1 у.е.»  отпугивает покупателя своей несерьезностью. <br /> @Html.ValidationMessageFor(x => x.Price) </div>
+                    <div class="fieldItem">
+                        <div class="regBrown label-container">@Html.LabelFor(n => n.ContactName)</div>
+                        @Html.TextBoxFor(model => model.ContactName, new { @class = "regInp1" })
+                        <div class="rightText"></div>
+                    </div>
+                    <div class="fieldItem">
+                        <div class="regBrown label-container">@Html.LabelFor(n => n.ContactEmail)</div>
+                        @Html.TextBoxFor(model => model.ContactEmail, new { @class = "regInp1" })
+                        <div class="rightText"></div>
                     </div>
 
                 </div>

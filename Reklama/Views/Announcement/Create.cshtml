@@ -119,42 +119,26 @@
                             ваше объявление. Цена  «1 у.е.»  отпугивает покупателя своей несерьезностью.<br />
                             @Html.ValidationMessageFor(m => m.Price)
                         </div>
-                        <div>
-                            <br />
-                            <div class="regBrown label-container">@Html.LabelFor(n => n.Phone)</div>
-                            @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1" })
-                            <div class="rightText">@Html.ValidationMessageFor(n => n.Name)</div>
-                        </div>
-                       
+                    </div>
+                    <div class="fieldItem">
+                        <div class="regBrown label-container">@Html.LabelFor(n => n.ContactName)</div>
+                        @Html.TextBoxFor(model => model.ContactName, new { @class = "regInp1" })
+                        <div class="rightText"></div>
+                    </div>
+                    <div class="fieldItem">
+                        <div class="regBrown label-container">@Html.LabelFor(n => n.Phone)</div>
+                        @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1" })
+                        <div class="rightText">@Html.ValidationMessageFor(n => n.Name)</div>
+                    </div>
+                    <div class="fieldItem">
+                        <div class="regBrown label-container">@Html.LabelFor(n => n.ContactEmail)</div>
+                        @Html.TextBoxFor(model => model.ContactEmail, new { @class = "regInp1" })
+                        <div class="rightText"></div>
                     </div>
                 </div>
                 <div class="borderReg">
                     <div class="fieldItem">
                         <span class="field-title">Фотографии:</span>
-                        @*  <input class="regBut1" type="button" value="" />
-                        <img id="load" src="loadstop.gif" class="unvisible" />
-                        <div class="rightText">
-                            Фотографии работают гораздо лучше, чем самый талантливый текст. Взглянув на фотографию
-                            и представив себя счастливым владельцем товара, покупатель может захотеть немедленно
-                            его купить. Чем больше фотографий - тем лучше.<br />
-                            <strong>jpeg, png, gif не более 1MB</strong>
-                        </div>
-
-                        <div id="imagePreview" class="@((ViewBag.UploadedImages != null) ? "visible" : "unvisible")">
-                            Загруженные файлы : 
-                            <br />
-                            @if (ViewBag.UploadedImages != null)
-                            {
-                                foreach (string image in (IEnumerable<string>)ViewBag.UploadedImages)
-                                {
-                                <div class="image_fields">
-                                    <img class="announcementImage" src="/Images/Users/@image"/>
-                                    <input type="hidden" name="images[]" value="@image" /><br />
-                                    <a href="#" class="image_remove" onclick="return $.fn.removeImage($(this));">Удалить</a>
-                                </div>
-                                }
-                            }
-                        </div>*@
                         @Html.Partial("_FileUpload")
                     </div>
                 </div>
@@ -163,11 +147,12 @@
                 <div class="regBtm">
 
                     @*<a href="javascript:void(0)">Предварительный просмотр</a>*@
-                    <input class="regBut2" type="submit" value="" />
+                    <input class="regBut2" type="submit" value="" id="createSubmit" />
                     <p>
                         Время размещения с @string.Format("{0:dd.MM.yyyy}", DateTime.Now) до @string.Format("{0:dd.MM.yyyy}", DateTime.Now.AddDays(ProjectConfiguration.Get.GetConfigValue("ExpiredAtAnnouncement").ToInt32(null)))
                     </p>
                 </div>
+                <div class="rules"><input type="checkbox" class="checkbox-input" checked="checked" id="rules"> <label class="checkbox-label" for="rules">я принимаю условия <a href="/Page/Details/2" target="_blank">пользовательского соглашения</a></label></div>
             }
         </div>
     </div>

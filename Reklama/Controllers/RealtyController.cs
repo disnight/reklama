@@ -163,6 +163,8 @@ namespace Reklama.Controllers
             {
                 var user = _profileRepository.Read(WebSecurity.CurrentUserId);
                 model.Phone = user.Phone;
+                model.ContactEmail = user.Email;
+                model.ContactName = user.Name;
                 model.IsDisplayPhone = true;
             }
 

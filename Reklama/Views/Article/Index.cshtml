@@ -57,11 +57,6 @@
             <td class="ci2">
                 <img width="10" height="1" border="0" src="/Images/System/s.png" />
             </td>
-            
-
-
-
-
 
             <td class="ci3" valign="top">
                 <div class="crumbs">
@@ -70,116 +65,120 @@
                     Статьи
                 </div>
                 <h1>Статьи</h1>
-                <div class="hed4">
-                    <span>
-                        <img src="/Images/System/hed4Bg.png" />
-                        Лучшее
-                    </span>
-                </div>
+                
 
-
+                
                 @try
-                {
-                    if (ProjectConfiguration.Get.ArticleConfig.Best1 != null)
+                 {
+                    
+                    if (ViewBag.IsVisibleBest)
                     {
-                        <div class="mainArticlesBlock innerArticles">
-                            <div class="mainArticle">
-                                <div class="mArtImg">
-                                    <a href="@Url.Action("Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best1.Id})">
-                                        <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], ProjectConfiguration.Get.ArticleConfig.Best1.Logo)" />
-                                    </a>
-                                </div>
-                                <h2>
-                                    @Html.ActionLink(ProjectConfiguration.Get.ArticleConfig.Best1.Name, "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best1.Id})
-                                </h2>
-                                <p>
-                                    @ProjectConfiguration.Get.ArticleConfig.Best1.SmallDescription
-                                    <br />@Html.ActionLink("Читать полностью", "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best1.Id})
-                                </p>
-                                <div class="mArtDate">
-                                    @ProjectConfiguration.Get.ArticleConfig.Best1.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
-                                    <a href="javascript:void(0)">Комментариев: @ProjectConfiguration.Get.ArticleConfig.Best1.Comments.Count</a>
-                                </div>
-                            </div>
-                            <div class="mainArticlesList">
-                                <ul>
-                                    @if (ProjectConfiguration.Get.ArticleConfig.Best2 != null)
-                                    {
-                                        <li>
-                                                <div class="malImg">
-                                                    <a href="@Url.Action("Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best2.Id})">
-                                                        <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], ProjectConfiguration.Get.ArticleConfig.Best2.Logo)" />
-                                                    </a>
-                                                </div>
-                                                <div class="malText">
-                                                    <h3>
-                                                        @Html.ActionLink(ProjectConfiguration.Get.ArticleConfig.Best2.Name, "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best2.Id})
-                                                        <a class="commentIcon" href="javascript:void(0)"><span>@ProjectConfiguration.Get.ArticleConfig.Best2.Comments.Count</span></a>
-                                                    </h3>
-                                                    <p>
-                                                        @ProjectConfiguration.Get.ArticleConfig.Best2.SmallDescription
-                                                        <br />@Html.ActionLink("Читать полностью", "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best2.Id})
-                                                    </p>
-                                                    <div class="malDate">
-                                                        @ProjectConfiguration.Get.ArticleConfig.Best2.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
-                                                    </div>
-                                                </div>
-                                            </li>
-                                    }
-                                    @if (ProjectConfiguration.Get.ArticleConfig.Best3 != null)
-                                    {
-                                        <li>
-                                                <div class="malImg">
-                                                    <a href="@Url.Action("Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best3.Id})">
-                                                        <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], ProjectConfiguration.Get.ArticleConfig.Best3.Logo)" />
-                                                    </a>
-                                                </div>
-                                                <div class="malText">
-                                                    <h3>
-                                                        @Html.ActionLink(ProjectConfiguration.Get.ArticleConfig.Best3.Name, "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best3.Id})
-                                                        <a class="commentIcon" href="javascript:void(0)"><span>@ProjectConfiguration.Get.ArticleConfig.Best3.Comments.Count</span></a>
-                                                    </h3>
-                                                    <p>
-                                                        @ProjectConfiguration.Get.ArticleConfig.Best3.SmallDescription
-                                                        <br />@Html.ActionLink("Читать полностью", "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best3.Id})
-                                                    </p>
-                                                    <div class="malDate">
-                                                        @ProjectConfiguration.Get.ArticleConfig.Best3.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
-                                                    </div>
-                                                </div>
-                                            </li>
-                                    }
-                                    @if (ProjectConfiguration.Get.ArticleConfig.Best4 != null)
-                                    {
-                                        <li>
-                                                <div class="malImg">
-                                                    <a href="@Url.Action("Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best4.Id})">
-                                                        <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], ProjectConfiguration.Get.ArticleConfig.Best4.Logo)" />
-                                                    </a>
-                                                </div>
-                                                <div class="malText">
-                                                    <h3>
-                                                        @Html.ActionLink(ProjectConfiguration.Get.ArticleConfig.Best4.Name, "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best4.Id})
-                                                        <a class="commentIcon" href="javascript:void(0)"><span>@ProjectConfiguration.Get.ArticleConfig.Best4.Comments.Count</span></a>
-                                                    </h3>
-                                                    <p>
-                                                        @ProjectConfiguration.Get.ArticleConfig.Best4.SmallDescription
-                                                        <br />@Html.ActionLink("Читать полностью", "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best4.Id})
-                                                    </p>
-                                                    <div class="malDate">
-                                                        @ProjectConfiguration.Get.ArticleConfig.Best4.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
-                                                    </div>
-                                                </div>
-                                            </li>
-                                    }
-                                </ul>
-                            </div>
+                        <div class="hed4">
+                            <span>
+                                <img src="/Images/System/hed4Bg.png" />
+                                Лучшее
+                            </span>
                         </div>
-                    }
+                         if (ProjectConfiguration.Get.ArticleConfig.Best1 != null)
+                         {
+                             <div class="mainArticlesBlock innerArticles">
+                                 <div class="mainArticle">
+                                     <div class="mArtImg">
+                                         <a href="@Url.Action("Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best1.Id})">
+                                             <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], ProjectConfiguration.Get.ArticleConfig.Best1.Logo)" />
+                                         </a>
+                                     </div>
+                                     <h2>
+                                         @Html.ActionLink(ProjectConfiguration.Get.ArticleConfig.Best1.Name, "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best1.Id})
+                                     </h2>
+                                     <p>
+                                         @ProjectConfiguration.Get.ArticleConfig.Best1.SmallDescription
+                                         <br />@Html.ActionLink("Читать полностью", "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best1.Id})
+                                     </p>
+                                     <div class="mArtDate">
+                                         @ProjectConfiguration.Get.ArticleConfig.Best1.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
+                                         <a href="javascript:void(0)">Комментариев: @ProjectConfiguration.Get.ArticleConfig.Best1.Comments.Count</a>
+                                     </div>
+                                 </div>
+                                 <div class="mainArticlesList">
+                                     <ul>
+                                         @if (ProjectConfiguration.Get.ArticleConfig.Best2 != null)
+                                         {
+                                             <li>
+                                                 <div class="malImg">
+                                                     <a href="@Url.Action("Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best2.Id})">
+                                                         <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], ProjectConfiguration.Get.ArticleConfig.Best2.Logo)" />
+                                                     </a>
+                                                 </div>
+                                                 <div class="malText">
+                                                     <h3>
+                                                         @Html.ActionLink(ProjectConfiguration.Get.ArticleConfig.Best2.Name, "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best2.Id})
+                                                         <a class="commentIcon" href="javascript:void(0)"><span>@ProjectConfiguration.Get.ArticleConfig.Best2.Comments.Count</span></a>
+                                                     </h3>
+                                                     <p>
+                                                         @ProjectConfiguration.Get.ArticleConfig.Best2.SmallDescription
+                                                         <br />@Html.ActionLink("Читать полностью", "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best2.Id})
+                                                     </p>
+                                                     <div class="malDate">
+                                                         @ProjectConfiguration.Get.ArticleConfig.Best2.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
+                                                     </div>
+                                                 </div>
+                                             </li>
+                                         }
+                                         @if (ProjectConfiguration.Get.ArticleConfig.Best3 != null)
+                                         {
+                                             <li>
+                                                 <div class="malImg">
+                                                     <a href="@Url.Action("Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best3.Id})">
+                                                         <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], ProjectConfiguration.Get.ArticleConfig.Best3.Logo)" />
+                                                     </a>
+                                                 </div>
+                                                 <div class="malText">
+                                                     <h3>
+                                                         @Html.ActionLink(ProjectConfiguration.Get.ArticleConfig.Best3.Name, "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best3.Id})
+                                                         <a class="commentIcon" href="javascript:void(0)"><span>@ProjectConfiguration.Get.ArticleConfig.Best3.Comments.Count</span></a>
+                                                     </h3>
+                                                     <p>
+                                                         @ProjectConfiguration.Get.ArticleConfig.Best3.SmallDescription
+                                                         <br />@Html.ActionLink("Читать полностью", "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best3.Id})
+                                                     </p>
+                                                     <div class="malDate">
+                                                         @ProjectConfiguration.Get.ArticleConfig.Best3.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
+                                                     </div>
+                                                 </div>
+                                             </li>
+                                         }
+                                         @if (ProjectConfiguration.Get.ArticleConfig.Best4 != null)
+                                         {
+                                             <li>
+                                                 <div class="malImg">
+                                                     <a href="@Url.Action("Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best4.Id})">
+                                                         <img src="@string.Concat("/", ProjectConfiguration.Get.FilePaths["articles"], ProjectConfiguration.Get.ArticleConfig.Best4.Logo)" />
+                                                     </a>
+                                                 </div>
+                                                 <div class="malText">
+                                                     <h3>
+                                                         @Html.ActionLink(ProjectConfiguration.Get.ArticleConfig.Best4.Name, "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best4.Id})
+                                                         <a class="commentIcon" href="javascript:void(0)"><span>@ProjectConfiguration.Get.ArticleConfig.Best4.Comments.Count</span></a>
+                                                     </h3>
+                                                     <p>
+                                                         @ProjectConfiguration.Get.ArticleConfig.Best4.SmallDescription
+                                                         <br />@Html.ActionLink("Читать полностью", "Details", new {id = ProjectConfiguration.Get.ArticleConfig.Best4.Id})
+                                                     </p>
+                                                     <div class="malDate">
+                                                         @ProjectConfiguration.Get.ArticleConfig.Best4.CreatedAt.ToString("D", CultureInfo.CreateSpecificCulture("ru-RU"))
+                                                     </div>
+                                                 </div>
+                                             </li>
+                                         }
+                                     </ul>
+                                 </div>
+                             </div>
+                         }
+                     }
 
 
-
-                    <div class="hed5">
+                     <div class="hed5">
                         <span>
                             <img src="/Images/System/hed5Bg.png" />
                             Последние пуликации

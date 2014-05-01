@@ -44,6 +44,8 @@ namespace Reklama.Models.Mappers
             Property(r => r.ForDays).IsOptional();
             Property(r => r.AgencyName).IsOptional().HasMaxLength(64).IsUnicode();
             Property(r => r.UpTime).IsRequired();
+            Property(a => a.ContactName).IsOptional();
+            Property(a => a.ContactEmail).IsOptional();
 
             HasRequired(r => r.UserProfile);
         }

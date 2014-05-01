@@ -10,11 +10,11 @@
         @Html.Partial("_PlaceGoods")
         <p class="orangeText">@Html.Raw(ProjectConfiguration.Get.CatalogConfig.PromoText)</p>
     </div>
-    @foreach (var category in Model)
+    @foreach (var category in Model.Where(q => q.SecondCategories.Any(w => w.isActive)))
     {
         <p class="cmTitle">@category.Name</p>
         <ul>
-            @foreach(var secondCategory in category.SecondCategories)
+            @foreach(var secondCategory in category.SecondCategories.Where(e => e.isActive))
             {
                 var shopsProducts = secondCategory.Products.SelectMany(s => s.ShopProductRefs);
             <li>

@@ -24,6 +24,8 @@ namespace Reklama.Models.Mappers
             Property(a => a.CreatedAt).IsRequired();
             Property(a => a.Description).HasMaxLength(100000).IsRequired().IsUnicode();
             Property(a => a.CityId).IsOptional();
+            Property(a => a.ContactName).IsOptional();
+            Property(a => a.ContactEmail).IsOptional();
             Property(a => a.CurrencyId).IsRequired();
             Property(a => a.ViewsCount).IsRequired();
             Property(a => a.IsDisplayPhone).IsRequired();

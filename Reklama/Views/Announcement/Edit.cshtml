@@ -101,12 +101,21 @@
                             ваше объявление. Цена  «1 у.е.»  отпугивает покупателя своей несерьезностью.<br />
                             @Html.ValidationMessageFor(m => m.Price)
                         </div>
-                        <div>
-                            <br />
+                    </div>
+                    <div class="fieldItem">
                             <div class="regBrown label-container">@Html.LabelFor(n => n.Phone)</div>
                             @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1" })
                             <div class="rightText">@Html.ValidationMessageFor(n => n.Name)</div>
                         </div>
+                    <div class="fieldItem">
+                        <div class="regBrown label-container">@Html.LabelFor(n => n.ContactName)</div>
+                        @Html.TextBoxFor(model => model.ContactName, new { @class = "regInp1" })
+                        <div class="rightText"></div>
+                    </div>
+                    <div class="fieldItem">
+                        <div class="regBrown label-container">@Html.LabelFor(n => n.ContactEmail)</div>
+                        @Html.TextBoxFor(model => model.ContactEmail, new { @class = "regInp1" })
+                        <div class="rightText"></div>
                     </div>
                 </div>
                 <div class="borderReg">

@@ -28,6 +28,9 @@ namespace Domain.Entity.Catalogs
         [Display(Name = "Новый раздел?")]
         public bool isNew { get; set; }
 
+        [Display(Name = "Is Active?")]
+        public bool isActive { get; set; }
+
         [ForeignKey("CategoryId")]
         public virtual CatalogCategory Category { get; set; }
 

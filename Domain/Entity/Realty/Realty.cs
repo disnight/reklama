@@ -58,7 +58,11 @@ namespace Domain.Entity.Realty
         [Range(0, 16000)]
         public double? Square { get; set; }
 
-        
+        [Display(Name = "Имя (по желанию)")]
+        public string ContactName { get; set; }
+
+        [Display(Name = "E-mail (по желанию)")]
+        public string ContactEmail { get; set; }
 
         //[StringLength(128, ErrorMessage = "Длина поля 'Заголовок' не должна быть меньше 4 и больше 180 символов", MinimumLength = 4)]
         //[Required(ErrorMessage = "Поле 'Заголовок' обязательно для заполнения")]

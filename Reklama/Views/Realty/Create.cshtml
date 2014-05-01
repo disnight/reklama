@@ -110,17 +110,16 @@
                     <div class="fieldItem"><span class="field-title">Высота потолков:</span>@Html.TextBoxFor(x => x.CeillingHeight, new { Class = "regInp3" })м
                         @Html.ValidationMessageFor(x => x.CeillingHeight)
                     </div>
-                </div>
-                <div>
+                
+                <div class="fieldItem">
                     <span class="field-title">Дополнительно:</span>
-                    <label for="addit1">@Html.CheckBoxFor(x => x.WithExtension)с пристройкой</label>
-                    <label for="addit2">@Html.CheckBoxFor(x => x.WithBasement)с подвалом</label>
-                    <br />
-                    <br />
-                    <label for="addit3">@Html.CheckBoxFor(x => x.WithGarage)с гаражом</label>
-                    <label for="addit4">@Html.CheckBoxFor(x => x.WithGarden)с огородом</label>
+                    @Html.CheckBoxFor(x => x.WithExtension, new {id = "addit1", @class="checkbox-input"})<label class="checkbox-label" for="addit1">с пристройкой</label>
+                    @Html.CheckBoxFor(x => x.WithBasement, new {id = "addit2", @class="checkbox-input"})<label class="checkbox-label" for="addit2">с подвалом</label>
+                    @Html.CheckBoxFor(x => x.WithGarage, new {id = "addit3", @class="checkbox-input"})<label class="checkbox-label" for="addit3">с гаражом</label>
+                    @Html.CheckBoxFor(x => x.WithGarden, new {id = "addit4", @class="checkbox-input"})<label class="checkbox-label" for="addit4">с огородом</label>
 
                 </div>
+                    </div>
                 <div class="borderReg">
 
                     <div class="fieldItem">
@@ -158,18 +157,28 @@
                         @Html.DropDownListFor(x => x.CurrencyId, new SelectList(ViewBag.Currencies, "Id", "Name"), new { Class = "pType" })
                         <p class="check">@Html.CheckBoxFor(x => x.IsAuction)<label for="pertin">Торг уместен</label></p>
                         
-                        <div><br />
-                            <div class="regBrown label-container">@Html.LabelFor(n => n.Phone)</div>
-                            @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1" })
-                            <div class="rightText">@Html.ValidationMessageFor(n => n.Name)</div>
-                        </div>
+                        
                         <br />
 
                         <div class="rightText">Если вы не укажете реальную стоимость, при сортировке по цене, покупатель не найдет ваше объявление. Цена  «1 у.е.»  отпугивает покупателя своей несерьезностью.
                             <br />
                             @Html.ValidationMessageFor(x => x.Price) </div>
                     </div>
-
+                    <div class="fieldItem">
+                        <div class="regBrown label-container">@Html.LabelFor(n => n.Phone)</div>
+                        @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1" })
+                        <div class="rightText">@Html.ValidationMessageFor(n => n.Name)</div>
+                    </div>
+                    <div class="fieldItem">
+                        <div class="regBrown label-container">@Html.LabelFor(n => n.ContactName)</div>
+                        @Html.TextBoxFor(model => model.ContactName, new { @class = "regInp1" })
+                        <div class="rightText"></div>
+                    </div>
+                    <div class="fieldItem">
+                        <div class="regBrown label-container">@Html.LabelFor(n => n.ContactEmail)</div>
+                        @Html.TextBoxFor(model => model.ContactEmail, new { @class = "regInp1" })
+                        <div class="rightText"></div>
+                    </div>
                 </div>
                 <div class="borderReg">
 
@@ -206,10 +215,11 @@
                 @Html.AntiForgeryToken()
                 <div class="regBtm">
                     <p>
-                        <input class="regBut3" type="submit" value="" name="save" />
+                        <input class="regBut3" type="submit" value="" name="save" id="createSubmit" />
                     </p>
                     <p>Время размещения с @string.Format("{0:dd.MM.yyyy}", DateTime.Now) до @string.Format("{0:dd.MM.yyyy}", DateTime.Now.AddDays(ProjectConfiguration.Get.GetConfigValue("ExpiredAtRealty").ToInt32(null)))</p>
                 </div>
+                <div class="rules"><input type="checkbox" class="checkbox-input" checked="checked" id="rules"> <label class="checkbox-label" for="rules">я принимаю условия <a href="/Page/Details/2" target="_blank">пользовательского соглашения</a></label></div>
             </form>
         </div>
 

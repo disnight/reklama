@@ -16,6 +16,7 @@ namespace Reklama.Models.Mappers
 
             Property(c => c.Name).IsUnicode().IsRequired().HasMaxLength(64);
             Property(c => c.CategoryId).IsRequired();
+            Property(c => c.isActive).IsRequired();
         }
     }
 }

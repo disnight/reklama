@@ -112,17 +112,31 @@
                             </div>
                             <div class="sellerText">
                                 @*<div>@Html.ActionLink(Model.User.ToString(), "Index", "Profile", new { id = Model.UserId }, new { @class = "user-info-link" })</div>*@
-                                @if (Model.IsDisplayPhone)
+                                @if (Model.Phone != null && !String.IsNullOrEmpty(Model.Phone.Trim()))
                                 {
                                     <p>
                                         Телефон:
                                         <b>@Model.Phone</b>
                                     </p>
                                 }
-                                @if (WebSecurity.CurrentUserId != -1)
+                                @if (Model.ContactName != null && !String.IsNullOrEmpty(Model.ContactName.Trim()))
+                                {
+                                    <p>
+                                        Имя:
+                                        <b>@Model.ContactName</b>
+                                    </p>
+                                }
+                                @if (Model.ContactEmail != null && !String.IsNullOrEmpty(Model.ContactEmail.Trim()))
+                                {
+                                    <p>
+                                        Email:
+                                        <b>@Model.ContactEmail</b>
+                                    </p>
+                                }
+                               @* @if (WebSecurity.CurrentUserId != -1)
                                 {
                                     <p>E-mail: @Model.User.Email</p>
-                                }
+                                }*@
                             </div>
                         </div>
 

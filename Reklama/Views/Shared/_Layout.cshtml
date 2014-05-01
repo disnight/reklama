@@ -141,7 +141,7 @@
                                 <td @((selectedSiteCategory == CategorySearch.Realty) ? "class=a" : "")><a href="http://jay.reklama.tm/">Недвижимость</a></td>
                                 <td @((selectedSiteCategory == CategorySearch.Announcement) ? "class=a" : "")>@Html.ActionLink("Объявления", "List", "Announcement")</td>
                                 <td @((selectedSiteCategory == CategorySearch.Auto) ? "class=a" : "")>@Html.ActionLink("Авто", "List", "Announcement", new { SectionId = 3 }, null)</td>
-                                <td @((selectedSiteCategory == CategorySearch.Article) ? "class=a" : "")>@Html.ActionLink("Статьи", "Index", "Article")</td>
+                                <td @((selectedSiteCategory == CategorySearch.Article) ? "class=a" : "")>@Html.ActionLink("Статьи", "Index", "Article", new{v = "1"}, new {})</td>
                                 @*<td class="f"><a href="javascript:void(0)">Форум</a></td>*@
                             </tr>
                         </table>

@@ -23,6 +23,9 @@
         <th>
             Новый?
         </th>
+        <th>
+            IsActive?
+        </th>
         <th></th>
     </tr>
 
@@ -36,6 +39,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.isNew)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isActive)
             </td>
             <td>
                 @Html.ActionLink("Редактировать", "ProductParamSecondCategoryEdit", new { id=item.Id }) |
