@@ -4557,7 +4557,7 @@ a.addToBook span {
             .registerInW .borderReg .rightText {
                 color: #4c4c4c;
                 font: 11px Arial;
-                left: 845px;
+                left: 765px;
                 float: none;
                 margin-right: 10px;
                 clear: none;
@@ -4659,7 +4659,7 @@ a.addToBook span {
         color: #4c4c4c;
         font: 12px Arial;
         padding: 3px 5px;
-        width: 810px;
+        width: 730px;
         background: url("/Images/System/regInpBg.png") repeat-x scroll 0 top #ffffff;
         border: 1px solid #C9D1D6;
     }
@@ -4685,7 +4685,7 @@ a.addToBook span {
 
     .registerInW .borderReg textarea {
         height: 122px;
-        width: 810px;
+        width: 730px;
         resize: none;
         overflow: auto;
         font: 12px Arial;
@@ -4720,7 +4720,7 @@ a.addToBook span {
     color: #4c4c4c;
     font: 11px Arial;
     width: 610px;
-    margin-left: 210px;
+    margin-left: 130px;
     margin-top: 4px;
     margin-bottom: -6px;
 }
