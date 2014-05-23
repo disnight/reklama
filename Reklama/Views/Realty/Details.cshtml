@@ -78,7 +78,8 @@
                                 Title = Model.Name,
                                 Description = Model.SmallDescription,
                                 ImageLink = (Model.Photos != null && Model.Photos.Count > 0) ? "http://reklama.tm" + string.Concat('/', Reklama.ProjectConfiguration.Get.FilePaths["users"] + Model.Photos.ElementAt(0).Link) : "/Images/System/logo1.png",
-                                Link = "http://reklama.tm" + Url.Action("Details", "Realty", new { id = Model.Id })
+                                Link = "http://reklama.tm" + Url.Action("Details", "Realty", new { id = Model.Id }),
+                                IsInline = true
                             })
                         </div>
                     </div>
@@ -86,7 +87,7 @@
                         <img class="selBtm" src="~/Images/System/selBtm.gif" />
                         <div class="sellerInfoL">
                             <div class="sellerPhoto">
-                                <img src="@((Model.UserProfile.AvatarLink != null) ? "/Images/Users/Avatars/" + Model.UserProfile.AvatarLink : "/Images/System/no_photo.png")" />
+                                <img src="@((Model.UserProfile.AvatarLink != null) ? "/Images/Users/Avatars/" + Model.UserProfile.AvatarLink : "/Images/System/userAv_large.png")" />
                             </div>
                             <div class="sellerText">
                                 @*<div>@Html.ActionLink(Model.UserProfile.ToString(), "Index", "Profile", new { id = Model.UserId }, new { @class = "user-info-link" })</div>*@
@@ -197,10 +198,22 @@
                         { <div class="pointY pointW">На каком этаже: @Model.Floor</div>}
                         @if (Model.CeillingHeight != null)
                         { <div class="pointY pointW">Высота потолков: @Model.CeillingHeight м</div>}
-                        <div class="@(Model.WithExtension != false ? "pointY" : "pointN")"><b>Пристройка</b></div>
-                        <div class="@(Model.WithBasement != false ? "pointY" : "pointN")"><b>Подвал</b></div>
-                        <div class="@(Model.WithGarage != false ? "pointY" : "pointN")"><b>Гараж</b></div>
-                        <div class="@(Model.WithGarden != false ? "pointY" : "pointN")"><b>Огород</b></div>
+                        @if (Model.WithExtension)
+                        {
+                            <div class="@(Model.WithExtension != false ? "pointY" : "pointN")">Пристройка</div>
+                        }
+                        @if (Model.WithBasement)
+                        {
+                            <div class="@(Model.WithBasement != false ? "pointY" : "pointN")">Подвал</div>
+                        }
+                        @if (Model.WithGarage)
+                        {
+                            <div class="@(Model.WithGarage != false ? "pointY" : "pointN")">Гараж</div>
+                        }
+                        @if (Model.WithGarden)
+                        {
+                            <div class="@(Model.WithGarden != false ? "pointY" : "pointN")">Огород</div>
+                        }
                         <div class="clear"></div>
                     </div>
                     @if (Model.Photos.Count() != 0)

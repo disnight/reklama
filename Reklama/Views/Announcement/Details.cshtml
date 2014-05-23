@@ -97,46 +97,35 @@
                                 Title = Model.Name,
                                 Description = Model.SmallDescription,
                                 ImageLink = (Model.Images != null && Model.Images.Count > 0) ? "http://reklama.tm" + string.Concat('/', Reklama.ProjectConfiguration.Get.FilePaths["users"] + Model.Images.ElementAt(0).Link) : "",
-                                Link = "http://reklama.tm" + Url.Action("Details", "Announcement", new { id = Model.Id })
+                                Link = "http://reklama.tm" + Url.Action("Details", "Announcement", new { id = Model.Id }),
+                                IsInline = true
                             })
                         </div>
                     </div>
-
-                    <div class="sellerInfo">
+                    
+       <div class="sellerInfo">
                         <img class="selBtm" src="/Images/System/selBtm.gif" />
 
 
                         <div class="sellerInfoL">
                             <div class="sellerPhoto">
-                                <img src="@((Model.User.AvatarLink != null) ? "/Images/Users/Avatars/" + Model.User.AvatarLink : "/Images/System/no_photo.png")" />
+                                <img src="@((Model.User.AvatarLink != null) ? "/Images/Users/Avatars/" + Model.User.AvatarLink : "/Images/System/userAv_large.png")" />
                             </div>
                             <div class="sellerText">
-                                @*<div>@Html.ActionLink(Model.User.ToString(), "Index", "Profile", new { id = Model.UserId }, new { @class = "user-info-link" })</div>*@
-                                @if (Model.Phone != null && !String.IsNullOrEmpty(Model.Phone.Trim()))
+                                <div><a href="#">@Model.ContactName</a></div>
+                                 @if (Model.Phone != null && !String.IsNullOrEmpty(Model.Phone.Trim()))
                                 {
                                     <p>
                                         Телефон:
-                                        <b>@Model.Phone</b>
+                                        <b><a href="tel:@Model.Phone">@Model.Phone</a></b>
                                     </p>
                                 }
-                                @if (Model.ContactName != null && !String.IsNullOrEmpty(Model.ContactName.Trim()))
-                                {
-                                    <p>
-                                        Имя:
-                                        <b>@Model.ContactName</b>
-                                    </p>
-                                }
+                               
                                 @if (Model.ContactEmail != null && !String.IsNullOrEmpty(Model.ContactEmail.Trim()))
                                 {
-                                    <p>
-                                        Email:
-                                        <b>@Model.ContactEmail</b>
-                                    </p>
+                                    <p>E-mail:<a href="mailto:@Model.ContactEmail">@Model.ContactEmail</a></p>
+                                    
                                 }
-                               @* @if (WebSecurity.CurrentUserId != -1)
-                                {
-                                    <p>E-mail: @Model.User.Email</p>
-                                }*@
                             </div>
                         </div>
 
@@ -208,7 +197,7 @@
 
 
                             <div class="UpAnnouncementBlock">
-                                @if (WebSecurity.CurrentUserId == Model.UserId || User.IsInRole("Administrator") || User.IsInRole("Moderator"))
+                                @if ((WebSecurity.CurrentUserId == Model.UserId && WebSecurity.CurrentUserId != -1) || User.IsInRole("Administrator") || User.IsInRole("Moderator") || ViewBag.IsUserCanEdit)
                                 {
                                     int upTimeHours = Reklama.ProjectConfiguration.Get.GetConfigValue("UpTimeAnnouncement").ToInt32(null);
                                     var time = DateTime.Now - Model.UpTime;

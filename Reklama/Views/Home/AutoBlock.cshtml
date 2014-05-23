@@ -26,7 +26,7 @@
                                 }
                                 else
                                 {
-                                    <img src="~/Images/System/no_photo.png" />
+                                    <img src="~/Images/System/no_photo_auto.png" />
                                 }
                             </a>
 
@@ -41,7 +41,18 @@
                                                                                                SectionName = auto.Category.Name
                                                                                            })
                             <p class="author">
-                                @Html.ActionLink(auto.User.Email, "Index", "Profile", new { id = auto.UserId }, null)
+                                @if (auto.UserId == -1)
+                                     {
+                                         if (!String.IsNullOrEmpty(auto.ContactEmail))
+                                         {
+                                             <a href="mailto:@auto.ContactEmail">@auto.ContactEmail</a>
+                                         }
+                                     }
+                                     else
+                                     {
+                                         @Html.ActionLink(auto.User.Email, "Index", "Profile", new { id = auto.UserId }, null)
+                                     }
+                                
                                 @string.Format("{0:dd.MM.yyyy HH:mm}", auto.CreatedAt)
                             </p>
                         </div>

@@ -160,25 +160,41 @@ namespace Reklama.Controllers
                 var id = _repository.Save(model, images);
                 if (id > 0 && WebSecurity.CurrentUserId == -1 && ProjectConfiguration.IsAnonymousUserAllowed)
                 {
-                    var compKey = Domain.Utils.FingerPrint.Value();
-                    var comp = _computerRepository.GetByComputerKey(compKey);
-                    int dbCompID;
-                    if (comp == null)
+                    if (System.Web.HttpContext.Current.Request.Cookies["announcements"] == null)
                     {
-                        dbCompID = _computerRepository.Save(new Computer
+                        var newCookie = new HttpCookie("announcements", id.ToString())
                         {
-                            Key = compKey
-                        });
+                            Expires = DateTime.Now.AddYears(1),
+                            Domain = ".reklama.tm"
+                        };
+                        HttpContext.Response.Cookies.Add(newCookie);
                     }
                     else
                     {
-                        dbCompID = comp.Id;
+                        var cookie = System.Web.HttpContext.Current.Request.Cookies["announcements"];
+                        cookie.Value += "," + id;
+                        cookie.Expires = DateTime.Now.AddYears(1);
+                        System.Web.HttpContext.Current.Response.AppendCookie(cookie);
                     }
-                    _computerAnnouncementRefRepository.Save(new ComputerAnnouncementRef
-                    {
-                        AnnouncementsId = id,
-                        ComputerId = dbCompID
-                    });
+                    //var compKey = Domain.Utils.FingerPrint.Value();
+                    //var comp = _computerRepository.GetByComputerKey(compKey);
+                    //int dbCompID;
+                    //if (comp == null)
+                    //{
+                    //    dbCompID = _computerRepository.Save(new Computer
+                    //    {
+                    //        Key = compKey
+                    //    });
+                    //}
+                    //else
+                    //{
+                    //    dbCompID = comp.Id;
+                    //}
+                    //_computerAnnouncementRefRepository.Save(new ComputerAnnouncementRef
+                    //{
+                    //    AnnouncementsId = id,
+                    //    ComputerId = dbCompID
+                    //});
                 }
 
                 return RedirectToAction("Details", "Announcement", new { Id = id });

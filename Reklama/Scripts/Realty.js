@@ -80,4 +80,43 @@
 	$("#regRad").bind('click', function () {
 	    window.location.href = "http://reklama.tm/Announcement/Create";
 	});
+    
+	$(document).on('keyup', "#Phone", function () {
+	    validateForm();
+	});
+
+	$(document).on('keyup', "#ContactEmail", function () {
+	    validateForm();
+	});
 });
+
+function validateForm() {
+    var result = true;
+
+    if (!ValidateTextInput("#Phone") && !ValidateTextInput("#ContactEmail")) {
+        $("#Phone").addClass("input-validation-error");
+        $("#ContactEmail").addClass("input-validation-error");
+        $("#emailandphone").show();
+        result = false;
+    } else {
+        $("#Phone").removeClass("input-validation-error");
+        $("#ContactEmail").removeClass("input-validation-error");
+        $("#emailandphone").hide();
+    }
+
+    if (result) {
+        $("#customErrorsContainer").hide();
+    } else {
+        $("#customErrorsContainer").show();
+    }
+
+    return result;
+}
+
+function ValidateTextInput(selector) {
+    var input = $(selector);
+    if (input && input.val() != "" && input.val().trim() != "") {
+        return true;
+    }
+    return false;
+}

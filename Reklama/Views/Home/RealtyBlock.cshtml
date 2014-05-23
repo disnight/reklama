@@ -27,7 +27,7 @@
                                 }
                                 else
                                 {
-                                    <img src="~/Images/System/no_photo.png" />
+                                    <img src="~/Images/System/no_photo_realty.png" />
                                 }
                             </a>
 
@@ -48,7 +48,17 @@
                                 }
                                 else
                                 {
-                                    @Html.ActionLink(realty.UserProfile.Email, "Index", "Profile", new { id = realty.UserId }, null)
+                                    if (realty.UserId == -1)
+                                     {
+                                         if (!String.IsNullOrEmpty(realty.ContactEmail))
+                                         {
+                                             <a href="mailto:@realty.ContactEmail">@realty.ContactEmail</a>
+                                         }
+                                     }
+                                     else
+                                     {
+                                         @Html.ActionLink(realty.ContactEmail, "Index", "Profile", new { id = realty.UserId }, null)
+                                     }
                                 }
                                 @string.Format("{0:dd.MM.yyyy HH:mm}", realty.CreatedAt)
                             </p>

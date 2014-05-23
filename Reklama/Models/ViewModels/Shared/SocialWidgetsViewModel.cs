@@ -11,5 +11,6 @@ namespace Reklama.Models.ViewModels.Shared
         public string Description { get; set; }
         public string Link { get; set; }
         public string ImageLink { get; set; }
+        public bool IsInline { get; set; }
     }
 }

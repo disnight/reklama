@@ -88,4 +88,67 @@
     $("#regRad2").bind('click', function () {
         window.location.href = "http://reklama.tm/Realty/Create";
     });
+    
+    $("select.requared").change(function () {
+        validateForm();
+    });
+
+    $(document).on('keyup', "#Phone", function () {
+        validateForm();
+    });
+
+    $(document).on('keyup', "#ContactEmail", function () {
+        validateForm();
+    });
+
 });
+
+function validateForm() {
+    var result = true;
+
+    if (!ValidateTextInput("#Phone") && !ValidateTextInput("#ContactEmail")) {
+        $("#Phone").addClass("input-validation-error");
+        $("#ContactEmail").addClass("input-validation-error");
+        $("#emailandphone").show();
+        result = false;
+    } else {
+        $("#Phone").removeClass("input-validation-error");
+        $("#ContactEmail").removeClass("input-validation-error");
+        $("#emailandphone").hide();
+    }
+
+    if (!ValidateSelectInput('#newSectionId')) {
+        $("#newSectionId").addClass("input-validation-error");
+        $("#sectionError").show();
+        result = false;
+    } else {
+        $("#newSectionId").removeClass("input-validation-error");
+        $("#sectionError").hide();
+    }
+
+
+
+    if (result) {
+        $("#customErrorsContainer").hide();
+    } else {
+        $("#customErrorsContainer").show();
+    }
+
+    return result;
+}
+
+function ValidateTextInput(selector) {
+    var input = $(selector);
+    if (input && input.val() != "" && input.val().trim() != "") {
+        return true;
+    }
+    return false;
+}
+
+function ValidateSelectInput(selector) {
+    if ($(selector).val() && $(selector).val() != "") {
+        return true;
+    } else {
+        return false;
+    }
+}

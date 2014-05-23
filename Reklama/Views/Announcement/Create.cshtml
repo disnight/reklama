@@ -9,7 +9,8 @@
 }
 
 <style>
-    input.input-validation-error + label {
+    input.input-validation-error + label
+    {
         border: 1px solid #E80C4D !important;
     }
 </style>
@@ -20,7 +21,6 @@
         <div class="registerInW">
             @using (Html.BeginForm())
             {
-                @Html.ValidationSummary(true)
                 <div class="borderReg head">
                     <div class="fieldItem">
                         <span class="field-title">Раздел сайта:</span>
@@ -28,7 +28,7 @@
                             for="regRad">объявления</label>
                         <input class="regRad" id="regRad2" name="regRad" type="radio" value="" /><label for="regRad2">недвижимость</label>
                     </div>
-                    <div  class="fieldItem">
+                    <div class="fieldItem">
                         <span class="field-title">@Html.LabelFor(c => c.CategoryId)</span>
                         <div id="CategoryButtons">
                             @foreach (var item in (SelectList)ViewBag.Categories)
@@ -41,16 +41,16 @@
                                 </div>
                             }
                             @Html.ValidationMessageFor(s => s.CategoryId)
-                            
+
                             <div style="clear: both; padding: 0; height: 0; min-height: 0;"></div>
                         </div>
 
                     </div>
                     <div class="fieldItem">
-                        <input type="hidden" id="SectionId" value="0"/>
-                    <input type="hidden" id="SubsectionId" value="0"/>
+                        <input type="hidden" id="SectionId" value="0" />
+                        <input type="hidden" id="SubsectionId" value="0" />
                         <span class="field-title">@Html.LabelFor(s => s.SectionId)</span>
-                        <select id="newSectionId" name="newSectionId" >
+                        <select id="newSectionId" name="newSectionId" class="requared">
                             <option value="">Выбирете раздел</option>
                             @foreach (var item in (List<GroupedSelectList>)ViewBag.Sections)
                             {
@@ -63,7 +63,7 @@
                             }
                         </select>
                         @* @Html.DropDownList("SectionId", (SelectList)ViewBag.Sections, new { @class = "SectionList" })
-                        @Html.ValidationMessageFor(s => s.SectionId)*@
+                        @Html.ValidationMessageFor(s => s.SubsectionId)*@
                     </div>
                     <div class="fieldItem">
                         <span class="field-title">@Html.LabelFor(s => s.CityId)</span>
@@ -128,7 +128,7 @@
                     <div class="fieldItem">
                         <div class="regBrown label-container">@Html.LabelFor(n => n.Phone)</div>
                         @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1" })
-                        <div class="rightText">@Html.ValidationMessageFor(n => n.Name)</div>
+                        <div class="rightText"></div>
                     </div>
                     <div class="fieldItem">
                         <div class="regBrown label-container">@Html.LabelFor(n => n.ContactEmail)</div>
@@ -142,17 +142,30 @@
                         @Html.Partial("_FileUpload")
                     </div>
                 </div>
-                
+                <div class="borderReg">
+                    <div class="fieldItem">
+                        @Html.ValidationSummary()
+                        <div style="display: none;" id="customErrorsContainer" class="validation-summary-errors">
+                            <ul id="customErrors">
+                                <li id="sectionError">Поле 'Раздел' обязательно для заполнения</li>
+                                <li id="emailandphone">Нужно обязательно заполнить поле телефон или Email</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 @Html.AntiForgeryToken()
                 <div class="regBtm">
 
                     @*<a href="javascript:void(0)">Предварительный просмотр</a>*@
-                    <input class="regBut2" type="submit" value="" id="createSubmit" />
+                    <input class="regBut2" type="submit" value="" id="createSubmit" onclick="return validateForm();" />
                     <p>
                         Время размещения с @string.Format("{0:dd.MM.yyyy}", DateTime.Now) до @string.Format("{0:dd.MM.yyyy}", DateTime.Now.AddDays(ProjectConfiguration.Get.GetConfigValue("ExpiredAtAnnouncement").ToInt32(null)))
                     </p>
                 </div>
-                <div class="rules"><input type="checkbox" class="checkbox-input" checked="checked" id="rules"> <label class="checkbox-label" for="rules">я принимаю условия <a href="/Page/Details/2" target="_blank">пользовательского соглашения</a></label></div>
+                <div class="rules">
+                    <input type="checkbox" class="checkbox-input" checked="checked" id="rules">
+                    <label class="checkbox-label" for="rules">я принимаю условия <a href="/Page/Details/2"
+                        target="_blank">пользовательского соглашения</a></label></div>
             }
         </div>
     </div>
@@ -160,11 +173,13 @@
 <div class="middleBot"></div>
 
 @section Scripts {
+
+
     @Scripts.Render("~/bundles/jqueryval")
- 
+
     @Scripts.Render("~/Scripts/Announcement.js")
     @Styles.Render("~/Content/Announcement.css")
-} 
+}
 
 @*  @Scripts.Render("~/Scripts/ajaxupload.js")*@
 @*@Scripts.Render("~/Scripts/tinymce/tinymce.min.js")*@

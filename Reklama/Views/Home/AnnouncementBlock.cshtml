@@ -41,7 +41,18 @@
                                                                                                SectionName = announcement.Category.Name
                                                                                            })
                             <p class="author">
-                                @Html.ActionLink(announcement.User.Email, "Index", "Profile", new { id = announcement.UserId }, null)
+                                @if (announcement.UserId == -1)
+                                {
+                                    if (!String.IsNullOrEmpty(announcement.ContactEmail))
+                                    {
+                                        <a href="mailto:@announcement.ContactEmail">@announcement.ContactEmail</a>
+                                    }
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(announcement.User.Email, "Index", "Profile", new { id = announcement.UserId }, null)
+                                }
+                                
                                 @string.Format("{0:dd.MM.yyyy HH:mm}", announcement.CreatedAt)
                             </p>
                         </div>

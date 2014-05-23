@@ -26,22 +26,38 @@ namespace Reklama.Services
 
         public bool IsUserCanEdit(int announcementID)
         {
-            var compKey = Domain.Utils.FingerPrint.Value();
-            return _computerRepository.Read()
-                    .Any(
-                        q =>
-                            q.Key.Equals(compKey) &&
-                            q.ComputerAnnouncementRefs.Any(w => w.AnnouncementsId == announcementID));
+            var cookie = HttpContext.Current.Request.Cookies["announcements"];
+            if (cookie != null && !String.IsNullOrEmpty(cookie.Value))
+            {
+                var arr = cookie.Value.Split(',');
+                return arr.Contains(announcementID.ToString());
+            }
+
+            return false;
+            //var compKey = Domain.Utils.FingerPrint.Value();
+            //return _computerRepository.Read()
+            //        .Any(
+            //            q =>
+            //                q.Key.Equals(compKey) &&
+            //                q.ComputerAnnouncementRefs.Any(w => w.AnnouncementsId == announcementID));
         }
 
         public bool IsUserCanEditRealty(int realtyID)
         {
-            var compKey = Domain.Utils.FingerPrint.Value();
-            return _computerRepository.Read()
-                    .Any(
-                        q =>
-                            q.Key.Equals(compKey) &&
-                            q.ComputerRealtyRefs.Any(w => w.RealtyId == realtyID));
+            var cookie = HttpContext.Current.Request.Cookies["realties"];
+            if (cookie != null && !String.IsNullOrEmpty(cookie.Value))
+            {
+                var arr = cookie.Value.Split(',');
+                return arr.Contains(realtyID.ToString());
+            }
+
+            return false;
+            //var compKey = Domain.Utils.FingerPrint.Value();
+            //return _computerRepository.Read()
+            //        .Any(
+            //            q =>
+            //                q.Key.Equals(compKey) &&
+            //                q.ComputerRealtyRefs.Any(w => w.RealtyId == realtyID));
         }
     }
 }

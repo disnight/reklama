@@ -29,7 +29,6 @@ namespace Domain.Entity.Realty
         public bool IsDisplayPhone { get; set; }
 
         [Display(Name = "Телефон")]
-        [StringLength(32, ErrorMessage = "Максимальная длина поля - 32 символа")]
         public string Phone { get; set; }
 
         [Display(Name = "'Высота потолков'")]
@@ -61,7 +60,7 @@ namespace Domain.Entity.Realty
         [Display(Name = "Имя (по желанию)")]
         public string ContactName { get; set; }
 
-        [Display(Name = "E-mail (по желанию)")]
+        [Display(Name = "E-mail")]
         public string ContactEmail { get; set; }
 
         //[StringLength(128, ErrorMessage = "Длина поля 'Заголовок' не должна быть меньше 4 и больше 180 символов", MinimumLength = 4)]

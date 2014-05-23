@@ -11,7 +11,7 @@ namespace Domain.Entity.Shared
     public class SearchProviderEntity: BaseEntity
     {
         [AllowHtml]
-        [Required(ErrorMessage = "Поле 'Имя' обязательно для заполнения")]
+        [Required(ErrorMessage = "Поле 'Название' обязательно для заполнения")]
         [StringLength(180, ErrorMessage = "Минимальная длина - 6, максимальная - 180 символов", MinimumLength = 6)]
         [Display(Name = "Название")]
         public string Name { get; set; }

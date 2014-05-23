@@ -56,13 +56,12 @@ namespace Domain.Entity.Announcements
         public bool IsDisplayPhone { get; set; }
 
         [Display(Name = "Телефон")]
-        [StringLength(32, ErrorMessage = "Максимальная длина поля - 32 символа")]
         public string Phone { get; set; }
 
         [Display(Name = "Имя (по желанию)")]
         public string ContactName { get; set; }
 
-        [Display(Name = "E-mail (по желанию)")]
+        [Display(Name = "E-mail")]
         public string ContactEmail { get; set; }
 
         [ForeignKey("SectionId")]

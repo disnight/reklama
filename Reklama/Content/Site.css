@@ -1,4 +1,3 @@
-
 @import url(reset.css);
 
 html,body{height:100%;margin:0;padding:0;}
@@ -2929,12 +2928,12 @@ a {
 
 .itemInfoTopL {
     float: left;
-    width: 70%;
+    width: 83%;
 }
 
     .itemInfoTopL div {
         float: left;
-        width: 90%;
+        width: 100%;
         color: #404041;
         font: 18px Arial;
         margin-left: 18px;
@@ -3018,6 +3017,10 @@ a.addToBook span {
     float: right;
     margin-top: 20px;
     width:60%;
+}
+.inline.itemInfoSoc {
+    width: auto;
+    padding-right: 10px;
 }
 .itemInfoSoc table td{vertical-align:middle!important;}
 .itemInfoSoc {
@@ -4951,6 +4954,7 @@ a.addToBook span {
     float: left;
     width: 44%;
     margin-right: 2%;
+    text-align: center;
 }
 
 .search .ialImg {
@@ -4963,8 +4967,8 @@ a.addToBook span {
 }
 
 .ialImg img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 275px;
 }
 
 .ialText {
@@ -6888,6 +6892,18 @@ span.tell{
 	position: absolute; 
 	top:-20px; 
 	left:0;
+}
+
+.inline span.tell{
+	color: #004BB9;
+	font: 11px Arial;
+    position: relative;
+    top: 0;
+    display: inline-block;
+    padding-top: 7px;
+    padding-right: 5px;
+    float: left;
+    
 }
 
 /* кнопка в положении бесплатного поднятия объявления*/

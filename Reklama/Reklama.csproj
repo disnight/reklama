@@ -203,6 +203,7 @@
     <Compile Include="Controllers\LinksController.cs" />
     <Compile Include="Controllers\ShopCommentController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Core\Routing\SubdomainRouting.cs" />
     <Compile Include="Core\UploadImages\ImageProvider.cs" />
     <Compile Include="DomainData.cs" />
     <Compile Include="DomainRoute.cs" />
