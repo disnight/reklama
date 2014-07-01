@@ -5,7 +5,7 @@
     ViewBag.Title = "Редактирование объявления";
 }
 
-<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+@*<script src="~/Scripts/jquery-1.7.1.min.js"></script>*@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
@@ -20,7 +20,7 @@
                         <span class="field-title">Лицо:</span>
                         @Html.RadioButtonFor(x => x.IsAgency, false, new { Class = "Personal", Checked = "checked" })
                         частное
-                    @Html.RadioButtonFor(x => x.IsAgency, true, new { Class = "Agency" }) агенство
+                        @Html.RadioButtonFor(x => x.IsAgency, true, new { Class = "Agency" }) агенство
                     </div>
                     <div class="fieldItem" id="AgencyNameDiv" hidden>
                         <div class="rightText">
@@ -101,16 +101,17 @@
                         <div class="rightText">Заголовок - самая заметная часть объявления.<br /> @Html.ValidationMessageFor(x => x.Name)</div>
                     </div>  
 
-                    <div class="fieldItem">
+                    <div class="fieldItem message-container">
                         <div class="label-container">Подробное описание:</div>
-                        @Html.TextAreaFor(x => x.Description)
+                         @Html.HiddenFor(m => m.Description, new { @id = "hfDesc" })
+                        <textarea class="message">@Html.Raw(Model.Description)</textarea>
                         <p>не более 1800 символов</p>
                         <div class="rightText">Покупатель не захочет собирать дополнительную информацию о нужном ему товаре и сразу купит у вас. Кроме того, подробное описание товара оставляет хорошее впечатление о продавце - покупатель будет спокоен. <br /> @Html.ValidationMessageFor(x => x.Description)</div>
                     </div>
 
                     <div class="fieldItem">
                         <div class="regBrown label-container">Краткое описание:</div>
-                        <div>@Html.TextAreaFor(x => x.SmallDescription)</div>
+                        <div>@Html.TextAreaFor(x => x.SmallDescription, new { @class = "desc" } )</div>
                         <p>не более 600 символов</p>
                         <div class="rightText">Краткое описание позволит пользователю сразу сориентироваться в сущности объявления. Старайтесь писать кратко и лаконично, не нужно путать краткое описание с подробным. <br /> @Html.ValidationMessageFor(x => x.SmallDescription)</div>
                     </div>
@@ -121,16 +122,16 @@
 
                     <div class="fieldItem">
                         <div class="regRed label-container">Цена:</div>
-                        @Html.TextBoxFor(x => x.Price, new { Class = "regInp1" })
+                        @Html.TextBoxFor(x => x.Price, "{0:0.####}", new { Class = "regInp1" })
                         @Html.DropDownListFor(x => x.CurrencyId, new SelectList(ViewBag.Currencies, "Id", "Name"), new { Class = "pType" })
                         <p class="check">@Html.CheckBoxFor(x => x.IsAuction)<label for="pertin">Торг уместен</label></p><br />
                         <div class="rightText">Если вы не укажете реальную стоимость, при сортировке по цене, покупатель не найдет ваше объявление. Цена  «1 у.е.»  отпугивает покупателя своей несерьезностью. <br /> @Html.ValidationMessageFor(x => x.Price) </div>
                     </div>
                     <div class="fieldItem">
-                            <div class="regBrown label-container">@Html.LabelFor(n => n.Phone)</div>
-                            @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1" })
-                            <div class="rightText">@Html.ValidationMessageFor(n => n.Name)</div>
-                        </div>
+                        <div class="regBrown label-container">@Html.LabelFor(n => n.Phone)</div>
+                        @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1" })
+                        <div class="rightText">@Html.ValidationMessageFor(n => n.Name)</div>
+                    </div>
                     <div class="fieldItem">
                         <div class="regBrown label-container">@Html.LabelFor(n => n.ContactName)</div>
                         @Html.TextBoxFor(model => model.ContactName, new { @class = "regInp1" })
@@ -171,7 +172,7 @@
                                 }
                             }
                         </div>*@
-                         @Html.Partial("_FileUpload")
+                        @Html.Partial("_FileUpload")
                     </div>
 
                 </div>
@@ -188,9 +189,44 @@
     </div>
     <div class="middleBot"></div>
 </div>
+
+<script>
+    var desc = 'textarea.desc';
+    var limit = 100;
+
+    jQuery(document).ready(function () {
+        jQuery('.message').jqte({
+            change: function () {
+                var s = jQuery(".message-container .jqte_editor").html();
+                jQuery("#hfDesc").val(s);
+
+                if (!$(desc).hasClass('active')) {
+                    //var s = $(this).val();
+                    while (s.indexOf("\n") > -1)
+                        s = s.replace("\n", " ");
+                    s = $.removeTags(s);
+                    $(desc).val(s);
+                    var text = $(desc).val();
+                    var chars = text.length;
+                    if (chars > limit) {
+                        var new_text = text.substr(0, limit);
+                        $(desc).val(new_text);
+                    }
+                }
+
+            }
+        });
+
+    });
+
+
+</script>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
    @* @Scripts.Render("~/Scripts/ajaxupload.js")*@
     @Scripts.Render("~/Scripts/RealtyEdit.js")
     @Scripts.Render("~/Scripts/Preview.js")
+@Scripts.Render("~/Scripts/jquery-te-1.4.0.min.js")
+@Styles.Render("~/Content/jquery-te-1.4.0.css")
 }

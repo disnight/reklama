@@ -209,15 +209,33 @@
                             }
                         </ul>
                     </div>
-
-                    <div class="pages">
+                    if (Model.PageCount > 1)
+                     {
+                         <div class="pages">
                         <ul class="fastNav">
                             <img class="fastNavL" src="/Images/System/fastNavL.png" />
                             <img class="fastNavR" src="/Images/System/fastNavR.png" />
                             <a class="page-prev" href="javascript:void(0)"></a>
-                            <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
+                            
 
-                            @for (int page = 1; page <= Model.PageCount; page++)
+                            @for (int page = 1; page <= Model.PageCount && page <= 7; page++)
+                            {
+                                <li>
+                                    @Html.ActionLink(page.ToString(), "Index", new {
+                                            SubsectionId = sortModel.SubsectionId,
+                                            PageSize = sortModel.PageSize,
+                                            CurrentPage = page
+                                        }, new {@class = "hr"})
+                                </li>
+                            }
+                            
+                            @if (Model.PageCount > 14)
+                            {
+                                <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a>
+                                </li>
+                            }
+                            
+                            @for (int page = Model.PageCount - 6; page <= Model.PageCount && page > 7; page++)
                             {
                                 <li>
                                     @Html.ActionLink(page.ToString(), "Index", new {
@@ -246,11 +264,13 @@
                                     }
                                 </ul>
                             </div>
-                            <div class="alHScrollBar">
+                            @*<div class="alHScrollBar">
                                 <div class="alHScrollSlider" style="left: 0px;"></div>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
+                     }
+                    
 
                 }   
                 catch (Exception e){}

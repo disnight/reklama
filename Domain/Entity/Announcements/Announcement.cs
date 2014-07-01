@@ -25,7 +25,7 @@ namespace Domain.Entity.Announcements
         [DataType(DataType.Currency, ErrorMessage = "Должно быть введено вещественное число")]
         [Display(Name = "Цена")]
 		[Column(TypeName = "money")]
-        [DisplayFormat(DataFormatString = "{0:c2}")]
+        [DisplayFormat(DataFormatString = "{0:0.####}")]
         public decimal? Price { get; set; }
 
         [Required(ErrorMessage = "Выберите раздел")]

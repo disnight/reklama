@@ -5,7 +5,7 @@
     ViewBag.Title = "Создание нового объявления";
 }
 
-<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+@*<script src="~/Scripts/jquery-1.7.1.min.js"></script>*@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
@@ -110,15 +110,15 @@
                         @Html.ValidationMessageFor(x => x.CeillingHeight)
                     </div>
                 
-                <div class="fieldItem">
-                    <span class="field-title">Дополнительно:</span>
-                    @Html.CheckBoxFor(x => x.WithExtension, new {id = "addit1", @class="checkbox-input"})<label class="checkbox-label" for="addit1">с пристройкой</label>
-                    @Html.CheckBoxFor(x => x.WithBasement, new {id = "addit2", @class="checkbox-input"})<label class="checkbox-label" for="addit2">с подвалом</label>
-                    @Html.CheckBoxFor(x => x.WithGarage, new {id = "addit3", @class="checkbox-input"})<label class="checkbox-label" for="addit3">с гаражом</label>
-                    @Html.CheckBoxFor(x => x.WithGarden, new {id = "addit4", @class="checkbox-input"})<label class="checkbox-label" for="addit4">с огородом</label>
+                    <div class="fieldItem">
+                        <span class="field-title">Дополнительно:</span>
+                        @Html.CheckBoxFor(x => x.WithExtension, new {id = "addit1", @class="checkbox-input"})<label class="checkbox-label" for="addit1">с пристройкой</label>
+                        @Html.CheckBoxFor(x => x.WithBasement, new {id = "addit2", @class="checkbox-input"})<label class="checkbox-label" for="addit2">с подвалом</label>
+                        @Html.CheckBoxFor(x => x.WithGarage, new {id = "addit3", @class="checkbox-input"})<label class="checkbox-label" for="addit3">с гаражом</label>
+                        @Html.CheckBoxFor(x => x.WithGarden, new {id = "addit4", @class="checkbox-input"})<label class="checkbox-label" for="addit4">с огородом</label>
 
-                </div>
                     </div>
+                </div>
                 <div class="borderReg">
 
                     <div class="fieldItem">
@@ -129,9 +129,10 @@
                             @Html.ValidationMessageFor(x => x.Name)</div>
                     </div>
                     
-                    <div class="fieldItem">
+                    <div class="fieldItem message-container">
                         <div class="label-container">Подробное описание:</div>
-                        @Html.TextAreaFor(x => x.Description, new { @class = "message" })
+                        @Html.HiddenFor(m => m.Description, new { @id = "hfDesc" })
+                        <textarea class="message"></textarea>
                         <p>не более 1800 символов</p>
                         <div class="rightText">Покупатель не захочет собирать дополнительную информацию о нужном ему товаре и сразу купит у вас. Кроме того, подробное описание товара оставляет хорошее впечатление о продавце - покупатель будет спокоен.
                             <br />
@@ -168,7 +169,7 @@
                         @Html.TextBoxFor(model => model.ContactName, new { @class = "regInp1" })
                         <div class="rightText"></div>
                     </div>
-                     <div class="fieldItem">
+                    <div class="fieldItem">
                         <div class="regBrown label-container">@Html.LabelFor(n => n.Phone)</div>
                         @Html.TextBoxFor(model => model.Phone, new { @class = "regInp1" })
                         <div class="rightText"></div>
@@ -179,11 +180,11 @@
                         <div class="rightText"></div>
                     </div>
                 </div>
-            <div class="borderReg">
+                <div class="borderReg">
 
-                <div class="fieldItem">
-                    <span class="field-title">Фотографии:</span>
-                    @* <div>
+                    <div class="fieldItem">
+                        <span class="field-title">Фотографии:</span>
+                        @* <div>
                             <input class="regBut1" type="button" value="" />jpeg, png, gif не более 1MB
                         </div>
                         <img id="load" class="unvisible" />
@@ -206,10 +207,10 @@
                                 }
                             }
                         </div>*@
-                    @Html.Partial("_FileUpload")
-                </div>
+                        @Html.Partial("_FileUpload")
+                    </div>
 
-            </div>
+                </div>
                 <div class="borderReg">
                     <div class="fieldItem">
                         @Html.ValidationSummary()
@@ -220,7 +221,7 @@
                         </div>
                     </div>
                 </div>
-               @* <div id="image_fields"></div>*@
+                @* <div id="image_fields"></div>*@
                 @Html.AntiForgeryToken()
                 <div class="regBtm">
                     <p>
@@ -235,10 +236,46 @@
     </div>
     <div class="middleBot"></div>
 </div>
+
+<script>
+    var desc = 'textarea.desc';
+    var limit = 100;
+
+    jQuery(document).ready(function () {
+        jQuery('.message').jqte({
+            change: function () {
+                var s = jQuery(".message-container .jqte_editor").html();
+                jQuery("#hfDesc").val(s);
+
+                if (!$(desc).hasClass('active')) {
+                    //var s = $(this).val();
+                    while (s.indexOf("\n") > -1)
+                        s = s.replace("\n", " ");
+                    s = $.removeTags(s);
+                    $(desc).val(s);
+                    var text = $(desc).val();
+                    var chars = text.length;
+                    if (chars > limit) {
+                        var new_text = text.substr(0, limit);
+                        $(desc).val(new_text);
+                    }
+                }
+
+            }
+        });
+
+    });
+
+
+</script>
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
    @* @Scripts.Render("~/Scripts/ajaxupload.js")*@
     @Scripts.Render("~/Scripts/Realty.js")
+@Scripts.Render("~/Scripts/jquery-te-1.4.0.min.js")
+@Styles.Render("~/Content/jquery-te-1.4.0.css")
 
  
 }

@@ -232,14 +232,14 @@
         $(".prodListIn ul").css("width", 112*siz2+"px"); 
 
     
-        if($(".itemPicsList2").size()){
-        $('.itemPicsList2').jcarousel({
-            buttonNextHTML: "<a></a>",
- 	        buttonPrevHTML: "<a></a>",
-            visible:1, 
-            scroll:1
-        });
-        }; 
+        //if($(".itemPicsList2").size()){
+        //$('.itemPicsList2').jcarousel({
+        //    buttonNextHTML: "<a></a>",
+ 	    //    buttonPrevHTML: "<a></a>",
+        //    visible:1, 
+        //    scroll:1
+        //});
+        //}; 
         
         if($(".itemPicsList").size()){
         jQuery(".itemPicsList").tinyscrollbar({ axis: 'x',size: 760, sizethumb: 38});

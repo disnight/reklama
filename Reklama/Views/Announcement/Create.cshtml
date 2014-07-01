@@ -82,9 +82,10 @@
                             Заголовок - самая заметная часть объявления.<br />@Html.ValidationMessageFor(n => n.Name)
                         </div>
                     </div>
-                    <div class="fieldItem">
+                    <div class="fieldItem message-container">
                         <div class="label-container">@Html.LabelFor(m => m.Description)</div>
-                        @Html.TextAreaFor(m => m.Description, new { @class = "message" })
+                        @Html.HiddenFor(m => m.Description, new { @id = "hfDesc" })
+                        <textarea class="message"></textarea>
                         <p>не более 1800 символов</p>
                         <div class="rightText">
                             Покупатель не захочет собирать дополнительную информацию о нужном ему товаре и сразу
@@ -94,7 +95,7 @@
                         </div>
 
                     </div>
-                    <div class="fieldItem">
+                    <div class="fieldItem desc-container">
                         <div class="label-container">@Html.LabelFor(m => m.SmallDescription)</div>
                         @Html.TextAreaFor(m => m.SmallDescription, new { @class = "desc" })
                         <p>не более 255 символов</p>
@@ -172,14 +173,48 @@
 </div>
 <div class="middleBot"></div>
 
+
+
+<script>
+    var desc = 'textarea.desc';
+    var limit = 100;
+    
+    jQuery(document).ready(function () {
+        jQuery('.message').jqte({
+            change: function () {
+                var s = jQuery(".message-container .jqte_editor").html();
+                jQuery("#hfDesc").val(s);
+              
+                if (!$(desc).hasClass('active')) {
+                    //var s = $(this).val();
+                    while (s.indexOf("\n") > -1)
+                        s = s.replace("\n", " ");
+                    s = $.removeTags(s);
+                    $(desc).val(s);
+                    var text = $(desc).val();
+                    var chars = text.length;
+                    if (chars > limit) {
+                        var new_text = text.substr(0, limit);
+                        $(desc).val(new_text);
+                    }
+                }
+
+            }
+        });     
+       
+    });
+
+    
+</script>
 @section Scripts {
 
 
     @Scripts.Render("~/bundles/jqueryval")
 
     @Scripts.Render("~/Scripts/Announcement.js")
+    @Scripts.Render("~/Scripts/jquery-te-1.4.0.min.js")
     @Styles.Render("~/Content/Announcement.css")
-}
+    @Styles.Render("~/Content/jquery-te-1.4.0.css")
 
-@*  @Scripts.Render("~/Scripts/ajaxupload.js")*@
-@*@Scripts.Render("~/Scripts/tinymce/tinymce.min.js")*@
+
+}

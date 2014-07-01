@@ -56,9 +56,71 @@
                         <img class="fastNavL" src="/Images/System/fastNavL.png" />
                         <img class="fastNavR" src="/Images/System/fastNavR.png" />
                         <a class="page-prev" href="javascript:void(0)"></a>
-                        <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
 
-                        @for (int page = 1; page <= Model.PageCount; page++)
+                        @for (int page = 1; page <= Model.PageCount && page <= 7; page++)
+                        {
+                            <li>
+
+                                @if (page == Model.PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "Search", new
+                                                                            {
+                                                                                // SearchViewModel
+                                                                                Name = searchModel.Name,
+                                                                                Category = CategorySearch.Article,
+                                                                                OnlyByName = searchModel.OnlyByName,
+
+                                                                                IsEnabledFilter = searchModel.IsEnabledFilter,
+                                                                                CityId = searchModel.CityId,
+                                                                                PriceStart = searchModel.PriceStart,
+                                                                                PriceEnd = searchModel.PriceEnd,
+                                                                                HasPhoto = searchModel.HasPhoto,
+                                                                                HasAuction = searchModel.HasAuction,
+                                                                                SortOrder = searchModel.SortOptions,
+                                                                                SortOptions = searchModel.SortOptions,
+                                                                                SectionId = searchModel.SectionId,
+                                                                                SubsectionId = searchModel.SubsectionId,
+                                                                                CategoryId = searchModel.CategoryId,
+                                                                                CurrentPage = page,
+                                                                                PageSize = searchModel.PageSize
+                                                                            },
+                                                                            new { @class = "hr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "Search", new
+                                                                            {
+
+                                                                                // SearchViewModel
+                                                                                Name = searchModel.Name,
+                                                                                Category = CategorySearch.Article,
+                                                                                OnlyByName = searchModel.OnlyByName,
+
+                                                                                IsEnabledFilter = searchModel.IsEnabledFilter,
+                                                                                CityId = searchModel.CityId,
+                                                                                PriceStart = searchModel.PriceStart,
+                                                                                PriceEnd = searchModel.PriceEnd,
+                                                                                HasPhoto = searchModel.HasPhoto,
+                                                                                HasAuction = searchModel.HasAuction,
+                                                                                SortOrder = searchModel.SortOptions,
+                                                                                SortOptions = searchModel.SortOptions,
+                                                                                SectionId = searchModel.SectionId,
+                                                                                SubsectionId = searchModel.SubsectionId,
+                                                                                CategoryId = searchModel.CategoryId,
+                                                                                CurrentPage = page,
+                                                                                PageSize = searchModel.PageSize
+                                                                            })
+                                }
+                            </li>
+                        }
+                        
+                        @if (Model.PageCount > 14)
+                        {
+                            <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a>
+                            </li>
+                        }
+                        
+                        @for (int page = Model.PageCount - 6; page <= Model.PageCount && page > 7; page++)
                         {
                             <li>
 
@@ -178,9 +240,9 @@
                                 }
                             </ul>
                         </div>
-                        <div class="alHScrollBar">
+                        @*<div class="alHScrollBar">
                             <div class="alHScrollSlider" style="left: 0px;"></div>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             </td>

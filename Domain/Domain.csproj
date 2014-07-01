@@ -132,6 +132,7 @@
     <Compile Include="Entity\Shared\PrivateMessage.cs" />
     <Compile Include="Entity\Shared\SearchProviderEntity.cs" />
     <Compile Include="Entity\Shared\UserProfile.cs" />
+    <Compile Include="Enums\BannerTypes.cs" />
     <Compile Include="Enums\CategorySearch.cs" />
     <Compile Include="Enums\ImagesType.cs" />
     <Compile Include="Enums\MenuPositionsStruct.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Repository\Shared\IPrivateMessageRepository.cs" />
     <Compile Include="Repository\Shared\IProfileRepository.cs" />
     <Compile Include="Repository\Shared\IRepository.cs" />
+    <Compile Include="Utils\Helper.cs" />
     <Compile Include="Utils\UniqueCompIDUtil.cs" />
   </ItemGroup>
   <ItemGroup>

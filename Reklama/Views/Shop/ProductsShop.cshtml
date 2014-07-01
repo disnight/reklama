@@ -12,7 +12,8 @@
                 <div class="persLogo">
                     <img src="@( ViewBag.Shop.ImageLogo != null ? "/Images/Catalog/ShopLogos/" + ViewBag.Shop.ImageLogo : "")" />
                 </div>
-                <p class="persLink">@Html.ActionLink("Страница на сайте", "Details", "Shop", new { id = ViewBag.Shop.Id }, null)</p>
+                <p class="persLink">@Html.ActionLink("Страница на сайте", "Details", "Shop", new { id = ViewBag.Shop.Id }, null)
+                </p>
                 @*<p class="persTitleL">Заказать услугу</p>
                 <input type="button" class="adOnSite" value="Реклама на сайте" />
                 <input type="button" class="premiumProd" value="Премиум товар" />*@
@@ -110,7 +111,7 @@
                                                     <td class="ppInfo">
                                                         <img src="/@String.Concat(Reklama.ProjectConfiguration.Get.FilePaths["product_thumb"], "/", item.Product.Image)" />
                                                         <span>@Html.ActionLink(@item.Product.Name, "Details", "Product", new { id = item.ProductId }, null)</span>
-                                                        <input type="text" value="@Math.Round(((decimal)item.Price), 2).ToString("f2", System.Globalization.CultureInfo.InvariantCulture)" style="float:right"/>
+                                                        <input type="text" value="@Math.Round(((decimal)item.Price), 2).ToString("0.#####", System.Globalization.CultureInfo.InvariantCulture)" style="float:right"/>
                                                     </td>
                                                     <td class="ppMargin"></td>
                                                     <td class="ppChange">
@@ -131,9 +132,45 @@
                                         <img class="fastNavL" src="/Images/System/fastNavL.png" />
                                         <img class="fastNavR" src="/Images/System/fastNavR.png" />
                                         <a class="page-prev" href="javascript:void(0)"></a>
-                                        <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
 
-                                        @for (int page = 1; page <= Model.PageCount; page++)
+                                        @for (int page = 1; page <= Model.PageCount && page <= 7; page++)
+                                        {
+                                            <li>
+
+                                                @if (page == Model.PageNumber)
+                                                {
+                                                    @Html.ActionLink(page.ToString(), "ProductsShop", new
+                                                                            {
+                                                                                Id = filterParams.Id,
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                SecondCategoryId = filterParams.SecondCategoryId,
+                                                                                ThirdCategoryId = filterParams.ThirdCategoryId,
+                                                                                Page = page
+                                                                            },
+                                                                            new { @class = "hr" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink(page.ToString(), "ProductsShop", new
+                                                                            {
+                                                                                Id = filterParams.Id,
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                SecondCategoryId = filterParams.SecondCategoryId,
+                                                                                ThirdCategoryId = filterParams.ThirdCategoryId,
+                                                                                Page = page
+                                                                            })
+                                                }
+                                            </li>
+                                        }
+
+                                        @if (Model.PageCount > 14)
+                                        {
+                                            <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a>
+                                            </li>
+                                        }
+
+
+                                        @for (int page = Model.PageCount - 6; page <= Model.PageCount && page > 7; page++)
                                         {
                                             <li>
 
@@ -200,9 +237,9 @@
                                                 }
                                             </ul>
                                         </div>
-                                        <div class="alHScrollBar">
+                                        @*<div class="alHScrollBar">
                                             <div class="alHScrollSlider" style="left: 0px;"></div>
-                                        </div>
+                                        </div>*@
                                     </div>
                                 </div>
                             }

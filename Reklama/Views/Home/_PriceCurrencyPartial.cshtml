@@ -14,7 +14,7 @@
         <div class="mPrice">
             <img class="mPriceL" src="/Images/System/mPriceL.png" />
             <img class="mPriceR" src="/Images/System/mPriceR.png" />
-            <label class="price_value" value="@Model.Price.Value.ToString(CultureInfo.InvariantCulture)">@Math.Round(((decimal)Model.Currency.Rate * Model.Price.Value), 2).ToString("f2", CultureInfo.InvariantCulture)</label>
+            <label class="price_value" value="@Model.Price.Value.ToString(CultureInfo.InvariantCulture)">@Math.Round(((decimal)Model.Currency.Rate * Model.Price.Value), 2).ToString("0.#####", CultureInfo.InvariantCulture)</label>
             <span class="price_list_click">
                 <span>@Model.Currency.Name</span>
 

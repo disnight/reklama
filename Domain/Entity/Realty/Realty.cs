@@ -47,7 +47,7 @@ namespace Domain.Entity.Realty
         [Display(Name = "'Цена'")]
         [Range(0, double.MaxValue)]
         [DataType(DataType.Currency, ErrorMessage="Должно быть введено вещественное число")]
-        [DisplayFormat(DataFormatString = "{0:c2}")]
+        [DisplayFormat(DataFormatString = "{0:0.####}")]
         public decimal? Price { get; set; }
 
         [Display(Name = "'Количество комнат'")]

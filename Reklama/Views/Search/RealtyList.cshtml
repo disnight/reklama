@@ -572,8 +572,8 @@
                         <img class="fastNavL" src="~/Images/System/fastNavL.png" />
                         <img class="fastNavR" src="~/Images/System/fastNavR.png" />
                         <a class="page-prev" href="javascript:void(0)"></a>
-                        <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
-                        @for (int page = 1; page <= Model.PageCount; page++)
+                        
+                        @for (int page = 1; page <= Model.PageCount && page <= 7; page++)
                         {
                             <li>
 
@@ -655,7 +655,99 @@
                                                                             })
                                 }
                             </li>
-                        }                        <a class="page-next" href="javascript:void(0)"></a>
+                        }
+                        
+                        @if (Model.PageCount > 14)
+                        {
+                            <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a>
+                            </li>
+                        }
+                        
+                        @for (int page = Model.PageCount - 6; page <= Model.PageCount && page > 7; page++)
+                        {
+                            <li>
+
+                                @if (page == Model.PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "SearchRealty", new
+                                                                            {
+                                                                                // SearchViewModel
+                                                                                Name = searchViewModel.Name,
+                                                                                Category = CategorySearch.Realty,
+                                                                                OnlyByName = searchViewModel.OnlyByName,
+
+                                                                                SortOptions = searchViewModel.SortOptions,
+                                                                                SortOrder = searchViewModel.SortOrder,
+                                                                                IsEnableSort = searchViewModel.IsEnableSort,
+                                                                                CurrentPage = page,
+                                                                                PageSize = searchViewModel.PageSize,
+                                                                                CategoryId = searchViewModel.CategoryId,
+                                                                                SectionId = searchViewModel.SectionId,
+                                                                                CityId = searchViewModel.CityId,
+                                                                                searchViewModel.StringCountsRoom,
+                                                                                IsAuction = searchViewModel.IsAuction,
+                                                                                IsPerson = searchViewModel.IsPerson,
+                                                                                Street = searchViewModel.Street,
+                                                                                WithBasement = searchViewModel.WithBasement,
+                                                                                WithExtension = searchViewModel.WithExtension,
+                                                                                WithGarage = searchViewModel.WithGarage,
+                                                                                WithGarden = searchViewModel.WithGarden,
+                                                                                WithPhoto = searchViewModel.WithPhoto,
+                                                                                ToCeillingHeight = searchViewModel.ToCeillingHeight,
+                                                                                FromCeillingHeight = searchViewModel.FromCeillingHeight,
+                                                                                ToFloor = searchViewModel.ToFloor,
+                                                                                FromFloor = searchViewModel.FromFloor,
+                                                                                ToFloorCount = searchViewModel.ToFloorCount,
+                                                                                FromFloorCount = searchViewModel.FromFloorCount,
+                                                                                ToPrice = searchViewModel.ToPrice,
+                                                                                FromPrice = searchViewModel.FromPrice,
+                                                                                ToSquare = searchViewModel.ToSquare,
+                                                                                FromSquare = searchViewModel.FromSquare
+                                                                            },
+                                                                            new { @class = "hr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "SearchRealty", new
+                                                                            {
+                                                                                // SearchViewModel
+                                                                                Name = searchViewModel.Name,
+                                                                                Category = CategorySearch.Realty,
+                                                                                OnlyByName = searchViewModel.OnlyByName,
+
+                                                                                SortOptions = searchViewModel.SortOptions,
+                                                                                SortOrder = searchViewModel.SortOrder,
+                                                                                IsEnableSort = searchViewModel.IsEnableSort,
+                                                                                CurrentPage = page,
+                                                                                PageSize = searchViewModel.PageSize,
+                                                                                CategoryId = searchViewModel.CategoryId,
+                                                                                SectionId = searchViewModel.SectionId,
+                                                                                CityId = searchViewModel.CityId,
+                                                                                searchViewModel.StringCountsRoom,
+                                                                                IsAuction = searchViewModel.IsAuction,
+                                                                                IsPerson = searchViewModel.IsPerson,
+                                                                                Street = searchViewModel.Street,
+                                                                                WithBasement = searchViewModel.WithBasement,
+                                                                                WithExtension = searchViewModel.WithExtension,
+                                                                                WithGarage = searchViewModel.WithGarage,
+                                                                                WithGarden = searchViewModel.WithGarden,
+                                                                                WithPhoto = searchViewModel.WithPhoto,
+                                                                                ToCeillingHeight = searchViewModel.ToCeillingHeight,
+                                                                                FromCeillingHeight = searchViewModel.FromCeillingHeight,
+                                                                                ToFloor = searchViewModel.ToFloor,
+                                                                                FromFloor = searchViewModel.FromFloor,
+                                                                                ToFloorCount = searchViewModel.ToFloorCount,
+                                                                                FromFloorCount = searchViewModel.FromFloorCount,
+                                                                                ToPrice = searchViewModel.ToPrice,
+                                                                                FromPrice = searchViewModel.FromPrice,
+                                                                                ToSquare = searchViewModel.ToSquare,
+                                                                                FromSquare = searchViewModel.FromSquare
+                                                                            })
+                                }
+                            </li>
+                        }
+                        
+                        <a class="page-next" href="javascript:void(0)"></a>
                     </ul>
                     <div class="pageslider">
                         <div class="pagesliderTop">
@@ -745,9 +837,9 @@
                                 }
                             </ul>
                         </div>
-                        <div class="alHScrollBar">
+                        @*<div class="alHScrollBar">
                             <div class="alHScrollSlider" style="left: 0px;"></div>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             </td>

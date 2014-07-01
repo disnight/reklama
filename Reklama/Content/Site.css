@@ -1,97 +1,122 @@
 @import url(reset.css);
 
-html,body{height:100%;margin:0;padding:0;}
+html, body
+{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
-body {
-   font-family: Arial, Verdana;
+body
+{
+    font-family: Arial, Verdana;
     background: url(/Images/System/gplaypattern.png) repeat 0 0 #ffffff;
     height: 100%;
     min-width: 1000px;
     width: 100%;
-    min-height:100%;
+    min-height: 100%;
 }
-pre {
-    white-space: normal; 
+
+pre
+{
+    white-space: normal;
 }
-.wrap {
+
+.wrap
+{
     min-height: 100%;
     overflow: hidden;
-    position:relative;
-    float:left; width:100%;     
+    position: relative;
+    float: left;
+    width: 100%;
 }
 
 
-.wrapInner {
+.wrapInner
+{
     margin: 0 auto 210px;
     max-width: 1300px;
-    
 }
 
-.footer {
-
+.footer
+{
     position: relative;
     background: 0 none #ffffff;
-    box-shadow:0px 1px 3px #777777;
+    box-shadow: 0px 1px 3px #777777;
     behavior: url(css/PIE.htc);
     padding: 0 0 25px 0;
-    max-width:1300px;
-    margin:0 auto;
-    height:180px;
-}
-.footerOuter{
-	position:absolute; width:100%; bottom:0; left:0;
-
+    max-width: 1300px;
+    margin: 0 auto;
+    height: 180px;
 }
 
-h1 {
+.footerOuter
+{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+h1
+{
     color: #713918;
     font: bold 22px/30px Verdana,Arial;
 }
 
-h2 {
+h2
+{
     color: #375173;
     font: bold 20px/26px Verdana,Arial;
     padding-bottom: 11px;
 }
 
-h3 {
+h3
+{
     color: #3b3b3b;
     font: 20px/26px Verdana,Arial;
     padding-bottom: 11px;
 }
 
-h4 {
+h4
+{
     color: #3b3b3b;
     font: 18px/26px Verdana,Arial;
     padding-bottom: 11px;
 }
 
-h5 {
+h5
+{
     color: #b24c52;
     font: bold 15px/16px Arial, Verdana;
     padding-top: 48px;
 }
 
-h6 {
+h6
+{
     color: #3b3b3b;
     font: bold 14px/20px Arial, Verdana;
     padding: 10px 0;
 }
 
-a {
+a
+{
     color: #004bb9;
 }
 
-    a:hover {
+    a:hover
+    {
         color: #1c6fea;
     }
 
-.header {
+.header
+{
     float: left;
     width: 100%;
 }
 
-.headerTop {
+.headerTop
+{
     float: left;
     width: 100%;
     padding-bottom: 27px;
@@ -99,11 +124,13 @@ a {
     z-index: 10;
 }
 
-    .headerTop ul {
+    .headerTop ul
+    {
         margin-left: -1%;
     }
 
-        .headerTop ul li {
+        .headerTop ul li
+        {
             float: left;
             width: 19%;
             margin-left: 1%;
@@ -112,7 +139,8 @@ a {
             height: 30px;
         }
 
-.topBlocks {
+.topBlocks
+{
     position: absolute;
     top: 0;
     left: 0;
@@ -126,7 +154,8 @@ a {
     behavior: url(css/PIE.htc);
 }
 
-.topBlocksWrap {
+.topBlocksWrap
+{
     margin: 0 4px 4px;
     background: 0 none #F8F8F9;
     overflow: hidden;
@@ -134,21 +163,25 @@ a {
     text-decoration: none;
 }
 
-    .topBlocksWrap > img {
+    .topBlocksWrap > img
+    {
         position: absolute;
         top: 0;
         display: none;
     }
 
-.topBgL {
+.topBgL
+{
     left: 0px;
 }
 
-.topBgR {
+.topBgR
+{
     right: 0px;
 }
 
-.topImg {
+.topImg
+{
     margin: 9px 15px 6px;
     width: auto;
     height: 100px;
@@ -156,17 +189,20 @@ a {
     background: 0 none #ffffff;
 }
 
-    .topImg div {
+    .topImg div
+    {
         width: 150px;
         margin: 0 auto;
     }
 
-    .topImg img {
+    .topImg img
+    {
         width: 150px;
         height: 100px;
     }
 
-.topBlocksWrap > span { 
+.topBlocksWrap > span
+{
     display: block;
     padding: 3px 20px 4px 13px;
     color: #004bb9;
@@ -174,43 +210,53 @@ a {
     background: url(/Images/System/greenStar.png) no-repeat 95% 7px transparent;
 }
 
-.headerBot {
+.headerBot
+{
     float: left;
     width: 100%;
 }
 
-.logo {
+.logo
+{
     width: 121px;
     margin: 0 39px 0 40px;
     float: left;
-    text-align:center;
+    text-align: center;
 }
 
-    .logo img {
-        margin: 0 0 15px -5px; width:121px;
+    .logo img
+    {
+        margin: 0 0 15px -5px;
+        width: 121px;
     }
 
-    .logo a {
+    .logo a
+    {
         color: #49494a;
-        font: 11px/24px Arial, Verdana;text-align:center;
+        font: 11px/24px Arial, Verdana;
+        text-align: center;
     }
 
-        .logo a.orLink {
+        .logo a.orLink
+        {
             color: #e64a21;
             float: right;
         }
 
-.headerBot > p {
+.headerBot > p
+{
     color: #777777;
     font: italic 11px/10px Arial, Verdana;
 }
 
-    .headerBot > p span {
+    .headerBot > p span
+    {
         color: #e64a21;
         font-size: 14px;
     }
 
-.searchBlock {
+.searchBlock
+{
     float: left;
     background: 0 none #daedff;
     margin: 5px 0 0;
@@ -219,12 +265,14 @@ a {
     position: relative;
 }
 
-.hSearch {
+.hSearch
+{
     position: relative;
     margin-right: 2px;
 }
 
-    .hSearch input[type=text] {
+    .hSearch input[type=text]
+    {
         border-left: 1px solid #DBE1E7;
         border-bottom: 0 none;
         border-top: 0 none;
@@ -236,7 +284,8 @@ a {
         font: 14px Arial;
     }
 
-    .hSearch input[type=submit] {
+    .hSearch input[type=submit]
+    {
         border: 0 none;
         background: url(/Images/System/hSearchSub.png) no-repeat 0 0 transparent;
         width: 69px;
@@ -247,69 +296,83 @@ a {
         cursor: pointer;
     }
 
-        .hSearch input[type=submit]:hover {
+        .hSearch input[type=submit]:hover
+        {
             background-position: 0 -30px;
         }
 
-.searchBlock ul {
+.searchBlock ul
+{
     float: left;
     margin-left: 1px;
 }
 
-    .searchBlock ul li {
+    .searchBlock ul li
+    {
         float: left;
         padding: 0 9px 3px 8px;
         cursor: pointer;
     }
 
-        .searchBlock ul li.a {
+        .searchBlock ul li.a
+        {
             background-color: #F1F6FB;
         }
 
-        .searchBlock ul li span {
+        .searchBlock ul li span
+        {
             color: #3a3a3a;
             font: 11px/24px Arial, Verdana;
             border-bottom: 1px dotted;
             cursor: pointer;
         }
 
-            .searchBlock ul li span:hover, .searchBlock ul li.a span {
+            .searchBlock ul li span:hover, .searchBlock ul li.a span
+            {
                 color: #f66c27;
             }
 
-.hSearchOnly {
+.hSearchOnly
+{
     float: right;
 }
 
-    .hSearchOnly label {
+    .hSearchOnly label
+    {
         color: #808080;
         font: 11px/24px Arial, Verdana;
     }
 
-    .hSearchOnly input {
+    .hSearchOnly input
+    {
         vertical-align: middle;
     }
 
-.logReg {
+.logReg
+{
     float: left;
     padding: 34px 0px 0 36px;
 }
 
-    .logReg p {
+    .logReg p
+    {
         color: #404041;
         font: 12px/30px Arial, Verdana;
     }
 
-    .logReg span {
+    .logReg span
+    {
         background: url("/Images/System/lock.png") no-repeat scroll 0 3px transparent;
         padding: 0 0 0 10px;
     }
 
-        .logReg span a {
+        .logReg span a
+        {
             color: #e64a21;
         }
 
-    .logReg a {
+    .logReg a
+    {
         color: #404041;
         font: 12px/30px Arial, Verdana;
         text-decoration: none;
@@ -317,7 +380,8 @@ a {
         margin: 0 3px;
     }
 
-#loginWindow, #rememberWindow, #regWindow {
+#loginWindow, #rememberWindow, #regWindow
+{
     background: url(/Images/System/upWindBg.png) repeat 0 0 #F4F1ED;
     position: relative;
     width: 335px;
@@ -328,38 +392,47 @@ a {
     padding: 13px 20px 26px;
     overflow: hidden;
 }
-.fancybox-skin {
+
+.fancybox-skin
+{
     border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
 }
-#regWindow {
+
+#regWindow
+{
     width: 435px;
 }
 
-.windowTitle {
+.windowTitle
+{
     color: #7b4b2f;
     font: bold 20px/28px Verdana, Arial;
 }
 
-#loginWindow ul, #rememberWindow ul, #regWindow ul {
+#loginWindow ul, #rememberWindow ul, #regWindow ul
+{
     padding: 15px 0 0 0;
     float: left;
 }
 
-    #loginWindow ul li, #rememberWindow ul li, #regWindow ul li {
+    #loginWindow ul li, #rememberWindow ul li, #regWindow ul li
+    {
         float: left;
         width: 100%;
         padding: 20px 0 0 0;
     }
 
-        #loginWindow ul li label, #rememberWindow ul li label, #regWindow ul li label {
+        #loginWindow ul li label, #rememberWindow ul li label, #regWindow ul li label
+        {
             color: #546d7f;
             font: bold 12px/22px Arial, Verdana;
             float: left;
         }
 
-        #loginWindow ul li input, #rememberWindow ul li input, #regWindow ul li input, .regCapcha input {
+        #loginWindow ul li input, #rememberWindow ul li input, #regWindow ul li input, .regCapcha input
+        {
             float: right;
             border: 1px solid #C9D1D6;
             background: url(/Images/System/inpBg.png) repeat-x 0 0 #ffffff;
@@ -369,37 +442,44 @@ a {
             font: 14px/24px Arial, Verdana;
         }
 
-        #rememberWindow ul li input {
+        #rememberWindow ul li input
+        {
             width: 323px;
             margin-top: 4px;
         }
 
-        #regWindow ul li input {
+        #regWindow ul li input
+        {
             width: 283px;
         }
 
-#loginWindow > p {
+#loginWindow > p
+{
     padding: 0 0 0 0px;
     text-align: right;
 }
 
-#regWindow > p {
+#regWindow > p
+{
     padding: 0 0 0 0px;
     text-align: right;
 }
 
-#rememberWindow > p {
+#rememberWindow > p
+{
     padding-left: 7px;
 }
 
-.regComplete {
+.regComplete
+{
     clear: both;
     text-align: center;
     padding-bottom: 46px;
     display: none;
 }
 
-    .regComplete span {
+    .regComplete span
+    {
         display: block;
         clear: both;
         color: #546d7f;
@@ -407,56 +487,88 @@ a {
         padding: 76px 0 26px;
     }
 
-    .regComplete p {
+    .regComplete p
+    {
         color: #4c4c4c;
         font: 12px/30px Arial, Verdana;
     }
 
-.regBlock > p {
+.regBlock > p
+{
     float: left;
     width: 100px;
     padding-top: 10px;
 }
 
-    #loginWindow > p a, #rememberWindow > p a, .regBlock > p a, #regWindow > p a {
+    #loginWindow > p a, #rememberWindow > p a, .regBlock > p a, #regWindow > p a
+    {
         font: 11px/14px Arial, Verdana;
         margin-left: 43px;
     }
 
-    .regBlock > p a {
+    .regBlock > p a
+    {
         margin-left: 0px;
     }
-.regBlock ul li{position:relative;}
-.regBlock ul li .field-validation-error{position:absolute; bottom:-16px; left:0px;}
-#loginWindow ul li{position:relative;}
-#loginWindow ul li .field-validation-error{position:absolute; bottom:-16px; left:0px;}
-#rememberWindow > p a {
+
+.regBlock ul li
+{
+    position: relative;
+}
+
+    .regBlock ul li .field-validation-error
+    {
+        position: absolute;
+        bottom: -16px;
+        left: 0px;
+    }
+
+#loginWindow ul li
+{
+    position: relative;
+}
+
+    #loginWindow ul li .field-validation-error
+    {
+        position: absolute;
+        bottom: -16px;
+        left: 0px;
+    }
+
+#rememberWindow > p a
+{
     margin-left: 61px;
 }
 
-.brownLink {
+.brownLink
+{
     color: #a32e17;
 }
 
-.sure {
+.sure
+{
     float: left;
     text-align: right;
     width: 100%;
     color: #4c4c4c;
-    font: 11px/22px Arial, Verdana; margin-top: 15px;
+    font: 11px/22px Arial, Verdana;
+    margin-top: 15px;
 }
 
-    .sure span {
+    .sure span
+    {
         color: #ff2121;
         font-size: 14px;
     }
 
-.logSub {
+.logSub
+{
     clear: both;
     padding: 22px 0 23px 83px;
 }
 
-    .logSub input {
+    .logSub input
+    {
         border: 0 none;
         background: url(/Images/System/butLogin.png) no-repeat 0 0 transparent;
         width: 169px;
@@ -464,16 +576,19 @@ a {
         cursor: pointer;
     }
 
-        .logSub input:hover {
+        .logSub input:hover
+        {
             background-position: 0 -44px;
         }
 
-.remSub {
+.remSub
+{
     clear: both;
     padding: 30px 0 23px 67px;
 }
 
-    .remSub input {
+    .remSub input
+    {
         border: 0 none;
         background: url(/Images/System/butRem.png) no-repeat 0 0 transparent;
         width: 204px;
@@ -481,16 +596,19 @@ a {
         cursor: pointer;
     }
 
-        .remSub input:hover {
+        .remSub input:hover
+        {
             background-position: 0 -44px;
         }
 
- .remSub2 {
+.remSub2
+{
     clear: both;
     padding: 30px 0 23px 67px;
 }
 
-    .remSub2 input {
+    .remSub2 input
+    {
         border: 0 none;
         background: url(/Images/System/butRem2.png) no-repeat 0 0 transparent;
         width: 204px;
@@ -498,16 +616,19 @@ a {
         cursor: pointer;
     }
 
-        .remSub2 input:hover {
+        .remSub2 input:hover
+        {
             background-position: 0 -44px;
         }
 
-.regSub {
+.regSub
+{
     float: right;
     padding: 0px 138px 0px 0px;
 }
 
-    .regSub input {
+    .regSub input
+    {
         border: 0 none;
         background: url(/Images/System/butReg.png) no-repeat 0 -44px transparent;
         width: 159px;
@@ -515,45 +636,53 @@ a {
         cursor: pointer;
     }
 
-        .regSub input:hover {
+        .regSub input:hover
+        {
             background-position: 0 0px;
         }
 
-.regCapcha {
+.regCapcha
+{
     clear: both;
     padding: 6px 0 12px 140px;
 }
 
-    .regCapcha img {
+    .regCapcha img
+    {
         width: 120px;
         height: 40px;
         float: left;
     }
 
-    .regCapcha input {
+    .regCapcha input
+    {
         width: 148px;
-		height: 40px;
+        height: 40px;
     }
 
-    .regCapcha > p {
+    .regCapcha > p
+    {
         color: #4c4c4c;
         font: 11px/25px Arial, Verdana;
     }
 
-.refresh {
+.refresh
+{
     padding: 4px 0 0 16px;
     background: url(/Images/System/refresh.png) no-repeat 0 8px transparent;
     clear: both;
 }
 
-    .refresh span {
+    .refresh span
+    {
         color: #ba575d;
         font: 11px/15px Arial, Verdana;
         border-bottom: 1px dotted;
         cursor: pointer;
     }
 
-.hMenu {
+.hMenu
+{
     float: left;
     width: 75%;
     min-width: 755px;
@@ -561,20 +690,24 @@ a {
     position: relative;
 }
 
-    .hMenu img {
+    .hMenu img
+    {
         position: absolute;
         top: 0;
     }
 
-.hMenuL {
+.hMenuL
+{
     left: -2px;
 }
 
-.hMenuR {
+.hMenuR
+{
     right: -2px;
 }
 
-.hMenu table {
+.hMenu table
+{
     width: 100%;
     min-width: 755px;
     height: 48px;
@@ -582,47 +715,57 @@ a {
     padding-top: 3px;
 }
 
-    .hMenu table td {
+    .hMenu table td
+    {
         text-align: center;
         padding: 0 14px;
         background: url(/Images/System/hBord.png) no-repeat left 9px transparent;
-        position: relative;width: 50%;
+        position: relative;
+        width: 50%;
     }
 
-        .hMenu table td > img {
+        .hMenu table td > img
+        {
             position: absolute;
             top: 0;
         }
 
-.hMenuIL {
+.hMenuIL
+{
     left: 0;
 }
 
-.hMenuIR {
+.hMenuIR
+{
     right: 0;
 }
 
-.hMenu table td.cur, .hMenu table td.f {
+.hMenu table td.cur, .hMenu table td.f
+{
     background: none;
 }
 
-.hMenu table td:hover {
+.hMenu table td:hover
+{
     position: relative;
     background: url(/Images/System/hMenuBgH.png) repeat-x 0 0 #D4D7DA;
     box-shadow: inset 1px 1px 2px #CACACA, inset -1px 1px 2px #B5B5B5;
 }
 
-.hMenu table td.a {
+.hMenu table td.a
+{
     background: url(/Images/System/hMenuBgA.png) repeat-x 0 0 #ED6130;
     box-shadow: inset 1px 0px 2px #BE441F, inset -1px 0px 2px #AF3F1D;
 }
 
-    .hMenu table td.a a {
+    .hMenu table td.a a
+    {
         color: #ffffff;
         text-shadow: 0 1px 1px #C03611;
     }
 
-.hMenu table td a {
+.hMenu table td a
+{
     display: block;
     padding: 15px 0 17px;
     color: #404041;
@@ -631,7 +774,8 @@ a {
     text-shadow: 0 1px 1px #ffffff;
 }
 
-.hMenuList {
+.hMenuList
+{
     float: left;
     margin: 22px 0 0;
     padding: 20px 0 0 10px;
@@ -639,7 +783,8 @@ a {
     width: 30px;
 }
 
-    .hMenuList > a, .hmlWind > a {
+    .hMenuList > a, .hmlWind > a
+    {
         background: url("/Images/System/redArrow.png") no-repeat scroll right 6px transparent;
         color: #C90B04;
         display: inline-block;
@@ -649,7 +794,8 @@ a {
         text-decoration: none;
     }
 
-.hmlWind {
+.hmlWind
+{
     display: none;
     position: absolute;
     top: 0;
@@ -662,25 +808,30 @@ a {
     padding: 20px 14px 27px;
 }
 
-    .hmlWind.a {
+    .hmlWind.a
+    {
         left: -4px;
         right: auto;
     }
 
-    .hmlWind > a {
+    .hmlWind > a
+    {
         text-decoration: underline;
     }
 
-    .hmlWind ul {
+    .hmlWind ul
+    {
         padding: 21px 0 0 0;
     }
 
-    .hmlWind li a {
+    .hmlWind li a
+    {
         color: #404041;
         font: 11px/20px Arial, Verdana;
     }
 
-.middle {
+.middle
+{
     float: left;
     width: 100%;
     position: relative;
@@ -692,7 +843,8 @@ a {
     padding: 0 0 10px 0;
 }
 
-.middleBot {
+.middleBot
+{
     position: absolute;
     bottom: -6px;
     left: 0;
@@ -702,51 +854,60 @@ a {
     background: url(/Images/System/middleBot.png) repeat-x 0 0 transparent;
 }
 
-.popCatalogue {
+.popCatalogue
+{
     padding: 10px;
     clear: both;
     overflow: hidden;
 }
 
-.popCatalogueTop {
+.popCatalogueTop
+{
     overflow: hidden;
     padding: 0 0 10px 0;
     background: url(/Images/System/grayBg.png) no-repeat center bottom transparent;
 }
 
-.popCatalogueLeft {
+.popCatalogueLeft
+{
     float: left;
     width: 70%;
     text-indent: 30px;
     padding: 19px 0 0 0;
 }
 
-    .popCatalogueLeft > p, .popCatalogueRight > p {
+    .popCatalogueLeft > p, .popCatalogueRight > p
+    {
         color: #5a5a5a;
         font: bold 13px/16px Verdana, Arial;
     }
 
-    .popCatalogueLeft ul {
+    .popCatalogueLeft ul
+    {
         margin: 10px 0 0 0;
     }
 
-        .popCatalogueLeft ul li {
+        .popCatalogueLeft ul li
+        {
             float: left;
             width: 32%;
             color: #7b7b7b;
             font: 11px/14px Arial, Verdana;
         }
 
-            .popCatalogueLeft ul li a {
+            .popCatalogueLeft ul li a
+            {
                 color: #003b92;
                 font: 13px/28px Arial, Verdana;
             }
 
-                .popCatalogueLeft ul li a:hover {
+                .popCatalogueLeft ul li a:hover
+                {
                     color: #1c6fea;
                 }
 
-.popCatalogueRight {
+.popCatalogueRight
+{
     float: right;
     width: 28%;
     background: url(/Images/System/pNewBg.png) repeat-x 0 0 #fff2e4;
@@ -756,39 +917,47 @@ a {
     padding: 19px 0 0 0;
 }
 
-    .popCatalogueRight > img {
+    .popCatalogueRight > img
+    {
         position: absolute;
     }
 
-.pNewBgL {
+.pNewBgL
+{
     left: 0;
     top: 0;
 }
 
-.pNewBgR {
+.pNewBgR
+{
     right: 6px;
     top: 69px;
 }
 
-.popCatalogueRight ul {
+.popCatalogueRight ul
+{
     margin: 10px 0 0 0;
 }
 
-    .popCatalogueRight ul li {
+    .popCatalogueRight ul li
+    {
         color: #7b7b7b;
         font: 11px/14px Arial, Verdana;
     }
 
-        .popCatalogueRight ul li a {
+        .popCatalogueRight ul li a
+        {
             color: #df6141;
             font: 13px/28px Arial, Verdana;
         }
 
-            .popCatalogueRight ul li a:hover {
+            .popCatalogueRight ul li a:hover
+            {
                 color: #da2c00;
             }
 
-.popCatalogueBot {
+.popCatalogueBot
+{
     float: left;
     width: 100%;
     height: 26px;
@@ -797,7 +966,8 @@ a {
     position: relative;
 }
 
-    .popCatalogueBot > img {
+    .popCatalogueBot > img
+    {
         height: 26px;
         left: 0;
         position: absolute;
@@ -805,26 +975,30 @@ a {
         width: 100%;
     }
 
-    .popCatalogueBot a {
+    .popCatalogueBot a
+    {
         color: #2fa600;
         font: bold 13px/7px Arial, Verdana;
         position: relative;
         z-index: 10;
     }
 
-.popProducts {
+.popProducts
+{
     overflow: hidden;
     padding: 0 20px 39px 38px;
     clear: both;
 }
 
-.listTitle {
+.listTitle
+{
     color: #5a5a5a;
     font: bold 13px/16px Verdana, Arial;
     display: inline;
 }
 
-.allList {
+.allList
+{
     background: url("/Images/System/redArrowR.png") no-repeat scroll right 8px transparent;
     color: #EC3E38;
     float: right;
@@ -833,33 +1007,39 @@ a {
     padding-top: 4px;
 }
 
-.popProducts ul {
+.popProducts ul
+{
     text-align: center;
     margin: 0 0 0 -19px;
     padding: 22px 10px 0 0;
 }
 
-    .popProducts ul li {
+    .popProducts ul li
+    {
         float: left;
         width: 20%;
     }
 
-        .popProducts ul li div {
+        .popProducts ul li div
+        {
             padding: 0 18px;
         }
 
-            .popProducts ul li div a {
+            .popProducts ul li div a
+            {
                 display: block;
                 text-decoration: none;
                 color: #e50800;
                 font: 12px/18px Arial, Verdana;
             }
 
-                .popProducts ul li div a:hover p {
+                .popProducts ul li div a:hover p
+                {
                     color: #1c6fea;
                 }
 
-.popProducts .img {
+.popProducts .img
+{
     display: block;
     height: 100px;
     padding: 0 0 14px;
@@ -868,35 +1048,42 @@ a {
     margin: 0 auto;
 }
 
-.popPrivate .img {
+.popPrivate .img
+{
     padding: 0 0 8px;
 }
 
-.popProducts .text {
+.popProducts .text
+{
     padding: 0 7px;
 }
 
-.popPrivate {
+.popPrivate
+{
     padding-bottom: 36px;
 }
 
-.popProducts ul li p {
+.popProducts ul li p
+{
     display: inline;
     color: #004bb9;
     font: 12px/18px Arial, Verdana;
     text-decoration: underline;
 }
 
-    .popProducts ul li p:hover {
+    .popProducts ul li p:hover
+    {
         color: #1c6fea;
     }
 
-    .popProducts ul li p sup {
+    .popProducts ul li p sup
+    {
         text-decoration: none;
         font-size: 8px;
     }
 
-.popProducts .type {
+.popProducts .type
+{
     position: relative;
     height: 10px;
     width: 150px;
@@ -904,7 +1091,8 @@ a {
     padding: 0!important;
 }
 
-.sale, .exchange, .rent {
+.sale, .exchange, .rent
+{
     float: left;
     color: #ff3b38;
     font: bold 8px/10px Verdana, Arial;
@@ -912,15 +1100,18 @@ a {
     letter-spacing: 1px;
 }
 
-.exchange {
+.exchange
+{
     color: #ff9626;
 }
 
-.rent {
+.rent
+{
     color: #3abf0b;
 }
 
-.auction {
+.auction
+{
     float: right;
     display: block;
     background: url(/Images/System/aucBg.png) no-repeat 0 0 transparent;
@@ -933,7 +1124,8 @@ a {
     letter-spacing: 1px;
 }
 
-    .auction.big {
+    .auction.big
+    {
         background: url(/Images/System/aucBgBig.png) no-repeat 0 0 transparent;
         width: 50px;
         height: 20px;
@@ -942,19 +1134,22 @@ a {
         font: bold 10px/16px Verdana, Arial;
     }
 
-.mainArticlesBlock {
+.mainArticlesBlock
+{
     padding: 0 0 10px 0;
     float: left;
     background: url(/Images/System/artBg.png) no-repeat 0 26px transparent;
 }
 
-.mArtHeader {
+.mArtHeader
+{
     width: 100%;
     border-bottom: 1px solid #D9D9D9;
     float: left;
 }
 
-.artHeader {
+.artHeader
+{
     display: block;
     border-top: 1px solid #D9D9D9;
     float: left;
@@ -967,7 +1162,8 @@ a {
     margin: 0 0 -2px 0;
 }
 
-    .artHeader a {
+    .artHeader a
+    {
         color: #404041;
         display: block;
         height: 17px;
@@ -976,115 +1172,137 @@ a {
         background: url(/Images/System/artHeadBg.png) repeat-x 0 0 transparent;
     }
 
-        .artHeader a:hover {
+        .artHeader a:hover
+        {
             color: #e75b15;
             border-bottom: 1px solid;
         }
 
-    .artHeader > img {
+    .artHeader > img
+    {
         position: absolute;
         top: -1px;
     }
 
-.maHeaderL {
+.maHeaderL
+{
     left: 0;
 }
 
-.maHeaderR {
+.maHeaderR
+{
     right: 0;
 }
 
-.mArtHeader p {
+.mArtHeader p
+{
     float: right;
     color: #a4a4a4;
     font: 11px/12px Arial, Verdana;
     padding: 7px 20px 0 0;
 }
 
-    .mArtHeader p a {
+    .mArtHeader p a
+    {
         color: #5d5d5d;
     }
 
-.mainArticle {
+.mainArticle
+{
     float: left;
     width: 35%;
     padding: 20px;
 }
 
-.mArtImg {
+.mArtImg
+{
     padding: 0 0 22px 0;
 }
 
-    .mArtImg img {
+    .mArtImg img
+    {
         height: auto;
         max-width: 100%;
     }
 
-.mainArticle h2 {
+.mainArticle h2
+{
     padding-bottom: 10px;
 }
 
-    .mainArticle h2 a {
+    .mainArticle h2 a
+    {
         color: #343434;
         font: bold 18px/22px Arial, Verdana;
         text-decoration: none;
         border-bottom: 1px solid;
     }
 
-.mainArticle p {
+.mainArticle p
+{
     color: #393939;
     font: 14px/18px Arial, Verdana;
     padding: 0 0 19px 0;
 }
 
-.mArtDate, .malDate {
+.mArtDate, .malDate
+{
     color: #5d5d5d;
     font: italic 11px/18px Arial, Verdana;
 }
 
-    .mArtDate a {
+    .mArtDate a
+    {
         color: #f3150d;
         margin-left: 22px;
     }
 
-.mainArticlesList {
+.mainArticlesList
+{
     float: left;
     width: 58%;
     padding: 16px 0 0;
 }
 
-    .mainArticlesList li {
+    .mainArticlesList li
+    {
         padding-bottom: 26px;
         float: left;
     }
 
-.malImg {
+.malImg
+{
     float: left;
     margin: 4px 10px 0 0;
 }
 
-    .malImg img {
+    .malImg img
+    {
         width: 200px;
         height: 115px;
     }
 
-.malText {
+.malText
+{
     padding-left: 210px;
 }
 
-.mainArticlesList h3 {
+.mainArticlesList h3
+{
     position: relative;
     margin: 0 0 5px 0;
 }
 
-    .mainArticlesList h3 a {
+    .mainArticlesList h3 a
+    {
         color: #343434;
         font: bold 15px/20px Arial, Verdana;
         text-decoration: none;
         border-bottom: 1px solid;
     }
 
-.commentIcon {
+.commentIcon
+{
     background: url(/Images/System/comIcon.png) no-repeat 0 0 transparent;
     width: 16px;
     height: 15px;
@@ -1095,30 +1313,35 @@ a {
     margin: 4px 0 0 14px;
 }
 
-    .commentIcon.big {
+    .commentIcon.big
+    {
         background: url(/Images/System/comIcon2.png) no-repeat 0 0 transparent;
         width: 20px;
     }
 
-    .commentIcon span {
+    .commentIcon span
+    {
         color: #ffffff;
         font: bold 9px/12px Verdana, Arial;
     }
 
-.mainArticlesList p {
+.mainArticlesList p
+{
     color: #3a3a3a;
     font: 12px/18px Arial, Verdana;
     padding-bottom: 12px;
 }
 
-.mainAdsBlock {
+.mainAdsBlock
+{
     float: left;
     width: 30.5%;
     margin: 0 2% 0 0;
     background: url(/Images/System/artBg.png) no-repeat 0 26px transparent;
 }
 
-.mainAdsWrap {
+.mainAdsWrap
+{
     margin: 20px 0px 10px 10px;
     background: url(/Images/System/mAdsBg.png) repeat-y right 0 #F7FBFF;
     float: left;
@@ -1128,7 +1351,8 @@ a {
     overflow: hidden;
 }
 
-.mainRealtyWrap {
+.mainRealtyWrap
+{
     background: url(/Images/System/mRealtBg.png) repeat-y left 0 #FFFFE9;
     position: relative;
     overflow: hidden;
@@ -1138,13 +1362,15 @@ a {
     width: 99%;
 }
 
-.mRealtL {
+.mRealtL
+{
     position: absolute;
     left: 0px;
     top: 0;
 }
 
-.mAdsR {
+.mAdsR
+{
     position: absolute;
     right: 0px;
     top: 0;
@@ -1153,81 +1379,97 @@ a {
     width: 21px;
 }
 
-.mainRealtyWrap .mainAds {
+.mainRealtyWrap .mainAds
+{
     width: 96%;
 }
 
-.mainAds {
+.mainAds
+{
     float: left;
 }
 
-    .mainAds > ul {
+    .mainAds > ul
+    {
         padding: 0 0 3px 10px;
     }
 
-        .mainAds > ul > li {
+        .mainAds > ul > li
+        {
             overflow: hidden;
             border-bottom: 1px solid #DEE0E2;
             padding: 10px 10px 14px 0;
         }
 
-    .mainAds li.last {
+    .mainAds li.last
+    {
         border: 0 none;
     }
 
-.mAdsImg {
+.mAdsImg
+{
     float: left;
     margin: 0 10px 0 0;
     width: 100px;
     height: 65px;
 }
 
-    .mAdsImg img {
+    .mAdsImg img
+    {
         max-width: 100%;
         max-height: 100%;
     }
 
-.mAdsText {
+.mAdsText
+{
     padding: 0 0 0 110px;
 }
 
-    .mAdsText > span {
+    .mAdsText > span
+    {
         margin-bottom: 11px;
         margin-top: -5px;
         float: left;
         width: 100%;
     }
 
-        .mAdsText > span a {
+        .mAdsText > span a
+        {
             font: bold 12px/18px Arial, Verdana;
         }
 
-            .mAdsText > span a sup {
+            .mAdsText > span a sup
+            {
                 font-size: 8px;
             }
 
-.mainAds .type {
+.mainAds .type
+{
     margin: 0 13px 0 0;
     max-width: 60px;
     min-width: 60px;
     float: left;
 }
 
-    .mainAds .type span {
+    .mainAds .type span
+    {
         margin-bottom: 5px;
     }
 
-.mainAds .auction {
+.mainAds .auction
+{
     float: left;
 }
 
-.mainRealtyBlock {
+.mainRealtyBlock
+{
     float: left;
     width: 33.5%;
     background: url(/Images/System/artBg.png) no-repeat 0 26px transparent;
 }
 
-.mAdsText > div {
+.mAdsText > div
+{
     float: left;
     width: 100%;
     margin: 0 0 2px;
@@ -1236,7 +1478,8 @@ a {
     font: italic 11px/30px Arial, Verdana;
 }
 
-.mPrice {
+.mPrice
+{
     float: left;
     background: url(/Images/System/mPriceBg.png) repeat-x 0 0 #FFF000;
     color: #000000;
@@ -1247,7 +1490,8 @@ a {
     margin: 0 19px 0 0;
 }
 
-.mPriceList {
+.mPriceList
+{
     position: absolute;
     width: 45px;
     border: 1px solid #F0E201;
@@ -1257,44 +1501,53 @@ a {
     display: none;
 }
 
-.alSelect.a > div {
+.alSelect.a > div
+{
     display: block;
 }
 
-.mPriceList li {
+.mPriceList li
+{
     text-align: center;
     cursor: pointer;
     padding: 2px 0;
 }
 
-    .mPriceList li:hover {
+    .mPriceList li:hover
+    {
         background: 0 none #FFFAB0;
     }
 
-.mPrice > img {
+.mPrice > img
+{
     position: absolute;
     top: 0;
 }
 
-.mPriceL {
+.mPriceL
+{
     left: -8px;
 }
 
-.mPriceR {
+.mPriceR
+{
     right: -19px;
 }
 
-.mPriceR2 {
+.mPriceR2
+{
     right: -11px;
 }
 
-.mPrice > span {
+.mPrice > span
+{
     border-bottom: 1px dotted;
     cursor: pointer;
 }
 
 
-.mPrice1 {
+.mPrice1
+{
     float: left;
     background: url(/Images/System/mPriceBg1.png) repeat-x 0 0 #FFF000;
     color: #212121;
@@ -1305,7 +1558,8 @@ a {
     margin: 0 19px 0 0;
 }
 
-    .mPrice1 .mPriceList {
+    .mPrice1 .mPriceList
+    {
         position: absolute;
         width: 45px;
         border: 1px solid #F0E201;
@@ -1315,35 +1569,41 @@ a {
         display: none;
     }
 
-.alSelect.a > div {
+.alSelect.a > div
+{
     display: block;
 }
 
-.mPriceList li {
+.mPriceList li
+{
     text-align: center;
     cursor: pointer;
     padding: 2px 0;
 }
 
-    .mPriceList li:hover {
+    .mPriceList li:hover
+    {
         background: 0 none #FFFAB0;
     }
 
-.mPrice1 > img {
+.mPrice1 > img
+{
     position: absolute;
     top: 0;
 }
 
-.mPriceL1 {
+.mPriceL1
+{
     left: -12px;
 }
 
-.mPriceR1 {
+.mPriceR1
+{
     right: -18px;
 }
 
-.middle #notice {
-
+.middle #notice
+{
     border: none!important;
     color: #40AF22!important;
     font: bold 22px Verdana!important;
@@ -1352,102 +1612,122 @@ a {
     width: 50%!important;
 }
 
-.mPrice1 > span {
+.mPrice1 > span
+{
     border-bottom: 1px dotted;
     cursor: pointer;
     margin-left: 5px;
 }
 
-.mAdsText .author {
+.mAdsText .author
+{
     color: #868686;
     font: 11px/18px Arial, Verdana;
 }
 
-    .mAdsText .author a {
+    .mAdsText .author a
+    {
         font-weight: bold;
         color: #232323;
         margin-right: 8px;
     }
 
-.mainAds .allLink {
+.mainAds .allLink
+{
     margin-left: 10px;
 }
 
-.allLink a {
+.allLink a
+{
     color: #ec3e38;
     font: bold italic 11px/18px Arial, Verdana;
 }
 
-.mainAdsPop {
+.mainAdsPop
+{
     float: left;
     margin: 0 0 0 22px;
     width: 45%;
     padding: 9px 0 0 0;
 }
 
-.addAds {
+.addAds
+{
     margin: 0 0 16px -1px;
 }
 
-    .addAds a {
+    .addAds a
+    {
         display: block;
         background: url(/Images/System/butAddAds.png) no-repeat 0 0 transparent;
         width: 261px;
         height: 34px;
     }
 
-        .addAds a:hover {
+        .addAds a:hover
+        {
             background-position: 0 -35px;
         }
 
-.mainAdsPop ul {
+.mainAdsPop ul
+{
     padding: 10px 0 13px 0;
 }
 
-.mainForumCol2 ul {
+.mainForumCol2 ul
+{
     padding: 10px 0;
 }
 
-.mainForumCol3 ul {
+.mainForumCol3 ul
+{
     padding: 10px 0 14px;
 }
 
-    .mainAdsPop ul li, .mainForumCol2 ul li, .mainForumCol3 ul li {
+    .mainAdsPop ul li, .mainForumCol2 ul li, .mainForumCol3 ul li
+    {
         position: relative;
     }
 
-.mainForumCol2 ul li {
+.mainForumCol2 ul li
+{
     list-style-position: inside;
     list-style-image: url(/Images/System/redLine.png);
 }
 
-.mainForumCol3 ul li {
+.mainForumCol3 ul li
+{
     list-style-type: decimal;
     color: #ff0000;
     font: 13px/28px Arial, Verdana;
     list-style-position: inside;
 }
 
-.mainForumCol3 .allLink {
+.mainForumCol3 .allLink
+{
     float: right;
 }
 
-.mainAdsPop ul li a, .mainForumCol2 ul li a, .mainForumCol3 ul li a {
+.mainAdsPop ul li a, .mainForumCol2 ul li a, .mainForumCol3 ul li a
+{
     font: 13px/28px Arial, Verdana;
 }
 
-.mainAdsPop ul li sup, .mainForumCol2 ul li sup, .mainForumCol3 ul li sup {
+.mainAdsPop ul li sup, .mainForumCol2 ul li sup, .mainForumCol3 ul li sup
+{
     position: absolute;
     padding: 0 0 0 5px;
 }
 
-    .mainAdsPop ul li sup a, .mainForumCol2 ul li sup a, .mainForumCol3 ul li sup a {
+    .mainAdsPop ul li sup a, .mainForumCol2 ul li sup a, .mainForumCol3 ul li sup a
+    {
         text-decoration: none;
         color: #4a4a4a;
         font: 10px/10px Arial, Verdana;
     }
 
-.mainForumBlock {
+.mainForumBlock
+{
     float: left;
     width: 64.5%;
     padding: 0px 0 35px 0;
@@ -1455,59 +1735,70 @@ a {
     background: url(/Images/System/artBg.png) no-repeat 0 26px transparent;
 }
 
-.mainForum {
+.mainForum
+{
     float: left;
     width: 100%;
     padding: 24px 0 10px;
 }
 
-.mainForumCol1 {
+.mainForumCol1
+{
     float: left;
     width: 45%;
     padding: 0 0 0 20px;
 }
 
-.mForumImg {
+.mForumImg
+{
     float: left;
     margin: 0 10px 0 0;
 }
 
-    .mForumImg img {
+    .mForumImg img
+    {
         width: 50px;
         height: 50px;
     }
 
-.mForumText {
+.mForumText
+{
     padding: 0 0 0 60px;
 }
 
-    .mForumText > span {
+    .mForumText > span
+    {
         float: left;
         margin-bottom: 8px;
         margin-top: -4px;
         width: 100%;
     }
 
-        .mForumText > span a {
+        .mForumText > span a
+        {
             font: bold 12px/18px Arial,Verdana;
         }
 
-    .mForumText .author {
+    .mForumText .author
+    {
         color: #868686;
         font: 11px/18px Arial,Verdana;
     }
 
-        .mForumText .author a {
+        .mForumText .author a
+        {
             color: #232323;
             font-weight: bold;
             margin-right: 8px;
         }
 
-.mainForumCol1 ul {
+.mainForumCol1 ul
+{
     padding: 4px 0 3px 0;
 }
 
-    .mainForumCol1 ul li {
+    .mainForumCol1 ul li
+    {
         position: relative;
         border-bottom: 1px solid #DEE0E2;
         float: left;
@@ -1515,46 +1806,54 @@ a {
         width: 91%;
     }
 
-        .mainForumCol1 ul li sup {
+        .mainForumCol1 ul li sup
+        {
             position: absolute;
             padding-left: 5px;
         }
 
-            .mainForumCol1 ul li sup a {
+            .mainForumCol1 ul li sup a
+            {
                 color: #4A4A4A;
                 font: 10px/10px Arial,Verdana;
                 text-decoration: none;
             }
 
-.mainForumCol2 {
+.mainForumCol2
+{
     float: left;
     width: 44%;
     padding: 0 6px 0 20px;
 }
 
-.mainForumCol3 {
+.mainForumCol3
+{
     float: right;
     width: 30%;
     padding: 0 23px 0 20px;
 }
 
-.catalogMain {
+.catalogMain
+{
     padding: 20px 20px 20px 40px;
     overflow: hidden;
 }
 
-.cmTop {
+.cmTop
+{
     overflow: hidden;
     width: 100%;
     padding-bottom: 30px;
 }
 
-.placeGoods {
+.placeGoods
+{
     float: left;
     padding-top: 10px;
 }
 
-.ci1 .placeGoods {
+.ci1 .placeGoods
+{
     position: absolute;
     top: 50px;
     left: 10px;
@@ -1562,20 +1861,23 @@ a {
     float: left;
 }
 
-.placeGoods a {
+.placeGoods a
+{
     display: block;
     background: url(/Images/System/butPlace.png) no-repeat 0 0 transparent;
     width: 150px;
     height: 25px;
 }
 
-.placeGoods.sec a {
+.placeGoods.sec a
+{
     display: block;
     background: url(/Images/System/butPlace2.png) no-repeat 0 0 transparent;
     width: 180px;
 }
 
-.orangeText {
+.orangeText
+{
     float: right;
     text-align: center;
     width: 75%;
@@ -1585,38 +1887,42 @@ a {
     font: 12px/16px Verdana, Arial;
 }
 
-.orangeStrong {
+.orangeStrong
+{
     color: #e64a21;
 }
 
-.catalogMain ul {
+.catalogMain ul
+{
     font: 13px/26px Arial, Verdana;
     padding: 9px 0 34px 30px;
     overflow: hidden;
 }
 
-    .catalogMain ul li {
-        display:inline-block;
+    .catalogMain ul li
+    {
+        display: inline-block;
         margin-right: 2%;
-       
         position: relative;
         vertical-align: top;
-        
         width: 31%;
     }
 
-        .catalogMain ul li > a {
+        .catalogMain ul li > a
+        {
             color: #003b92;
             text-decoration: none;
             border-bottom: 1px solid #99B1D3;
         }
 
-            .catalogMain ul li > a:hover {
+            .catalogMain ul li > a:hover
+            {
                 color: #1c6fea;
                 border-bottom: 1px solid;
             }
 
-        .catalogMain ul li sup {
+        .catalogMain ul li sup
+        {
             color: #a32e17;
             font-size: 9px!important;
             position: relative;
@@ -1625,82 +1931,101 @@ a {
             white-space: nowrap;
         }
 
-            .catalogMain ul li sup a {
+            .catalogMain ul li sup a
+            {
                 text-decoration: none;
                 color: #a32e17;
             }
 
-.newImg {
+.newImg
+{
     border: 0 none!important;
     margin-left: 1px;
 }
 
-    .newImg img {
+    .newImg img
+    {
         vertical-align: middle;
         margin-top: 1px;
     }
 
-.cmTitle {
+.cmTitle
+{
     color: #713918;
     font: bold 22px/30px Verdana, Arial;
 }
 
-.catalogInner {
+.catalogInner
+{
     padding: 20px 10px;
     position: relative;
     overflow: hidden; /*исправлено*/
 }
 
-.crumbs {
+.crumbs
+{
     padding: 0;
     color: #5d5d5d;
     font: 11px/16px Arial, Verdana;
     min-height: 16px;
 }
 
-.arr {
+.arr
+{
     margin: 0 5px;
 }
 
-.ciTop {
+.ciTop
+{
     overflow: hidden;
     padding: 15px 0 22px 0;
     width: 100%;
     height: 25px;
 }
 
-    .ciTop .placeGoods {
+    .ciTop .placeGoods
+    {
         padding-top: 0;
     }
 
-.catalogInner h1 {
+.catalogInner h1
+{
     padding: 8px 0 24px;
 }
 
-.inShop h1 {
+.inShop h1
+{
     display: inline-block;
     float: left;
 }
 
-.catalogInner table {
-    width: 100%;float:left;
+.catalogInner table
+{
+    width: 100%;
+    float: left;
 }
-.catalogInnerIn{
-    width: 100%;float:left;position:relative;
-}
-    .catalogInner table td {
-        vertical-align: top;
-        max-width:1260px;
-    }
 
-.ci1 {
+.catalogInnerIn
+{
+    width: 100%;
+    float: left;
+    position: relative;
+}
+
+.catalogInner table td
+{
+    vertical-align: top;
+    max-width: 1260px;
+}
+
+.ci1
+{
     width: 180px;
     padding-top: 78px;
-    
-    
 }
 
-.hed1 {
+.hed1
+{
     display: block;
     /*background: 0 none #FF8041;*/
     color: #ffffff;
@@ -1709,50 +2034,75 @@ a {
     padding: 5px 0 4px;
     height: 16px;
 }
-.hed1 a{float:left;}
-.hed1 em{background: url(/Images/System/blueArr.png) no-repeat 0 0 transparent;width:4px; height:7px;float:left;margin: 6px 0 0 8px;}
-.ciPage {
+
+    .hed1 a
+    {
+        float: left;
+    }
+
+    .hed1 em
+    {
+        background: url(/Images/System/blueArr.png) no-repeat 0 0 transparent;
+        width: 4px;
+        height: 7px;
+        float: left;
+        margin: 6px 0 0 8px;
+    }
+
+.ciPage
+{
     float: left;
     width: 100%;
 }
-.lMenu {
+
+.lMenu
+{
     padding: 13px 0 20px 10px;
 }
 
-    .lMenu ul li {
+    .lMenu ul li
+    {
         font: 13px Arial,Verdana;
-    padding-bottom: 7px;
+        padding-bottom: 7px;
     }
 
-        .lMenu ul li span {
+        .lMenu ul li span
+        {
             padding-right: 12px;
         }
 
-        .lMenu ul li.a span {
+        .lMenu ul li.a span
+        {
             background: url(/Images/System/redArrowR2.png) no-repeat right 6px transparent;
         }
 
-.green .lMenu ul li.a span {
+.green .lMenu ul li.a span
+{
     background: url(/Images/System/greenArrowR.png) no-repeat right 6px transparent;
 }
 
-.lMenu ul li a {
+.lMenu ul li a
+{
     color: #003b92;
 }
 
-    .lMenu ul li a:hover {
+    .lMenu ul li a:hover
+    {
         color: #1c6fea;
     }
 
-.emptyLine {
+.emptyLine
+{
     height: 21px;
 }
 
-.ci2 {
+.ci2
+{
     width: 10px;
 }
 
-.hed2 {
+.hed2
+{
     background: 0 none #FFDFA8;
     color: #514843;
     font: 11px/18px Arial, Verdana;
@@ -1761,28 +2111,33 @@ a {
     clear: both;
 }
 
-    .hed2.real {
+    .hed2.real
+    {
         background: 0 none #ffd4a2;
     }
 
-.ciSort {
+.ciSort
+{
     float: left;
     white-space: nowrap;
     padding: 0 0 0 10px;
 }
 
-    .ciSort > span {
+    .ciSort > span
+    {
         float: left;
         padding-right: 7px;
         position: relative;
         z-index: 10;
     }
 
-    .ciSort ul {
+    .ciSort ul
+    {
         float: left;
     }
 
-    .ciSort li {
+    .ciSort li
+    {
         float: left;
         padding: 0 0px;
         margin: 0 7px;
@@ -1790,30 +2145,36 @@ a {
         height: 22px;
     }
 
-        .ciSort li.a {
+        .ciSort li.a
+        {
             margin: 0 28px;
             background: url(/Images/System/ciSortBg.png) repeat-x 0 0 transparent;
         }
 
-        .ciSort li img {
+        .ciSort li img
+        {
             position: absolute;
             top: 0;
             display: none;
         }
 
-        .ciSort li.a img {
+        .ciSort li.a img
+        {
             display: block;
         }
 
-.ciSortL {
+.ciSortL
+{
     left: -111px;
 }
 
-.ciSortR {
+.ciSortR
+{
     right: -111px;
 }
 
-.ciSort li span, .ciShowBy li span {
+.ciSort li span, .ciShowBy li span
+{
     border-bottom: 1px solid;
     cursor: pointer;
     position: relative;
@@ -1822,25 +2183,29 @@ a {
     height: 15px;
 }
 
-    .ciSort li span:hover, .ciShowBy li span:hover {
+    .ciSort li span:hover, .ciShowBy li span:hover
+    {
         color: #a32e17;
     }
 
-.ciSort li.a span {
+.ciSort li.a span
+{
     color: #a32e17;
     border: 0 none;
     cursor: default;
     line-height: 22px;
 }
 
-.retSort {
+.retSort
+{
     float: left;
     margin-left: 30px;
     position: relative;
     z-index: 10;
 }
 
-    .retSort a {
+    .retSort a
+    {
         display: block;
         height: 15px;
         color: #ba4933;
@@ -1849,7 +2214,8 @@ a {
         cursor: pointer;
     }
 
-    .retSort span {
+    .retSort span
+    {
         display: block;
         width: 10px;
         height: 12px;
@@ -1857,122 +2223,146 @@ a {
         margin: 4px 0 0 6px;
     }
 
-    .retSort.down span {
+    .retSort.down span
+    {
         background: url(/Images/System/retSortD.png) no-repeat 0 0 transparent;
     }
 
-    .retSort.up span {
+    .retSort.up span
+    {
         background: url(/Images/System/retSortU.png) no-repeat 0 0 transparent;
     }
 
-.ciShowBy {
+.ciShowBy
+{
     float: right;
     white-space: nowrap;
     margin-right: 8px;
 }
 
-    .ciShowBy > span {
+    .ciShowBy > span
+    {
         float: left;
         margin-right: 12px;
     }
 
-    .ciShowBy ul {
+    .ciShowBy ul
+    {
         float: left;
     }
 
-    .ciShowBy li {
+    .ciShowBy li
+    {
         float: left;
         padding: 0 8px 2px;
     }
 
-        .ciShowBy li.a {
+        .ciShowBy li.a
+        {
             background: 0 none #FFF5E4;
         }
 
-            .ciShowBy li.a span {
+            .ciShowBy li.a span
+            {
                 color: #a32e17;
                 border: 0 none;
                 cursor: default;
             }
 
-.ciList {
+.ciList
+{
     padding: 20px 0 35px;
     float: left;
     width: 100%;
 }
 
-    .ciList > ul > li {
+    .ciList > ul > li
+    {
         float: left;
         border-bottom: 1px solid #D9D9D9;
         position: relative;
-        width:100%; /*исправлено*/
+        width: 100%; /*исправлено*/
     }
 
-.blueFlag {
+.blueFlag
+{
     position: absolute;
     right: -44px;
     top: 14px;
 }
 
-.ciList li.last {
+.ciList li.last
+{
     border: 0 none;
 }
 
-.ciList li.blueBord {
+.ciList li.blueBord
+{
     border: 1px solid #239EDC;
     z-index: 3;
     margin-top: -1px;
 }
 
-.blueBord .ciOffers {
+.blueBord .ciOffers
+{
     background: 0 none #E9F5FB;
 }
 
-.ciList li.greenBord {
+.ciList li.greenBord
+{
     border: 1px solid #59DB11;
     margin-top: -1px;
     z-index: 2;
 }
 
-.greenBord .ciOffers {
+.greenBord .ciOffers
+{
     background: 0 none #EEFBE7;
 }
 
-.ciList li.yellowBord {
+.ciList li.yellowBord
+{
     border: 1px solid #FBEC01;
     margin-top: -1px;
     z-index: 1;
 }
 
-.yellowBord .ciOffers {
+.yellowBord .ciOffers
+{
     background: 0 none #FFFDE0;
 }
 
-.ciImg {
+.ciImg
+{
     padding: 14px 20px 20px 0px;
     text-align: center;
     width: 150px;
 }
 
-.doska .ciImg {
+.doska .ciImg
+{
     width: 150px;
 }
 
-    .doska .ciImg a img {
-       /* width: 120px;
+    .doska .ciImg a img
+    {
+        /* width: 120px;
         height: 80px; */
     }
 
-.ciImg a img {
+.ciImg a img
+{
     max-width: 150px;
     max-height: 100px; /*исправлено, можно подставить любые удобные значения*/
 }
 
-.ciText {
+.ciText
+{
     padding: 10px 0;
 }
 
-    .ciText > div {
+    .ciText > div
+    {
         padding: 1px 0 5px 0;
         background: url(/Images/System/dotL.png) repeat-y right 0 transparent;
         color: #3a3a3a;
@@ -1981,55 +2371,66 @@ a {
         min-height: 108px;
     }
 
-        .ciText > div p {
+        .ciText > div p
+        {
             padding-right: 23px;
         }
 
-    .ciText div p a {
+    .ciText div p a
+    {
         margin-left: 2px;
     }
 
-.ciName {
+.ciName
+{
     font: 12px/18px Arial, Verdana;
     color: #404041;
     display: block;
     padding: 0 0 6px 0;
 }
 
-    .ciName span {
+    .ciName span
+    {
         padding-left: 13px;
     }
 
-    .ciName a {
+    .ciName a
+    {
         font: bold 15px/18px Arial, Verdana;
         text-decoration: none;
         border-bottom: 1px solid;
     }
 
-.ciRate {
+.ciRate
+{
     font: bold 11px/18px Arial, Verdana;
     padding: 12px 0 0;
     white-space: nowrap;
     float: left;
 }
 
-    .ciRate img {
+    .ciRate img
+    {
         margin: 0 2px 0 0px;
     }
 
-    .ciRate span {
+    .ciRate span
+    {
         padding-right: 10px;
     }
 
-    .ciRate a {
+    .ciRate a
+    {
         color: #554c47;
     }
 
-        .ciRate a:hover {
+        .ciRate a:hover
+        {
             color: #e64a21;
         }
 
-    .ciRate sup {
+    .ciRate sup
+    {
         color: #dc2b02;
         font-size: 9px;
         font-weight: normal;
@@ -2039,96 +2440,113 @@ a {
         white-space: nowrap;
     }
 
-.ciAuthor {
+.ciAuthor
+{
     float: left;
     color: #6f6f6f;
     font: 11px/18px Arial, Verdana;
     padding: 12px 0 0 36px;
 }
 
-    .ciAuthor a {
+    .ciAuthor a
+    {
         color: #6f6f6f;
         margin-right: 6px;
         margin-left: 11px;
     }
 
-    .ciAuthor span {
+    .ciAuthor span
+    {
         color: #4a9316;
     }
 
-        .ciAuthor span.agency {
+        .ciAuthor span.agency
+        {
             color: #ce492a;
         }
 
-.ciType {
+.ciType
+{
     float: left;
     width: 100%;
     padding: 0px 0 9px 0;
 }
 
-    .ciType span {
+    .ciType span
+    {
         font-size: 9px!important;
     }
 
-.ciOffers {
+.ciOffers
+{
     width: 150px;
-    padding: 31px 10px 20px 0px;
+    padding: 0 10px 10px 0;
 }
 
-    .ciOffers > p {
+    .ciOffers > p
+    {
         color: #212121;
         font: italic 11px/20px Arial, Verdana;
         margin-top: -20px;
     }
 
-    .ciOffers .type {
+    .ciOffers .type
+    {
         clear: both;
         margin: 10px 0 0;
     }
 
-    .ciOffers.ciRealt {
+    .ciOffers.ciRealt
+    {
         text-align: center;
         padding: 50px 0 20px;
         width: 160px;
     }
 
-        .ciOffers.ciRealt .mPrice {
+        .ciOffers.ciRealt .mPrice
+        {
             float: none;
             display: inline-block;
         }
 
-    .ciOffers .mPrice {
+    .ciOffers .mPrice
+    {
         font: bold italic 14px/18px Arial, Verdana;
         margin: 0 10px 0 8px;
         white-space: nowrap;
         float: right;
     }
 
-.buyProd {
+.buyProd
+{
     float: right;
     padding: 10px 0 3px;
 }
 
-.selNum {
+.selNum
+{
     float: left;
     width: 100%;
     color: #6f6f6f;
     font: 11px/18px Arial, Verdana;
-    text-align:center;
+    text-align: center;
 }
 
-.buyProd a {
+.buyProd a
+{
     display: block;
     width: 130px;
     height: 25px;
     background: url(/Images/System/butBuy.png) no-repeat 0 0 transparent;
 }
 
-    .buyProd a:hover {
+    .buyProd a:hover
+    {
         background-position: 0 -25px;
     }
 
-.pages {
+.pages
+{
     font-size: 12px;
     line-height: 18px;
     padding: 5px 0;
@@ -2137,7 +2555,8 @@ a {
     position: relative;
 }
 
-.fastNav {
+.fastNav
+{
     background: url("/Images/System/bgs.png") repeat-x scroll 0 0 transparent;
     display: inline-block;
     list-style: none outside none !important;
@@ -2146,19 +2565,22 @@ a {
     padding: 4px 0;
 }
 
-.fastNavL {
+.fastNavL
+{
     position: absolute;
     top: 0;
     left: -14px;
 }
 
-.fastNavR {
+.fastNavR
+{
     position: absolute;
     top: 0;
     right: -14px;
 }
 
-.fastNav li {
+.fastNav li
+{
     float: left;
     padding: 3px 0 !important;
     position: relative;
@@ -2167,7 +2589,8 @@ a {
     margin: 0 2px;
 }
 
-    .fastNav li a, .pagesliderTop ul li a {
+    .fastNav li a, .pagesliderTop ul li a
+    {
         display: block;
         height: 18px;
         padding: 0 5px;
@@ -2176,17 +2599,20 @@ a {
         position: relative;
     }
 
-.pagesliderTop ul li a {
+.pagesliderTop ul li a
+{
     float: left;
 }
 
-    .fastNav li a:hover, .pagesliderTop ul li a:hover {
+    .fastNav li a:hover, .pagesliderTop ul li a:hover
+    {
         background-color: #FFFFFF;
         color: #f66c27;
         z-index: 4;
     }
 
-    .fastNav li a.hr, .fastNav li a.hr:hover, .pagesliderTop ul li a.shr, .pagesliderTop ul li a.shr:hover {
+    .fastNav li a.hr, .fastNav li a.hr:hover, .pagesliderTop ul li a.shr, .pagesliderTop ul li a.shr:hover
+    {
         background: 0 none #FFFFFF;
         border: 1px solid #DAD6D4;
         color: #a32e17 !important;
@@ -2200,7 +2626,8 @@ a {
         behavior: url(css/PIE.htc);
     }
 
-.exppages {
+.exppages
+{
     border-left: 1px solid #DAD6D4;
     border-right: 1px solid #DAD6D4;
     padding: 0;
@@ -2208,12 +2635,14 @@ a {
     z-index: 2;
 }
 
-    .exppages img {
+    .exppages img
+    {
         vertical-align: middle;
         margin-left: 5px;
     }
 
-.exppagesTitle {
+.exppagesTitle
+{
     color: #f66c27!important;
     display: block;
     margin: 0;
@@ -2221,7 +2650,8 @@ a {
     position: relative;
 }
 
-.page-prev {
+.page-prev
+{
     display: block;
     position: absolute;
     background: url(/Images/System/orArrowL.png) no-repeat 0 0 transparent;
@@ -2231,7 +2661,8 @@ a {
     left: -28px;
 }
 
-.page-next {
+.page-next
+{
     display: block;
     position: absolute;
     background: url(/Images/System/orArrowR.png) no-repeat 0 0 transparent;
@@ -2241,7 +2672,8 @@ a {
     right: -28px;
 }
 
-.pageslider {
+.pageslider
+{
     display: block;
     position: absolute;
     left: 50%;
@@ -2260,30 +2692,40 @@ a {
 
 .pagesliderTop {
     margin-bottom: 5px;
-    overflow: hidden;
+    overflow: auto;
     position: relative;
     width: 100%;
+	height: auto;
 }
 
     .pagesliderTop ul {
+	    list-style: none outside none;
+	    margin: 0;
         padding: 0 5px;
         overflow: hidden;
-        white-space: nowrap;
+        /* white-space: nowrap; */
     }
 
-        .pagesliderTop ul li {
+    .pagesliderTop ul li:first-child{
+    margin-left: 0;
+}
+
+        .pagesliderTop ul li
+        {
             float: left;
             margin: 0 1px;
             padding: 3px 0;
         }
 
-.alHScrollBar {
+.alHScrollBar
+{
     background: url(/Images/System/scrollBar.png) repeat-x 0 center transparent;
     height: 19px;
     position: relative;
 }
 
-.alHScrollSlider {
+.alHScrollSlider
+{
     background: url("/Images/System/scroll.png") no-repeat scroll 0 0 transparent;
     cursor: pointer;
     height: 19px;
@@ -2293,20 +2735,23 @@ a {
     width: 38px;
 }
 
-.leftProd {
+.leftProd
+{
     text-align: center;
     width: 120px;
     padding: 43px 0 20px 10px;
 }
 
-    .leftProd ul li > div > a {
+    .leftProd ul li > div > a
+    {
         color: #E50800;
         display: block;
         font: 11px/18px Arial,Verdana;
         text-decoration: none;
     }
 
-    .leftProd .img {
+    .leftProd .img
+    {
         display: block;
         height: 80px;
         margin: 0 auto;
@@ -2315,55 +2760,65 @@ a {
         width: 120px;
     }
 
-        .leftProd .img img {
+        .leftProd .img img
+        {
             width: 120px;
             height: 80px;
         }
 
-    .leftProd .text {
+    .leftProd .text
+    {
         padding: 0 10px;
     }
 
-        .leftProd .text p {
+        .leftProd .text p
+        {
             color: #004BB9;
             display: inline;
             font: 11px/18px Arial,Verdana;
             text-decoration: underline;
         }
 
-    .leftProd ul li {
+    .leftProd ul li
+    {
         padding: 18px 0 21px;
     }
 
-        .leftProd ul li div a:hover .text p {
+        .leftProd ul li div a:hover .text p
+        {
             color: #1c6fea;
         }
 
-    .leftProd .lShop {
+    .leftProd .lShop
+    {
         color: #6f6f6f;
         font: 10px/12px Arial,Verdana;
         padding: 0px 0 0;
     }
 
-        .leftProd .lShop a {
+        .leftProd .lShop a
+        {
             color: #3a3a3a;
             line-height: 20px;
         }
 
-.lBan {
+.lBan
+{
     padding: 28px 10px;
     overflow: hidden;
     width: 120px;
     height: 600px;
 }
 
-.lDirect {
+.lDirect
+{
     padding: 27px 10px;
     overflow: hidden;
     width: 120px;
 }
 
-.hed3 {
+.hed3
+{
     overflow: hidden;
     border-bottom: 1px solid #E7D6B7;
     margin: 0 0 10px 0;
@@ -2371,18 +2826,21 @@ a {
     height: 40px;
 }
 
-    .hed3 ul {
+    .hed3 ul
+    {
         color: #514843;
         font: bold 11px/16px Arial,Verdana;
         text-transform: uppercase;
         float: left;
     }
 
-        .hed3 ul li {
+        .hed3 ul li
+        {
             float: left;
         }
 
-            .hed3 ul li a {
+            .hed3 ul li a
+            {
                 display: inline-block;
                 padding: 13px 21px 0 20px;
                 height: 27px;
@@ -2392,23 +2850,27 @@ a {
                 background: url(/Images/System/hed3R.png) no-repeat right 0 #FFF5E2;
             }
 
-            .hed3 ul li.a {
+            .hed3 ul li.a
+            {
                 background: url(/Images/System/hed3Bg.png) repeat-x 0 0 #FFFBF2;
             }
 
-                .hed3 ul li.a a, .hed3 ul li.a a:hover {
+                .hed3 ul li.a a, .hed3 ul li.a a:hover
+                {
                     background-color: transparent;
                     color: #f66c27;
                     cursor: default;
                 }
 
-            .hed3 ul li a:hover {
+            .hed3 ul li a:hover
+            {
                 background-color: #F2E9D9;
                 margin-left: -1px;
                 padding-left: 21px;
             }
 
-.howUp {
+.howUp
+{
     float: right;
     color: #2fa600;
     font: italic 11px/15px Arial,Verdana;
@@ -2416,12 +2878,14 @@ a {
     padding: 4px 0px 0 0;
 }
 
-    .howUp.a {
+    .howUp.a
+    {
         padding-top: 13px;
         width: 149px;
     }
 
-.realtyForm {
+.realtyForm
+{
     background: url(/Images/System/realtyFormBg.png) no-repeat 0 bottom #F9FFF2;
     position: relative;
     border-top: 1px solid #C1DBB1;
@@ -2434,59 +2898,70 @@ a {
     margin-bottom: 40px;
 }
 
-.realtyFilters {
+.realtyFilters
+{
     display: block;
     clear: both;
     padding-bottom: 10px;
 }
 
-.realtyCity {
+.realtyCity
+{
     padding-bottom: 10px;
 }
 
-.realtyPrice li {
+.realtyPrice li
+{
     overflow: hidden;
 }
 
-    .realtyPrice li span {
+    .realtyPrice li span
+    {
         width: auto!important;
     }
 
-    .realtyPrice li input[type=text] {
+    .realtyPrice li input[type=text]
+    {
         float: right;
         width: 129px;
     }
 
-.realtyForm form label {
+.realtyForm form label
+{
     color: #4c4c4c;
     font: bold 12px Arial;
     margin-bottom: 7px;
     display: block;
 }
 
-.realtyForm form ul li span {
+.realtyForm form ul li span
+{
     color: #4c4c4c;
     font: 11px Arial;
     float: left;
     margin-top: 4px;
 }
 
-.realtyForm .filtersAdd a {
+.realtyForm .filtersAdd a
+{
     color: #5b9533;
     font: 10px Arial;
 }
 
-.realtyForm .filtersAdd {
+.realtyForm .filtersAdd
+{
     text-align: right;
     margin-top: 2px;
 }
 
-.realtyForm form input {
+.realtyForm form input
+{
     color: #4c4c4c;
     font: 12px Arial;
 }
 
-    .realtyForm form input[type=text] {
+    .realtyForm form input[type=text]
+    {
         border-left: 1px solid #d0dfcb;
         border-right: 1px solid #d0dfcb;
         border-bottom: 1px solid #dbecd5;
@@ -2495,7 +2970,8 @@ a {
         background: url(/Images/System/inpBg2.png) repeat-x 0 0 transparent;
     }
 
-.realtyForm form select {
+.realtyForm form select
+{
     border-left: 1px solid #d0dfcb;
     border-right: 1px solid #d0dfcb;
     border-bottom: 1px solid #dbecd5;
@@ -2503,113 +2979,133 @@ a {
     background: url(/Images/System/inpBg2.png) repeat-x 0 0 transparent;
 }
 
-.realtyForm form select {
+.realtyForm form select
+{
     color: #4c4c4c;
     font: 12px Arial;
     width: 160px;
     padding: 2px 2px 2px 0;
 }
 
-.realtyForm .rfTitle {
+.realtyForm .rfTitle
+{
     color: #e85e3d;
     font: bold 12px/18px Arial,Verdana;
     text-transform: uppercase;
     padding-bottom: 21px;
 }
 
-.realtyPrice ul li {
+.realtyPrice ul li
+{
     padding-bottom: 15px;
 }
 
-.cityName {
+.cityName
+{
     margin-bottom: 15px;
     margin-top: 10px;
     width: 154px;
 }
 
-.realtyRooms {
+.realtyRooms
+{
     padding-top: 15px;
     float: left;
     padding-bottom: 25px;
 }
 
-    .realtyRooms li {
+    .realtyRooms li
+    {
         float: left;
         width: 33%;
     }
 
-.realtyMore li {
+.realtyMore li
+{
     float: left;
     width: 100%;
 }
 
-.realtyRooms li input {
+.realtyRooms li input
+{
     float: left;
     margin: 5px 9px 5px 0;
 }
 
-.realtyMore li input {
+.realtyMore li input
+{
     float: left;
     margin: 5px 7px 5px 0;
 }
 
-.realtyMore li span {
+.realtyMore li span
+{
     float: left;
     width: 100px!important;
 }
 
-.realtyArea ul, .realtyFloor ul, .realtyFloorLike ul, .realtyHeight ul {
+.realtyArea ul, .realtyFloor ul, .realtyFloorLike ul, .realtyHeight ul
+{
     margin-left: -15px;
 }
 
-.realtyArea li, .realtyFloor li, .realtyFloorLike li, .realtyHeight li {
+.realtyArea li, .realtyFloor li, .realtyFloorLike li, .realtyHeight li
+{
     float: left;
     width: 50%;
 }
 
-    .realtyArea li input, .realtyFloor li input, .realtyFloorLike li input, .realtyHeight li input {
+    .realtyArea li input, .realtyFloor li input, .realtyFloorLike li input, .realtyHeight li input
+    {
         float: right;
         width: 44px;
         margin-bottom: 20px;
     }
 
-    .realtyArea li span, .realtyFloor li span, .realtyFloorLike li span, .realtyHeight li span {
+    .realtyArea li span, .realtyFloor li span, .realtyFloorLike li span, .realtyHeight li span
+    {
         float: left;
         width: 21px!important;
         margin-left: 15px;
     }
 
-.realtyMore2 li, .realtyMore3 li {
+.realtyMore2 li, .realtyMore3 li
+{
     float: none;
     width: 100%;
     padding-bottom: 4px;
 }
 
-    .realtyMore2 li input, .realtyMore3 li input {
+    .realtyMore2 li input, .realtyMore3 li input
+    {
         float: left;
         margin: 4px 7px 5px 0;
     }
 
-    .realtyMore2 li span, .realtyMore3 li span {
+    .realtyMore2 li span, .realtyMore3 li span
+    {
         float: none!important;
         width: 150px!important;
         display: block;
     }
 
-.realtyMore2 {
+.realtyMore2
+{
     border-top: 1px solid #e4f1d6;
     padding: 12px 0 20px;
     position: relative;
     top: 14px;
 }
 
-.realtyMore3 {
+.realtyMore3
+{
     padding: 0;
     position: relative;
     top: -9px;
 }
 
-.subm {
+.subm
+{
     width: 139px;
     height: 39px;
     border: none;
@@ -2618,7 +3114,8 @@ a {
     margin: 20px 10px 10px;
 }
 
-    .subm:hover {
+    .subm:hover
+    {
         width: 139px;
         height: 39px;
         border: none;
@@ -2628,7 +3125,8 @@ a {
 
 
 
-.footerTop {
+.footerTop
+{
     position: absolute;
     top: -5px;
     left: 0;
@@ -2638,7 +3136,8 @@ a {
     background: url(/Images/System/footerTop.png) repeat-x 0 0 transparent;
 }
 
-.bMenu {
+.bMenu
+{
     float: left;
     width: 100%;
     padding: 20px 0 19px 0;
@@ -2646,40 +3145,49 @@ a {
     margin-bottom: 33px;
 }
 
-    .bMenu table {
+    .bMenu table
+    {
         width: 105%;
     }
 
-        .bMenu table td {
+        .bMenu table td
+        {
             padding: 0 55px 0 0;
             text-align: center;
         }
 
-            .bMenu table td a {
+            .bMenu table td a
+            {
                 color: #666667;
                 font: bold 14px/16px Verdana, Arial;
             }
 
-.copyright {
+.copyright
+{
     float: left;
     width: 75px;
     margin: 0 2% 0 0;
     padding: 0 5px 0 20px;
 }
 
-    .copyright .bLogo {
+    .copyright .bLogo
+    {
         margin-bottom: 12px;
     }
-    .copyright .bLogo img {
-        width:73px;
-    }
 
-    .copyright p {
+        .copyright .bLogo img
+        {
+            width: 73px;
+        }
+
+    .copyright p
+    {
         color: #aeaeae;
         font: 10px/12px Arial, Verdana;
     }
 
-.footerInfo {
+.footerInfo
+{
     position: absolute;
     margin: 0;
     top: 83px;
@@ -2687,22 +3195,26 @@ a {
     width: 48%;
 }
 
-.bFooterNav {
+.bFooterNav
+{
     overflow: hidden;
     padding: 0 0 13px 0;
 }
 
-    .bFooterNav li {
+    .bFooterNav li
+    {
         float: left;
         padding: 0 23px 0 0;
     }
 
-        .bFooterNav li a {
+        .bFooterNav li a
+        {
             color: #0f5eb4;
             font: 11px/16px Arial, Verdana;
         }
 
-.footerStat {
+.footerStat
+{
     color: #707070;
     font: 11px/16px Arial, Verdana;
     float: left;
@@ -2710,15 +3222,18 @@ a {
     width: 303px;
 }
 
-    .footerStat span {
+    .footerStat span
+    {
         color: #f66c27;
     }
 
-.bSiteMap {
+.bSiteMap
+{
     float: left;
 }
 
-    .bSiteMap a {
+    .bSiteMap a
+    {
         background: url("/Images/System/siteMap.png") no-repeat scroll 0 4px transparent;
         color: #707070;
         display: block;
@@ -2726,16 +3241,17 @@ a {
         padding: 0 0 0 16px;
     }
 
-.bLinks {
+.bLinks
+{
     float: left;
     width: 100%;
     padding: 13px 0 0;
-    
     position: absolute; /*исправлено*/
     top: 62px; /*исправлено*/
 }
 
-    .bLinks a {
+    .bLinks a
+    {
         float: left;
         display: block;
         color: #707070;
@@ -2743,11 +3259,13 @@ a {
         margin-right: 30px;
     }
 
-        .bLinks a.greenLink {
+        .bLinks a.greenLink
+        {
             color: #2fa600;
         }
 
-.bSocial {
+.bSocial
+{
     color: #707070;
     font: 11px/16px Arial,Verdana;
     left: 60%;
@@ -2756,70 +3274,86 @@ a {
     top: 114px;
 }
 
-    .bSocial ul {
+    .bSocial ul
+    {
         margin: 8px 0 0 0;
     }
 
-        .bSocial ul li {
+        .bSocial ul li
+        {
             float: left;
             margin: 0 10px 0 0;
         }
 
-            .bSocial ul li a {
+            .bSocial ul li a
+            {
                 display: block;
                 width: 28px;
                 height: 28px;
             }
 
-.fb {
+.fb
+{
     background: url(/Images/System/fb.png) no-repeat 0 0 transparent;
 }
 
-    .fb:hover {
+    .fb:hover
+    {
         background-position: 0 -32px;
     }
 
-.vk {
+.vk
+{
     background: url(/Images/System/vk.png) no-repeat 0 0 transparent;
 }
 
-    .vk:hover {
+    .vk:hover
+    {
         background-position: 0 -32px;
     }
 
-.tr {
+.tr
+{
     background: url(/Images/System/tr.png) no-repeat 0 0 transparent;
 }
 
-    .tr:hover {
+    .tr:hover
+    {
         background-position: 0 -32px;
     }
 
-.gp {
+.gp
+{
     background: url(/Images/System/gp.png) no-repeat 0 0 transparent;
 }
 
-    .gp:hover {
+    .gp:hover
+    {
         background-position: 0 -32px;
     }
 
-.mr {
+.mr
+{
     background: url(/Images/System/mr.png) no-repeat 0 0 transparent;
 }
 
-    .mr:hover {
+    .mr:hover
+    {
         background-position: 0 -32px;
     }
 
-.od {
+.od
+{
     background: url(/Images/System/od.png) no-repeat 0 0 transparent;
 }
 
-    .od:hover {
+    .od:hover
+    {
         background-position: 0 -32px;
     }
 
-.reactive {
+.reactive
+{
     float: right;
     text-align: center;
     color: #707070;
@@ -2827,14 +3361,16 @@ a {
     padding: 11px 15px 0 0;
 }
 
-    .reactive img {
+    .reactive img
+    {
         margin-top: 9px;
-       
     }
 
-    .reactive a {
+    .reactive a
+    {
         color: #707070;
-        font: 11px/14px Arial,Verdana; margin-right: 14px;
+        font: 11px/14px Arial,Verdana;
+        margin-right: 14px;
     }
 
 
@@ -2843,31 +3379,37 @@ a {
 
 /* by Alena */
 
-.hedList {
+.hedList
+{
     float: left;
     width: 100%;
     background: #F4F7FB url(/Images/System/hedListBg.gif) repeat-x bottom left;
     padding: 11px 0 20px;
 }
 
-    .hedList ul li {
-        display:inline-block; vertical-align:top;
+    .hedList ul li
+    {
+        display: inline-block;
+        vertical-align: top;
         width: 17%;
         margin-left: 2%;
         margin-bottom: 13px;
     }
 
-        .hedList ul li a {
+        .hedList ul li a
+        {
             color: #004bb9;
             font: 12px Arial;
         }
 
-            .hedList ul li a:hover {
+            .hedList ul li a:hover
+            {
                 color: #1c6fea;
                 font: 12px Arial;
             }
 
-.hedListWide {
+.hedListWide
+{
     float: left;
     width: 100%;
     background: url(/Images/System/hedListBg.gif) repeat-x bottom left transparent;
@@ -2875,63 +3417,78 @@ a {
     margin-top: 15px;
 }
 
-    .hedListWide ul li {
+    .hedListWide ul li
+    {
         float: left;
         width: 48%;
         margin-left: 2%;
         margin-bottom: 13px;
     }
 
-        .hedListWide ul li a {
+        .hedListWide ul li a
+        {
             color: #004bb9;
             font: 12px Arial;
         }
 
-            .hedListWide ul li a:hover {
+            .hedListWide ul li a:hover
+            {
                 color: #1c6fea;
                 font: 12px Arial;
             }
 
-.hedList ul li a.someMore {
+.hedList ul li a.someMore
+{
     color: #e64a21;
     font: 11px Arial;
     text-decoration: none;
     border-bottom: 1px dotted #e64a21;
 }
 
-.more10 a.someMore {
+.more10 a.someMore
+{
     color: #e64a21;
     font: 11px Arial;
     text-decoration: none;
     border-bottom: 1px dotted #e64a21;
 }
-.more10 {display:none;}
-.clear {
+
+.more10
+{
+    display: none;
+}
+
+.clear
+{
     clear: both;
 }
 
-.itemInfo {
+.itemInfo
+{
     float: left;
     width: 100%;
     margin-bottom: 6px;
     border-bottom: 1px solid #f1e990;
     margin-top: 12px;
-    padding: 20px 0 14px;
+    padding: 10px 0 5px;
     background: #fffcd9;
 }
 
-.itemInfoTop {
+.itemInfoTop
+{
     float: left;
     width: 100%;
     margin-top: 1px;
 }
 
-.itemInfoTopL {
+.itemInfoTopL
+{
     float: left;
     width: 83%;
 }
 
-    .itemInfoTopL div {
+    .itemInfoTopL div
+    {
         float: left;
         width: 100%;
         color: #404041;
@@ -2939,13 +3496,15 @@ a {
         margin-left: 18px;
     }
 
-        .itemInfoTopL div span {
+        .itemInfoTopL div span
+        {
             margin-right: 11px;
             font: bold 22px Verdana;
             color: #713918;
         }
 
-    .itemInfoTopL p {
+    .itemInfoTopL p
+    {
         float: left;
         width: 90%;
         color: #ff3b38;
@@ -2956,18 +3515,21 @@ a {
         letter-spacing: 2px;
     }
 
-.itemInfoTopR {
+.itemInfoTopR
+{
     float: right;
     width: 237px;
 }
 
-.itemInfoBtm {
+.itemInfoBtm
+{
     float: left;
     width: 100%;
     margin-top: 18px;
 }
 
-.itemInfoTopR em {
+.itemInfoTopR em
+{
     float: left;
     color: #212121;
     font: italic 11px Arial;
@@ -2975,11 +3537,13 @@ a {
     margin-top: 11px;
 }
 
-.itemInfoTopR p {
+.itemInfoTopR p
+{
     padding-left: 15px;
 }
 
-.itemInfoBtm p {
+.itemInfoBtm p
+{
     float: left;
     width: 95%;
     margin-left: 19px;
@@ -2988,51 +3552,66 @@ a {
     margin-bottom: 14px;
 }
 
-a.addToBook {
+a.addToBook
+{
     float: right;
     text-decoration: none;
     margin-top: -41px;
     width: 141px;
 }
 
-.itemInfo a.addToBook {
+.itemInfo a.addToBook
+{
     float: left;
     text-decoration: none;
     margin-left: 20px;
-    margin-top: 31px;
+    margin-top: 11px;
 }
 
-a.addToBook img {
+a.addToBook img
+{
     vertical-align: middle;
     margin-right: 5px;
 }
 
-a.addToBook span {
+a.addToBook span
+{
     text-decoration: underline;
     color: #004bb9;
     font: 11px Arial;
 }
 
-.itemInfoSoc {
+.itemInfoSoc
+{
     float: right;
-    margin-top: 20px;
-    width:60%;
+    margin-top: 0;
+    width: 60%;
 }
-.inline.itemInfoSoc {
+
+.inline.itemInfoSoc
+{
     width: auto;
     padding-right: 10px;
 }
-.itemInfoSoc table td{vertical-align:middle!important;}
-.itemInfoSoc {
-    text-align:right; vertical-align:middle;
+
+.itemInfoSoc table td
+{
+    vertical-align: middle!important;
 }
 
-    .itemInfoSoc div {
+.itemInfoSoc
+{
+    text-align: right;
+    vertical-align: middle;
+}
+
+    .itemInfoSoc div
+    {
         float: left;
-        
     }
 
-.tradeBlock {
+.tradeBlock
+{
     float: left;
     background: url(/Images/System/tradeBg.png) no-repeat top left transparent;
     margin-left: 7px;
@@ -3044,7 +3623,8 @@ a.addToBook span {
     letter-spacing: 2px;
 }
 
-.sellerInfo {
+.sellerInfo
+{
     float: left;
     width: 100%;
     margin: -1px;
@@ -3053,56 +3633,69 @@ a.addToBook span {
     padding-bottom: 11px;
 }
 
-.sellerInfoL {
+.sellerInfoL
+{
     float: left;
     width: 50%;
     margin: 12px 0;
 }
 
-.sellerInfoM {
+.sellerInfoM
+{
     float: left;
     width: 27%;
     margin-top: 37px;
 }
 
-    .sellerInfoM ul li {
+    .sellerInfoM.withoutName
+    {
+        margin-top: 20px;
+    }
+
+    .sellerInfoM ul li
+    {
         float: left;
         width: 100%;
         margin-bottom: 4px;
         color: #554C47;
-            font: 11px Arial;
+        font: 11px Arial;
     }
 
-        .sellerInfoM ul li span {
-				
-            margin-left:4px;
+        .sellerInfoM ul li span
+        {
+            margin-left: 4px;
         }
 
-            .sellerInfoM ul li a span {
-                text-decoration: underline;
-                color: #554c47;
-                font: 11px Arial;
-            }
+        .sellerInfoM ul li a span
+        {
+            text-decoration: underline;
+            color: #554c47;
+            font: 11px Arial;
+        }
 
-            .sellerInfoM ul li a img {
-                vertical-align: middle;
-                margin-right: 8px;
-                margin-left: 2px;
-            }
+        .sellerInfoM ul li a img
+        {
+            vertical-align: middle;
+            margin-right: 8px;
+            margin-left: 2px;
+        }
 
-.selBtm {
+.selBtm
+{
     position: absolute;
     bottom: -21px;
     left: 30px;
 }
 
-.sellerInfoR {
+.sellerInfoR
+{
     float: left;
     width: 23%;
     margin: 14px 0 12px;
 }
 
-    .sellerInfoR div {
+    .sellerInfoR div
+    {
         float: right;
         width: 95%;
         text-align: right;
@@ -3112,25 +3705,27 @@ a.addToBook span {
         margin-bottom: 7px;
     }
 
-    .sellerInfoR img {
+    .sellerInfoR img
+    {
         vertical-align: middle;
         margin-right: 4px;
         margin-left: 2px;
     }
 
-    .sellerInfoR div span {
+    .sellerInfoR div span
+    {
         color: #541f1f;
         font: 11px Arial;
         margin-left: 2px;
     }
 
-    .sellerInfoR input {
+    .sellerInfoR input
+    {
         height: 27px;
         border: none;
         color: #548b14;
         font: bold 9px Arial;
         width: 157px;
-        
         margin-top: 24px;
         padding: 3px 0 6px 20px;
         float: right;
@@ -3139,53 +3734,64 @@ a.addToBook span {
         cursor: pointer;
     }
 
-    .sellerInfoR div em {
+    .sellerInfoR div em
+    {
         color: #d41414;
         font: 11px Arial;
         margin-left: 2px;
     }
 
-    .sellerInfoR p {
+    .sellerInfoR p
+    {
         text-align: right;
         color: #868686;
         font: 11px Arial;
-        margin-right: 20px;
+        /*margin-right: 20px;*/
         margin-bottom: 7px;
     }
 
-    .sellerInfoR ul li a span {
+    .sellerInfoR ul li a span
+    {
         text-decoration: underline;
         color: #554c47;
         font: 11px Arial;
     }
 
-.sellerPhoto {
+.sellerPhoto
+{
     float: left;
     width: 120px;
     height: 80px;
     overflow: hidden;
     margin: 2px 20px;
 }
-.sellerPhoto img{
-    max-height:80px; max-width:120px;
-}
-.sellerText {
+
+    .sellerPhoto img
+    {
+        max-height: 80px;
+        max-width: 120px;
+    }
+
+.sellerText
+{
     margin: 0 0 0 160px;
 }
 
-    .sellerText div {
+    .sellerText div
+    {
         float: left;
         width: 100%;
         margin-bottom: 11px;
     }
 
-        .sellerText div a {
+        .sellerText div a
+        {
             color: #004bb9;
             font: bold 13px Arial;
-            
         }
 
-    .sellerText p {
+    .sellerText p
+    {
         float: left;
         width: 100%;
         color: #454545;
@@ -3193,56 +3799,77 @@ a.addToBook span {
         margin-bottom: 9px;
     }
 
-        .sellerText p b {
+        .sellerText p b
+        {
             display: block;
             padding-top: 3px;
         }
 
-        .sellerText p a {
+        .sellerText p a
+        {
             color: #454545;
             font: 12px Arial;
         }
 
-.itemInfoFull {
+    .sellerText .tel
+    {
+        display: block;
+        font-weight: bold;
+        text-decoration: none;
+        padding-top: 3px;
+    }
+
+.itemInfoFull
+{
     float: left;
     width: 100%;
     margin: 26px 0;
-    overflow:hidden;
-}
-.user-info-link {margin-left:0!important;}
-    .itemInfoFull span {
-        float: left;
-        width: 90%;
-        color: #554c47;
-        font: bold 12px Arial;
-        margin: 0 20px 13px;
-    }
-
-    .itemInfoFull pre {
-        float: left;
-        width: 90%;
-        color: #554c47;
-        font: 12px/155% Arial;
-        margin: 0 20px 2px;
-    }
-
-
-.itemNothingResponse {
-        float: left;
-        width: 90%;
-        color: #554c47;
-        font: 12px/155% Arial;
-        margin: 5px 0;
+    overflow: hidden;
 }
 
-.itemResponse {
+.user-info-link
+{
+    margin-left: 0!important;
+}
+/*.itemInfoFull span {*/
+.itemInfoFull .span-text
+{
+    float: left;
+    width: 90%;
+    color: #554c47;
+    font: bold 12px Arial;
+    margin: 0 20px 13px;
+}
+
+.itemInfoFull .itemInfoFull-contailner
+{
+    float: left;
+    width: 90%;
+    color: #554c47;
+    font: 12px/155% Arial;
+    margin: 0 20px 2px;
+}
+
+
+.itemNothingResponse
+{
+    float: left;
+    width: 90%;
+    color: #554c47;
+    font: 12px/155% Arial;
+    margin: 5px 0;
+}
+
+.itemResponse
+{
     float: left;
     width: 100%;
     margin-bottom: 24px;
     margin-top: 49px;
 }
 
-.itemResponseHead {
+.itemResponseHead
+{
     float: left;
     width: 100%;
     font: bold 12px Arial;
@@ -3253,11 +3880,13 @@ a.addToBook span {
     border-bottom: 1px solid #dde3e8;
 }
 
-    .itemResponseHead span {
+    .itemResponseHead span
+    {
         margin-left: 20px;
     }
 
-.itemResponseBlock {
+.itemResponseBlock
+{
     float: left;
     width: 100%;
     border-bottom: 1px solid #dde3e8;
@@ -3265,46 +3894,56 @@ a.addToBook span {
     padding-top: 20px;
 }
 
-    .itemResponseBlock.gray {
+    .itemResponseBlock.gray
+    {
         background: url(/Images/System/grayRes.png) repeat-x 0 0 transparent;
     }
 
-.itemResponseBlockL {
+.itemResponseBlockL
+{
     float: left;
     width: 75px;
     height: 50px;
     overflow: hidden;
     margin: 11px 20px 11px 40px;
 }
-.itemResponseBlockL img {
 
-    max-height:50px; max-width:75px;
-}
-.itemResponseBlockR {
+    .itemResponseBlockL img
+    {
+        max-height: 50px;
+        max-width: 75px;
+    }
+
+.itemResponseBlockR
+{
     margin-left: 110px;
     margin-top: 8px;
     margin-right: 20px;
     position: relative;
 }
 
-    .itemResponseBlockR span {
+    .itemResponseBlockR span
+    {
         color: #868686;
         font: 11px Arial;
     }
 
-        .itemResponseBlockR span a {
+        .itemResponseBlockR span a
+        {
             color: #232323;
             font: bold 11px Arial;
             margin-right: 23px;
         }
 
-    .itemResponseBlockR p {
+    .itemResponseBlockR p
+    {
         color: #3a3a3a;
         font: 12px/150% Arial;
         margin-top: 13px;
     }
 
-.itemResponseAdd {
+.itemResponseAdd
+{
     float: left;
     width: 100%;
     border: 1px solid #dde3e8;
@@ -3313,18 +3952,21 @@ a.addToBook span {
     background: #f8f7f7;
 }
 
-    .itemResponseAdd em {
+    .itemResponseAdd em
+    {
         color: #546d7f;
         font: bold 16px Arial;
         margin: 0 20px;
     }
 
-.respArea {
+.respArea
+{
     border: 1px solid #c9d1d6;
     margin: 11px 29px 3px 20px;
 }
 
-.itemResponseAdd textarea {
+.itemResponseAdd textarea
+{
     width: 100%;
     height: 148px;
     color: #3a3a3a;
@@ -3335,34 +3977,40 @@ a.addToBook span {
     overflow: auto;
 }
 
-.itemResponseAdd .regCapcha {
+.itemResponseAdd .regCapcha
+{
     float: left;
     padding: 6px 0 1px 5px;
     clear: none;
 }
 
-    .itemResponseAdd .regCapcha input {
+    .itemResponseAdd .regCapcha input
+    {
         width: 118px;
         margin-left: 10px;
     }
 
-.respRules {
+.respRules
+{
     float: left;
     margin: 11px 19px;
     width: 35%;
 }
 
-    .respRules p {
+    .respRules p
+    {
         color: #4c4c4c;
         font: 11px/15px Arial;
     }
 
-.respSubm {
+.respSubm
+{
     float: right;
     margin: 31px 28px 0;
 }
 
-    .respSubm input {
+    .respSubm input
+    {
         border: none;
         cursor: pointer;
         width: 139px;
@@ -3370,7 +4018,8 @@ a.addToBook span {
         background: url(/Images/System/respSub.gif) no-repeat top left transparent;
     }
 
-        .respSubm input:hover {
+        .respSubm input:hover
+        {
             border: none;
             cursor: pointer;
             width: 139px;
@@ -3378,94 +4027,127 @@ a.addToBook span {
             background: url(/Images/System/respSub.gif) no-repeat bottom left transparent;
         }
 
-.itemPics {
+.itemPics
+{
     margin: 0 auto;
     width: 790px;
 }
 
-.itemPicsBig {
+.itemPicsBig
+{
     float: left;
     width: 100%;
-    height: 420px;
+    /*height: 420px;*/
     position: relative;
     margin-top: 22px;
 }
-.itemPicsBig img{max-height:350px; max-width:530px;}  /*исправлено*/
-.itemPicsList {
+
+    .itemPicsBig img
+    {
+        max-height: 350px;
+        max-width: 530px;
+    }
+/*исправлено*/
+.itemPicsList
+{
     height: 104px!important;
     margin-top: 6px;
     float: left;
     width: 780px;
 }
 
-    .itemPicsList ul li {
+    .itemPicsList ul li
+    {
         float: left;
         width: 90px;
         margin: 0 11px;
         height: 64px;
     }
 
-        .itemPicsList ul li div {
+        .itemPicsList ul li div
+        {
             border: 2px solid white;
             float: left;
             width: 86px;
             height: 60px;
         }
 
-        .itemPicsList ul li.a div {
+        .itemPicsList ul li.a div
+        {
             border: 2px solid #ffb431;
         }
 
-        .itemPicsList ul li div span {
+        .itemPicsList ul li div span
+        {
             float: left;
             width: 86px;
             height: 60px;
             overflow: hidden;
         }
 
-            .itemPicsList ul li div span img {
+            .itemPicsList ul li div span img
+            {
                 width: 86px;
             }
 
-            .hed0 {
-                background: none repeat scroll 0 center #44B6ED;
-                color: #FFFFFF;
-                display: block;
-                font: bold 12px/16px Arial,Verdana;
-                height: 16px;
-                padding: 5px 0 4px;
-                text-indent: 10px;
-                margin:0 0 10px 0;
-            }
-
-
-.fb-like {margin-right:22px;}
-#___plusone_0 {width:87px!important;}
-#305904 {width:140px!important;}
-
-
-.itemPicsList2 {
-    margin: 0 auto;
-    overflow: hidden;
-    width: 790px;
+.hed0
+{
+    background: none repeat scroll 0 center #44B6ED;
+    color: #FFFFFF;
+    display: block;
+    font: bold 12px/16px Arial,Verdana;
+    height: 16px;
+    padding: 5px 0 4px;
+    text-indent: 10px;
+    margin: 0 0 10px 0;
 }
 
-    .itemPicsList2 ul li {
+
+.fb-like
+{
+    margin-right: 22px;
+}
+
+#___plusone_0
+{
+    width: 87px!important;
+}
+
+#305904
+{
+    width: 140px!important;
+}
+
+
+.itemPicsList2
+{
+    margin: 0 auto;
+    overflow: hidden;
+    width: 530px;
+}
+
+    .itemPicsList2 ul li
+    {
         text-align: center;
     }
-    .itemPicsList2 ul li td{
-        vertical-align:middle;
-        text-align:center; height:350px;
-    }
 
-        .itemPicsList2 ul li p {
+        .itemPicsList2 ul li td
+        {
+            vertical-align: middle;
+            text-align: center;
+            height: 350px;
+        }
+
+        .itemPicsList2 ul li p
+        {
             text-align: center;
             color: #868686;
             font: 12px Arial;
             padding-top: 7px;
         }
 
-.jcarousel-next {
+.jcarousel-next
+{
     position: absolute;
     top: 0px;
     cursor: pointer;
@@ -3476,7 +4158,8 @@ a.addToBook span {
     text-decoration: none;
 }
 
-.jcarousel-prev {
+.jcarousel-prev
+{
     position: absolute;
     top: 0px;
     cursor: pointer;
@@ -3487,58 +4170,68 @@ a.addToBook span {
     text-decoration: none;
 }
 
-    .jcarousel-prev:hover, .jcarousel-next:hover {
+    .jcarousel-prev:hover, .jcarousel-next:hover
+    {
         background-position: bottom left;
     }
 
-.jcarousel-prev-disabled, .jcarousel-next-disabled {
+.jcarousel-prev-disabled, .jcarousel-next-disabled
+{
     display: none!important;
 }
 
-.prodTop {
+.prodTop
+{
     float: left;
     width: 100%;
 }
 
-.prodList {
+.prodList
+{
     float: left;
     width: 100%;
     margin-top: 25px;
 }
 
-.prodTable {
+.prodTable
+{
     float: left;
     width: 99%;
     margin-top: 25px;
     margin-bottom: 10px;
 }
 
-.prodTop .mPrice {
+.prodTop .mPrice
+{
     font: bold italic 14px/18px Arial,Verdana;
     margin: 0 10px 0 8px;
     white-space: nowrap;
     float: left;
 }
 
-.shopPrice .mPrice {
+.shopPrice .mPrice
+{
     font: bold italic 14px/18px Arial,Verdana;
     margin: 0 10px 0 8px;
     white-space: nowrap;
     float: left;
 }
 
-.prodTop .buyProd {
+.prodTop .buyProd
+{
     float: left;
 }
 
-.prodTop .selNum {
+.prodTop .selNum
+{
     width: auto;
     float: left;
     text-indent: 0;
     margin: 14px 10px 0;
 }
 
-.prodTopL {
+.prodTopL
+{
     float: left;
     width: 150px;
     height: 100px;
@@ -3546,7 +4239,8 @@ a.addToBook span {
     margin-top: 25px;
 }
 
-.prodTopR {
+.prodTopR
+{
     float: right;
     margin-right: 12px;
     padding: 15px 20px 10px;
@@ -3555,39 +4249,46 @@ a.addToBook span {
     background: url("/Images/System/dotL.png") repeat-y scroll left -1px #fff9e9;
 }
 
-.prodTopM {
+.prodTopM
+{
     margin: 21px 167px 0 170px;
 }
 
-    .prodTopM p {
+    .prodTopM p
+    {
         color: #3a3a3a;
         font: 12px/145% Arial;
     }
 
-.prodPrice {
-      margin-right: 20px;
+.prodPrice
+{
+    margin-right: 20px;
     margin-top: 22px;
     float: left;
 }
 
-.prodToBuy {
+.prodToBuy
+{
     margin-left: 14px;
     margin-top: 12px;
 }
 
-.prodTopR ul li a {
+.prodTopR ul li a
+{
     color: #5f544f;
     font: bold 11px Arial;
     float: left;
 }
 
-    .prodTopR ul li a.act {
+    .prodTopR ul li a.act
+    {
         color: #a32e17;
         font: bold 11px Arial;
         text-decoration: none;
     }
 
-.prodTopR ul li sup {
+.prodTopR ul li sup
+{
     color: #dc2b02;
     font: bold 9px Arial;
     float: left;
@@ -3595,65 +4296,77 @@ a.addToBook span {
     margin-top: -3px;
 }
 
-.prodTopR ul li a img {
+.prodTopR ul li a img
+{
     float: left;
     margin-top: 2px;
     vertical-align: middle;
 }
 
-.prodTopR ul li a span {
+.prodTopR ul li a span
+{
     margin-left: 18px;
     display: block;
 }
 
-.prodTable td {
+.prodTable td
+{
     color: #3a3a3a;
     font: 12px Arial;
 }
 
-.prodTopR ul li {
+.prodTopR ul li
+{
     float: left;
     width: 100%;
     margin-bottom: 9px;
 }
 
-.prodListIn {
+.prodListIn
+{
     height: 104px!important;
     margin-top: 6px;
     float: left;
     width: 100%;
 }
 
-    .prodListIn ul li {
+    .prodListIn ul li
+    {
         float: left;
         width: 90px;
         margin: 0 11px;
         height: 64px;
     }
 
-        .prodListIn ul li div {
+        .prodListIn ul li div
+        {
             border: 2px solid white;
             float: left;
             width: 86px;
             height: 60px;
         }
 
-        .prodListIn ul li.a div {
+        .prodListIn ul li.a div
+        {
             border: 2px solid white;
         }
 
-        .prodListIn ul li div span {
+        .prodListIn ul li div span
+        {
             float: left;
             width: 86px;
             height: 60px;
             overflow: hidden;
         }
 
-            .prodListIn ul li div span img {
-                max-width: 86px;max-height:60px;
+            .prodListIn ul li div span img
+            {
+                max-width: 86px;
+                max-height: 60px;
             }
 
-.prodListHead {
+.prodListHead
+{
     float: left;
     width: 100%;
     font: bold 12px Arial;
@@ -3664,30 +4377,36 @@ a.addToBook span {
     border-bottom: 1px solid #d3e9ff;
 }
 
-    .prodListHead span {
+    .prodListHead span
+    {
         margin-left: 20px;
     }
 
-.prodList .itemPicsBig {
+.prodList .itemPicsBig
+{
     margin-top: 27px;
 }
 
-.prodList .itemResponse {
+.prodList .itemResponse
+{
     margin-top: 0;
 }
 
-.prodTable table {
+.prodTable table
+{
     border: 1px solid #dcdedf;
     border-collapse: collapse;
 }
 
-    .prodTable table td {
+    .prodTable table td
+    {
         border-top: 1px solid #dcdedf;
         padding: 7px 14px 8px;
         vertical-align: middle;
     }
 
-    .prodTable table th {
+    .prodTable table th
+    {
         border-top: 1px solid #dcdedf;
         background-color: #f2f2f2;
         color: #404041;
@@ -3695,20 +4414,23 @@ a.addToBook span {
         padding: 10px 14px 9px;
     }
 
-    .prodTable table tr td:first-child {
+    .prodTable table tr td:first-child
+    {
         color: #546d7f;
         font: bold 12px Arial;
         width: 41%;
     }
 
-.bestOffers {
+.bestOffers
+{
     float: left;
     margin-left: 10px;
     margin-top: 79px;
     width: 135px;
 }
 
-    .bestOffers em {
+    .bestOffers em
+    {
         float: left;
         width: 100%;
         color: #f3150d;
@@ -3716,7 +4438,8 @@ a.addToBook span {
         margin-bottom: 17px;
     }
 
-    .bestOffers p {
+    .bestOffers p
+    {
         float: left;
         width: 95%;
         color: #6f6f6f;
@@ -3724,7 +4447,8 @@ a.addToBook span {
         margin-top: 22px;
     }
 
-.bestOffer {
+.bestOffer
+{
     float: left;
     width: 120px;
     border: 1px solid #ffdbda;
@@ -3732,14 +4456,16 @@ a.addToBook span {
     padding-bottom: 17px;
 }
 
-.bestOfferImg {
+.bestOfferImg
+{
     float: left;
     width: 122px;
     margin: 10px -1px;
     background-color: white;
 }
 
-.bestOfferImgIn {
+.bestOfferImgIn
+{
     float: left;
     width: 120px;
     margin: 10px 1px;
@@ -3747,26 +4473,30 @@ a.addToBook span {
     text-align: center;
 }
 
-.bestOfferText {
+.bestOfferText
+{
     margin: 0 11px;
     float: left;
     text-align: center;
     width: 98px;
 }
 
-    .bestOfferText a {
+    .bestOfferText a
+    {
         color: #004bb9;
         font: 11px/145% Arial;
     }
 
-    .bestOfferText span {
+    .bestOfferText span
+    {
         color: #e50800;
         font: 11px Arial;
         display: block;
         margin-top: 4px;
     }
 
-.shopHead {
+.shopHead
+{
     float: left;
     width: 100%;
     font: bold 12px Arial;
@@ -3777,17 +4507,20 @@ a.addToBook span {
     border-bottom: 1px solid #b6f06a;
 }
 
-    .shopHead span {
+    .shopHead span
+    {
         margin-left: 20px;
     }
 
-.shopHeadOut {
+.shopHeadOut
+{
     float: left;
     width: 100%;
     position: relative;
 }
 
-    .shopHeadOut em {
+    .shopHeadOut em
+    {
         color: #f3150d;
         font: 14px Arial;
         position: absolute;
@@ -3795,7 +4528,8 @@ a.addToBook span {
         left: 11px;
     }
 
-    .shopHeadOut p {
+    .shopHeadOut p
+    {
         color: #636363;
         font: 11px Arial;
         padding: 8px 20px 26px;
@@ -3803,52 +4537,61 @@ a.addToBook span {
         background: url(/Images/System/shopHeadBg.gif) repeat-x top left white;
     }
 
-.shopPrice {
+.shopPrice
+{
     width: 99px;
     padding: 30px 20px;
     vertical-align: middle !important;
 }
 
-.shopText {
+.shopText
+{
     width: auto;
     padding: 11px 0 0;
 }
 
-.shopCont {
+.shopCont
+{
     padding-bottom: 17px;
     width: 230px;
 }
 
 
-    .shopCont .shopLogo {
-    float: left;
-    margin: 14px 0 12px;
-    text-align: center;
-    width: 100%;
-}
+    .shopCont .shopLogo
+    {
+        float: left;
+        margin: 14px 0 12px;
+        text-align: center;
+        width: 100%;
+    }
 
-    .shopCont p {
+    .shopCont p
+    {
         color: #3a3a3a;
         font: 12px Arial;
         padding-bottom: 1px;
     }
 
-        .shopCont p b {
+        .shopCont p b
+        {
             margin-left: 3px;
         }
 
-.shopInfo {
+.shopInfo
+{
     padding-bottom: 17px;
     width: 150px;
 }
 
-.workTime {
+.workTime
+{
     float: left;
     width: 100%;
     margin: 11px 0 23px;
 }
 
-    .workTime p {
+    .workTime p
+    {
         margin-bottom: 7px;
         float: left;
         width: 100%;
@@ -3856,7 +4599,8 @@ a.addToBook span {
         font: 11px Arial;
     }
 
-    .workTime a.workT {
+    .workTime a.workT
+    {
         margin-right: 3px;
         float: left;
         width: 10px;
@@ -3865,11 +4609,13 @@ a.addToBook span {
         background: url(/Images/System/workIcon.gif) no-repeat top left transparent;
     }
 
-    .workTime a {
+    .workTime a
+    {
         cursor: default;
     }
 
-        .workTime a.workT1 {
+        .workTime a.workT1
+        {
             margin-right: 3px;
             float: left;
             width: 10px;
@@ -3878,27 +4624,32 @@ a.addToBook span {
             background: url(/Images/System/workIcon.gif) no-repeat bottom left transparent;
         }
 
-.workStars {
+.workStars
+{
     float: left;
     width: 100%;
 }
 
-    .workStars p {
+    .workStars p
+    {
         margin-bottom: 8px;
         float: left;
         width: 100%;
     }
 
-        .workStars p a {
+        .workStars p a
+        {
             color: #004bb9;
             font: 12px Arial;
         }
 
-    .workStars > a {
+    .workStars > a
+    {
         cursor: default;
     }
 
-    .workStars a.starT {
+    .workStars a.starT
+    {
         margin-right: 3px;
         float: left;
         width: 13px;
@@ -3907,7 +4658,8 @@ a.addToBook span {
         background: url(/Images/System/workStar.gif) no-repeat top left transparent;
     }
 
-    .workStars a.starT1 {
+    .workStars a.starT1
+    {
         margin-right: 3px;
         float: left;
         width: 13px;
@@ -3916,24 +4668,28 @@ a.addToBook span {
         background: url(/Images/System/workStar.gif) no-repeat bottom left transparent;
     }
 
-.workResponse {
+.workResponse
+{
     float: left;
     width: 100%;
     margin-top: 11px;
 }
 
-    .workResponse a {
+    .workResponse a
+    {
         float: left;
         color: #554c47;
         font: bold 11px Arial;
     }
 
-        .workResponse a img {
+        .workResponse a img
+        {
             vertical-align: middle;
             margin-right: 5px;
         }
 
-    .workResponse sup {
+    .workResponse sup
+    {
         color: #dc2b02;
         font: 9px Arial;
         float: left;
@@ -3941,34 +4697,40 @@ a.addToBook span {
         margin-top: -4px;
     }
 
-.shopText p {
+.shopText p
+{
     color: #3a3a3a;
     font: 12px/135% Arial;
     padding-bottom: 15px;
     padding-right: 13px;
 }
 
-.siteMap {
+.siteMap
+{
     padding: 44px 18px;
 }
 
-.siteMapIn {
+.siteMapIn
+{
     margin-top: 18px;
     float: left;
     padding-top: 18px;
     border-top: 1px solid #d9d9d9;
 }
 
-    .siteMapIn ul {
+    .siteMapIn ul
+    {
         margin-left: 20px;
     }
 
-        .siteMapIn ul li ul {
+        .siteMapIn ul li ul
+        {
             margin-left: 16px;
             margin-top: 10px;
         }
 
-        .siteMapIn ul li {
+        .siteMapIn ul li
+        {
             float: left;
             width: 22%;
             margin-right: 3%;
@@ -3976,47 +4738,55 @@ a.addToBook span {
             min-height: 35px;
         }
 
-            .siteMapIn ul li a {
+            .siteMapIn ul li a
+            {
                 color: #546d7f;
                 font: bold 13px Arial;
             }
 
-            .siteMapIn ul li ul li {
+            .siteMapIn ul li ul li
+            {
                 float: none;
                 width: auto;
                 margin-bottom: 6px;
                 min-height: 5px;
             }
 
-                .siteMapIn ul li ul li a {
+                .siteMapIn ul li ul li a
+                {
                     color: #717c89;
                     font: 12px Arial;
                 }
 
-    .siteMapIn p {
+    .siteMapIn p
+    {
         color: #375173;
         font: bold 18px Verdana;
         padding-bottom: 24px;
     }
 
-        .siteMapIn p span {
+        .siteMapIn p span
+        {
             color: #a32e17;
             font: 14px Verdana;
             margin-left: 14px;
         }
 
-            .siteMapIn p span a {
+            .siteMapIn p span a
+            {
                 color: #a32e17;
                 font: 14px Verdana;
             }
 
-.adsChoose {
+.adsChoose
+{
     float: left;
     width: 100%;
     margin-top: 35px;
 }
 
-.adsChooseL {
+.adsChooseL
+{
     float: left;
     width: 42%;
     text-align: center;
@@ -4027,11 +4797,13 @@ a.addToBook span {
     height: 69px;
 }
 
-.inAct {
+.inAct
+{
     background-color: #e1e4ea!important;
 }
 
-.adsChooseL a {
+.adsChooseL a
+{
     color: #3aae1f;
     font: bold 14px Verdana;
     text-transform: uppercase;
@@ -4039,13 +4811,15 @@ a.addToBook span {
     cursor: default;
 }
 
-.adsChooseL p {
+.adsChooseL p
+{
     color: #818080;
     font: 12px Arial;
     padding-top: 5px;
 }
 
-.adsChooseL a.adsBut {
+.adsChooseL a.adsBut
+{
     cursor: default;
     border: none;
     position: absolute;
@@ -4056,7 +4830,8 @@ a.addToBook span {
     background: url(/Images/System/adsBut.png) no-repeat top left transparent;
 }
 
-.adsChooseR {
+.adsChooseR
+{
     float: left;
     width: 42%;
     text-align: center;
@@ -4067,7 +4842,8 @@ a.addToBook span {
     height: 69px;
 }
 
-    .adsChooseR a {
+    .adsChooseR a
+    {
         cursor: default;
         color: #f66c27;
         font: bold 14px Verdana;
@@ -4075,13 +4851,15 @@ a.addToBook span {
         text-decoration: none;
     }
 
-    .adsChooseR p {
+    .adsChooseR p
+    {
         color: #3aae1f;
         font: 12px Arial;
         padding-top: 5px;
     }
 
-    .adsChooseR a.adsBut {
+    .adsChooseR a.adsBut
+    {
         cursor: default;
         border: none;
         position: absolute;
@@ -4092,19 +4870,22 @@ a.addToBook span {
         background: url(/Images/System/adsBut.png) no-repeat bottom right transparent;
     }
 
-.inAct p {
+.inAct p
+{
     color: #818080!important;
     font: 12px Arial;
 }
 
-.inAct a {
+.inAct a
+{
     color: #818080;
     font: bold 14px Verdana;
     border-bottom: 1px dotted #818080;
     cursor: pointer;
 }
 
-.adsChooseL.inAct a.adsBut {
+.adsChooseL.inAct a.adsBut
+{
     border: none;
     position: absolute;
     top: 7px;
@@ -4115,7 +4896,8 @@ a.addToBook span {
     cursor: pointer;
 }
 
-.adsChooseR.inAct a.adsBut {
+.adsChooseR.inAct a.adsBut
+{
     border: none;
     position: absolute;
     top: 7px;
@@ -4126,12 +4908,14 @@ a.addToBook span {
     cursor: pointer;
 }
 
-.adsSelect {
+.adsSelect
+{
     padding: 41px 22px 65px;
     clear: both;
 }
 
-    .adsSelect span {
+    .adsSelect span
+    {
         float: left;
         color: #546d7f;
         font: bold 13px Arial;
@@ -4139,7 +4923,8 @@ a.addToBook span {
         margin-top: 3px;
     }
 
-    .adsSelect select {
+    .adsSelect select
+    {
         float: left;
         color: #546d7f;
         font: 12px Arial;
@@ -4148,7 +4933,8 @@ a.addToBook span {
         border: 1px solid #c9d1d6;
     }
 
-    .adsSelect input {
+    .adsSelect input
+    {
         display: none;
         float: left;
         border: none;
@@ -4159,82 +4945,97 @@ a.addToBook span {
         margin: -1px 15px;
     }
 
-.adsTable {
+.adsTable
+{
     padding: 16px 2px;
     clear: both;
     color: #818080;
     font: 12px Arial;
 }
 
-    .adsTable table {
+    .adsTable table
+    {
         width: 100%;
         margin: 0px 0 3px;
     }
 
-    .adsTable a {
+    .adsTable a
+    {
         margin: 21px 20px 22px;
         float: left;
     }
 
-    .adsTable tr.gray {
+    .adsTable tr.gray
+    {
         background-color: #fafafc;
     }
 
-    .adsTable th {
+    .adsTable th
+    {
         text-align: center;
         color: #4c4c4c;
         font: bold 13px Arial;
         padding: 0 0 11px 0;
     }
 
-    .adsTable td {
+    .adsTable td
+    {
         text-align: center;
         vertical-align: top;
         margin: 10px 0 20px;
     }
 
-    .adsTable .adsTar {
+    .adsTable .adsTar
+    {
         width: 210px;
     }
 
-        .adsTable .adsTar a {
+        .adsTable .adsTar a
+        {
             text-decoration: none;
             float: left;
             margin: 0px 19px 24px;
         }
 
-            .adsTable .adsTar a img {
+            .adsTable .adsTar a img
+            {
                 vertical-align: middle;
             }
 
-                .adsTable .adsTar a img.prem {
+                .adsTable .adsTar a img.prem
+                {
                     margin: 8px 0 -3px 0;
                 }
 
-            .adsTable .adsTar a span {
+            .adsTable .adsTar a span
+            {
                 color: #4c4c4c;
                 font: 12px Arial;
                 border-bottom: 1px dotted #4c4c4c;
                 margin: 0 8px 0 15px;
             }
 
-    .adsTable .adsReview {
+    .adsTable .adsReview
+    {
         padding: 25px 0 26px;
     }
 
-    .adsTable .adsDays {
+    .adsTable .adsDays
+    {
         color: #f66c27;
         font: bold 12px Arial;
         width: 180px;
         padding: 25px 0;
     }
 
-.adsPrice {
+.adsPrice
+{
     width: 155px;
     padding: 19px 0;
 }
 
-    .adsPrice .mPrice {
+    .adsPrice .mPrice
+    {
         margin-left: 54px;
         border: none;
         cursor: defailt;
@@ -4243,19 +5044,22 @@ a.addToBook span {
         padding: 1px 5px 3px 0;
     }
 
-        .adsPrice .mPrice span {
+        .adsPrice .mPrice span
+        {
             border: none;
             cursor: default;
             color: #212121;
             font: bold italic 14px Arial;
         }
 
-.adsButton {
+.adsButton
+{
     width: 140px;
     padding: 19px 0;
 }
 
-    .adsButton input {
+    .adsButton input
+    {
         border: none;
         background: url(/Images/System/adsButton.gif) no-repeat top left transparent;
         width: 104px;
@@ -4263,30 +5067,35 @@ a.addToBook span {
         cursor: pointer;
     }
 
-.adsReview p {
+.adsReview p
+{
     color: #28a30b;
 }
 
-.adsText {
+.adsText
+{
     display: none;
     padding: 14px 13px;
     min-height: 310px;
 }
 
-    .adsText span {
+    .adsText span
+    {
         color: #f3150d;
         font: 14px Arial;
         float: left;
     }
 
-    .adsText p {
+    .adsText p
+    {
         color: #3a3a3a;
         font: 12px/140% Arial;
         margin: 2px 4px;
         width: 50%;
     }
 
-.adsDone {
+.adsDone
+{
     width: 460px;
     margin: 2px auto;
     color: #4c4c4c;
@@ -4294,13 +5103,15 @@ a.addToBook span {
     text-align: center;
 }
 
-    .adsDone div {
+    .adsDone div
+    {
         color: #40af22;
         font: bold 22px Verdana;
         padding-bottom: 40px;
     }
 
-    .adsDone p {
+    .adsDone p
+    {
         color: #4c4c4c;
         font: bold 15px Arial;
         width: 313px;
@@ -4308,21 +5119,25 @@ a.addToBook span {
         margin: 0 auto 12px;
     }
 
-        .adsDone p span {
+        .adsDone p span
+        {
             color: #e64a21;
             float: right;
         }
 
-    .adsDone em {
+    .adsDone em
+    {
         display: block;
         margin-top: 26px;
     }
 
-        .adsDone em a {
+        .adsDone em a
+        {
             color: #004bb9;
         }
 
-.adsDoneColored {
+.adsDoneColored
+{
     width: 460px;
     margin: 31px auto 0;
     color: #818080;
@@ -4332,23 +5147,27 @@ a.addToBook span {
     padding-bottom: 26px;
 }
 
-    .adsDoneColored div {
+    .adsDoneColored div
+    {
         margin-top: 18px;
     }
 
-    .adsDoneColored p {
+    .adsDoneColored p
+    {
         color: #4c4c4c;
         font: 11px Arial;
         margin-top: 16px;
     }
 
-        .adsDoneColored p span {
+        .adsDoneColored p span
+        {
             text-transform: uppercase;
             color: #e64a21;
             margin-right: 6px;
         }
 
-    .adsDoneColored input {
+    .adsDoneColored input
+    {
         margin-top: 21px;
         border: none;
         background: url(/Images/System/adsUp2.png) no-repeat top left transparent;
@@ -4357,15 +5176,18 @@ a.addToBook span {
         cursor: pointer;
     }
 
-.register {
+.register
+{
     margin: 44px 19px;
 }
 
-    .register h1 {
+    .register h1
+    {
         margin-left: 19px;
     }
 
-.registerIn {
+.registerIn
+{
     border: 1px solid #d7dde0;
     background-color: #f3f5f7;
     margin-top: 23px;
@@ -4375,20 +5197,23 @@ a.addToBook span {
     margin-bottom: 25px;
 }
 
-.registerInL {
+.registerInL
+{
     float: left;
     width: 59%;
     padding: 0 0 0 20px;
 }
 
-.registerInW {
+.registerInW
+{
     float: left;
     width: 100%;
     padding: 0 0 0 20px;
     margin: -7px 0 0 0;
 }
 
-.registerInL div {
+.registerInL div
+{
     color: #4c4c4c;
     font: 13px Arial;
     padding-bottom: 25px;
@@ -4396,7 +5221,8 @@ a.addToBook span {
     width: 100%;
 }
 
-    .registerInL div.borderReg {
+    .registerInL div.borderReg
+    {
         border-top: 1px solid #d7dde0;
         padding-top: 17px;
         padding-bottom: 0;
@@ -4404,18 +5230,21 @@ a.addToBook span {
         width: 560px;
     }
 
-    .registerInL div span {
+    .registerInL div span
+    {
         color: #4c4c4c;
         font: bold 13px Arial;
         float: left;
         margin-top: 3px;
     }
 
-        .registerInL div span.firstS {
+        .registerInL div span.firstS
+        {
             color: #4c4c4c!important;
         }
 
-    .registerInL div em {
+    .registerInL div em
+    {
         margin-left: 210px;
         color: #546d7f;
         font: bold 16px Arial;
@@ -4424,7 +5253,8 @@ a.addToBook span {
         margin-bottom: -4px;
     }
 
-    .registerInL div input.regInp1 {
+    .registerInL div input.regInp1
+    {
         margin-right: 120px;
         float: right;
         color: #4c4c4c;
@@ -4435,7 +5265,8 @@ a.addToBook span {
         background: url(/Images/System/regInpBg.png) repeat-x 0 top transparent;
     }
 
-    .registerInL div input.regInp2 {
+    .registerInL div input.regInp2
+    {
         float: right;
         color: #4c4c4c;
         font: 12px Arial;
@@ -4444,8 +5275,9 @@ a.addToBook span {
         border: 1px solid #c9d1d6;
         background: url(/Images/System/regInpBg.png) repeat-x 0 top transparent;
     }
-	
-	.registerInL div select.regInp2 {
+
+    .registerInL div select.regInp2
+    {
         margin-right: 132px;
         float: right;
         color: #4c4c4c;
@@ -4456,7 +5288,8 @@ a.addToBook span {
         background: url(/Images/System/regInpBg.png) repeat-x 0 top transparent;
     }
 
-    .registerInL div textarea {
+    .registerInL div textarea
+    {
         float: right;
         height: 121px;
         padding: 3px 5px;
@@ -4468,20 +5301,23 @@ a.addToBook span {
         overflow: auto;
     }
 
-.registerInL p {
+.registerInL p
+{
     text-align: right;
     color: #4c4c4c;
     font: 11px Arial;
     clear: both;
 }
 
-    .registerInL p b {
+    .registerInL p b
+    {
         color: #ff2121;
         font: 14px Arial;
         margin-right: 3px;
     }
 
-.registerInL .regCapcha {
+.registerInL .regCapcha
+{
     width: 350px;
     clear: both;
     padding: 0;
@@ -4489,7 +5325,8 @@ a.addToBook span {
     margin-top: -13px;
 }
 
-.registerInL .refresh span {
+.registerInL .refresh span
+{
     float: none;
     border-bottom: 1px dotted;
     color: #BA575D;
@@ -4497,16 +5334,19 @@ a.addToBook span {
     font: 11px/15px Arial,Verdana;
 }
 
-.registerInL .regCapcha input {
+.registerInL .regCapcha input
+{
     width: 203px;
 }
 
-.registerInL .regCapcha p {
+.registerInL .regCapcha p
+{
     text-align: left!important;
     margin-bottom: 5px;
 }
 
-.registerInL input.regBut {
+.registerInL input.regBut
+{
     margin-top: 25px;
     margin-left: 210px;
     background: url(/Images/System/regBut.png) no-repeat top left transparent;
@@ -4516,17 +5356,19 @@ a.addToBook span {
     border: none;
 }
 
-.registerIn div select {
+.registerIn div select
+{
     color: #4c4c4c;
     font: 12px Arial;
     padding: 2px 2px 2px 0px;
     width: 230px;
     border: 1px solid #c9d1d6;
     background: url(/Images/System/regInpBg.png) repeat-x 0 top transparent;
-    margin-right:20px;
+    margin-right: 20px;
 }
 
-    .registerIn div select.pType {
+    .registerIn div select.pType
+    {
         width: 60px;
     }
 
@@ -4536,186 +5378,209 @@ a.addToBook span {
     padding-bottom: 25px;
 }*/
 
-    .registerInW .borderReg {
-        border-top: 1px solid #d7dde0;
-        padding-top: 24px;
-        padding-bottom: 0;
-        margin-right: 35px;
-        /*color: #4c4c4c;
+.registerInW .borderReg
+{
+    border-top: 1px solid #d7dde0;
+    padding-top: 24px;
+    padding-bottom: 0;
+    margin-right: 35px;
+    /*color: #4c4c4c;
         font: 11px Arial;
         padding-bottom: 25px;*/
-    }
+}
 
-        .registerInW .borderReg .fieldItem {
-            min-height: 20px;
-            position: relative;
-            color: #4c4c4c;
-    font: 11px Arial;
-    padding-bottom: 25px;
-        }
-
-            .registerInW .borderReg .rightText {
-                color: #4c4c4c;
-                font: 11px Arial;
-                left: 765px;
-                float: none;
-                margin-right: 10px;
-                clear: none;
-                width: auto;
-                top: 22px;
-                position: absolute;
-                color: #4c4c4c;
-    font: 11px Arial;
-    padding-bottom: 25px;
-            }
-
-    .registerInW .regBtm {
-        width: 580px;
-        margin: 35px 0 0;
-        padding: 0;
-
+    .registerInW .borderReg .fieldItem
+    {
+        min-height: 20px;
+        position: relative;
         color: #4c4c4c;
         font: 11px Arial;
         padding-bottom: 25px;
     }
 
-        .registerInW .regBtm a {
-            color: #004bb9;
-            font: 12px Arial;
-        }
+    .registerInW .borderReg .rightText
+    {
+        color: #4c4c4c;
+        font: 11px Arial;
+        left: 765px;
+        float: none;
+        margin-right: 10px;
+        clear: none;
+        width: auto;
+        top: 22px;
+        position: absolute;
+        color: #4c4c4c;
+        font: 11px Arial;
+        padding-bottom: 25px;
+    }
 
-        .registerInW .regBtm input {
+.registerInW .regBtm
+{
+    width: 580px;
+    margin: 35px 0 0;
+    padding: 0;
+    color: #4c4c4c;
+    font: 11px Arial;
+    padding-bottom: 25px;
+}
+
+    .registerInW .regBtm a
+    {
+        color: #004bb9;
+        font: 12px Arial;
+    }
+
+    .registerInW .regBtm input
+    {
+        padding: 0;
+        margin-left: 211px;
+        background: url(/Images/System/regBut2.gif) no-repeat top left transparent;
+        width: 350px;
+        border: none;
+        cursor: pointer;
+        height: 55px;
+    }
+
+        .registerInW .regBtm input.regBut3
+        {
             padding: 0;
-            margin-left: 211px;
-            background: url(/Images/System/regBut2.gif) no-repeat top left transparent;
+            margin-left: 43px;
+            background: url(/Images/System/regBut3.gif) no-repeat top left transparent;
             width: 350px;
             border: none;
             cursor: pointer;
             height: 55px;
         }
 
-            .registerInW .regBtm input.regBut3 {
-                padding: 0;
-                margin-left: 43px;
-                background: url(/Images/System/regBut3.gif) no-repeat top left transparent;
-                width: 350px;
-                border: none;
-                cursor: pointer;
-                height: 55px;
-            }
-
-        .registerInW .regBtm p {
-            width: 350px;
-            margin-left: 210px;
-            margin-top: 10px;
-            text-align: center;
-            color: #6f6f6f;
-            font: 11px Arial;
-        }
-         
-    .registerInW .borderReg .field-title {
-        color: #4c4c4c;
-        font: bold 13px Arial;
-        float: left;
-        width: 210px;
-        margin-top: 3px;
-        height: 35px;
-    }
-
-        .registerInW .borderReg .field-title.regBrown {
-            color: #713918;
-        }
-
-        .registerInW .borderReg .field-title.regRed {
-            color: #ff3b38;
-        }
-
-    .registerInW .borderReg em {
+    .registerInW .regBtm p
+    {
+        width: 350px;
         margin-left: 210px;
-        color: #546d7f;
-        font: bold 16px Arial;
-        padding-bottom: 21px;
-        float: left;
-        width: 400px;
+        margin-top: 10px;
+        text-align: center;
+        color: #6f6f6f;
+        font: 11px Arial;
     }
 
-    .registerInW .borderReg input.regInp1 {
-        color: #4c4c4c;
-        font: 12px Arial;
-        padding: 3px 5px;
-        width: 218px;
-        margin-right: 8px;
-        margin-bottom: 8px;
-        background: url("/Images/System/regInpBg.png") repeat-x scroll 0 top #ffffff;
-        border: 1px solid #C9D1D6;
+.registerInW .borderReg .field-title
+{
+    color: #4c4c4c;
+    font: bold 13px Arial;
+    float: left;
+    width: 210px;
+    margin-top: 3px;
+    height: 35px;
+}
+
+    .registerInW .borderReg .field-title.regBrown
+    {
+        color: #713918;
     }
 
-    .registerInW .borderReg input.regInp1 + p {
+    .registerInW .borderReg .field-title.regRed
+    {
+        color: #ff3b38;
+    }
+
+.registerInW .borderReg em
+{
+    margin-left: 210px;
+    color: #546d7f;
+    font: bold 16px Arial;
+    padding-bottom: 21px;
+    float: left;
+    width: 400px;
+}
+
+.registerInW .borderReg input.regInp1
+{
+    color: #4c4c4c;
+    font: 12px Arial;
+    padding: 3px 5px;
+    width: 218px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    background: url("/Images/System/regInpBg.png") repeat-x scroll 0 top #ffffff;
+    border: 1px solid #C9D1D6;
+}
+
+    .registerInW .borderReg input.regInp1 + p
+    {
         margin-left: 77px;
         width: 150px;
     }
 
-    .registerInW .borderReg input.regInp2 {
-        color: #4c4c4c;
-        font: 12px Arial;
-        padding: 3px 5px;
-        width: 730px;
-        background: url("/Images/System/regInpBg.png") repeat-x scroll 0 top #ffffff;
-        border: 1px solid #C9D1D6;
-    }
-	
-	.registerInW .borderReg select.regInp2 {
-        color: #4c4c4c;
-        font: 12px Arial;
-        padding: 10px 50px;
-        width: 218px;
-        background: url("/Images/System/regInpBg.png") repeat-x scroll 0 top #ffffff;
-        border: 1px solid #C9D1D6;
-    }
+.registerInW .borderReg input.regInp2
+{
+    color: #4c4c4c;
+    font: 12px Arial;
+    padding: 3px 5px;
+    width: 730px;
+    background: url("/Images/System/regInpBg.png") repeat-x scroll 0 top #ffffff;
+    border: 1px solid #C9D1D6;
+}
 
-    .registerInW .borderReg input.regBut1 {
-        width: 174px;
-        height: 29px;
-        border: none;
-        cursor: pointer;
-        vertical-align: middle;
-        margin-right: 8px;
-        background: url(/Images/System/regBut1.gif) no-repeat top left transparent;
-    }
+.registerInW .borderReg select.regInp2
+{
+    color: #4c4c4c;
+    font: 12px Arial;
+    padding: 10px 50px;
+    width: 218px;
+    background: url("/Images/System/regInpBg.png") repeat-x scroll 0 top #ffffff;
+    border: 1px solid #C9D1D6;
+}
 
-    .registerInW .borderReg textarea {
-        height: 122px;
-        width: 730px;
-        resize: none;
-        overflow: auto;
-        font: 12px Arial;
-        color: #4c4c4c;
-        background: url("/Images/System/regInpBg.png") repeat-x scroll 0 top #ffffff;
-        border: 1px solid #C9D1D6;
-        padding: 3px 5px;
-    }
+.registerInW .borderReg input.regBut1
+{
+    width: 174px;
+    height: 29px;
+    border: none;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-right: 8px;
+    background: url(/Images/System/regBut1.gif) no-repeat top left transparent;
+}
 
-    .registerInW .borderReg label {
-        margin-top: 3px;
-        float: left;
-        /*width: 105px;*/
-    }
+.registerInW .borderReg textarea
+{
+    height: 122px;
+    width: 730px;
+    resize: none;
+    overflow: auto;
+    font: 12px Arial;
+    color: #4c4c4c;
+    background: url("/Images/System/regInpBg.png") repeat-x scroll 0 top #ffffff;
+    border: 1px solid #C9D1D6;
+    padding: 3px 5px;
+}
 
-     .registerInW .borderReg label.checkbox-label {
+.registerInW .borderReg label
+{
+    margin-top: 3px;
+    float: left;
+    /*width: 105px;*/
+}
+
+    .registerInW .borderReg label.checkbox-label
+    {
         margin-top: 3px;
         float: none;
-    }  
-     .registerInW .borderReg .checkbox-input {
-        position: relative;
-        vertical-align: middle;
-        bottom: 1px;
     }
 
-    .registerInW .borderReg.head label {
-       width: 105px;
-    }
+.registerInW .borderReg .checkbox-input
+{
+    position: relative;
+    vertical-align: middle;
+    bottom: 1px;
+}
 
-.registerInW p {
+.registerInW .borderReg.head label
+{
+    width: 105px;
+}
+
+.registerInW p
+{
     text-align: right;
     color: #4c4c4c;
     font: 11px Arial;
@@ -4725,37 +5590,42 @@ a.addToBook span {
     margin-bottom: -6px;
 }
 
-    .registerInW p b {
+    .registerInW p b
+    {
         color: #ff2121;
         font: 14px Arial;
         margin-right: 3px;
     }
 
-    .registerInW p.check {
+    .registerInW p.check
+    {
         text-align: left;
         color: #4c4c4c;
         font: 11px Arial;
         width: 350px;
         margin-left: 210px;
         margin-top: 4px;
-        margin-bottom:0; /*исправлено*/
+        margin-bottom: 0; /*исправлено*/
         display: inline;
         margin-left: 0;
     }
 
-    .registerInW p.check label {
+        .registerInW p.check label
+        {
             float: none;
             color: #ff732e;
             font: bold 12px Arial;
         }
 
-        .registerInW p.check input {
+        .registerInW p.check input
+        {
             /*float: left;*/
             vertical-align: middle;
             margin: 1px 8px 0 0;
         }
 
-.registerInW .regCapcha {
+.registerInW .regCapcha
+{
     width: 350px;
     clear: both;
     padding: 0;
@@ -4763,7 +5633,8 @@ a.addToBook span {
     margin-top: -13px;
 }
 
-.registerInW .refresh span {
+.registerInW .refresh span
+{
     float: none;
     border-bottom: 1px dotted;
     color: #BA575D;
@@ -4771,11 +5642,13 @@ a.addToBook span {
     font: 11px/15px Arial,Verdana;
 }
 
-.registerInW .regCapcha input {
+.registerInW .regCapcha input
+{
     width: 203px;
 }
 
-.registerInW .borderReg input.regInp3 {
+.registerInW .borderReg input.regInp3
+{
     color: #4c4c4c;
     font: 12px Arial;
     padding: 3px 5px;
@@ -4785,13 +5658,15 @@ a.addToBook span {
     border: 1px solid #C9D1D6;
 }
 
-.registerInW .regCapcha p {
+.registerInW .regCapcha p
+{
     text-align: left!important;
     margin: 0;
     margin-bottom: 5px;
 }
 
-.registerInW input.regBut {
+.registerInW input.regBut
+{
     margin-top: 24px;
     margin-left: 210px;
     background: url(/Images/System/regBut.png) no-repeat top left transparent;
@@ -4801,19 +5676,22 @@ a.addToBook span {
     border: none;
 }
 
-.regRad {
+.regRad
+{
     margin: 4px 6px 4px 0;
     float: left;
     vertical-align: middle;
 }
 
-.registerInW input.inpCheck {
+.registerInW input.inpCheck
+{
     float: left;
     vertical-align: middle;
     margin: 5px 6px 0 0;
 }
 
-.registerInR {
+.registerInR
+{
     float: left;
     width: 34%;
     color: #4c4c4c;
@@ -4821,38 +5699,45 @@ a.addToBook span {
     margin-left: 42px;
 }
 
-.registerInRT {
+.registerInRT
+{
     float: left;
     width: 90%;
     margin-top: 15px;
 }
 
-    .registerInRT p {
+    .registerInRT p
+    {
     }
 
-    .registerInRT span {
+    .registerInRT span
+    {
         color: #27a1f6;
         font: bold 16px Arial;
         margin: 41px 0 0 50px;
         display: block;
     }
 
-    .registerInRT ul {
+    .registerInRT ul
+    {
         margin: 27px 0 0 16px;
         display: block;
     }
 
-    .registerInRT li {
+    .registerInRT li
+    {
         padding-bottom: 24px;
     }
 
-        .registerInRT li img {
+        .registerInRT li img
+        {
             vertical-align: middle;
             float: left;
             margin: 0 17px 0 0;
         }
 
-.registerInRB {
+.registerInRB
+{
     float: left;
     margin-top: 40px;
     width: 88%;
@@ -4861,7 +5746,8 @@ a.addToBook span {
     margin-left: 16px;
 }
 
-    .registerInRB span {
+    .registerInRB span
+    {
         color: #f66c27;
         font: bold 16px Arial;
     }
@@ -4872,17 +5758,20 @@ a.addToBook span {
 
 /* Aleksey */
 
-.hed4, .hed5 {
+.hed4, .hed5
+{
     float: left;
     width: 100%;
     border-bottom: 1px solid #FFDFA8;
 }
 
-.hed5 {
+.hed5
+{
     border-bottom: 1px solid #D3E9FF;
 }
 
-    .hed4 span, .hed5 span {
+    .hed4 span, .hed5 span
+    {
         display: block;
         float: left;
         position: relative;
@@ -4893,176 +5782,214 @@ a.addToBook span {
         background: 0 none #FFDFA8;
     }
 
-    .hed5 span {
+    .hed5 span
+    {
         background: 0 none #D3E9FF;
     }
 
-        .hed4 span img, .hed5 span img {
+        .hed4 span img, .hed5 span img
+        {
             position: absolute;
             right: 0;
             top: 0;
         }
 
-.mainArticlesBlock.innerArticles {
+.mainArticlesBlock.innerArticles
+{
     background: 0 none;
     padding-bottom: 12px;
 }
 
-    .mainArticlesBlock.innerArticles .mainArticle {
+    .mainArticlesBlock.innerArticles .mainArticle
+    {
         padding: 20px 2% 20px 0;
         width: 44%;
     }
 
-    .mainArticlesBlock.innerArticles .mainArticlesList {
+    .mainArticlesBlock.innerArticles .mainArticlesList
+    {
         width: 52%;
     }
 
-    .mainArticlesBlock.innerArticles .malImg img {
+    .mainArticlesBlock.innerArticles .malImg img
+    {
         width: 155px;
         height: 90px;
     }
 
-    .mainArticlesBlock.innerArticles .malText {
+    .mainArticlesBlock.innerArticles .malText
+    {
         padding-left: 165px;
     }
 
-    .mainArticlesBlock.innerArticles .mainArticlesList p {
+    .mainArticlesBlock.innerArticles .mainArticlesList p
+    {
         line-height: 20px;
         padding-bottom: 6px;
     }
 
-    .mainArticlesBlock.innerArticles .mainArticlesList li {
+    .mainArticlesBlock.innerArticles .mainArticlesList li
+    {
         padding-bottom: 21px;
     }
 
-.innerArticlesList {
+.innerArticlesList
+{
     float: left;
     padding: 0 0 33px 0;
 }
 
-    .innerArticlesList li {
+    .innerArticlesList li
+    {
         padding: 20px 0 16px;
         border-bottom: 1px solid #D9D9D9;
         overflow: hidden;
     }
 
-        .innerArticlesList li.last {
+        .innerArticlesList li.last
+        {
             border-bottom: 0 none;
         }
 
-.ialImg {
+.ialImg
+{
     float: left;
-    width: 44%;
+    width: 466px;
     margin-right: 2%;
     text-align: center;
 }
 
-.search .ialImg {
+.search .ialImg
+{
     width: 350px;
     margin-right: 15px;
 }
 
-.search .ialText {
+.search .ialText
+{
     padding-left: 365px;
 }
 
-.ialImg img {
+.ialImg img
+{
     width: auto;
-    height: 275px;
+    max-width: 466px;
+    max-height: 300px;
+    /*height: 275px;*/
 }
 
-.ialText {
-    padding-left: 46%;
+.ialText
+{
+    padding-left: 466px;
     margin-top: -5px;
 }
 
-.innerArticlesList h2 {
+.innerArticlesList h2
+{
     padding-bottom: 10px;
 }
 
-    .innerArticlesList h2 a {
+    .innerArticlesList h2 a
+    {
         border-bottom: 1px solid;
         color: #343434;
         font: bold 18px/22px Arial,Verdana;
         text-decoration: none;
     }
 
-.innerArticlesList p {
+.innerArticlesList p
+{
     color: #393939;
     font: 14px/18px Arial,Verdana;
     padding: 0 0 11px;
 }
 
-.lMenu2 {
+.lMenu2
+{
     padding: 13px 0 20px 10px;
 }
 
-    .lMenu2 > ul > li {
+    .lMenu2 > ul > li
+    {
         font: 13px/21px Arial,Verdana;
         padding-bottom: 0px;
     }
 
-        .lMenu2 > ul > li span {
+        .lMenu2 > ul > li span
+        {
             padding-right: 17px;
         }
 
-        .lMenu2 > ul > li.a span {
+        .lMenu2 > ul > li.a span
+        {
             background: url(/Images/System/orArrow2.png) no-repeat right 8px transparent;
         }
 
-        .lMenu2 > ul > li > span a {
+        .lMenu2 > ul > li > span a
+        {
             color: #003b92;
             text-decoration: none;
             border-bottom: 1px dotted;
         }
 
-        .lMenu2 > ul > li.a > span a {
+        .lMenu2 > ul > li.a > span a
+        {
             color: #f66c27;
         }
 
-    .lMenu2 ul li a:hover {
+    .lMenu2 ul li a:hover
+    {
         color: #1c6fea;
     }
 
-.lMenu2Second {
+.lMenu2Second
+{
     padding: 7px 0 25px 10px;
     font: 11px/19px Arial,Verdana;
     display: none;
 }
 
-.lMenu2 > ul > li.a .lMenu2Second {
+.lMenu2 > ul > li.a .lMenu2Second
+{
     display: block;
 }
 
-.leftActual {
+.leftActual
+{
     padding: 42px 10px 20px 10px;
 }
 
-    .leftActual > p, .leftDiscus > p {
+    .leftActual > p, .leftDiscus > p
+    {
         color: #f3150d;
         font: bold 12px/18px Arial,Verdana;
     }
 
-    .leftActual li {
+    .leftActual li
+    {
         overflow: hidden;
         padding: 16px 0 19px;
         font: bold 12px/18px Arial,Verdana;
     }
 
-        .leftActual li a {
+        .leftActual li a
+        {
             color: #343434;
         }
 
-        .leftActual li img {
+        .leftActual li img
+        {
             margin-bottom: 4px;
         }
 
-.leftDiscus {
+.leftDiscus
+{
     padding: 37px 12px 20px 10px;
     float: left;
 }
 
-    .leftDiscus li {
+    .leftDiscus li
+    {
         padding: 10px 0 7px;
         font: 11px/16px Arial,Verdana;
         list-style-image: url(/Images/System/actImg.png);
@@ -5070,51 +5997,59 @@ a.addToBook span {
         float: left;
     }
 
-.articleText {
+.articleText
+{
     padding: 17px 10px 0 20px;
     color: #393939;
     font: 14px/20px Arial,Verdana;
-    
 }
 
-    .articleText img.artImg {
+    .articleText img.artImg
+    {
         float: left;
         margin: 0 20px 20px 0;
     }
 
-    .articleText .mArtDate {
+    .articleText .mArtDate
+    {
         margin-top: -5px;
         padding-bottom: 18px;
     }
 
-    .articleText p {
+    .articleText p
+    {
         margin-bottom: 22px;
     }
 
-    .articleText img {
+    .articleText img
+    {
         margin: 0 auto 20px;
         display: block;
     }
 
-    .articleText .itemInfoSoc {
+    .articleText .itemInfoSoc
+    {
         float: left;
     }
 
-.grayText {
+.grayText
+{
     padding: 15px 20px;
     background-color: #F6F8F9;
     font-style: italic;
     font-size: 15px;
 }
 
-.articleText .prodTable {
+.articleText .prodTable
+{
     width: 100%;
     margin-top: 22px;
     margin-bottom: 30px;
     float: none;
 }
 
-.articleText ul {
+.articleText ul
+{
     float: left;
     font-size: 13px;
     list-style-image: none;
@@ -5123,34 +6058,42 @@ a.addToBook span {
     width: 100%;
 }
 
-    .articleText ul li, .articleText ol li {
+    .articleText ul li, .articleText ol li
+    {
         margin-bottom: 10px;
     }
-.promoBot ul li{
+
+.promoBot ul li
+{
     float: left;
     margin-bottom: 10px;
     margin-right: 5%;
     width: 45%;
 }
-.articleText ol {
+
+.articleText ol
+{
     list-style-type: decimal;
     font-size: 13px;
     margin: 0 0 28px;
     color: #e64a21;
 }
 
-    .articleText ol li span {
+    .articleText ol li span
+    {
         color: #393939;
     }
 
-.searchInfo {
+.searchInfo
+{
     color: #375173;
     font: bold 18px/26px Verdana, Arial;
     margin-bottom: 29px;
     margin-top: 10px;
 }
 
-.ci4 {
+.ci4
+{
     display: block;
     padding-top: 143px;
     padding-left: 20px;
@@ -5158,30 +6101,36 @@ a.addToBook span {
     width: 140px;
 }
 
-    .ci4 .leftProd {
+    .ci4 .leftProd
+    {
         padding: 43px 0 20px 10px;
     }
 
-.ci1.olive .hed1 {
+.ci1.olive .hed1
+{
     background-color: #AAE12D;
 }
 
-.ci1.olive .lMenu ul li.a span {
+.ci1.olive .lMenu ul li.a span
+{
     background: url("/Images/System/oliveArrow.png") no-repeat scroll right 6px transparent;
 }
 
-.ci1.olive .lMenu ul li.a a {
+.ci1.olive .lMenu ul li.a a
+{
     color: #f66c27;
 }
 
-.contactInfo {
+.contactInfo
+{
     width: 32%;
     color: #3a3a3a;
     font: 12px/18px Arial;
     float: left;
 }
 
-    .contactInfo > div .contTitle {
+    .contactInfo > div .contTitle
+    {
         color: #404041;
         font-size: 14px;
         font-weight: bold;
@@ -5189,28 +6138,33 @@ a.addToBook span {
         line-height: 24px;
     }
 
-    .contactInfo > div {
+    .contactInfo > div
+    {
         padding-bottom: 33px;
     }
 
-        .contactInfo > div p {
+        .contactInfo > div p
+        {
             margin-bottom: 4px;
         }
 
-.feedBack {
+.feedBack
+{
     float: right;
     width: 61%;
     margin: 0 10px 20px 0;
 }
 
-.feedTitle {
+.feedTitle
+{
     color: #b24c52;
     font: bold 16px/22px Arial;
     margin-left: 20px;
     margin-bottom: 14px;
 }
 
-.feedBackBlock {
+.feedBackBlock
+{
     background: none repeat scroll 0 0 #F8F7F7;
     border: 1px solid #DDE3E8;
     float: left;
@@ -5219,19 +6173,22 @@ a.addToBook span {
     width: 92%;
 }
 
-    .feedBackBlock .fbInput {
+    .feedBackBlock .fbInput
+    {
         float: left;
         width: 100%;
         margin-bottom: 20px;
     }
 
-        .feedBackBlock .fbInput label {
+        .feedBackBlock .fbInput label
+        {
             color: #546d7f;
             font: bold 12px/24px Arial;
             float: left;
         }
 
-        .feedBackBlock .fbInput input {
+        .feedBackBlock .fbInput input
+        {
             float: right;
             background: url("/Images/System/inpBg.png") repeat-x scroll 0 0 #FFFFFF;
             border: 1px solid #C9D1D6;
@@ -5240,24 +6197,28 @@ a.addToBook span {
             width: 65%;
         }
 
-.feedText > p {
+.feedText > p
+{
     color: #546d7f;
     font: bold 12px/16px Arial;
     margin-bottom: 7px;
 }
 
-.feedText {
+.feedText
+{
     float: left;
     width: 100%;
     margin-top: 7px;
 }
 
-.feedArea {
+.feedArea
+{
     border: 1px solid #C9D1D6;
     overflow: hidden;
 }
 
-.feedText textarea {
+.feedText textarea
+{
     border: 0 none;
     font: 12px/22px Arial,Verdana;
     min-height: 146px;
@@ -5267,33 +6228,39 @@ a.addToBook span {
     overflow: auto;
 }
 
-.feedNec {
+.feedNec
+{
     color: #4c4c4c;
     font: 11px/22px Arial;
     text-align: right;
 }
 
-    .feedNec span {
+    .feedNec span
+    {
         color: #ff2121;
         font-size: 14px;
     }
 
-.feedBackBlock .regCapcha {
+.feedBackBlock .regCapcha
+{
     padding: 2px 0 0 0;
     width: 255px;
     float: left;
 }
 
-    .feedBackBlock .regCapcha input {
+    .feedBackBlock .regCapcha input
+    {
         width: 120px;
     }
 
-.feedSubm {
+.feedSubm
+{
     float: right;
     margin: 27px 0 0;
 }
 
-    .feedSubm input {
+    .feedSubm input
+    {
         background: url("/Images/System/feedSub.png") no-repeat scroll left top transparent;
         border: medium none;
         cursor: pointer;
@@ -5301,16 +6268,19 @@ a.addToBook span {
         width: 139px;
     }
 
-.ci3.padLeft {
+.ci3.padLeft
+{
     padding-left: 30px;
 }
 
-.faqBlock {
+.faqBlock
+{
     float: left;
     width: 46%;
 }
 
-.faqType {
+.faqType
+{
     float: left;
     padding: 5px 10px 5px 8px;
     background: 0 none #FFF6E1;
@@ -5321,7 +6291,8 @@ a.addToBook span {
     position: relative;
 }
 
-.faqTypeCenter {
+.faqTypeCenter
+{
     position: absolute;
     top: 5px;
     left: 50%;
@@ -5329,28 +6300,34 @@ a.addToBook span {
     margin-left: -105px;
 }
 
-.faqType li {
+.faqType li
+{
     float: left;
 }
 
-.faqType input {
+.faqType input
+{
     position: absolute;
     margin-top: 2px;
 }
 
-:root .faqType input {
+:root .faqType input
+{
     margin-top: -2px\9;
 }
 
-.faqType input {
+.faqType input
+{
     margin-top: -2px\0/;
 }
 
-.faqType label {
+.faqType label
+{
     padding-left: 24px;
 }
 
-.faqList {
+.faqList
+{
     float: left;
     width: 100%;
     color: #316ec7;
@@ -5358,7 +6335,8 @@ a.addToBook span {
     margin: 22px 0 20px 0;
 }
 
-    .faqList li {
+    .faqList li
+    {
         float: left;
         width: 100%;
         list-style-position: outside;
@@ -5366,36 +6344,42 @@ a.addToBook span {
         margin-bottom: 18px;
     }
 
-        .faqList li span {
+        .faqList li span
+        {
             border-bottom: 1px dotted;
             color: #343434;
             font: bold 15px/20px Arial;
             cursor: pointer;
         }
 
-.faqAnswer {
+.faqAnswer
+{
     float: left;
     padding: 11px 0 5px 0;
     display: none;
 }
 
-.feedBack.inFaq {
+.feedBack.inFaq
+{
     width: 50%;
     margin-top: -36px;
 }
 
-.myAds > ul {
+.myAds > ul
+{
     border-top: 1px solid #D9D9D9;
     margin-top: 4px;
     margin-right: 10px;
 }
 
-.ciInfo {
+.ciInfo
+{
     padding: 10px 0;
     width: 175px;
 }
 
-    .ciInfo > div {
+    .ciInfo > div
+    {
         background: url("/Images/System/dotL.png") repeat-y scroll left 0 transparent;
         color: #3A3A3A;
         font: 11px/18px Arial,Verdana;
@@ -5404,7 +6388,8 @@ a.addToBook span {
         height: 132px;
     }
 
-    .ciInfo input {
+    .ciInfo input
+    {
         background: url("/Images/System/selInp.gif") no-repeat scroll left top transparent;
         border: medium none;
         color: #548B14;
@@ -5419,31 +6404,38 @@ a.addToBook span {
         height: 27px;
     }
 
-.ciStatus {
+.ciStatus
+{
     margin-bottom: 13px;
 }
 
-.ciInfo span {
+.ciInfo span
+{
     font-size: 12px;
 }
 
-.ciStatus span {
+.ciStatus span
+{
     color: #ea3f11;
 }
 
-.myAds .ciText > div {
+.myAds .ciText > div
+{
     min-height: 128px;
 }
 
-.middle.gray {
+.middle.gray
+{
     background-color: #F5F6F7;
 }
 
-    .middle.gray .middleBot {
+    .middle.gray .middleBot
+    {
         background: url("/Images/System/middleBotG.png") repeat-x scroll 0 0 transparent;
     }
 
-.personal .ci1 {
+.personal .ci1
+{
     padding-left: 10px;
     width: 170px;
     padding-top: 11px;
@@ -5451,23 +6443,29 @@ a.addToBook span {
     color: #696969;
 }
 
-.persLogo {
-    margin: 0 0 8px -10px;text-align:center;
+.persLogo
+{
+    margin: 0 0 8px -10px;
+    text-align: center;
 }
 
-.persLink {
+.persLink
+{
     font: 11px/18px Arial;
-    margin-bottom: 40px;text-align:center;
+    margin-bottom: 40px;
+    text-align: center;
 }
 
-.persTitleL {
+.persTitleL
+{
     color: #898989;
     font: 11px/16px Arial;
     text-transform: uppercase;
     width: 140px;
 }
 
-.adOnSite {
+.adOnSite
+{
     background: url("/Images/System/adOnSite.png") no-repeat scroll left 2px transparent;
     border: medium none;
     color: #ffffff;
@@ -5480,11 +6478,13 @@ a.addToBook span {
     height: 38px;
 }
 
-    .adOnSite:hover {
+    .adOnSite:hover
+    {
         background-position: 0 -38px;
     }
 
-.premiumProd {
+.premiumProd
+{
     background: url("/Images/System/premiumProd.png") no-repeat scroll left 1px transparent;
     border: medium none;
     color: #ffffff;
@@ -5497,11 +6497,13 @@ a.addToBook span {
     height: 38px;
 }
 
-    .premiumProd:hover {
+    .premiumProd:hover
+    {
         background-position: 0 -39px;
     }
 
-.persBord {
+.persBord
+{
     background: url("/Images/System/persBord.gif") repeat-x scroll 0 0 transparent;
     width: 160px;
     height: 2px;
@@ -5509,22 +6511,26 @@ a.addToBook span {
     float: left;
 }
 
-.subscriberFee {
+.subscriberFee
+{
     float: left;
     margin: 13px 0 8px 11px;
 }
 
-.personal .mPrice1 {
+.personal .mPrice1
+{
     padding-top: 8px;
     height: 26px;
 }
 
-    .personal .mPrice1 > span {
+    .personal .mPrice1 > span
+    {
         border: 0 none;
         cursor: default;
     }
 
-.priceMonth {
+.priceMonth
+{
     display: block;
     float: left;
     color: #212121;
@@ -5532,44 +6538,51 @@ a.addToBook span {
     margin: 12px 0 0 3px;
 }
 
-.supService {
+.supService
+{
     float: left;
     margin: 11px 0 0;
     color: #3a3a3a;
     font: 14px/22px Arial, Verdana;
 }
 
-.persManager {
+.persManager
+{
     float: left;
     margin: 10px 0;
     width: 100%;
 }
 
-    .persManager img {
+    .persManager img
+    {
         border: 3px solid #ffffff;
         float: left;
         margin-right: 14px;
     }
 
-.personal .ci3 {
+.personal .ci3
+{
     padding-right: 20px;
     font: 12px/18px Arial;
     color: #696969;
 }
 
-.persTop {
+.persTop
+{
     padding-left: 20px;
     margin-bottom: 56px;
 }
 
-.persTitle {
+.persTitle
+{
     color: #f66c27;
     font: bold 16px/20px Verdana, Arial;
     text-shadow: 0px 1px 0px #ffffff;
     margin: 7px 0 14px;
 }
 
-.persTabs {
+.persTabs
+{
     float: left;
     width: 100%;
     margin-bottom: -2px;
@@ -5577,12 +6590,14 @@ a.addToBook span {
     z-index: 20;
 }
 
-    .persTabs ul {
+    .persTabs ul
+    {
         float: left;
         padding: 0 0 0 20px;
     }
 
-        .persTabs ul li {
+        .persTabs ul li
+        {
             float: left;
             height: 22px;
             margin: 0 21px;
@@ -5593,30 +6608,36 @@ a.addToBook span {
             height: 31px;
         }
 
-            .persTabs ul li.a {
+            .persTabs ul li.a
+            {
                 background: url(/Images/System/persTabsBg.png) repeat-x 0 0 transparent;
                 margin: 0 19px;
             }
 
-            .persTabs ul li > img {
+            .persTabs ul li > img
+            {
                 position: absolute;
                 top: 0;
                 display: none;
             }
 
-            .persTabs ul li.a > img {
+            .persTabs ul li.a > img
+            {
                 display: block;
             }
 
-.persTabsL {
+.persTabsL
+{
     left: -30px;
 }
 
-.persTabsR {
+.persTabsR
+{
     right: -30px;
 }
 
-.persTabs ul li a {
+.persTabs ul li a
+{
     color: #848484;
     text-decoration: none;
     border-bottom: 1px solid;
@@ -5624,11 +6645,13 @@ a.addToBook span {
     z-index: 10;
 }
 
-    .persTabs ul li a:hover {
+    .persTabs ul li a:hover
+    {
         color: #89421e;
     }
 
-.persTabs ul li.a a {
+.persTabs ul li.a a
+{
     font-weight: bold;
     font-size: 15px;
     color: #89421e;
@@ -5637,7 +6660,8 @@ a.addToBook span {
     cursor: default;
 }
 
-.persBlockTop {
+.persBlockTop
+{
     background: url(/Images/System/persBlockTop.png) repeat-x 0 0 transparent;
     height: 39px;
     border-left: 1px solid #BABABA;
@@ -5648,18 +6672,21 @@ a.addToBook span {
     z-index: 10;
 }
 
-.persSection {
+.persSection
+{
     float: left;
 }
 
-.persBlockTop span, .persProdSection span {
+.persBlockTop span, .persProdSection span
+{
     color: #4c4c4c;
     font: bold 13px/16px Arial;
     text-shadow: 0px 1px 0px #ffffff;
     padding: 0 12px 0 18px;
 }
 
-.persBlockTop select {
+.persBlockTop select
+{
     width: 280px;
     height: 25px;
     color: #004bb9;
@@ -5670,7 +6697,8 @@ a.addToBook span {
     box-shadow: inset 0px 1px 1px #EBEBEB;
 }
 
-.persProd {
+.persProd
+{
     background: 0 none #fff;
     border: 1px solid #D4D4D4;
     box-shadow: 0px 1px 2px #E4E5E6;
@@ -5679,35 +6707,41 @@ a.addToBook span {
     position: relative;
 }
 
-    .persProd > p {
+    .persProd > p
+    {
         color: #212121;
         font: 12px/16px Verdana, Arial;
         text-transform: uppercase;
         margin-bottom: 16px;
     }
 
-.ppInfo {
+.ppInfo
+{
     border-bottom: 1px solid #EDEDED;
     padding: 10px 0;
 }
 
-.persProd li.last .ppInfo {
+.persProd li.last .ppInfo
+{
     border: 0 none;
 }
 
-.logoShop  {
-	max-height: 45px;
-	max-width: 120px;
+.logoShop
+{
+    max-height: 45px;
+    max-width: 120px;
 }
 
-.ppInfo img {
+.ppInfo img
+{
     max-width: 75px;
     max-height: 50px;
     float: left;
     margin-right: 20px;
 }
 
-.ppInfo span {
+.ppInfo span
+{
     display: block;
     padding-top: 16px;
     float: left;
@@ -5716,11 +6750,13 @@ a.addToBook span {
     margin-right: 15px;
 }
 
-    .ppInfo span.ppPrice {
+    .ppInfo span.ppPrice
+    {
         float: right;
     }
 
-.ppInfo .ppInp {
+.ppInfo .ppInp
+{
     float: right;
     margin: 16px 15px 0 0;
     font: 14px Arial;
@@ -5729,37 +6765,49 @@ a.addToBook span {
     display: none;
 }
 
-.ppMargin {
+.ppMargin
+{
     width: 8px;
 }
 
-.ppChange {
+.ppChange
+{
     width: 150px;
     background: 0 none #FFFDD6;
 }
-.prodTopL img{max-width:150px; max-height:100px;}
-    .ppChange input {
-        background: url(/Images/System/ppChange.png) no-repeat 0 0 transparent;
-        width: 124px;
-        height: 29px;
-        border: 0 none;
-        cursor: pointer;
-        color: #787777;
-        font: bold 12px/30px Arial;
-        text-shadow: 0px 1px 0px #ffffff;
-        margin: 20px 0 0 13px;
+
+.prodTopL img
+{
+    max-width: 150px;
+    max-height: 100px;
+}
+
+.ppChange input
+{
+    background: url(/Images/System/ppChange.png) no-repeat 0 0 transparent;
+    width: 124px;
+    height: 29px;
+    border: 0 none;
+    cursor: pointer;
+    color: #787777;
+    font: bold 12px/30px Arial;
+    text-shadow: 0px 1px 0px #ffffff;
+    margin: 20px 0 0 13px;
+}
+
+    .ppChange input:hover
+    {
+        background-position: 0 -29px;
     }
 
-        .ppChange input:hover {
-            background-position: 0 -29px;
-        }
-
-.ppDel {
+.ppDel
+{
     width: 55px;
     background: 0 none #FDF4F4;
 }
 
-    .ppDel input {
+    .ppDel input
+    {
         background: url(/Images/System/ppDel.png) no-repeat 0 0 transparent;
         width: 30px;
         height: 29px;
@@ -5768,34 +6816,41 @@ a.addToBook span {
         margin: 20px 0 0 13px;
     }
 
-        .ppDel input:hover {
+        .ppDel input:hover
+        {
             background-position: 0 -29px;
         }
 
-.persBlock {
+.persBlock
+{
     float: left;
     width: 100%;
 }
 
-.persBase .persBlockTop select {
+.persBase .persBlockTop select
+{
     width: 230px;
     margin-right: 30px;
 }
 
-.persSection.right select {
+.persSection.right select
+{
     margin-right: 0px;
 }
 
-.persProdSection {
+.persProdSection
+{
     overflow: hidden;
     margin: -7px 0 15px -7px;
 }
 
-    .persProdSection span {
+    .persProdSection span
+    {
         padding-left: 0;
     }
 
-    .persProdSection select {
+    .persProdSection select
+    {
         width: 230px;
         height: 25px;
         color: #004bb9;
@@ -5806,12 +6861,14 @@ a.addToBook span {
         box-shadow: inset 0px 1px 1px #EBEBEB;
     }
 
-.ppPriceChange {
+.ppPriceChange
+{
     float: right;
     padding: 9px 0 0 0;
 }
 
-    .ppPriceChange input[type=button] {
+    .ppPriceChange input[type=button]
+    {
         background: url(/Images/System/ppPChange.png) no-repeat 0 0 transparent;
         width: 102px;
         height: 29px;
@@ -5824,15 +6881,18 @@ a.addToBook span {
         padding-left: 15px;
     }
 
-        .ppPriceChange input[type=button]:hover {
+        .ppPriceChange input[type=button]:hover
+        {
             background-position: 0 -30px;
         }
 
-.persBase .persProd {
+.persBase .persProd
+{
     padding-right: 22px;
 }
 
-.ppPriceChange input[type=text] {
+.ppPriceChange input[type=text]
+{
     width: 110px;
     height: 13px;
     background-color: #ffffff;
@@ -5842,12 +6902,14 @@ a.addToBook span {
     margin-left: 10px;
 }
 
-.ppPriceChange label {
+.ppPriceChange label
+{
     color: #212121;
     font: 12px Arial;
 }
 
-.ppPriceChange input.delBut, .myBookm .ciInfo > div input.delBut {
+.ppPriceChange input.delBut, .myBookm .ciInfo > div input.delBut
+{
     background: url(/Images/System/delBut.png) no-repeat 0 0 transparent;
     color: #e84138;
     width: 94px;
@@ -5855,15 +6917,18 @@ a.addToBook span {
     margin-left: 48px;
 }
 
-    .ppPriceChange input.delBut:hover {
+    .ppPriceChange input.delBut:hover
+    {
         background-position: 0 -31px;
     }
 
-.persProd .pages {
+.persProd .pages
+{
     margin-top: 44px;
 }
 
-.changeData {
+.changeData
+{
     background: url(/Images/System/changeData.png) no-repeat 0 0 transparent;
     width: 147px;
     height: 35px;
@@ -5873,25 +6938,30 @@ a.addToBook span {
     text-shadow: 0px 1px 0px #ffffff;
 }
 
-    .changeData:hover {
+    .changeData:hover
+    {
         background-position: 0 -35px;
     }
 
-.persData .persProd, .persPage .persProd {
+.persData .persProd, .persPage .persProd
+{
     padding: 50px 10px 26px 18px;
 }
 
-.persPage .persProd {
+.persPage .persProd
+{
     padding-bottom: 42px;
 }
 
-    .persData .persProd table, .persPage .persProd table {
+    .persData .persProd table, .persPage .persProd table
+    {
         margin-bottom: 20px;
         color: #4c4c4c;
         font: 12px/16px Arial;
     }
 
-        .persData .persProd table th {
+        .persData .persProd table th
+        {
             color: #546d7f;
             font: bold 16px Arial;
             padding-top: 24px;
@@ -5899,26 +6969,31 @@ a.addToBook span {
             padding-bottom: 20px;
         }
 
-        .persData .persProd table td {
+        .persData .persProd table td
+        {
             padding-bottom: 21px;
         }
 
-            .persData .persProd table td span {
+            .persData .persProd table td span
+            {
                 font-size: 13px;
                 font-weight: bold;
                 padding-left: 10px;
             }
 
-            .persData .persProd table td p, .persPage .persProd table td p span {
+            .persData .persProd table td p, .persPage .persProd table td p span
+            {
                 font-size: 11px;
                 width: 68%;
             }
 
-        .persPage .persProd table td p span {
+        .persPage .persProd table td p span
+        {
             display: block;
         }
 
-.yellowInfo {
+.yellowInfo
+{
     position: absolute;
     top: 35px;
     right: 15px;
@@ -5929,27 +7004,32 @@ a.addToBook span {
     font: 12px/18px Arial;
 }
 
-.persPage .persProd table th {
+.persPage .persProd table th
+{
     font-size: 13px;
     font-weight: bold;
     width: 38%;
 }
 
-.persPage .persProd table td {
+.persPage .persProd table td
+{
     padding-bottom: 23px;
 }
 
-.persPage .persProd table input {
+.persPage .persProd table input
+{
     vertical-align: middle;
     margin-right: 7px;
 }
 
-.persPage .persProd table label {
+.persPage .persProd table label
+{
     color: #757575;
     margin-right: 7px;
 }
 
-.savePpage {
+.savePpage
+{
     margin: 4px 0 0 38%;
     background: url(/Images/System/savePpage.png) no-repeat 0 0 transparent;
     width: 94px;
@@ -5958,31 +7038,37 @@ a.addToBook span {
     cursor: pointer;
 }
 
-    .savePpage:hover {
+    .savePpage:hover
+    {
         background-position: 0 -30px;
     }
 
-.myBookm {
+.myBookm
+{
     padding-top: 0;
 }
 
-    .myBookm > ul {
+    .myBookm > ul
+    {
         margin-top: 0;
         border-top: 1px solid #D9D9D9;
         padding-top: 10px;
         margin-right: 10px;
     }
 
-.booksTabs {
+.booksTabs
+{
     overflow: hidden;
     padding-left: 1px;
     margin-top: 4px;
 }
 
-    .booksTabs ul {
+    .booksTabs ul
+    {
     }
 
-    .booksTabs li {
+    .booksTabs li
+    {
         float: left;
         padding: 7px 25px 0;
         border-left: 1px solid #D9D9D9;
@@ -5997,111 +7083,132 @@ a.addToBook span {
         margin-top: 5px;
     }
 
-        .booksTabs li.a {
+        .booksTabs li.a
+        {
             background: url(/Images/System/bookBgA.png) repeat-x 0 0 transparent;
             height: 25px;
             margin-top: 0;
             padding: 10px 16px 0 17px;
         }
 
-            .booksTabs li.a a {
+            .booksTabs li.a a
+            {
                 font-size: 14px;
                 color: #bf3f1e;
             }
 
-        .booksTabs li a {
+        .booksTabs li a
+        {
             text-decoration: none;
             color: #404041;
         }
 
-        .booksTabs li:hover a {
+        .booksTabs li:hover a
+        {
             color: #bf3f1e;
         }
 
-.myBookm .ciInfo > div {
+.myBookm .ciInfo > div
+{
     padding-left: 0;
 }
 
-    .myBookm .ciInfo > div p {
+    .myBookm .ciInfo > div p
+    {
         text-align: center;
         clear: both;
         color: #6f6f6f;
     }
 
-    .myBookm .ciInfo > div input.delBut {
+    .myBookm .ciInfo > div input.delBut
+    {
         margin: 38px 0 1px 43px;
         float: left;
     }
 
-        .myBookm .ciInfo > div input.delBut:hover {
+        .myBookm .ciInfo > div input.delBut:hover
+        {
             background-position: 0 -31px;
         }
 
-.myBookm .ciText > div {
+.myBookm .ciText > div
+{
     min-height: 128px;
 }
 
-.shopStars {
+.shopStars
+{
     float: left;
     margin: 15px 0 0 22px;
 }
 
-    .shopStars img {
+    .shopStars img
+    {
         margin-right: 5px;
     }
 
-.shopBlock {
+.shopBlock
+{
     float: left;
     width: 100%;
 }
 
-.shopBlockTop {
+.shopBlockTop
+{
     overflow: hidden;
     padding-right: 10px;
     padding-bottom: 36px;
 }
 
-.sbtLeft {
+.sbtLeft
+{
     float: left;
     width: 29%;
 }
 
-.shopLog {
+.shopLog
+{
     float: left;
     width: 100%;
     margin-bottom: 20px;
 }
 
-.sbtLeft li {
+.sbtLeft li
+{
     color: #454545;
     font: 12px/24px Arial;
     padding-bottom: 1px;
 }
 
-    .sbtLeft li img {
+    .sbtLeft li img
+    {
         vertical-align: middle;
         margin-right: 8px;
     }
 
-.sbtCenter {
+.sbtCenter
+{
     float: left;
     width: 20%;
     margin: 0px 0 0 0;
 }
 
-.shopTime {
+.shopTime
+{
     float: left;
     width: 100%;
     margin: 0;
 }
 
-    .shopTime p {
+    .shopTime p
+    {
         color: #6f6f6f;
         font: 12px/12px Arial;
         margin-bottom: 8px;
     }
 
-    .shopTime span {
+    .shopTime span
+    {
         background: url("/Images/System/comIcon.png") no-repeat scroll 0 0 transparent;
         border: 0 none !important;
         height: 15px;
@@ -6115,47 +7222,56 @@ a.addToBook span {
         font: bold 9px/10px Verdana, Arial;
     }
 
-        .shopTime span.no {
+        .shopTime span.no
+        {
             background: url("/Images/System/comIconNo.png") no-repeat scroll 0 0 transparent;
         }
 
-.sbtCenter ul {
+.sbtCenter ul
+{
     color: #3a3a3a;
     font: 14px/22px Arial;
 }
 
-.sbtRight {
+.sbtRight
+{
     float: right;
     padding: 17px 20px 20px;
     margin: 44px 0 0 0;
     text-align: center;
     color: #3a3a3a;
     font: 12px/22px Arial;
-    background-color: #FFFDE4;max-width: 150px;
+    background-color: #FFFDE4;
+    max-width: 150px;
 }
 
-.shopBlock > p {
+.shopBlock > p
+{
     color: #3a3a3a;
     font: 12px/16px Arial;
     margin-bottom: 16px;
 }
 
-.respStars {
+.respStars
+{
     float: left;
     margin: 5px 19px;
     width: 35%;
 }
 
-    .respStars > p {
+    .respStars > p
+    {
         color: #4c4c4c;
         font: 11px/30px Arial;
     }
 
-.reStars.starsInput a.on {
+.reStars.starsInput a.on
+{
     background: url(/Images/System/shopStarOn.png) no-repeat scroll center 0 transparent;
 }
 
-.reStars.starsInput a {
+.reStars.starsInput a
+{
     background: url(/Images/System/shopStar.png) no-repeat scroll center 0 transparent;
     display: block;
     float: left;
@@ -6165,17 +7281,20 @@ a.addToBook span {
     margin-left: 1px;
 }
 
-.inRespStars {
+.inRespStars
+{
     position: absolute;
     top: 0;
     right: 0;
 }
 
-    .inRespStars img {
+    .inRespStars img
+    {
         margin-left: 3px;
     }
 
-.backTop {
+.backTop
+{
     position: fixed;
     bottom: 170px;
     right: 10px;
@@ -6184,59 +7303,70 @@ a.addToBook span {
     text-align: center;
 }
 
-    .backTop a {
+    .backTop a
+    {
         display: block;
         background: url(/Images/System/upBut.png) no-repeat 0 0 transparent;
         width: 32px;
         height: 32px;
     }
 
-        .backTop a:hover {
+        .backTop a:hover
+        {
             background: url(/Images/System/upBut.png) no-repeat 0 -35px transparent;
         }
 
-    .backTop:hover a {
+    .backTop:hover a
+    {
         color: #ffffff;
     }
 
-.acceptTerms {
+.acceptTerms
+{
     font: 11px/12px Arial,Verdana;
     color: #4C4C4C;
     padding-left: 136px;
     padding-bottom: 20px;
 }
 
-    .acceptTerms input {
+    .acceptTerms input
+    {
         vertical-align: middle;
     }
 
-    .acceptTerms a {
+    .acceptTerms a
+    {
         color: #004bb9;
     }
 
-.promoBlock {
+.promoBlock
+{
     float: left;
     width: 100%;
     padding: 22px 0;
 }
 
-.promoTop {
+.promoTop
+{
     float: left;
     width: 100%;
     padding: 15px 0 33px;
 }
 
-    .promoTop h1 {
+    .promoTop h1
+    {
         padding: 8px 40px 17px;
     }
 
-    .promoTop p {
+    .promoTop p
+    {
         color: #4c4c4c;
         font: 15px/24px Arial;
         padding: 0 40px;
     }
 
-.promoVisual {
+.promoVisual
+{
     width: 100%;
     float: left;
     height: 200px;
@@ -6246,7 +7376,8 @@ a.addToBook span {
 	Slideshow
 */
 
-#slides {
+#slides
+{
     float: left;
     width: 100%;
     z-index: 100;
@@ -6260,7 +7391,8 @@ a.addToBook span {
 	Set to display none, prevents content flash
 */
 
-.slides_container {
+.slides_container
+{
     width: 100%;
     overflow: hidden;
     position: relative;
@@ -6275,7 +7407,8 @@ a.addToBook span {
 	Set to display block
 */
 
-    .slides_container div.slide {
+    .slides_container div.slide
+    {
         width: 1300px;
         height: 200px;
         display: block;
@@ -6287,7 +7420,8 @@ a.addToBook span {
 	Next/prev buttons
 */
 
-#slides .next, #slides .prev {
+#slides .next, #slides .prev
+{
     position: absolute;
     top: 62px;
     left: 40px;
@@ -6297,7 +7431,8 @@ a.addToBook span {
     z-index: 101;
 }
 
-#slides .next {
+#slides .next
+{
     right: 40px;
     left: auto;
 }
@@ -6306,7 +7441,8 @@ a.addToBook span {
 	Pagination
 */
 
-.pagination {
+.pagination
+{
     bottom: 12px;
     margin: 0 0 0 0;
     position: absolute;
@@ -6314,13 +7450,15 @@ a.addToBook span {
     z-index: 10;
 }
 
-    .pagination li {
+    .pagination li
+    {
         float: left;
         margin: 0 8px 0 0;
         list-style: none;
     }
 
-        .pagination li a {
+        .pagination li a
+        {
             display: block;
             width: 8px;
             height: 8px;
@@ -6333,7 +7471,8 @@ a.addToBook span {
             text-indent: -9999px;
         }
 
-        .pagination li.current a {
+        .pagination li.current a
+        {
             background: url(/Images/System/pag2.png) no-repeat 0 0 transparent;
         }
 
@@ -6341,7 +7480,8 @@ a.addToBook span {
 	Caption
 */
 
-.caption {
+.caption
+{
     z-index: 500;
     position: absolute;
     top: 0;
@@ -6354,88 +7494,103 @@ a.addToBook span {
     height: 200px;
 }
 
-    .caption p {
+    .caption p
+    {
         padding-left: 140px;
         padding-top: 75px;
         text-align: left;
     }
 
-.promoBot {
+.promoBot
+{
     overflow: hidden;
     padding: 46px 40px 7px;
 }
 
-.promoBotL {
+.promoBotL
+{
     float: left;
     width: 42%;
 }
 
-    .promoBotL p {
+    .promoBotL p
+    {
         color: #4c4c4c;
         font: 12px/20px Arial;
         margin-bottom: 9px;
     }
 
-        .promoBotL p.pblTitle {
+        .promoBotL p.pblTitle
+        {
             font: bold 13px/22px Arial;
             margin-bottom: 21px;
         }
 
- .promoBotL a {
-    border-bottom: 1px solid #9DA7DF;
-    color: #4A4EC3;
-    font: bold 16px/20px Arial;
-    margin-top: 20px;
-    text-decoration: none;
-}
+    .promoBotL a
+    {
+        border-bottom: 1px solid #9DA7DF;
+        color: #4A4EC3;
+        font: bold 16px/20px Arial;
+        margin-top: 20px;
+        text-decoration: none;
+    }
 
 
-.promoBotR {
+.promoBotR
+{
     margin: 0 0 0 50%;
 }
 
-    .promoBotR p {
+    .promoBotR p
+    {
         color: #4c4c4c;
         font: 13px/22px Arial;
-        margin-bottom:0!important;
+        margin-bottom: 0!important;
     }
 
-    .promoBotR ul {
+    .promoBotR ul
+    {
         float: left;
         width: 100%;
         margin: 13px 0 43px 0;
-        list-style-image:none!important;
+        list-style-image: none!important;
     }
 
-        .promoBotR ul li {
+        .promoBotR ul li
+        {
             float: left;
             width: 44%;
-             margin-bottom: 0!important;
+            margin-bottom: 0!important;
         }
 
-            .promoBotR ul li a {
+            .promoBotR ul li a
+            {
                 color: #3660bf;
                 font: bold 16px/28px Arial;
                 text-decoration: none;
                 border-bottom: 1px solid #9bb0df;
             }
 
-    .promoBotR div {
+    .promoBotR div
+    {
         float: left;
         width: 100%;
         margin: 13px 0 0 0;
     }
 
-        .promoBotR div p {
+        .promoBotR div p
+        {
             font: bold 13px/25px Arial;
         }
 
-            .promoBotR div p strong {
+            .promoBotR div p strong
+            {
                 color: #f66c27;
                 font-size: 16px;
             }
 
-.logRegIn {
+.logRegIn
+{
     float: right;
     background: 0 none #fff8d7;
     padding: 12px 10px 0 10px;
@@ -6444,72 +7599,88 @@ a.addToBook span {
     width: 14%;
 }
 
-.logRegImg {
+.logRegImg
+{
     float: left;
     width: 14px;
 }
 
-    .logRegImg img {
+    .logRegImg img
+    {
         max-width: 100%;
     }
 
-.logRegLinks {
+.logRegLinks
+{
     margin: 0 0 0 25px;
 }
 
-.logRegLinks {
+.logRegLinks
+{
     font: 11px/11px Arial;
 }
 
-    .logRegLinks p {
+    .logRegLinks p
+    {
         margin: 9px 0 0 0;
     }
 
-    .logRegLinks a {
+    .logRegLinks a
+    {
         font: 11px/11px Arial;
     }
 
-        .logRegLinks a.logRegName {
+        .logRegLinks a.logRegName
+        {
             color: #000000;
             font-weight: bold;
         }
 
-        .logRegLinks a.logOut {
+        .logRegLinks a.logOut
+        {
             float: right;
         }
 
-        .logRegLinks a img {
+        .logRegLinks a img
+        {
             vertical-align: middle;
             margin-right: 3px;
         }
 
-.mainRealtyBlock.mainAuto {
+.mainRealtyBlock.mainAuto
+{
 }
 
-    .mainRealtyBlock.mainAuto .mainRealtyWrap {
+    .mainRealtyBlock.mainAuto .mainRealtyWrap
+    {
         background: url("/Images/System/mRealtBg2.png") repeat-y scroll left 0 #f5f5f5;
     }
 
-.clear {
+.clear
+{
     clear: both;
 }
 
-.visible {
+.visible
+{
     display: block;
 }
 
-.unvisible {
+.unvisible
+{
     display: none;
 }
 
-#imagePreview img {
+#imagePreview img
+{
     max-width: 100px;
     max-height: 100px;
     margin: 3px;
 }
 
 
-.a_ads_list_sort_params {
+.a_ads_list_sort_params
+{
     text-decoration: none;
     text-underline: none;
     cursor: pointer;
@@ -6517,7 +7688,8 @@ a.addToBook span {
     height: 15px;
 }
 
-    .a_ads_list_sort_params:hover {
+    .a_ads_list_sort_params:hover
+    {
         color: #a32e17;
     }
 
@@ -6528,13 +7700,15 @@ a.addToBook span {
 }*/
 
 /* info and errors */
-.message-info {
+.message-info
+{
     border: 1px solid;
     clear: both;
     padding: 10px 20px;
 }
 
-.message-error {
+.message-error
+{
     clear: both;
     color: #e80c4d;
     font-size: 1.1em;
@@ -6542,253 +7716,821 @@ a.addToBook span {
     margin: 20px 0 10px 0;
 }
 
-.message-success {
+.message-success
+{
     color: #7ac0da;
     font-size: 1.3em;
     font-weight: bold;
     margin: 20px 0 10px 0;
 }
 
-.error {
+.error
+{
     color: #e80c4d;
 }
 
 /* styles for validation helpers */
-.field-validation-error {
+.field-validation-error
+{
     color: #e80c4d;
     font: bold 12px Arial;
 }
 
-.field-validation-valid {
+.field-validation-valid
+{
     display: none;
 }
 
-.input-validation-error {
+.input-validation-error
+{
     border: 1px solid #e80c4d!important;
 }
-.field-validation-error {color:#e80c4d!important; white-space:nowrap;float: none !important;}
-.field-validation-error span{color:#e80c4d!important; white-space:nowrap;}
 
-input[type="checkbox"].input-validation-error {
+.field-validation-error
+{
+    color: #e80c4d!important;
+    white-space: nowrap;
+    float: none !important;
+}
+
+    .field-validation-error span
+    {
+        color: #e80c4d!important;
+        white-space: nowrap;
+    }
+
+input[type="checkbox"].input-validation-error
+{
     border: 0 none;
 }
 
-.validation-summary-errors {
+.validation-summary-errors
+{
     color: #e80c4d;
     font-weight: bold;
     font-size: 1.1em;
 }
 
-.validation-summary-valid {
+.validation-summary-valid
+{
     display: none;
 }
 
-.itemInfoInp{float:left; width:100%;}
-.itemInfoInp div{float:left; margin: 10px 0 10px 20px; width:43%;}
-.itemInfoInp span{float:left; color:#2a2a2a; font:bold 14px Arial;padding:0 0 0 17px;}
-.itemInfoInp span.haveNo{background: url(..//Images/User/itemInpBg.jpg) no-repeat scroll 0 6px transparent;}
-.itemInfoInp span.have{background: url(..//Images/User/itemInpBg.jpg) no-repeat scroll 0 -27px transparent;}
+.itemInfoInp
+{
+    float: left;
+    width: 100%;
+}
+
+    .itemInfoInp div
+    {
+        float: left;
+        margin: 10px 0 10px 20px;
+        width: 43%;
+    }
+
+    .itemInfoInp span
+    {
+        float: left;
+        color: #2a2a2a;
+        font: bold 14px Arial;
+        padding: 0 0 0 17px;
+    }
+
+        .itemInfoInp span.haveNo
+        {
+            background: url(..//Images/User/itemInpBg.jpg) no-repeat scroll 0 6px transparent;
+        }
+
+        .itemInfoInp span.have
+        {
+            background: url(..//Images/User/itemInpBg.jpg) no-repeat scroll 0 -27px transparent;
+        }
 
 
-.cont404{
-	float:left; width:100%;margin-top: 63px; margin-bottom: 120px;
+.cont404
+{
+    float: left;
+    width: 100%;
+    margin-top: 63px;
+    margin-bottom: 120px;
 }
-.cont404 p{
-	color:#b0b0b0; font:bold italic 100px/90% Verdana;float:left; width:100%;text-align:center;
-}
-.cont404 span{
-	color:#b0b0b0; font:bold italic 48px/90% Verdana;float:left; width:100%;text-align:center;
-}
-.cont404 div{
-	color:#3a3a3a; font:12px Arial;float:left; width:100%;text-align:center;margin-top: 40px;
-}
-.cont404 div a{
-	color:#004bb9;  font:12px Arial;margin-left:5px;
-}
+
+    .cont404 p
+    {
+        color: #b0b0b0;
+        font: bold italic 100px/90% Verdana;
+        float: left;
+        width: 100%;
+        text-align: center;
+    }
+
+    .cont404 span
+    {
+        color: #b0b0b0;
+        font: bold italic 48px/90% Verdana;
+        float: left;
+        width: 100%;
+        text-align: center;
+    }
+
+    .cont404 div
+    {
+        color: #3a3a3a;
+        font: 12px Arial;
+        float: left;
+        width: 100%;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+        .cont404 div a
+        {
+            color: #004bb9;
+            font: 12px Arial;
+            margin-left: 5px;
+        }
 
 /* forms */
-fieldset {
+fieldset
+{
     border: none;
     margin: 0;
     padding: 0;
 }
 
-    fieldset legend {
+    fieldset legend
+    {
         display: none;
     }
 
-    fieldset ol {
+    fieldset ol
+    {
         padding: 0;
         list-style: none;
     }
 
-        fieldset ol li {
+        fieldset ol li
+        {
             padding-bottom: 5px;
         }
 
 
-        .sellerInfoM a {
-            color: #554C47;
-            font: 11px Arial;
-            text-underline: single;
-            
-        }
+.sellerInfoM a
+{
+    color: #554C47;
+    font: 11px Arial;
+    text-underline: single;
+}
 
-.hedList .more10 {display:none;margin-left: 79%;    padding-left: 6px;}
-
-
-
-
-        .user-info-link {
-            color: #554C47;
-            font: 11px Arial;
-            text-underline: single;
-            margin-left: 5px;
-        }
+.hedList .more10
+{
+    display: none;
+    margin-left: 79%;
+    padding-left: 6px;
+}
 
 
-a.sectionSelected {
+
+
+.user-info-link
+{
+    color: #554C47;
+    font: 11px Arial;
+    text-underline: single;
+    margin-left: 5px;
+}
+
+
+a.sectionSelected
+{
     text-decoration: none;
     font-weight: bold;
     color: #F00;
 }
 
 
-    .CountOfMyPrivateMessages {
-        text-decoration: none;
-        color: #FF5555;
-        margin-left: 2px;
-    }
+.CountOfMyPrivateMessages
+{
+    text-decoration: none;
+    color: #FF5555;
+    margin-left: 2px;
+}
 
 
 
 
 /** For Profile */
-   
-.userAv{	float:left; width:100%;margin: -52px 0 0 0;}    
-.userAv p{	float:left; color:#375173; font:bold 22px Verdana; margin-left:8px; width:90%;}      
-.userAv span{	float:left; width:74px; height:70px; overflow:hidden;margin: 56px 0 0 23px;}  
-.userAv span img{max-height:70px; max-width:74px;}    
-.userAv2{	float:left; width:100%;margin:26px 0 0;}    
-.userAv2 p{	float:left; color:#375173; font:bold 22px Verdana; margin-left:8px; width:90%;}
-.userAv2 p a{color:#464646; font:bold 13px Arial;margin-left: 82px;}     
-    
-.userStatus{float:left; width:100%;color:#f66c27; font:bold 11px Arial; text-transform:uppercase;margin: 37px 0 27px;}      
-    
-.userChange{float:left; padding: 7px 0 9px;    width: 95%;background-color:#fff9af;}     
-.userChange a{color:#2a528e; font:11px Arial;margin-left: 25px;}     
-        
-.userShortInfo{float:left; width:100%;margin-top: 20px;} 
-.userShortInfoL{float:left; width:45%;color:#262626; font:12px Arial;}  
-.userShortInfoL span{color:#868686;width: 120px;float:left;}
-.userShortInfoL div{margin-left:10px;margin-bottom: 13px;}
-.userShortInfoR{float:left; width:55%;margin-top: -1px;}  
-.userShortInfoR a{color:#003b92; font:13px Arial;} 
-.userShortInfoR a.userRed{color:#e64a21;background: url(/Images/System/userRed.png) no-repeat scroll 1px 5px transparent;margin-left:-20px; padding-left:20px;}    
-.userShortInfoR a.userGr{color:#00ab24;background: url(/Images/System/userGr.png) no-repeat scroll 0 6px transparent;margin-left:-20px; padding-left:20px;}
-.userShortInfoR div{margin-left: 23px; width:41%; float:left;margin-bottom: 12px;}
-    
-.userMoreInfo{float:left; width:100%;margin-top: 85px;}      
-.userMoreInfoTabs{float:left; width:95%;/*border-bottom:1px solid #d9d9d9;*/}
-.userMoreInfoTabs li{float:left;border:1px solid #d9d9d9;margin-top: 5px;   position:relative; margin-bottom:-1px;background: url(/Images/System/userTab2.png) repeat-x scroll left bottom transparent;}
-.userMoreInfoTabs li.a{float:left;border-bottom:none;margin:0 -1px -1px;border-bottom:1px solid white;background: url(/Images/System/userTab1.png) repeat-x scroll left top transparent;}
-.userMoreInfoTabs li a{text-decoration:none;color:#404041;font:bold 12px Arial;float:left; padding: 8px 24px 6px;}
-.userMoreInfoTabs li.a a{text-decoration:none;color:#bf3f1e;font:bold 14px Arial;padding: 9px 17px;cursor:default;}
 
-.userMoreInfoCont{float:left; width:95%; margin-top:22px;/*border-bottom:1px solid #d9d9d9;*/padding-bottom: 4px;}
-.userMoreInfoCont div{float:left; width:100%;margin-bottom: 11px;}
-.userMoreInfoCont div span{float:left;color:#868686;font:12px Arial;margin-right: 13px;    margin-top: 7px;    text-align: right;    width: 103px;}
-.userMoreInfoCont div input{font:12px Arial;color:#262626;padding:6px 10px;width: 196px;}
-.userMoreInfoCont div textarea{font:12px Arial;color:#262626;padding:6px 10px;width: 417px;height: 35px;}
-
-.userMoreInfoCont div select{font:12px Arial;color:#262626;padding:3px 0;margin-top: 3px;}
-
-.userSave{float:left; width:100%;margin-top: 20px;} 
-.userSave input{background-color:white; border:2px solid #00a423; color:#59717f;font:bold 12px Arial;padding: 4px 11px;cursor:pointer; border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px;}
-
-.showBlock{	display:none;} 
-#sh1{	display:block;}
-.userFull{	float:left; width:100%; margin-bottom:140px; min-height:300px;}
-
-.messTable{	float:left; width:95%;margin-top: 26px;}
-.messTable th{color:#859dbf; font:11px Arial;background-color:#e1ecf6;vertical-align:middle;}
-.messTable th a{color:#ba4933; text-decoration:none; border-bottom:1px dotted #ba4933;}
-
-.messTable td{border-bottom:1px solid #d9d9d9;color:#555555; font:12px Arial;padding: 10px 0 7px;    vertical-align: middle !important;}
-
-.messTable .mes1{padding: 5px 16px;    width: 15px;}
-.messTable th.mes1 input{margin-top:2px;}
-
-.messTable .mes2{min-width:70px;}
-
-.messTable .mes3{padding: 10px 16px 7px;}
-
-.messTable .mes4{min-width:50px;}
-
-.messTable td.mes3 a{text-decoration:none; font:bold 15px Arial; color:#004bb9;}
-
-.messTable tr.coloredTr{background-color:#fff8cc;}
-
-.userMess{float:left;margin-top: -4px;margin-left: 30px;}
-
-.userMess ul li{margin-bottom:11px;}
-
-.userMess ul li.a{background: url(/Images/System/userMess.png) no-repeat scroll 0 6px transparent;margin-left: -20px;    padding-left: 20px;}
-
-.userMess ul li a{text-decoration:none; color:#424242; font:13px Arial;}
-
-.userMess ul li.a a{color:#e64a21; font:bold 13px Arial;cursor:default;}
-
-#usTable_previous{	background-color:red;float:left; width:20px; height:20px;}
-
-#usTable_next{	background-color:red;float:left; width:20px; height:20px;}
-
-.messBlock{	float:left; width:95%;margin-top: 26px;}
-
-
-.messBlockT{	float:left; width:100%; background-color:#e1ecf6;padding: 3px 0;}
-.messBlockT input{color:black; font:13px Arial;margin-left: 57px;}
-.messBlockT a{color:#ba4933;font:11px Arial; text-decoration:none; border-bottom:1px dotted #ba4933;margin: 4px 25px 0 0;float:right;}
-.messBlockL{	float:left; width:70px;margin-top: 75px;}
-.messBlockL span{width:50px; height:50px; overflow:hidden;}
-.messBlockL span img{max-height:50px; max-width:50px;}
-
-.messBlockR{margin-left:70px;margin-top: 64px;margin-bottom: 40px;}
-.messBlockR div{color:#004bb9;font:bold 15px Arial;padding-bottom: 20px;}
-.messBlockR span{color:#868686; font:11px Arial;}
-.messBlockR span a{color:#232323; font:bold 11px Arial; margin-right: 26px;}
-.messBlockR p{ color:#232323;font: 15px/150% Arial;    padding-top: 20px;}
-.messBlockR p a{color:#004bb9;}
-
-.messBlockM{	float:left; width:100%;margin-top: 30px;}
-.messBlockM div{margin-bottom:15px;float:left; width:100%;}
-.messBlockM div span{color:#555555; font:12px Arial; float:left; width:105px;margin: 4px 0 0;}
-.messBlockM div input{color:black; font:12px Arial;padding: 4px 0;width: 85%;float:right;}
-.messBlockM div textarea{color:black; font:12px Arial;padding: 4px 0;width: 85%;float:right;}
-
-.topPager{
-	float:left;width:100%; text-align:center;
+.userAv
+{
+    float: left;
+    width: 100%;
+    margin: -52px 0 0 0;
 }
 
-.itemInfoPoints{	float:left; width:95%;margin:20px 0 0 20px;}
-.itemInfoPoints div{	float:left; width:42%; margin-right:5%;padding-left:2%; color: #554C47; font: 12px/155% Arial;margin-bottom:10px;}
-.itemInfoPoints div.pointW{	float:left; width:92%; }
-.itemInfoPoints div.pointY{background: url(/Images/System/pointY.jpg) no-repeat 0 50% transparent;}
-.itemInfoPoints div.pointN{background: url(/Images/System/pointN.jpg) no-repeat 0 50% transparent;}
-.itemInfoPoints div b{color: #554C47; font:bold 14px/155% Arial;	}
+    .userAv p
+    {
+        float: left;
+        color: #375173;
+        font: bold 22px Verdana;
+        margin-left: 8px;
+        width: 90%;
+    }
 
-.hMenu table td {width: auto!important;}
+    .userAv span
+    {
+        float: left;
+        width: 74px;
+        height: 70px;
+        overflow: hidden;
+        margin: 56px 0 0 23px;
+    }
 
-.itemInfoFull li span {font-weight:normal!important;margin:0!important;}
-.itemInfoFull li  {padding-bottom:5px;}
-#description{	padding-left:20px;}
+        .userAv span img
+        {
+            max-height: 70px;
+            max-width: 74px;
+        }
+
+.userAv2
+{
+    float: left;
+    width: 100%;
+    margin: 26px 0 0;
+}
+
+    .userAv2 p
+    {
+        float: left;
+        color: #375173;
+        font: bold 22px Verdana;
+        margin-left: 8px;
+        width: 90%;
+    }
+
+        .userAv2 p a
+        {
+            color: #464646;
+            font: bold 13px Arial;
+            margin-left: 82px;
+        }
+
+.userStatus
+{
+    float: left;
+    width: 100%;
+    color: #f66c27;
+    font: bold 11px Arial;
+    text-transform: uppercase;
+    margin: 37px 0 27px;
+}
+
+.userChange
+{
+    float: left;
+    padding: 7px 0 9px;
+    width: 95%;
+    background-color: #fff9af;
+}
+
+    .userChange a
+    {
+        color: #2a528e;
+        font: 11px Arial;
+        margin-left: 25px;
+    }
+
+.userShortInfo
+{
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.userShortInfoL
+{
+    float: left;
+    width: 45%;
+    color: #262626;
+    font: 12px Arial;
+}
+
+    .userShortInfoL span
+    {
+        color: #868686;
+        width: 120px;
+        float: left;
+    }
+
+    .userShortInfoL div
+    {
+        margin-left: 10px;
+        margin-bottom: 13px;
+    }
+
+.userShortInfoR
+{
+    float: left;
+    width: 55%;
+    margin-top: -1px;
+}
+
+    .userShortInfoR a
+    {
+        color: #003b92;
+        font: 13px Arial;
+    }
+
+        .userShortInfoR a.userRed
+        {
+            color: #e64a21;
+            background: url(/Images/System/userRed.png) no-repeat scroll 1px 5px transparent;
+            margin-left: -20px;
+            padding-left: 20px;
+        }
+
+        .userShortInfoR a.userGr
+        {
+            color: #00ab24;
+            background: url(/Images/System/userGr.png) no-repeat scroll 0 6px transparent;
+            margin-left: -20px;
+            padding-left: 20px;
+        }
+
+    .userShortInfoR div
+    {
+        margin-left: 23px;
+        width: 41%;
+        float: left;
+        margin-bottom: 12px;
+    }
+
+.userMoreInfo
+{
+    float: left;
+    width: 100%;
+    margin-top: 85px;
+}
+
+.userMoreInfoTabs
+{
+    float: left;
+    width: 95%; /*border-bottom:1px solid #d9d9d9;*/
+}
+
+    .userMoreInfoTabs li
+    {
+        float: left;
+        border: 1px solid #d9d9d9;
+        margin-top: 5px;
+        position: relative;
+        margin-bottom: -1px;
+        background: url(/Images/System/userTab2.png) repeat-x scroll left bottom transparent;
+    }
+
+        .userMoreInfoTabs li.a
+        {
+            float: left;
+            border-bottom: none;
+            margin: 0 -1px -1px;
+            border-bottom: 1px solid white;
+            background: url(/Images/System/userTab1.png) repeat-x scroll left top transparent;
+        }
+
+        .userMoreInfoTabs li a
+        {
+            text-decoration: none;
+            color: #404041;
+            font: bold 12px Arial;
+            float: left;
+            padding: 8px 24px 6px;
+        }
+
+        .userMoreInfoTabs li.a a
+        {
+            text-decoration: none;
+            color: #bf3f1e;
+            font: bold 14px Arial;
+            padding: 9px 17px;
+            cursor: default;
+        }
+
+.userMoreInfoCont
+{
+    float: left;
+    width: 95%;
+    margin-top: 22px; /*border-bottom:1px solid #d9d9d9;*/
+    padding-bottom: 4px;
+}
+
+    .userMoreInfoCont div
+    {
+        float: left;
+        width: 100%;
+        margin-bottom: 11px;
+    }
+
+        .userMoreInfoCont div span
+        {
+            float: left;
+            color: #868686;
+            font: 12px Arial;
+            margin-right: 13px;
+            margin-top: 7px;
+            text-align: right;
+            width: 103px;
+        }
+
+        .userMoreInfoCont div input
+        {
+            font: 12px Arial;
+            color: #262626;
+            padding: 6px 10px;
+            width: 196px;
+        }
+
+        .userMoreInfoCont div textarea
+        {
+            font: 12px Arial;
+            color: #262626;
+            padding: 6px 10px;
+            width: 417px;
+            height: 35px;
+        }
+
+        .userMoreInfoCont div select
+        {
+            font: 12px Arial;
+            color: #262626;
+            padding: 3px 0;
+            margin-top: 3px;
+        }
+
+.userSave
+{
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+}
+
+    .userSave input
+    {
+        background-color: white;
+        border: 2px solid #00a423;
+        color: #59717f;
+        font: bold 12px Arial;
+        padding: 4px 11px;
+        cursor: pointer;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+    }
+
+.showBlock
+{
+    display: none;
+}
+
+#sh1
+{
+    display: block;
+}
+
+.userFull
+{
+    float: left;
+    width: 100%;
+    margin-bottom: 140px;
+    min-height: 300px;
+}
+
+.messTable
+{
+    float: left;
+    width: 95%;
+    margin-top: 26px;
+}
+
+    .messTable th
+    {
+        color: #859dbf;
+        font: 11px Arial;
+        background-color: #e1ecf6;
+        vertical-align: middle;
+    }
+
+        .messTable th a
+        {
+            color: #ba4933;
+            text-decoration: none;
+            border-bottom: 1px dotted #ba4933;
+        }
+
+    .messTable td
+    {
+        border-bottom: 1px solid #d9d9d9;
+        color: #555555;
+        font: 12px Arial;
+        padding: 10px 0 7px;
+        vertical-align: middle !important;
+    }
+
+    .messTable .mes1
+    {
+        padding: 5px 16px;
+        width: 15px;
+    }
+
+    .messTable th.mes1 input
+    {
+        margin-top: 2px;
+    }
+
+    .messTable .mes2
+    {
+        min-width: 70px;
+    }
+
+    .messTable .mes3
+    {
+        padding: 10px 16px 7px;
+    }
+
+    .messTable .mes4
+    {
+        min-width: 50px;
+    }
+
+    .messTable td.mes3 a
+    {
+        text-decoration: none;
+        font: bold 15px Arial;
+        color: #004bb9;
+    }
+
+    .messTable tr.coloredTr
+    {
+        background-color: #fff8cc;
+    }
+
+.userMess
+{
+    float: left;
+    margin-top: -4px;
+    margin-left: 30px;
+}
+
+    .userMess ul li
+    {
+        margin-bottom: 11px;
+    }
+
+        .userMess ul li.a
+        {
+            background: url(/Images/System/userMess.png) no-repeat scroll 0 6px transparent;
+            margin-left: -20px;
+            padding-left: 20px;
+        }
+
+        .userMess ul li a
+        {
+            text-decoration: none;
+            color: #424242;
+            font: 13px Arial;
+        }
+
+        .userMess ul li.a a
+        {
+            color: #e64a21;
+            font: bold 13px Arial;
+            cursor: default;
+        }
+
+#usTable_previous
+{
+    background-color: red;
+    float: left;
+    width: 20px;
+    height: 20px;
+}
+
+#usTable_next
+{
+    background-color: red;
+    float: left;
+    width: 20px;
+    height: 20px;
+}
+
+.messBlock
+{
+    float: left;
+    width: 95%;
+    margin-top: 26px;
+}
+
+
+.messBlockT
+{
+    float: left;
+    width: 100%;
+    background-color: #e1ecf6;
+    padding: 3px 0;
+}
+
+    .messBlockT input
+    {
+        color: black;
+        font: 13px Arial;
+        margin-left: 57px;
+    }
+
+    .messBlockT a
+    {
+        color: #ba4933;
+        font: 11px Arial;
+        text-decoration: none;
+        border-bottom: 1px dotted #ba4933;
+        margin: 4px 25px 0 0;
+        float: right;
+    }
+
+.messBlockL
+{
+    float: left;
+    width: 70px;
+    margin-top: 75px;
+}
+
+    .messBlockL span
+    {
+        width: 50px;
+        height: 50px;
+        overflow: hidden;
+    }
+
+        .messBlockL span img
+        {
+            max-height: 50px;
+            max-width: 50px;
+        }
+
+.messBlockR
+{
+    margin-left: 70px;
+    margin-top: 64px;
+    margin-bottom: 40px;
+}
+
+    .messBlockR div
+    {
+        color: #004bb9;
+        font: bold 15px Arial;
+        padding-bottom: 20px;
+    }
+
+    .messBlockR span
+    {
+        color: #868686;
+        font: 11px Arial;
+    }
+
+        .messBlockR span a
+        {
+            color: #232323;
+            font: bold 11px Arial;
+            margin-right: 26px;
+        }
+
+    .messBlockR p
+    {
+        color: #232323;
+        font: 15px/150% Arial;
+        padding-top: 20px;
+    }
+
+        .messBlockR p a
+        {
+            color: #004bb9;
+        }
+
+.messBlockM
+{
+    float: left;
+    width: 100%;
+    margin-top: 30px;
+}
+
+    .messBlockM div
+    {
+        margin-bottom: 15px;
+        float: left;
+        width: 100%;
+    }
+
+        .messBlockM div span
+        {
+            color: #555555;
+            font: 12px Arial;
+            float: left;
+            width: 105px;
+            margin: 4px 0 0;
+        }
+
+        .messBlockM div input
+        {
+            color: black;
+            font: 12px Arial;
+            padding: 4px 0;
+            width: 85%;
+            float: right;
+        }
+
+        .messBlockM div textarea
+        {
+            color: black;
+            font: 12px Arial;
+            padding: 4px 0;
+            width: 85%;
+            float: right;
+        }
+
+.topPager
+{
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.itemInfoPoints
+{
+    float: left;
+    width: 95%;
+    margin: 20px 0 0 20px;
+}
+
+    .itemInfoPoints div
+    {
+        float: left;
+        width: 42%;
+        margin-right: 5%;
+        padding-left: 2%;
+        color: #554C47;
+        font: 12px/155% Arial;
+        margin-bottom: 10px;
+    }
+
+        .itemInfoPoints div.pointW
+        {
+            float: left;
+            width: 92%;
+        }
+
+        .itemInfoPoints div.pointY
+        {
+            background: url(/Images/System/pointY.jpg) no-repeat 0 50% transparent;
+        }
+
+        .itemInfoPoints div.pointN
+        {
+            background: url(/Images/System/pointN.jpg) no-repeat 0 50% transparent;
+        }
+
+        .itemInfoPoints div b
+        {
+            color: #554C47;
+            font: bold 14px/155% Arial;
+        }
+
+.hMenu table td
+{
+    width: auto!important;
+}
+
+.itemInfoFull li span
+{
+    font-weight: normal!important;
+    margin: 0!important;
+}
+
+.itemInfoFull li
+{
+    padding-bottom: 5px;
+}
+
+#description
+{
+    padding-left: 20px;
+}
 
 
 /***********************19.02.2014***************************/
 
 
 /*   Добавление обсекания текста в пути объявления */
-.crumbs {
+.crumbs
+{
     overflow: hidden;
     text-overflow: ellipsis;
     /*white-space: nowrap;*/
@@ -6797,43 +8539,51 @@ a.sectionSelected {
 
 /* правильный размер блока с ценой*/
 
-.itemInfoTopR {
+.itemInfoTopR
+{
     width: auto;
 }
 
 /* межстрочное расстояние у пунктов профиль, написать, город*/
-.sellerInfoM ul li {
+.sellerInfoM ul li
+{
     margin-bottom: 7px;
 }
 
 /* выравнивание списка характеристик объявлений недвижимости*/
-.itemInfoPoints div.pointW {
+.itemInfoPoints div.pointW
+{
     width: 42%;
 }
 
 /* выравнивание в объявлении для пользовательского соглашения  и авторизации*/
-.respSubm {
+.respSubm
+{
     margin: 0 28px;
 }
 
 /* отступ у Нового в каталоге*/
-.AddStylePopCatalogueTop {
+.AddStylePopCatalogueTop
+{
     padding: 0 0 10px;
 }
 
 /* отступ у продаж, услуг*/
-.sale, .exchange, .rent {
+.sale, .exchange, .rent
+{
     margin-left: 10px;
 }
 
 /* подчеркивания в 2 раза прозрачнее*/
-.mainArticlesList h3 a {
+.mainArticlesList h3 a
+{
     border-bottom: 1px solid #777777;
 }
 
 /* выравнивание блоков объявления, авто, недвижимость*/
 
-.mAdsText .author {
+.mAdsText .author
+{
     display: block;
     float: left;
     overflow: hidden;
@@ -6843,83 +8593,100 @@ a.sectionSelected {
 }
 
 /* убрать подчеркивания у последнего пункта вобъвлениях*/
-.mainAds li:last-child {
+.mainAds li:last-child
+{
     border-bottom: medium none;
     margin-bottom: 10px;
 }
 
 /* выравнивания в слайдшоу*/
-.itemPicsBig {
+.itemPicsBig
+{
     margin-top: 40px;
 }
-.itemPicsList ul li {
+
+.itemPicsList ul li
+{
     margin: 0 10px;
 }
-.itemPicsList ul li.a div {
-    border: medium none;
-}
+
+    .itemPicsList ul li.a div
+    {
+        border: medium none;
+    }
 
 
 /*********20 02 2014 старый список***********/
 
 /* миниатюры, на главной и в статьях; 
 */
-.mAdsImg {
+.mAdsImg
+{
     overflow: hidden;
 }
 
-.mAdsImg img {
-    max-height: none;
-}
+    .mAdsImg img
+    {
+        max-height: none;
+    }
 
-.popProducts .img {
+.popProducts .img
+{
     overflow: hidden;
 }
 
-.mainArticlesBlock.innerArticles .malImg img {
+.mainArticlesBlock.innerArticles .malImg img
+{
     height: auto;
     width: 155px;
 }
 
 /* Текст "расскажи друзьям" перед кнопками соц.сетей
 */
-.itemInfoSoc {
+.itemInfoSoc
+{
     position: relative;
 }
-span.tell{
-	color: #004BB9;
-	font: 11px Arial;
-	position: absolute; 
-	top:-20px; 
-	left:0;
+
+span.tell
+{
+    color: #004BB9;
+    font: 11px Arial;
+    position: absolute;
+    top: -20px;
+    left: 0;
 }
 
-.inline span.tell{
-	color: #004BB9;
-	font: 11px Arial;
+.inline span.tell
+{
+    color: #004BB9;
+    font: 11px Arial;
     position: relative;
     top: 0;
     display: inline-block;
     padding-top: 7px;
     padding-right: 5px;
     float: left;
-    
 }
 
 /* кнопка в положении бесплатного поднятия объявления*/
 
-.adsText {
+.adsText
+{
     display: block;
     clear: both;
 }
-.adsTable {
+
+.adsTable
+{
     display: none;
 }
 
 /* фотки в ряд при создании объявления
 
 */
-.image_fields {
+.image_fields
+{
     float: left;
     width: 300px;
 }
@@ -6930,74 +8697,95 @@ span.tell{
 Решение - его убрать и прописать margin у class="wrapInner" 
 
 */
-.wrapInner{
-	margin-top: 20px;
+.wrapInner
+{
+    margin-top: 20px;
 }
 
 
 /* цвет кнопки регистрации как в дизайне */
-.regLink {
+.regLink
+{
     color: #404041 !important;
 }
 
 /* Вид "показать на странице" как в дизайне*/
-.ciSort li span, .ciShowBy li span {
+.ciSort li span, .ciShowBy li span
+{
     border-bottom: none;
 }
-.ciSort li.a span, .ciShowBy li.a span {
+
+.ciSort li.a span, .ciShowBy li.a span
+{
     text-decoration: none;
 }
 
 /* вид "по возрастанию" как в дизайне */
-.retSort a {
+.retSort a
+{
     text-decoration: none;
 }
 
 
 
 /*  изменение цвета автора при наведении */
-.ciAuthor a:hover {
+.ciAuthor a:hover
+{
     color: red;
 }
 
 /* Подбор по параметрам, как в дизайне */
-.realtyCity {
+.realtyCity
+{
     padding-bottom: 30px;
 }
-.realtyForm form label {
+
+.realtyForm form label
+{
     font: bold 11px Arial;
 }
 
 
 /* Сделать выбор категории читабельнее, с разделителем */
-.lMenu ul li {
+.lMenu ul li
+{
     border-bottom: 1px dotted;
     font: 13px Arial,Verdana;
     padding-bottom: 7px;
     padding-top: 7px;
 }
-.lMenu ul li a {
-    text-decoration: none;
-}
+
+    .lMenu ul li a
+    {
+        text-decoration: none;
+    }
 /* кнопки разместить объявление*/
-.placeGoods a {
+.placeGoods a
+{
     height: 55px;
     width: 180px;
 }
-.ci1 .placeGoods {
+
+.ci1 .placeGoods
+{
     top: 20px;
 }
-.placeGoods.sec a {
+
+.placeGoods.sec a
+{
     width: 180px;
-	height: 55px;
+    height: 55px;
 }
-.placeGoods.sec a:hover {
-    opacity: 0.8;
-}
+
+    .placeGoods.sec a:hover
+    {
+        opacity: 0.8;
+    }
 
 
 /*отступы для флажков*/
-body {
+body
+{
     padding: 0 3%;
     width: 94%;
 }
@@ -7007,52 +8795,91 @@ body {
 
 /* о проекте???? */
 
-.promoVisual {
+.promoVisual
+{
     float: none;
     height: 200px;
     margin: 0 auto;
     width: 920px;
 }
 
-.promoBot {
+.promoBot
+{
     width: 100%;
 }
 
 /* загрузка фото */
 
-.registerInW div.borderReg div.label-container {
+.registerInW div.borderReg div.label-container
+{
     color: #4C4C4C;
     font: bold 13px Arial;
     height: 20px;
     margin-top: 3px;
     padding-bottom: 0;
 }
+
 .image_fields
 {
     float: left;
     width: 150px;
 }
 
-.rules {
+.rules
+{
     padding-left: 180px;
     font: bold 13px Arial;
 }
 
-.rules .checkbox-label {
-    float: none;
-    margin-top: 3px;
-}
+    .rules .checkbox-label
+    {
+        float: none;
+        margin-top: 3px;
+    }
 
-.rules .checkbox-input {
-    bottom: 0;
-    position: relative;
-    vertical-align: middle;
-}
+    .rules .checkbox-input
+    {
+        bottom: 0;
+        position: relative;
+        vertical-align: middle;
+    }
 
-.registerInW .regBtm input.disabled {
+.registerInW .regBtm input.disabled
+{
     cursor: auto;
-   filter:progid:DXImageTransform.Microsoft.Alpha(opacity=30); /* IE 5.5+*/
--moz-opacity: 0.3; /* Mozilla 1.6 и ниже */
--khtml-opacity: 0.3; /* Konqueror 3.1, Safari 1.1 */
-opacity: 0.3; /* CSS3 - Mozilla 1.7b +, Firefox 0.9 +, Safari 1.2+, Opera 9+ */
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=30); /* IE 5.5+*/
+    -moz-opacity: 0.3; /* Mozilla 1.6 и ниже */
+    -khtml-opacity: 0.3; /* Konqueror 3.1, Safari 1.1 */
+    opacity: 0.3; /* CSS3 - Mozilla 1.7b +, Firefox 0.9 +, Safari 1.2+, Opera 9+ */
+}
+
+
+.mCSB_horizontal.mCSB_inside > .mCSB_container
+{
+    margin-bottom: 22px;
+}
+
+.mCSB_scrollTools.mCSB_scrollTools_horizontal
+{
+    height: 20px;
+}
+
+
+.mCS-inset.mCSB_scrollTools_horizontal .mCSB_draggerRail, .mCS-inset-dark.mCSB_scrollTools_horizontal .mCSB_draggerRail, .mCS-inset-2.mCSB_scrollTools_horizontal .mCSB_draggerRail, .mCS-inset-2-dark.mCSB_scrollTools_horizontal .mCSB_draggerRail, .mCS-inset-3.mCSB_scrollTools_horizontal .mCSB_draggerRail, .mCS-inset-3-dark.mCSB_scrollTools_horizontal .mCSB_draggerRail
+{
+    background: url(/Images/System/scrollBar.png) repeat-x 0 center transparent;
+    height: 19px;
+    position: relative;
+}
+
+.mCS-inset.mCSB_scrollTools_horizontal .mCSB_dragger .mCSB_dragger_bar, .mCS-inset-dark.mCSB_scrollTools_horizontal .mCSB_dragger .mCSB_dragger_bar, .mCS-inset-2.mCSB_scrollTools_horizontal .mCSB_dragger .mCSB_dragger_bar, .mCS-inset-2-dark.mCSB_scrollTools_horizontal .mCSB_dragger .mCSB_dragger_bar, .mCS-inset-3.mCSB_scrollTools_horizontal .mCSB_dragger .mCSB_dragger_bar, .mCS-inset-3-dark.mCSB_scrollTools_horizontal .mCSB_dragger .mCSB_dragger_bar
+{
+    background: url('/Images/System/scroll_left.png') left bottom no-repeat, url('/Images/System/scroll_right.png') right bottom no-repeat, url('/Images/System/scroll_center.png') repeat-x;
+    /*background-color: orange;*/
+    cursor: pointer;
+    height: 19px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    margin: 0;
 }

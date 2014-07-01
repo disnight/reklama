@@ -11,6 +11,7 @@ using Domain.Repository.Admin;
 using Domain.Repository.Announcements;
 using Domain.Repository.Other;
 using Domain.Repository.Shared;
+using Domain.Utils;
 using Reklama.Attributes;
 using Reklama.Core.UploadImages;
 using Reklama.Filters;
@@ -127,6 +128,7 @@ namespace Reklama.Controllers
         [CustomAnnouncementAuth]
         [InitializeSimpleMembership]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create(Announcement model, FormCollection collection)
         {
             int sectionID = 0;
@@ -148,6 +150,8 @@ namespace Reklama.Controllers
             model.ViewsCount = 0;
             model.IsDisplayPhone = true;
 
+            model.Description = Helper.RemoveTextFromText(model.Description, "width", ";");
+
             if (model.SubsectionId == 0 || model.SectionId == 0)
             {
                 ModelState.AddModelError("SectionId", "Необходимо указать раздел");
@@ -160,22 +164,29 @@ namespace Reklama.Controllers
                 var id = _repository.Save(model, images);
                 if (id > 0 && WebSecurity.CurrentUserId == -1 && ProjectConfiguration.IsAnonymousUserAllowed)
                 {
-                    if (System.Web.HttpContext.Current.Request.Cookies["announcements"] == null)
-                    {
-                        var newCookie = new HttpCookie("announcements", id.ToString())
+                    var cookieName = "ann" + id;
+                    var newCookie = new HttpCookie(cookieName, id.ToString())
                         {
                             Expires = DateTime.Now.AddYears(1),
                             Domain = ".reklama.tm"
                         };
-                        HttpContext.Response.Cookies.Add(newCookie);
-                    }
-                    else
-                    {
-                        var cookie = System.Web.HttpContext.Current.Request.Cookies["announcements"];
-                        cookie.Value += "," + id;
-                        cookie.Expires = DateTime.Now.AddYears(1);
-                        System.Web.HttpContext.Current.Response.AppendCookie(cookie);
-                    }
+                    HttpContext.Response.Cookies.Add(newCookie);
+                    //if (System.Web.HttpContext.Current.Request.Cookies["announcements"] == null)
+                    //{
+                    //    var newCookie = new HttpCookie("announcements", id.ToString())
+                    //    {
+                    //        Expires = DateTime.Now.AddYears(1),
+                    //        Domain = ".reklama.tm"
+                    //    };
+                    //    HttpContext.Response.Cookies.Add(newCookie);
+                    //}
+                    //else
+                    //{
+                    //    var cookie = System.Web.HttpContext.Current.Request.Cookies["announcements"];
+                    //    cookie.Value += "," + id;
+                    //    cookie.Expires = DateTime.Now.AddYears(1);
+                    //    System.Web.HttpContext.Current.Response.AppendCookie(cookie);
+                    //}
                     //var compKey = Domain.Utils.FingerPrint.Value();
                     //var comp = _computerRepository.GetByComputerKey(compKey);
                     //int dbCompID;
@@ -253,6 +264,7 @@ namespace Reklama.Controllers
         [HttpPost]
         [CustomAnnouncementEditAuth]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit(Announcement model, FormCollection collection)
         {
             int sectionID = 0;
@@ -272,6 +284,8 @@ namespace Reklama.Controllers
             model.IsActive = true;
             model.IsDisplayPhone = true;
 
+            model.Description = Helper.RemoveTextFromText(model.Description, "width", ";");
+           
             //TODO: Check is it need -->
             //model.UserId = (User.IsInRole("Administrator") || User.IsInRole("Moderator")) ? model.UserId : WebSecurity.CurrentUserId;
 
@@ -354,7 +368,7 @@ namespace Reklama.Controllers
             _repository.IncrementViewsCount(announcement);
             ViewBag.Sections = _sectionRepository.Read();
             ViewBag.Subsections = _subsectionRepository.ReadBySection(announcement.SectionId).ToArray();
-
+            ViewBag.UpTimeHours = int.Parse(ProjectConfiguration.Get.GetConfigValue("UpTimeAnnouncement").ToString());
             ViewBag.AnnouncementId = announcement.Id;
             ViewBag.IsIssetInBookmark = _bookmarkRepository.IsIsset(WebSecurity.CurrentUserId, announcement.Id);
             ViewBag.Comments = (announcement.Comments!=null && announcement.Comments.Count > 0) 
@@ -372,14 +386,15 @@ namespace Reklama.Controllers
             ViewBag.FilterParams = filterParams ?? new FilterParams();
 
             var announcementsToSort = _repository.ReadActivesQuery().OrderByDescending(a => a.UpTime).AsQueryable();
-
+            TempData["Subsections"] = "/Images/System/no_photo.png";
             if (filterParams.SectionId.HasValue)
             {
                 ViewBag.Subsections = _subsectionRepository.ReadBySection(filterParams.SectionId.Value);
-
+                
                 if (filterParams.SectionId.Value == 3)
                 {
                     ViewBag.SelectedSiteCategory = CategorySearch.Auto;
+                    TempData["Subsections"] = "/Images/System/no_photo_auto.png";
                 }
 
                 // Premiums   TODO: Need refactoring!
@@ -592,6 +607,14 @@ namespace Reklama.Controllers
         {
             rc.Dispose();
             base.Dispose(disposing);
+        }
+
+        public ActionResult RedirectToSubdomain(string actionName, string id)
+        {
+            var url = "http://ulag.reklama.tm/";
+            url += actionName ?? "";
+            url += id == null ? "" : "/" + id;
+            return Redirect(url);
         }
     }
 }

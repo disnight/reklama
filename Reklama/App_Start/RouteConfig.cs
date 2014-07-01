@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Reklama.Core.Routing;
+using Reklama.Core.Routing.Constraints;
 
 namespace Reklama.App_Start
 {
@@ -24,7 +25,7 @@ namespace Reklama.App_Start
                 }
             );
 
-            routes.Add(new SubdomainRouting());
+            //routes.Add(new SubdomainRouting());
 
             routes.MapRoute(
                 name: "MyAnnouncements",

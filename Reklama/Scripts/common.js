@@ -43,9 +43,38 @@
                 }
             });
         },
+        
+        initPager: function () {
+            /* 
+				get snap amount programmatically or just set it directly (e.g. "273") 
+				in this example, the snap amount is list item's (li) outer-width (width+margins)
+				*/
+            var amount = Math.max.apply(Math, $(".pagesliderTop li").map(function () { return $(this).outerWidth(true); }).get());
+
+            $(".pagesliderTop").mCustomScrollbar({
+                axis: "x",
+                theme: "inset",
+                advanced: {
+                    autoExpandHorizontalScroll: true
+                },
+                scrollButtons: {
+                    enable: false,
+                    scrollType: "stepped"
+                },
+                //keyboard:{scrollType:"stepped"},
+                //snapAmount:amount,
+                //mouseWheel:{scrollAmount:amount}
+            });
+        },
+        
+        removeTags: function(text) {
+        var regex = /(<([^>]+)>)/ig;
+        return text.replace(regex, "");
+        },
 
         init: function () {
             $.initCommon();
+            $.initPager();
             $.initAutoFieldFill();
         }
     });

@@ -11,6 +11,7 @@ using Domain.Repository.Other;
 using Domain.Repository.Realty;
 using Domain.Repository.Shared;
 using System.IO;
+using Domain.Utils;
 using Reklama.Attributes;
 using Reklama.Core.UploadImages;
 using Reklama.Models.SortModels;
@@ -177,6 +178,7 @@ namespace Reklama.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Create(Realty realty, FormCollection collection)
         {
             if (realty.Floor > realty.FloorCount)
@@ -198,6 +200,9 @@ namespace Reklama.Controllers
                 realty.Views = 0;
                 realty.IsActive = true;
                 realty.IsDisplayPhone = true;
+                
+                realty.Description = Helper.RemoveTextFromText(realty.Description, "width", ";");
+
                 var images = collection["images[]"];
                 //ViewBag.cError += "Pre Save; ";
                 int id = _realtyRepository.Save(realty, images);
@@ -206,22 +211,30 @@ namespace Reklama.Controllers
                 {
                     //ViewBag.cError += "Save comp init; ";
 
-                    if (System.Web.HttpContext.Current.Request.Cookies["realties"] == null)
+                    var cookieName = "realty" + id;
+                    var newCookie = new HttpCookie(cookieName, id.ToString())
                     {
-                        var newCookie = new HttpCookie("realties", id.ToString())
-                        {
-                            Expires = DateTime.Now.AddYears(1),
-                            Domain = ".reklama.tm"
-                        };
-                        HttpContext.Response.Cookies.Add(newCookie);
-                    }
-                    else
-                    {
-                        var cookie = System.Web.HttpContext.Current.Request.Cookies["realties"];
-                        cookie.Value += "," + id;
-                        cookie.Expires = DateTime.Now.AddYears(1);
-                        System.Web.HttpContext.Current.Response.AppendCookie(cookie);
-                    }
+                        Expires = DateTime.Now.AddYears(1),
+                        Domain = ".reklama.tm"
+                    };
+                    HttpContext.Response.Cookies.Add(newCookie);
+
+                    //if (System.Web.HttpContext.Current.Request.Cookies["realties"] == null)
+                    //{
+                    //    var newCookie = new HttpCookie("realties", id.ToString())
+                    //    {
+                    //        Expires = DateTime.Now.AddYears(1),
+                    //        Domain = ".reklama.tm"
+                    //    };
+                    //    HttpContext.Response.Cookies.Add(newCookie);
+                    //}
+                    //else
+                    //{
+                    //    var cookie = System.Web.HttpContext.Current.Request.Cookies["realties"];
+                    //    cookie.Value += "," + id;
+                    //    cookie.Expires = DateTime.Now.AddYears(1);
+                    //    System.Web.HttpContext.Current.Response.AppendCookie(cookie);
+                    //}
 
                     //var compKey = Domain.Utils.FingerPrint.Value();
                     //var comp = _computerRepository.GetByComputerKey(compKey);
@@ -342,6 +355,7 @@ namespace Reklama.Controllers
         [HttpPost]
         [CustomRealtyEditAuth]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit(Realty model, FormCollection collection)
         {
             var realty = _realtyRepository.Read(model.Id);
@@ -363,6 +377,8 @@ namespace Reklama.Controllers
             model.Views = realty.Views;
             model.CreatedAt = realty.CreatedAt;
             model.IsDisplayPhone = true;
+
+            realty.Description = Helper.RemoveTextFromText(realty.Description, "width", ";");
 
             ModelState.Remove("IsDisplayPhone");
             if (ModelState.IsValid)

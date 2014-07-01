@@ -26,14 +26,15 @@ namespace Reklama.Services
 
         public bool IsUserCanEdit(int announcementID)
         {
-            var cookie = HttpContext.Current.Request.Cookies["announcements"];
-            if (cookie != null && !String.IsNullOrEmpty(cookie.Value))
-            {
-                var arr = cookie.Value.Split(',');
-                return arr.Contains(announcementID.ToString());
-            }
+            var cookieName = "ann" + announcementID;
+            var cookie = HttpContext.Current.Request.Cookies[cookieName];
+            //if (cookie != null && !String.IsNullOrEmpty(cookie.Value))
+            //{
+            //    var arr = cookie.Value.Split(',');
+            //    return arr.Contains(announcementID.ToString());
+            //}
 
-            return false;
+            return cookie != null && !String.IsNullOrEmpty(cookie.Value) && cookie.Value == announcementID.ToString();
             //var compKey = Domain.Utils.FingerPrint.Value();
             //return _computerRepository.Read()
             //        .Any(
@@ -44,14 +45,15 @@ namespace Reklama.Services
 
         public bool IsUserCanEditRealty(int realtyID)
         {
-            var cookie = HttpContext.Current.Request.Cookies["realties"];
-            if (cookie != null && !String.IsNullOrEmpty(cookie.Value))
-            {
-                var arr = cookie.Value.Split(',');
-                return arr.Contains(realtyID.ToString());
-            }
+            var cookieName = "realty" + realtyID;
+            var cookie = HttpContext.Current.Request.Cookies[cookieName];
+            //if (cookie != null && !String.IsNullOrEmpty(cookie.Value))
+            //{
+            //    var arr = cookie.Value.Split(',');
+            //    return arr.Contains(realtyID.ToString());
+            //}
 
-            return false;
+            return cookie != null && !String.IsNullOrEmpty(cookie.Value) && cookie.Value == realtyID.ToString();
             //var compKey = Domain.Utils.FingerPrint.Value();
             //return _computerRepository.Read()
             //        .Any(

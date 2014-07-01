@@ -1,5 +1,6 @@
 ﻿@using Domain.Enums
 @using Reklama
+@using Reklama.Models.Shared
 @model Domain.Entity.Catalogs.Product
 
 @{
@@ -57,93 +58,12 @@
                         new KeyValuePair<string, object>("productMenu", ProductMenu.Photo),
                         new KeyValuePair<string, object>("isIssetInBookmarks", ViewBag.IsIssetInBookmark)
                 }))
-
-                <div class="prodList">
-                    <div class="itemPicsBig">
-
-
-                        <div class="itemPicsList2">
-
-                            <ul>
-@*                                    <li>
-                                        <div>
-                                            <span>
-                                                <a id="@string.Format("sl_{0}", 10002)" class="fLink" rel="fLink" href="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], Model.Image)">
-                                                               <img src="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], Model.Image)" />
-                                                            </a>
-                                             </span>   
-
-                                        </div>
-                                    </li>*@
-									
-                                @foreach (var image in Model.Images)
-                                {
-                                    <li>
-                                        <div>
-                                            <span>
-                                                <a id="@string.Format("sl_{0}", image.Id)" class="fLink" rel="fLink" href="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], image.Link)">
-                                                    @*<a id="sl_1" href="#">*@
-                                                    <img src="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], image.Link)" />
-                                                </a>
-                                            </span>
-                                        </div>
-                                    </li>
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="prodListIn" id="scrollbarX">
-
-
-                        <div class="viewport">
-                            <div class="overview">
-
-                                <ul>
-
-@*                                       <li>
-                                            <div>
-                                                <span>
-                                                <a id="@string.Format("sl_{0}", 10002)" class="fLink" rel="fLink" href="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], Model.Image)">
-                                                               <img src="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], Model.Image)" />
-                                                            </a>
-                                             </span>   
-
-
-                                            </div>
-                                        </li>*@
-
-                                    @foreach (var image in Model.Images)
-                                    {
-                                        <li>
-                                            <div>
-                                                <span>
-                                                    <a id="@string.Format("sl_{0}", image.Id)" class="fLink" rel="fLink" href="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], image.Link)">
-                                                                @*<a id="sl_1" href="#">*@
-                                                               <img src="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], image.Link)" />
-                                                            </a>
-                                                </span>
-
-                                            </div>
-                                        </li>
-                                    }
-
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="scrollbar">
-                            <div class="track">
-                                <div class="thumb">
-                                    <div class="end"></div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                    </div>
-                </div>
-
+                
+                @Html.Partial("SlideShow", new SliderModel
+                     {
+                         Slides = Model.Images.Select(q => String.Format("/Images/Catalog/Product/{0}", q.Link)).ToList(),
+                         Thumbnails = Model.Images.Select(q => String.Format("/Images/Thumbnails/Product/{0}", q.Link)).ToList(),
+                     })
 
             </td>
         </tr>

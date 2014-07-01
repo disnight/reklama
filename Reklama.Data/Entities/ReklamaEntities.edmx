@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Reklama.Data.Entities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Banners">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Controller" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Action" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="BannerType" Type="int" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImageID" Type="int" />
+          <Property Name="CountOfClicks" Type="int" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="IsShow" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BannerTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Banners_BannerTypes">
+          <End Role="BannerTypes" Type="Self.BannerTypes" Multiplicity="1" />
+          <End Role="Banners" Type="Self.Banners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BannerTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Banners">
+              <PropertyRef Name="BannerType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Banners_Images">
+          <End Role="Images" Type="Self.Images" Multiplicity="0..1" />
+          <End Role="Banners" Type="Self.Banners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Banners">
+              <PropertyRef Name="ImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ReklamaDataEntitiesStoreContainer">
+          <EntitySet Name="Banners" EntityType="Self.Banners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BannerTypes" EntityType="Self.BannerTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Banners_BannerTypes" Association="Self.FK_Banners_BannerTypes">
+            <End Role="BannerTypes" EntitySet="BannerTypes" />
+            <End Role="Banners" EntitySet="Banners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Banners_Images" Association="Self.FK_Banners_Images">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="Banners" EntitySet="Banners" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Reklama.Data.Entities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ReklamaCustomEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Banners" EntityType="Reklama.Data.Entities.Banners" />
+          <EntitySet Name="BannerTypes" EntityType="Reklama.Data.Entities.BannerTypes" />
+          <EntitySet Name="Images" EntityType="Reklama.Data.Entities.Images" />
+          <AssociationSet Name="FK_Banners_BannerTypes" Association="Reklama.Data.Entities.FK_Banners_BannerTypes">
+            <End Role="BannerTypes" EntitySet="BannerTypes" />
+            <End Role="Banners" EntitySet="Banners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Banners_Images" Association="Reklama.Data.Entities.FK_Banners_Images">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="Banners" EntitySet="Banners" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Banners">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Controller" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="BannerType" Type="Int32" Nullable="false" />
+          <Property Name="ImageID" Type="Int32" />
+          <Property Name="CountOfClicks" Type="Int32" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsShow" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BannerTypes" Relationship="Reklama.Data.Entities.FK_Banners_BannerTypes" FromRole="Banners" ToRole="BannerTypes" />
+          <NavigationProperty Name="Images" Relationship="Reklama.Data.Entities.FK_Banners_Images" FromRole="Banners" ToRole="Images" />
+          <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BannerTypes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Banners" Relationship="Reklama.Data.Entities.FK_Banners_BannerTypes" FromRole="BannerTypes" ToRole="Banners" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Banners" Relationship="Reklama.Data.Entities.FK_Banners_Images" FromRole="Images" ToRole="Banners" />
+        </EntityType>
+        <Association Name="FK_Banners_BannerTypes">
+          <End Type="Reklama.Data.Entities.BannerTypes" Role="BannerTypes" Multiplicity="1" />
+          <End Type="Reklama.Data.Entities.Banners" Role="Banners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BannerTypes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Banners">
+              <PropertyRef Name="BannerType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Banners_Images">
+          <End Type="Reklama.Data.Entities.Images" Role="Images" Multiplicity="0..1" />
+          <End Type="Reklama.Data.Entities.Banners" Role="Banners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Banners">
+              <PropertyRef Name="ImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ReklamaDataEntitiesStoreContainer" CdmEntityContainer="ReklamaCustomEntities" >
+          <EntitySetMapping Name="Banners">
+            <EntityTypeMapping TypeName="Reklama.Data.Entities.Banners">
+              <MappingFragment StoreEntitySet="Banners">
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="CountOfClicks" ColumnName="CountOfClicks" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="BannerType" ColumnName="BannerType" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BannerTypes">
+            <EntityTypeMapping TypeName="Reklama.Data.Entities.BannerTypes">
+              <MappingFragment StoreEntitySet="BannerTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="Reklama.Data.Entities.Images">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

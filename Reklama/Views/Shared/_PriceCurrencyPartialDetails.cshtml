@@ -14,7 +14,7 @@
             <img src="/Images/System/mPriceL1.png" class="mPriceL1">
             <img src="/Images/System/mPriceR1.png" class="mPriceR1">
         
-            <span class="price_value" value="@Model.Price.Value.ToString(CultureInfo.InvariantCulture)">@Math.Round(((decimal) Model.Currency.Rate*Model.Price.Value), 2).ToString("f2", CultureInfo.InvariantCulture)</span>
+            <span class="price_value" value="@Model.Price.Value.ToString(CultureInfo.InvariantCulture)">@Math.Round(((decimal) Model.Currency.Rate*Model.Price.Value), 2).ToString("0.#####", CultureInfo.InvariantCulture)</span>
 
             @{
             Html.RenderAction("SwitcherList", "Currency"); 

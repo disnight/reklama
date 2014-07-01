@@ -1,0 +1,131 @@
+﻿@model Reklama.Models.Shared.SliderModel
+
+@if (Model.Slides.Any())
+{
+    <link href="~/Content/fotorama.css" rel="stylesheet" />
+    <script src="~/Scripts/fotorama.js"></script>
+    
+    <style>
+        .fotorama__arr {
+            top: 0px;
+            cursor: pointer;
+            width: 70px;
+            height: 350px;
+        }
+        .fotorama__arr:hover {
+            background-position: bottom left;
+        }
+        .fotorama__arr--next {
+            background: url(/Images/System/next1.png) no-repeat top right transparent;
+            /*right: 10px;*/
+        }
+        .fotorama__arr--prev {
+            background: url(/Images/System/prev1.png) no-repeat top left transparent;
+            /*left: 10px;*/
+        }
+        .fotorama__thumb-border {
+            border-color: #FFA500;
+        }
+    </style>
+    
+    
+    <div class="prodList">
+        <div class="itemPicsBig">
+            <div class="itemPicsList2">
+                <div class="fotorama" data-width="530" data-ratio="530/350" data-max-width="100%"  data-nav="thumbs" data-auto="false"  data-swipe="true">
+                    @for (var i = 0; i < Model.Slides.Count; i++)
+                    {
+                        @:<a href="@Model.Slides[i]" data-thumb="@Model.Thumbnails[i]"></a>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+    
+    <script>
+        
+        $('.fotorama').fotorama({
+            thumbmargin: 20,
+            transition: 'crossfade'
+        });
+        //$('.fotorama__wrap').on("mouseout", function () {
+        //    $('.fotorama__wrap').removeClass('fotorama__wrap--no-controls');
+        //});
+    </script>
+    
+}
+
+
+@* data: [
+                @for (var i = 0; i < Model.Slides.Count; i++)
+                {
+                    @:{ img: '@Model.Slides[i]', thumb: '@Model.Thumbnails[i]' },
+                }
+            ]*@
+
+@*@if (Model.Slides.Any())
+{
+    <link href="/Content/photo/jquery.bxslider.css" rel="stylesheet" />
+    <link href="/Content/photo/perfect-scrollbar.css" rel="stylesheet" />
+    <script src="/Scripts/photo/perfect-scrollbar.js"></script>
+    <script src="/Scripts/photo/jquery.bxslider.js"></script>
+    
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('.bxslider').bxSlider({
+                pagerCustom: '#bx-pager'
+            });
+        });
+    </script>
+    <script>
+        jQuery(document).ready(function ($) {
+            "use strict";
+            $('#Default').perfectScrollbar({ useBothWheelAxes: true });
+        });
+    </script>
+    <script>
+        jQuery(document).ready(function ($) {
+            var scrollBlock = document.getSelection('.contentHolder .content')[0];
+            //var widthScrollSlide = 	
+        })
+    </script>
+    
+    <div class="prodList">
+        <div class="itemPicsBig">
+            <div class="itemPicsList2">
+                <ul class="bxslider">
+                    <!--Слайдер вот он ток клас и ul содержимое в лишках там хоть видео кидай-->
+                    @foreach (var image in Model.Slides)
+                    {<li>
+                    <div>
+                        <span>
+                            <img src="@image" /></span>
+
+                    </div>
+                </li>
+                    }
+                </ul>
+
+                <div id="bx-pager">
+                    <!--  Главный блок префью -->
+                    <div id="Default" class="contentHolder">
+                        <!-- Блок для скрола и его отображения-->
+                        <div class="content">
+                            <!-- Блок что имменно скролим -->
+                            @for (var i = 0; i < Model.Thumbnails.Count; i++)
+                            {
+                                <a data-slide-index="@i" href="">
+                                    <img src="@Model.Thumbnails[i]" /></a>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+}*@

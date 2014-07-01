@@ -1,4 +1,4 @@
-﻿@using Domain.Entity.Announcements;
+﻿    @using Domain.Entity.Announcements;
 @using Domain.Enums
 @using Reklama
 @using Reklama.Models.SortModels
@@ -32,12 +32,9 @@
                 @Html.Partial("_AnnouncementSortByParams", filterParams)
 
 
-
-                <!-- banners -->
-                @*                <div class="lBan">
-                    <a href="javascript:void(0)">
-                        <img src="/Images/System/ban120600.jpg" /></a>
-                </div>*@
+                @{
+                    Html.RenderAction("GetUnderFiltersBanner", "Banners");
+                }
 
                 @Html.Partial("_YandexDirectPartial")
 
@@ -374,9 +371,8 @@
                         <img class="fastNavL" src="/Images/System/fastNavL.png" />
                         <img class="fastNavR" src="/Images/System/fastNavR.png" />
                         <a class="page-prev" href="javascript:void(0)"></a>
-                        <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
-
-                        @for (int page = 1; page <= Model.PageCount; page++)
+                        
+                        @for (int page = 1; page <= Model.PageCount && page <= 7; page++)
                         {
                             <li>
 
@@ -421,6 +417,60 @@
                                 }
                             </li>
                         }
+                        
+                        @if (Model.PageCount > 14)
+                        {
+                            <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a>
+                            </li>
+                        }
+
+                        
+                        @for (int page = Model.PageCount - 6; page <= Model.PageCount && page > 7; page++)
+                        {
+                            <li>
+
+                                @if (page == Model.PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "List", new
+                                                                            {
+                                                                                IsEnabledFilter = filterParams.IsEnabledFilter,
+                                                                                CityId = filterParams.CityId,
+                                                                                PriceStart = filterParams.PriceStart,
+                                                                                PriceEnd = filterParams.PriceEnd,
+                                                                                HasPhoto = filterParams.HasPhoto,
+                                                                                HasAuction = filterParams.HasAuction,
+                                                                                SortOrder = filterParams.SortOptions,
+                                                                                SortOptions = filterParams.SortOptions,
+                                                                                SectionId = filterParams.SectionId,
+                                                                                SubsectionId = filterParams.SubsectionId,
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                CurrentPage = page,
+                                                                                PageSize = filterParams.PageSize
+                                                                            },
+                                                                            new { @class = "hr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "List", new
+                                                                            {
+                                                                                IsEnabledFilter = filterParams.IsEnabledFilter,
+                                                                                CityId = filterParams.CityId,
+                                                                                PriceStart = filterParams.PriceStart,
+                                                                                PriceEnd = filterParams.PriceEnd,
+                                                                                HasPhoto = filterParams.HasPhoto,
+                                                                                HasAuction = filterParams.HasAuction,
+                                                                                SortOrder = filterParams.SortOptions,
+                                                                                SortOptions = filterParams.SortOptions,
+                                                                                SectionId = filterParams.SectionId,
+                                                                                SubsectionId = filterParams.SubsectionId,
+                                                                                CategoryId = filterParams.CategoryId,
+                                                                                CurrentPage = page,
+                                                                                PageSize = filterParams.PageSize
+                                                                            })
+                                }
+                            </li>
+                        }
+                        
 
                         <a class="page-next" href="javascript:void(0)"></a>
                     </ul>
@@ -475,9 +525,9 @@
                                 }
                             </ul>
                         </div>
-                        <div class="alHScrollBar">
+                        @*<div class="alHScrollBar">
                             <div class="alHScrollSlider" style="left: 0px;"></div>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             </td>

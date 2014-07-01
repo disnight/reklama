@@ -11,7 +11,7 @@
 
 
 #scrollbarX {margin: -14px 0 0px;  width:100%; }
-#scrollbarX .viewport { width: 760px; height: 86px; overflow: hidden; position: relative;margin:0 auto }
+#scrollbarX .viewport { width: 740px; height: 110px; overflow: hidden; position: relative;margin:0 auto }
 #scrollbarX .overview { list-style: none;  padding: 0; margin: 0; position: absolute; left: 0; top: 0;  }
 #scrollbarX .overview img{ float: left; }
 #scrollbarX .scrollbar{ background: transparent url(/Images/System/dragBg.gif) repeat-x 0 50%; position: relative; margin:0 auto 5px; clear: both; height: 15px; }

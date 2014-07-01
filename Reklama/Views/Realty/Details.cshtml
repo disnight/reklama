@@ -1,5 +1,6 @@
 ﻿@model Domain.Entity.Realty.Realty
 @using Domain.Entity.Realty
+@using Reklama.Models.Shared
 @using Reklama.Models.ViewModels.Shared
 @using PagedList
 @using Reklama.Models.SortModels
@@ -17,10 +18,10 @@
                 @Html.Partial("_RealtyCategories", (object)ViewBag.Categories)
                 @Html.Partial("_RealtySortByParams", (object)ViewBag.SortModel)
 
-                @*<div class="lBan">
-                    <a href="javascript:void(0)">
-                        <img src="~/Images/System/ban120600.jpg" /></a>
-                </div>*@
+                @{
+                    Html.RenderAction("GetUnderFiltersBanner", "Banners");
+                }
+
                 @Html.Partial("_YandexDirectPartial")
             </td>
             <td class="ci2">
@@ -89,42 +90,31 @@
                             <div class="sellerPhoto">
                                 <img src="@((Model.UserProfile.AvatarLink != null) ? "/Images/Users/Avatars/" + Model.UserProfile.AvatarLink : "/Images/System/userAv_large.png")" />
                             </div>
+                            
                             <div class="sellerText">
-                                @*<div>@Html.ActionLink(Model.UserProfile.ToString(), "Index", "Profile", new { id = Model.UserId }, new { @class = "user-info-link" })</div>*@
+                                <div><a href="#">@Model.ContactName</a></div>
                                  @if (Model.Phone != null && !String.IsNullOrEmpty(Model.Phone.Trim()))
                                 {
                                     <p>
                                         Телефон:
-                                        <b>@Model.Phone</b>
+                                        <a class="tel" href="tel:@Model.Phone">@Model.Phone</a>
                                     </p>
                                 }
-                                @if (Model.ContactName != null && !String.IsNullOrEmpty(Model.ContactName.Trim()))
-                                {
-                                    <p>
-                                        Имя:
-                                        <b>@Model.ContactName</b>
-                                    </p>
-                                }
+                               
                                 @if (Model.ContactEmail != null && !String.IsNullOrEmpty(Model.ContactEmail.Trim()))
                                 {
-                                    <p>
-                                        Email:
-                                        <b>@Model.ContactEmail</b>
-                                    </p>
+                                    <p>E-mail:&nbsp;<a href="mailto:@Model.ContactEmail">@Model.ContactEmail</a></p>
+                                    
                                 }
-                               @* @if (WebSecurity.CurrentUserId != -1)
-                                {
-                                    <p>E-mail: @Model.UserProfile.Email</p>
-                                }*@
                             </div>
                         </div>
-                        <div class="sellerInfoM">
+                        <div class="sellerInfoM@(String.IsNullOrWhiteSpace(Model.ContactName) ? " withoutName" : "")">
                             <ul>
-                                <li><a href="#">
+                                <li>
                                     <img src="~/Images/System/sel1.gif" /><a href="@Url.Action("Index", "Profile", new { id = Model.UserId })"><span>Профиль</span></a></li>
-                                <li><a href="#">
+                                <li>
                                     <img src="~/Images/System/sel2.gif" /><a href="@Url.Action("Create", "PrivateMessage", new { recepientId = Model.UserId })"><span>Написать сообщение</span></a></li>
-                                <li><a href="#">
+                                <li>
                                     <img src="~/Images/System/sel3.gif" /><span>Город:@Model.City.Name</span></a></li>
                                 @if (Model.AgencyName != null)
                                 {
@@ -155,7 +145,7 @@
                                 }
                             }
                             <div class="UpRealtyBlock">
-                                @if (WebSecurity.CurrentUserId == Model.UserId || User.IsInRole("Administrator"))
+                                @if ((Model.UserId != -1 && WebSecurity.CurrentUserId == Model.UserId) || ViewBag.IsUserCanEditRealty || User.IsInRole("Administrator"))
                                 {
                                     var time = DateTime.Now - Model.UpTime;
                                     time = TimeSpan.FromHours(ViewBag.UpTimeHours) - time;
@@ -167,7 +157,7 @@
                                     <input type="submit" value="Поднять объявление" />
                                                               if ((User.IsInRole("Administrator") || User.IsInRole("Moderator")) && time.TotalSeconds > 0)
                                                               {
-                                    <div>
+                                    <div style="margin-right: 0;">
                                         <p><b>Поднять объявление можно будет через:  @time.Hours ч. @time.Minutes м.</b></p>
                                     </div>
                                                               }
@@ -182,7 +172,7 @@
                         </div>
                     </div>
                     <div class="itemInfoFull">
-                        <pre> @Model.Description </pre>
+                        <pre class="itemInfoFull-contailner"> @Html.Raw(Model.Description) </pre>
                     </div>
                     <div class="itemInfoPoints">
                         <div class="pointY pointW">@Model.RealtyCategory.Name </div>
@@ -216,54 +206,14 @@
                         }
                         <div class="clear"></div>
                     </div>
-                    @if (Model.Photos.Count() != 0)
-                    {
-                        <div class="itemPics">
-                            <div class="itemPicsBig">
-                                <div class="itemPicsList2">
-                                    <ul>
-                                        @foreach (var photo in Model.Photos.OrderBy(i => i.CreatedAt))
-                                        {
-                                            <li>
-                                                <div>
-                                                    <span>
-                                                        <img src="~/Images/Realty/@photo.Link" /></span>
-                                                </div>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="itemPicsList" id="scrollbarX">
-                                <div class="viewport">
-                                    <div class="overview">
+                    
+                    @Html.Partial("SlideShow", new SliderModel
+                     {
+                         Slides = Model.Photos.OrderBy(i => i.CreatedAt).Select(q => String.Format("/Images/Realty/{0}", q.Link)).ToList(),
+                         Thumbnails = Model.Photos.OrderBy(i => i.CreatedAt).Select(q => String.Format("/Images/Thumbnails/Realty/{0}", q.Link)).ToList(),
+                     })
 
-                                        <ul>
-                                            @foreach (var photo in Model.Photos.OrderBy(i => i.CreatedAt))
-                                            {
-                                                <li class="a">
-                                                    <div>
-                                                        <span>
-                                                            <a id="@string.Format("sl_{0}", photo.Id)" class="fLink" rel="fLink" href="/Images/Realty/@photo.Link">
-                                                                <img src="~/Images/Realty/@photo.Link" />
-                                                            </a>
-                                                        </span>
-                                                    </div>
-                                                </li>
-                                            }
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="scrollbar">
-                                    <div class="track">
-                                        <div class="thumb">
-                                            <div class="end"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
+                    
 @* List of comments *@
                     @Html.Partial("_RealtyComments", (IPagedList<RealtyComment>)ViewBag.Comments ?? new PagedList<RealtyComment>(null, 1, 1))
                 </div>

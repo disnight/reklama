@@ -28,92 +28,6 @@
             </div>*@
         <div class="wrapInner">
             <div class="header">
-
-                @*<div class="headerTop">
-                        <ul>
-                            <li>
-                                <div class="topBlocks">
-                                    <a href="javascript:void(0)" class="topBlocksWrap">
-                                        <img class="topBgL" src="/Images/System/topBg.png" />
-                                        <img class="topBgR" src="/Images/System/topBg.png" />
-                                        <div class="topImg">
-                                            <div>
-                                                <img src="/Images/User/topImg.jpg" />
-                                            </div>
-                
-                @*<div class="headerTop">
-                    <ul>
-                        <li>
-                            <div class="topBlocks">
-                                <a href="javascript:void(0)" class="topBlocksWrap">
-                                    <img class="topBgL" src="/Images/System/topBg.png" />
-                                    <img class="topBgR" src="/Images/System/topBg.png" />
-                                    <div class="topImg">
-                                        <div>
-                                            <img src="/Images/User/topImg.jpg" />
-                                        </div>
-                                        <span>Лучшее предложение</span>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="topBlocks">
-                                <a href="javascript:void(0)" class="topBlocksWrap">
-                                    <img class="topBgL" src="/Images/System/topBg.png" />
-                                    <img class="topBgR" src="/Images/System/topBg.png" />
-                                    <div class="topImg">
-                                        <div>
-                                            <img src="/Images/User/topImg.jpg" />
-                                        </div>
-                                    </div>
-                                    <span>Кондиционеры</span>
-                                </a>
-                            </li>
-                            <li>
-                                <div class="topBlocks">
-                                    <a href="javascript:void(0)" class="topBlocksWrap">
-                                        <img class="topBgL" src="/Images/System/topBg.png" />
-                                        <img class="topBgR" src="/Images/System/topBg.png" />
-                                        <div class="topImg">
-                                            <div>
-                                                <img src="/Images/User/topImg.jpg" />
-                                            </div>
-                                        </div>
-                                        <span>Велосипеды</span>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="topBlocks">
-                                    <a href="javascript:void(0)" class="topBlocksWrap">
-                                        <img class="topBgL" src="/Images/System/topBg.png" />
-                                        <img class="topBgR" src="/Images/System/topBg.png" />
-                                        <div class="topImg">
-                                            <div>
-                                                <img src="/Images/User/topImg.jpg" />
-                                            </div>
-                                        </div>
-                                        <span>Горные лыжи</span>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="topBlocks">
-                                    <a href="javascript:void(0)" class="topBlocksWrap">
-                                        <img class="topBgL" src="/Images/System/topBg.png" />
-                                        <img class="topBgR" src="/Images/System/topBg.png" />
-                                        <div class="topImg">
-                                            <div>
-                                                <img src="/Images/User/topImg.jpg" />
-                                            </div>
-                                        </div>
-                                        <span>Сувенирная продукция</span>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>*@
-
                 <div class="headerBot">
                     <div class="logo">
                         <a href="/">
@@ -168,20 +82,20 @@
                 @*<div class="banner-960-100">
                     </div>*@
                 @{ Html.RenderAction("PopularProducts", "Home"); }
-                
+                <div class="popProducts"><a href="http://skype.hyzmat.tk" target="_blank"><img src="/Images/Banners/banner-skype.gif" style="width: 100%; height: auto;" /></a></div>
                 @{ Html.RenderAction("PopularAnnouncement", "Home"); }
 
                 @{ Html.RenderAction("ArticlesAndReviews", "Home"); }
 
 
-                @*<div class="banner-wrap-50">
+                <div class="banner-wrap-50">
                         <div class="banner-470-100">
                         </div>
                     </div>
                     <div class="banner-wrap-50">
                         <div class="banner-470-100">
                         </div>
-                    </div>*@
+                    </div>
 
 
                 @{ Html.RenderAction("AnnouncementBlock", "Home"); }

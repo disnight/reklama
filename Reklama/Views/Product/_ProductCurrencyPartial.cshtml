@@ -11,10 +11,10 @@
         <div class="mPrice alSelect">
             <img src="/Images/System/mPriceL.png" class="mPriceL">
             <img src="/Images/System/mPriceR2.png" class="mPriceR2">
-            <label class="productMinPrice" value="@minPrice.ToString(System.Globalization.CultureInfo.InvariantCulture)">@Math.Round(minPrice, 2).ToString("f2", System.Globalization.CultureInfo.InvariantCulture)</label>
+            <label class="productMinPrice" value="@minPrice.ToString(System.Globalization.CultureInfo.InvariantCulture)">@Math.Round(minPrice, 2).ToString("0.#####", System.Globalization.CultureInfo.InvariantCulture)</label>
             @if (Math.Abs(maxPrice - minPrice) > (decimal)0.5)
             {
-                @: - <label class="productMaxPrice" value="@maxPrice.ToString(System.Globalization.CultureInfo.InvariantCulture)">@Math.Round(maxPrice, 2).ToString("f2", System.Globalization.CultureInfo.InvariantCulture)</label>
+                @: - <label class="productMaxPrice" value="@maxPrice.ToString(System.Globalization.CultureInfo.InvariantCulture)">@Math.Round(maxPrice, 2).ToString("0.#####", System.Globalization.CultureInfo.InvariantCulture)</label>
                     }
             <span>USD</span>
             @{

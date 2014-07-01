@@ -30,7 +30,7 @@
                         </div>
                         <div class="text">
                             <p>@announcement.Announcement.Name</p>
-                            @( announcement.Announcement.Price.HasValue ? Math.Round(announcement.Announcement.Price.Value, 2).ToString("f2", CultureInfo.InvariantCulture) + "$" : "" )
+                            @( announcement.Announcement.Price.HasValue ? Math.Round(announcement.Announcement.Price.Value, 2).ToString("0.#####", CultureInfo.InvariantCulture) + "$" : "" )
                         </div>
                     </a>
                 </div>

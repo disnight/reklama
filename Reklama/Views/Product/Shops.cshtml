@@ -171,7 +171,7 @@
         <img class="mPriceL" src="/Images/System/mPriceL.png" />
         <img class="mPriceR2" src="/Images/System/mPriceR2.png" />
         
-        <label class="price_value" value="@shop.Price.ToString(System.Globalization.CultureInfo.InvariantCulture)">@Math.Round(((decimal)shop.Price), 2).ToString("f2", System.Globalization.CultureInfo.InvariantCulture)</label>
+        <label class="price_value" value="@shop.Price.ToString(System.Globalization.CultureInfo.InvariantCulture)">@Math.Round(((decimal)shop.Price), 2).ToString("0.#####", System.Globalization.CultureInfo.InvariantCulture)</label>
         <span class="price_list_click">
             <span>USD</span>
 
@@ -240,13 +240,46 @@
                         <img class="fastNavL" src="/Images/System/fastNavL.png" />
                         <img class="fastNavR" src="/Images/System/fastNavR.png" />
                         <a class="page-prev" href="javascript:void(0)"></a>
-                        <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a></li>
-
-                        @for (int page = 1; page <= ((IPagedList<Domain.Entity.Catalogs.ShopProductRef>)shopProductsRefs).PageCount; page++)
+                        
+                        @for (int page = 1; page <= shopProductsRefs.PageCount && page <= 7; page++)
                         {
                             <li>
 
                                 @if (page == ((IPagedList<Domain.Entity.Catalogs.ShopProductRef>)shopProductsRefs).PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "Shops", new
+                                                                            {
+                                                                                Page = page,
+                                                                                PageSize = filter.PageSize,
+                                                                                SortOptions = filter.SortOptions,
+                                                                                SortOrder = filter.SortOrder
+                                                                            },
+                                                                            new { @class = "hr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "Shops", new
+                                                                            {
+                                                                                Page = page,
+                                                                                PageSize = filter.PageSize,
+                                                                                SortOptions = filter.SortOptions,
+                                                                                SortOrder = filter.SortOrder
+                                                                            })
+                                }
+                            </li>
+                        }
+                        
+                        @if (shopProductsRefs.PageCount > 14)
+                        {
+                            <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a>
+                            </li>
+                        }
+                        
+                        @for (int page = shopProductsRefs.PageCount - 6; page <= shopProductsRefs.PageCount && page > 7; page++)
+                        {
+                            <li>
+
+                                @if (page == shopProductsRefs.PageNumber)
                                 {
                                     @Html.ActionLink(page.ToString(), "Shops", new
                                                                             {
@@ -305,9 +338,9 @@
                                 }
                             </ul>
                         </div>
-                        <div class="alHScrollBar">
+                        @*<div class="alHScrollBar">
                             <div class="alHScrollSlider" style="left: 0px;"></div>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
 

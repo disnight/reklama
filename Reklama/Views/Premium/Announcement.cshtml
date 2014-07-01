@@ -42,7 +42,7 @@
                     if (Model.UpTime <= DateTime.Now.AddHours(-upTimeHours) || User.IsInRole("Administrator") || User.IsInRole("Moderator"))
                     {
                         @Html.HiddenFor(x => x.Id);
-                        <input type="submit" value="" />
+                        <input type="submit" value="" style="display: block;" />
                                     
                         if ((User.IsInRole("Administrator") || User.IsInRole("Moderator")) && time.TotalSeconds > 0)
                         {
