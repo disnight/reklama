@@ -1,1 +1,26 @@
-﻿
+﻿@model Reklama.Models.ViewModels.Banners.BannerViewModel
+
+<div class="banner-max-50" style="position:relative; overflow: hidden;">
+    <a href="@Model.Link" class="resizeble" target="@Model.Target ">
+        <img src="@Model.ImageUrl" style="width: 1789px; height: 50px;" />
+    </a>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        rebuildTopBanner();
+    });
+    $(window).resize(function () {
+        rebuildTopBanner();
+    });
+
+    function rebuildTopBanner() {
+        $(".banner-max-50 > a.resizeble").each(function (i, img) {
+            $(img).css({
+                position: "absolute",
+                left: (($(img).parent().width() - $(img).width()) / 2)
+            });
+        });
+    }
+
+</script>

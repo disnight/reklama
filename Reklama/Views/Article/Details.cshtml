@@ -18,8 +18,11 @@
                     catch {
                         @: Unable to render the sections. Please, contact to administrator
                     }
-                } 
-               @*
+               } 
+               
+               @{ Html.RenderAction("GetUnderFiltersBanner", "Banners");}
+
+            @*
                 <div class="leftActual">
                     <p>Актуальное</p>
                     <ul>

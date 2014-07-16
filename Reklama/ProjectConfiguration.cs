@@ -134,7 +134,8 @@ namespace Reklama
                                                                      {"realty_thumb", "Images/Thumbnails/Realty"},
                                                                      {"product_thumb", "Images/Thumbnails/Product"},
                                                                      {"product_article", "Images/Thumbnails/Article"},
-                                                                     {"product_shop", "Images/Thumbnails/Shop"}
+                                                                     {"product_shop", "Images/Thumbnails/Shop"},
+                                                                     {"banners", "Images/Banners"}
                                                                  };
 
 

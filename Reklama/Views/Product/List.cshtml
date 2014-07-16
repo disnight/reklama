@@ -13,6 +13,7 @@
             <td class="ci1">
                 @Html.Partial("_PlaceGoods")
                 @Html.Partial("_Manufacturers", secondCategory)
+                @{ Html.RenderAction("GetUnderFiltersBanner", "Banners");}
 
                 @*<div class="leftProd">
                                     <ul>

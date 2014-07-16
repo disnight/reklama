@@ -21,6 +21,7 @@ namespace Reklama.Data.Entities
     
         public int ID { get; set; }
         public string Name { get; set; }
+        public string Desc { get; set; }
     
         public virtual ICollection<Banners> Banners { get; set; }
     }

@@ -13,6 +13,7 @@
             <td class="ci1">
                 @Html.Partial("_PlaceGoods")
                 @{Html.RenderAction("ViewCategories", "Shop", new { shopId = filter.ShopId });}
+                @{ Html.RenderAction("GetUnderFiltersBanner", "Banners");}
                 @Html.Partial("_YandexDirectPartial")
             </td>
             <td class="ci2">

@@ -9,6 +9,9 @@ using Domain.Repository.Articles;
 using Domain.Repository.Catalogs;
 using Domain.Repository.Other;
 using Domain.Repository.Shared;
+using Domain.ViewModels.Banners;
+using Reklama.Data.Entities;
+using Reklama.Data.Servises;
 using Reklama.Models;
 using Reklama.Models.ViewModels.Admin;
 using Reklama.Models.ViewModels.Shared;
@@ -2140,6 +2143,82 @@ namespace Reklama.Controllers
         }
         #endregion
 
+        /**
+         * Создание Banner'ов
+         */
+        #region Banners
+
+        [Authorize(Roles = "Administrator")]
+        public ActionResult Banners()
+        {
+            var service = new BannerService();
+            var banners = service.GetAll();
+            return View(banners);
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public ActionResult BannersCreate()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public ActionResult BannersEdit(int id)
+        {
+            var service = new BannerService();
+            var banner = service.GetBanner(id);
+            return View(new EditBannerViewModel
+            {
+                Comments = banner.Comments,
+                ID = banner.ID,
+                ImagePath = banner.Images != null ? banner.Images.ImagePath : "",
+                IsShow = banner.IsShow,
+                Link = banner.Link,
+                ImageDesc = banner.BannerTypes != null ? banner.BannerTypes.Desc : ""
+            });
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpPost]
+        public ActionResult BannersEdit(EditBannerViewModel model)
+        {
+            var service = new BannerService();
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var current = service.GetBanner(model.ID);
+
+            if (model.File != null)
+            {
+                var uploader = new ImageUploader(model.File);
+                uploader.Save("banners");
+               
+                var path = "/Images/Banners/" + uploader.UniqueName;
+                if (current.Images != null)
+                {
+                    current.Images.ImagePath = path;
+                }
+                else
+                {
+                    current.Images = new Images
+                    {
+                        ImagePath = path
+                    };
+                }
+                model.ImagePath = path;
+            }
+
+            current.Comments = model.Comments;
+            current.IsShow = model.IsShow;
+            current.Link = model.Link;
+            service.SaveBanner(current);
+
+            return View(model);
+        }
+        #endregion
 
 
         #region MainPage

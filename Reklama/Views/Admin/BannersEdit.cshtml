@@ -1,0 +1,171 @@
+﻿@model Domain.ViewModels.Banners.EditBannerViewModel
+
+@{
+    ViewBag.Title = "Баннеры";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>BannersEdit</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class="bootstrap", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.ImageDesc)
+    @Html.HiddenFor(model => model.ImagePath)
+
+    
+        <div class="form-group">
+            <label for="imageSelectInput">Изображение</label>
+            @Html.TextBoxFor(x => x.File, new { type = "file", id = "imageSelectInput" })
+            <p class="help-block">@Model.ImageDesc</p>
+            <img src="@Model.ImagePath" style="max-width: 900px; max-height: 300px;" />
+        </div>
+        <div class="form-group">
+            <label for="">Страница</label>
+            @Html.TextBoxFor(model => model.Comments, new { @class = "form-control", placeholder = "Enter comments" })
+            @Html.ValidationMessageFor(model => model.Comments)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Link)
+            @Html.TextBoxFor(model => model.Link, new { @class = "form-control", placeholder = "Enter link" })
+            @Html.ValidationMessageFor(model => model.Link)
+        </div>
+        
+    <div class="checkbox">
+        <label>
+            @Html.EditorFor(model => model.IsShow) Is Show
+            @Html.ValidationMessageFor(model => model.IsShow)
+        </label>
+    </div>
+    @*<input type="submit" value="Save" />*@
+    <button type="submit" class="btn btn-default">Save</button>
+     @Html.ActionLink("Back to List", "Banners", null, new { @class = "btn btn-default", role = "button" })
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<style type="text/css">
+    form.bootstrap {
+        color: #333;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 14px;
+        line-height: 1.42857;
+        text-decoration: none;
+    }
+
+
+    .bootstrap input, .bootstrap button, .bootstrap select, .bootstrap textarea {
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    .bootstrap button, .bootstrap input, .bootstrap optgroup, .bootstrap select, .bootstrap textarea {
+        color: inherit;
+        font: inherit;
+        margin: 0;
+    }
+
+    .bootstrap .form-group {
+        margin-bottom: 15px;
+    }
+
+        .bootstrap .form-group label {
+            display: inline-block;
+            font-weight: 700;
+            margin-bottom: 5px;
+            max-width: 100%;
+        }
+
+        .bootstrap .form-group input[type="file"] {
+            display: block;
+        }
+
+    .bootstrap .form-control {
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        color: #555;
+        display: block;
+        font-size: 14px;
+        height: 20px;
+        line-height: 1.42857;
+        padding: 6px 12px;
+        transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+        width: 100%;
+    }
+
+    .bootstrap .help-block {
+        color: #737373;
+        display: block;
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+
+    .bootstrap .btn {
+        -moz-user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857;
+        margin-bottom: 0;
+        padding: 6px 12px;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+
+    .bootstrap .btn-default {
+        background-color: #fff;
+        border-color: #ccc;
+        color: #333;
+        text-decoration: none;
+    }
+
+    .bootstrap .radio, .bootstrap .checkbox {
+        display: block;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        min-height: 20px;
+        position: relative;
+    }
+
+        .bootstrap .radio label, .bootstrap .checkbox label {
+            cursor: pointer;
+            font-weight: 400;
+            margin-bottom: 0;
+            /*padding-left: 20px;*/
+        }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>*@

@@ -20,7 +20,7 @@
                 </div>
                 @Html.Partial("_RealtyCategories", (object)ViewBag.Categories)
                 @Html.Partial("_RealtySortByParams", sortModel)
-               
+               @{ Html.RenderAction("GetUnderFiltersBanner", "Banners");}
                 @Html.Partial("_YandexDirectPartial")
             </td>
             <td class="ci2">

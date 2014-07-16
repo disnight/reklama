@@ -1,0 +1,69 @@
+﻿
+@model IEnumerable<Reklama.Data.Entities.Banners>
+
+@{
+    ViewBag.Title = "Баннеры";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<style>
+    #banners-table table {
+        border-collapse: collapse;
+    }
+
+    #banners-table th {
+        border: 1px solid black;
+        padding: 5px;
+        background-color: InactiveCaption;
+    }
+
+    #banners-table td {
+        border: 1px solid black;
+        padding: 5px;
+    }
+</style>
+
+<h2>Баннеры</h2>
+
+<table id="banners-table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th>
+            Изображение
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsShow)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Link)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Comments
+            </td>
+            <td>
+                @if (@item.Images != null)
+                {
+                    <a href="@item.Images.ImagePath" target="_blank">Окрыть баннер</a>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsShow)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Link)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "BannersEdit", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>

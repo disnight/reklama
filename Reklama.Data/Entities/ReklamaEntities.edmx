@@ -25,6 +25,7 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Desc" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Images">
           <Key>
@@ -110,6 +111,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Banners" Relationship="Reklama.Data.Entities.FK_Banners_BannerTypes" FromRole="BannerTypes" ToRole="Banners" />
+          <Property Name="Desc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Images">
           <Key>
@@ -167,6 +169,7 @@
           <EntitySetMapping Name="BannerTypes">
             <EntityTypeMapping TypeName="Reklama.Data.Entities.BannerTypes">
               <MappingFragment StoreEntitySet="BannerTypes">
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

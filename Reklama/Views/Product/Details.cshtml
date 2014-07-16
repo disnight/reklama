@@ -14,7 +14,9 @@
            <td class="ci1">
                 @Html.Partial("_PlaceGoods")
                 @Html.Partial("_Manufacturers", Model.SecondCategory)
-            @*
+               @{ Html.RenderAction("GetUnderFiltersBanner", "Banners");}
+
+               @*
                 <div class="bestOffers">
                     <em>Лучшие предложения</em>
                     <div class="bestOffer">
