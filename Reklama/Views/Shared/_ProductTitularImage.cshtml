@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Reklama.Data.Entities.ProductImage>
+
+@if (Model.Any())
+{
+    <img src="/@String.Concat("Images/Catalog/Product/", Model.Any(q => q.IsTitular) ? Model.First(q => q.IsTitular).ImageName : Model.First().ImageName)" />
+
+}
+else
+{
+    <img src="/Images/System/no_photo.png" />
+}

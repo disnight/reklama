@@ -1,0 +1,109 @@
+﻿@model Reklama.ViewModels.Shops.ShopPageViewModel
+
+@{
+    ViewBag.Title = "Страница магазина";
+}
+
+<div class="catalogInner personal">
+    <table>
+        <tr>
+            <td class="ci1">
+                <div class="persLogo">
+                    <img class="logoShop" src="@(Model.Shop.Logo != null ? "/Images/Catalog/ShopLogos/" + Model.Shop.Logo : "")" />
+                </div>
+                <p class="persLink">@Html.ActionLink("Страница на сайте", "Details", "Shops", new { id = Model.Shop.ID }, null)</p>
+   
+                <div class="persBord"></div>
+                <p class="persTitleL">Абонентская плата</p>
+                <div class="subscriberFee">
+                    <div class="mPrice1">
+                        <img class="mPriceL1" src="/Images/System/mPriceL1.png">
+                        <img class="mPriceR1" src="/Images/System/mPriceR1.png">
+                        @(Model.MonthlyFee)
+                                        <span>USD</span>
+                    </div>
+                </div>
+                <div class="clear"></div><p>оплата производится в конце месяца (менеджер свяжется с вами).</p>
+                <div class="persBord"></div>
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="persTop">
+                    <p class="persTitle">Панель управления магазином @Model.Shop.Title</p>
+                    <p>Тестовое пояснение о том как работать с этой страницей для рользователей хозяев магазинов на проекте. Тестовое пояснение о том как работать с этой страницей для пользователей хозяев магазинов на проекте. Тестовое пояснение о том как работать с</p>
+                </div>
+                
+                @Html.Partial("_ShopTabs", Model.Shop.ID)
+                <div class="persBlock persPage">
+                    <div class="persBlockTop">
+                        @using(Html.BeginForm("EditShopPage", "Shops", FormMethod.Get))
+                        {
+                            <input type="hidden" id="id" name="id" value="@(Model.Shop.ID)"/>
+                            <input type="submit" class="changeData" value="" />
+                        }
+                    </div>
+                    <div class="persProd">
+                        <table>
+                            <tr>
+                                <th>Название магазина:</th>
+                                <td>@Model.Shop.Title</td>
+                            </tr>
+                            <tr>
+                                <th>Логотип:</th>
+                                <td>
+                                    <img class="logoShop" src="@(Model.Shop.Logo != null ? "/Images/Catalog/ShopLogos/" + Model.Shop.Logo : "/Images/System/no_logo.png")" />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Контактные телефоны:</th>
+                                <td>
+                                    @Model.Shop.Phone
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>E-mail:</th>
+                                <td>@Model.User.Email</td>
+                            </tr>
+                            <tr>
+                                <th>Адрес сайта:</th>
+                                <td>@(!String.IsNullOrEmpty(Model.Shop.Site) ? Model.Shop.Site : "Не указано")</td>
+                            </tr>
+                            <tr>
+                                <th>ICQ:</th>
+                                <td>@(!String.IsNullOrEmpty(Model.Shop.Icq) ? Model.Shop.Icq : "Не указано")</td>
+                            </tr>
+                            <tr>
+                                <th>Skype:</th>
+                                <td>@(!String.IsNullOrEmpty(Model.Shop.Skype) ? Model.Shop.Skype : "Не указано")</td>
+                            </tr>
+                            <tr>
+                                <th>Режим работы:</th>
+                                <td>
+                                    <div class="shopTime">
+                                        <span class="@(Model.Shop.Monday ? "" : "no")">Пн</span>
+                                        <span class="@(Model.Shop.Tuesday ? "" : "no")">Вт</span>
+                                        <span class="@(Model.Shop.Wednesday ? "" : "no")">Ср</span>
+                                        <span class="@(Model.Shop.Thursday ? "" : "no")">Чт</span>
+                                        <span class="@(Model.Shop.Friday ? "" : "no")">Пт</span>
+                                        <span class="@(Model.Shop.Saturday ? "" : "no")">Сб</span>
+                                        <span class="@(Model.Shop.Sunday ? "" : "no")">Вс</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Описание магазина:</th>
+                                <td>
+                                    <p><span>@(!String.IsNullOrEmpty(Model.Shop.Description) ? Model.Shop.Description : "Не указано")</span></p>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

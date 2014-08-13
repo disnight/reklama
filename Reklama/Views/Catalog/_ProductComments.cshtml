@@ -1,0 +1,171 @@
+﻿@using Reklama.Models.ViewModels.Catalog
+@model Reklama.ViewModels.Catalog.ProductFeedbacksPageViewModel
+
+<div class="itemResponse">
+    <div class="itemResponseHead"><span>Отзывы</span></div>
+    @if (!Model.Comments.Any())
+    {
+        <div class="itemNothingResponse">Отзывов пока еще никто не оставил</div>
+
+@* Add new comment *@
+        if (TempData["Comment"] == null)
+        {
+            @Html.Partial("_ProductCommentCreate", new ProductCommentViewModel { ProductId = (int)Model.Product.ID })
+        }
+        else
+        {
+            @Html.Partial("_ProductCommentCreate", new ProductCommentViewModel { ProductId = (int)Model.Product.ID, Comment = TempData["Comment"].ToString() })
+        }
+    }
+    else
+    {
+
+        for (int i = 0; i < Model.Comments.Count; i++)
+        {
+            string classGray = "itemResponseBlock gray";
+            string classBlock = "itemResponseBlock";
+
+
+        <div class="@((i % 2 == 0) ? @classGray : @classBlock)">
+            <div class="itemResponseBlockL">
+                <img src="@((Model.Comments.ElementAt(i).User.AvatarLink != null) ? "/Images/Users/Avatars/" + Model.Comments.ElementAt(i).User.AvatarLink : "/Images/System/userAv.png")" class="avatar" />
+            </div>
+            <div class="itemResponseBlockR">
+                <span>
+                    @Html.ActionLink(
+              string.Format("{0} {1}", Model.Comments.ElementAt(i).User.Surname ?? "",
+                String.IsNullOrEmpty(Model.Comments.ElementAt(i).User.Name) ? Model.Comments.ElementAt(i).User.Email : Model.Comments.ElementAt(i).User.Name),
+                         "Index", "Profile", new { id = Model.Comments.ElementAt(i).User.UserId }, null)
+                    @string.Format("{0:dd.MM.yyyy}", @Model.Comments.ElementAt(i).CreatedAt)
+                </span>
+                <p>@Model.Comments.ElementAt(i).Comment</p>
+                
+                @if(User.IsInRole("Administrator") || User.IsInRole("Moderator")) {
+                    <p>
+                        @Html.ActionLink("Удалить", "FeedbackDelete", "Catalog", new { commentId = @Model.Comments.ElementAt(i).ID }, null)
+                    </p>
+                }
+            </div>
+        </div>
+        <div class="clear"></div>
+        }
+                             
+        
+        
+@* Add new comment *@
+        if (TempData["Comment"] == null)
+        {
+            @Html.Partial("_ProductCommentCreate", new ProductCommentViewModel() { ProductId = (int)Model.Product.ID })
+        }
+        else
+        {
+            @Html.Partial("_ProductCommentCreate", new ProductCommentViewModel() { ProductId = (int)Model.Product.ID, Comment = TempData["Comment"].ToString() })
+        }
+        
+        
+        
+        
+        
+        <div class="pages">
+            <ul class="fastNav">
+                <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                <a class="page-prev" href="javascript:void(0)"></a>
+                
+                @for (int page = 1; page <= Model.Comments.PageCount && page <= 7; page++)
+                {
+                    <li>
+
+                        @if (page == Model.Comments.PageNumber)
+                        {
+                            @Html.ActionLink(page.ToString(), "Feedbacks", new
+                                                                             {
+                                                                                 id = Model.Product.ID,
+                                                                                 commentPage = page
+                                                                             },
+                                             new { @class = "hr" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink(page.ToString(), "Feedbacks", new
+                                                                             {
+                                                                                 id = Model.Product.ID,
+                                                                                 commentPage = page
+                                                                             })
+                        }
+                    </li>
+                }
+
+                @if (Model.Comments.PageCount > 14)
+                        {
+                            <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a>
+                            </li>
+                        }
+                
+                @for (int page = Model.Comments.PageCount - 6; page <= Model.Comments.PageCount && page > 7; page++)
+                {
+                    <li>
+
+                        @if (page == Model.Comments.PageNumber)
+                        {
+                            @Html.ActionLink(page.ToString(), "Feedbacks", new
+                                                                             {
+                                                                                 id = Model.Product.ID,
+                                                                                 commentPage = page
+                                                                             },
+                                             new { @class = "hr" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink(page.ToString(), "Feedbacks", new
+                                                                             {
+                                                                                 id = Model.Product.ID,
+                                                                                 commentPage = page
+                                                                             })
+                        }
+                    </li>
+                }
+
+                <a class="page-next" href="javascript:void(0)"></a>
+            </ul>
+
+            <div class="pageslider">
+                <div class="pagesliderTop">
+                    <ul>
+                        @for (int page = 1; page <= Model.Comments.PageCount; page++)
+                        {
+                            <li>
+
+                                @if (page == Model.Comments.PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "Feedbacks", new
+                                                                                     {
+                                                                                         id = Model.Product.ID,
+                                                                                         commentPage = page
+                                                                                     },
+                                                     new { @class = "shr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "Feedbacks", new
+                                                                                     {
+                                                                                         id = Model.Product.ID,
+                                                                                         commentPage = page
+                                                                                     })
+                                }
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    }
+</div>
+
+@section head
+{
+    @Styles.Render("~/Content/Profile.css")
+}

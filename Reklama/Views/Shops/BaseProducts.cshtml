@@ -1,0 +1,224 @@
+﻿@model Reklama.ViewModels.Shops.ProductForShopViewModel
+
+@using Reklama.Models.ViewModels.Catalog
+@{
+    ViewBag.Title = "База товаров";
+}
+
+<div class="catalogInner personal">
+    <table>
+        <tr>
+            <td class="ci1">
+                <div class="persLogo">
+                    <img src="@( Model.Shop.Logo != null ? "/Images/Catalog/ShopLogos/" + Model.Shop.Logo : "")" />
+                </div>
+                <p class="persLink">@Html.ActionLink("Страница на сайте", "Details", "Shops", new { id = Model.Shop.ID }, null)</p>
+
+                <div class="persBord"></div>
+                <p class="persTitleL">Абонентская плата</p>
+                <div class="subscriberFee">
+                    <div class="mPrice1">
+                        <img class="mPriceL1" src="/Images/System/mPriceL1.png">
+                        <img class="mPriceR1" src="/Images/System/mPriceR1.png">
+                        @(Model.MonthlyFee)
+                        <span>USD</span>
+                    </div>
+                </div>
+                <p>оплата производится в конце месяца (менеджер свяжется с вами).</p>
+                <div class="persBord"></div>
+
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="persTop">
+                    <p class="persTitle">Панель управления магазином @Model.Shop.Title</p>
+                    
+                </div>
+                @Html.Partial("_ShopTabs", Model.Shop.ID)
+                @using (Html.BeginForm("BaseProducts", "Shops", FormMethod.Get))
+                {
+                    <div class="persBlock persBase">
+                        <div class="persBlockTop">
+                            <div class="persSection">
+                                <span>Раздел каталога:</span>
+                                @Html.DropDownList("CategoryId", Model.Groups)
+                            </div>
+                            <div class="persSection right">
+                                <span>Подраздел:</span>
+                                @Html.DropDownList("SecondCategoryId", Model.Categories)
+                            </div>
+                        </div>
+                        <div class="persProd">
+                            <div class="persProdSection">
+                                @if (Model.Manufacturers != null)
+                                {
+                                
+                                    <span>Производитель:</span>
+                                    @Html.DropDownList("ThirdCategoryId", Model.Manufacturers)
+                                
+                                }
+                            </div>
+                            <input type="submit" value="Сменить категорию" />
+                            @if (Model.Products.Any())
+                            {
+                                <ul>
+                                    @foreach (var item in Model.Products)
+                                    {
+                                        <li>
+                                            <table>
+                                                <tr>
+                                                    <td class="ppInfo">
+                                                        @Html.Partial("_ProductTitularImage", item.ProductImage)
+                                                        <span>@Html.ActionLink(@item.Title, "Details", "Catalog", new { id = item.ID }, null)</span>
+                                                        <div class="ppPriceChange">
+                                                            @if (Model.ShopProducts != null && (Model.ShopProducts).Any(x => x.ProductID == item.ID))
+                                                            {
+                                                                <label class="text">товар в магазине </label>
+                                                                <input type="text" class="PriceProduct" name="PriceProduct" style="display: none"/>
+                                                                <input type="button" class="but delBut" ProductId="@item.ID" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <label class="text">цена:</label>
+                                                                <input type="text" class="PriceProduct" name="PriceProduct"/>
+                                                                <input type="button" class="but addBut" value="Добавить" ProductId="@item.ID" />
+                                                            }
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </li>
+                                    }
+                                </ul>
+                                <div class="pages">
+                                    <ul class="fastNav">
+                                        <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                                        <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                                        <a class="page-prev" href="javascript:void(0)"></a>
+                                        
+                                        @for (int page = 1; page <= Model.Products.PageCount && page <= 7; page++)
+                                        {
+                                            <li>
+
+                                                @if (page == Model.Products.PageNumber)
+                                                {
+                                                    @Html.ActionLink(page.ToString(), "BaseProducts", new FilterParams
+                                                                            {
+                                                                                Id = Model.Filter.Id,
+                                                                                CategoryId = Model.Filter.CategoryId,
+                                                                                SecondCategoryId = Model.Filter.SecondCategoryId,
+                                                                                ThirdCategoryId = Model.Filter.ThirdCategoryId,
+                                                                                Page = page
+                                                                            },
+                                                                            new { @class = "hr" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink(page.ToString(), "BaseProducts", new
+                                                                            {
+                                                                                Id = Model.Filter.Id,
+                                                                                CategoryId = Model.Filter.CategoryId,
+                                                                                SecondCategoryId = Model.Filter.SecondCategoryId,
+                                                                                ThirdCategoryId = Model.Filter.ThirdCategoryId,
+                                                                                Page = page
+                                                                            })
+                                                }
+                                            </li>
+                                        }
+                                        
+                                        @if (Model.Products.PageCount > 14)
+                                        {
+                                            <li class="exppages"><a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a>
+                                            </li>
+                                        }
+                                        
+                                        @for (int page = Model.Products.PageCount - 6; page <= Model.Products.PageCount && page > 7; page++)
+                                        {
+                                            <li>
+
+                                                @if (page == Model.Products.PageNumber)
+                                                {
+                                                    @Html.ActionLink(page.ToString(), "BaseProducts", new
+                                                                            {
+                                                                                Id = Model.Filter.Id,
+                                                                                CategoryId = Model.Filter.CategoryId,
+                                                                                SecondCategoryId = Model.Filter.SecondCategoryId,
+                                                                                ThirdCategoryId = Model.Filter.ThirdCategoryId,
+                                                                                Page = page
+                                                                            },
+                                                                            new { @class = "hr" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink(page.ToString(), "BaseProducts", new
+                                                                            {
+                                                                                Id = Model.Filter.Id,
+                                                                                CategoryId = Model.Filter.CategoryId,
+                                                                                SecondCategoryId = Model.Filter.SecondCategoryId,
+                                                                                ThirdCategoryId = Model.Filter.ThirdCategoryId,
+                                                                                Page = page
+                                                                            })
+                                                }
+                                            </li>
+                                        }
+
+                                        <a class="page-next" href="javascript:void(0)"></a>
+                                    </ul>
+
+                                    <div class="pageslider">
+                                        <div class="pagesliderTop">
+                                            <ul>
+                                                @for (int page = 1; page <= Model.Products.PageCount; page++)
+                                                {
+                                                    <li>
+
+                                                        @if (page == Model.Products.PageNumber)
+                                                        {
+                                                            @Html.ActionLink(page.ToString(), "BaseProducts", new
+                                                                            {
+                                                                                Id = Model.Filter.Id,
+                                                                                CategoryId = Model.Filter.CategoryId,
+                                                                                SecondCategoryId = Model.Filter.SecondCategoryId,
+                                                                                ThirdCategoryId = Model.Filter.ThirdCategoryId,
+                                                                                Page = page
+                                                                            },
+                                                                            new { @class = "shr" })
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.ActionLink(page.ToString(), "BaseProducts", new
+                                                                            {
+                                                                                Id = Model.Filter.Id,
+                                                                                CategoryId = Model.Filter.CategoryId,
+                                                                                SecondCategoryId = Model.Filter.SecondCategoryId,
+                                                                                ThirdCategoryId = Model.Filter.ThirdCategoryId,
+                                                                                Page = page
+                                                                            })
+                                                        }
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                    
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <h3>Нет товаров в выбранной категории!</h3>   
+                            }
+                        </div>
+                    </div>
+                    @Html.Hidden("ShopId", Model.Shop.ID)
+                }
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/Catalog/BaseProducts.js")
+}

@@ -59,7 +59,37 @@
     <Compile Include="Entities\BannerTypes.cs">
       <DependentUpon>ReklamaEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Category.cs">
+      <DependentUpon>ReklamaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CategoryParameter.cs">
+      <DependentUpon>ReklamaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CategoryParametersSection.cs">
+      <DependentUpon>ReklamaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Group.cs">
+      <DependentUpon>ReklamaEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Images.cs">
+      <DependentUpon>ReklamaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Manufacturer.cs">
+      <DependentUpon>ReklamaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Product.cs">
+      <DependentUpon>ReklamaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ProductBookmark.cs">
+      <DependentUpon>ReklamaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ProductFeedback.cs">
+      <DependentUpon>ReklamaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ProductImage.cs">
+      <DependentUpon>ReklamaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ProductParameterValue.cs">
       <DependentUpon>ReklamaEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\ReklamaEntities.Context.cs">
@@ -77,8 +107,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ReklamaEntities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Shop.cs">
+      <DependentUpon>ReklamaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ShopFeedback.cs">
+      <DependentUpon>ReklamaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ShopProduct.cs">
+      <DependentUpon>ReklamaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ShopProductStatus.cs">
+      <DependentUpon>ReklamaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Unit.cs">
+      <DependentUpon>ReklamaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ParametersSectionViewModel.cs" />
+    <Compile Include="Models\ParameterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servises\BannerService.cs" />
+    <Compile Include="Servises\ProductService.cs" />
+    <Compile Include="Servises\ShopsService.cs" />
+    <Compile Include="Servises\SortService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

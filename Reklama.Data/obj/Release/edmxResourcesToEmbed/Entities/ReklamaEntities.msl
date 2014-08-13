@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ReklamaDataEntitiesStoreContainer" CdmEntityContainer="ReklamaCustomEntities">
+    <EntitySetMapping Name="Banners">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.Banners">
+        <MappingFragment StoreEntitySet="Banners">
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="CountOfClicks" ColumnName="CountOfClicks" />
+          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+          <ScalarProperty Name="BannerType" ColumnName="BannerType" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BannerTypes">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.BannerTypes">
+        <MappingFragment StoreEntitySet="BannerTypes">
+          <ScalarProperty Name="Desc" ColumnName="Desc" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.Images">
+        <MappingFragment StoreEntitySet="Images">
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

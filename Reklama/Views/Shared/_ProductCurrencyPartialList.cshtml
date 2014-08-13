@@ -1,0 +1,26 @@
+﻿@using System.Globalization
+@model Reklama.Data.Entities.Product
+
+@if (Model.ShopProduct.Count != 0)
+{
+    var maxPrice = Model.ShopProduct.Where(q => q.Price.HasValue).Max(p => p.Price).Value;
+    var minPrice = Model.ShopProduct.Where(q => q.Price.HasValue).Min(p => p.Price).Value;
+    
+    <div class="mPrice">
+        <img class="mPriceL" src="/Images/System/mPriceL.png" />
+        <img class="mPriceR2" src="/Images/System/mPriceR2.png" />
+
+        <label class="productMinPrice" value="@minPrice.ToString(CultureInfo.InvariantCulture)">@Math.Round(minPrice, 2).ToString("0.#####", CultureInfo.InvariantCulture)</label>
+            @if (Math.Abs(maxPrice - minPrice) > (decimal)0.5)
+            {
+                @: - <label class="productMaxPrice" value="@maxPrice.ToString(CultureInfo.InvariantCulture)">@Math.Round(maxPrice, 2).ToString("0.#####", CultureInfo.InvariantCulture)</label>
+                    }
+        <span class="price_list_click">
+            <span>USD</span>
+
+        @try{ Html.RenderAction("SwitcherList", "Currency"); }catch{}
+        </span>
+    </div>
+}
+
+@Scripts.Render("~/Scripts/ProductCurrencyList.js")

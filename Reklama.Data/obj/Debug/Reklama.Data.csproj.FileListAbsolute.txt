@@ -1,0 +1,12 @@
+D:\Projects\Reklama\reklama\Reklama.Data\obj\Debug\Reklama.Data.csprojResolveAssemblyReference.cache
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Debug\Reklama.Data.dll.config
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Debug\Reklama.Data.dll
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Debug\Reklama.Data.pdb
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Debug\Domain.dll
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Debug\EntityFramework.dll
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Debug\Domain.pdb
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Debug\EntityFramework.xml
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\Reklama\reklama\Reklama.Data\obj\Debug\Reklama.Data.dll
+D:\Projects\Reklama\reklama\Reklama.Data\obj\Debug\Reklama.Data.pdb

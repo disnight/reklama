@@ -24,6 +24,8 @@ using System.Web.Mvc;
 using System.Web.Security;
 using WebMatrix.WebData;
 using PagedList;
+using Product = Domain.Entity.Catalogs.Product;
+using Unit = Domain.Entity.Catalogs.Unit;
 
 namespace Reklama.Controllers
 {

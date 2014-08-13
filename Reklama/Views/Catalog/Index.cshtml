@@ -1,0 +1,43 @@
+﻿@using Reklama
+@model IEnumerable<Reklama.Data.Entities.Group>
+@{
+    ViewBag.Title = "Каталог reklama.tm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="catalogMain">
+    <div class="cmTop">
+        @Html.Partial("_PlaceGoods")
+        <p class="orangeText">@Html.Raw(ProjectConfiguration.Get.CatalogConfig.PromoText)</p>
+    </div>
+    @foreach (var category in Model.Where(q => q.Category.Any(w => w.IsActive)))
+    {
+        <p class="cmTitle">@category.Name</p>
+        <ul>
+            @foreach (var secondCategory in category.Category.Where(e => e.Product.Any(q => q.IsActive)))
+            {
+                var shopsProducts = secondCategory.Product.SelectMany(q => q.ShopProduct).ToList();
+                <li>
+                    @Html.ActionLink(secondCategory.Name, "Category", new { secondCategoryId = secondCategory.ID })
+                    <sup>
+                        <a href="javascript:void(0)">
+                            @if (shopsProducts.Any())
+                            {
+                                @:от @Convert.ToInt32(shopsProducts.Min(p => p.Price)).ToString() $
+                                                     }
+                    </a>
+                </sup>
+                @if (secondCategory.IsNew)
+                {
+                    <a class="newImg" href="javascript:void(0)">
+                        <img src="/Images/System/new.png" />
+                    </a>
+                }
+            </li>
+            }
+        </ul>
+    }
+</div>
+<div class="middleBot"></div>

@@ -1,0 +1,74 @@
+﻿@using Reklama.ViewModels.Shops
+@model Reklama.ViewModels.Shops.ShopDetailsPageViewModel
+
+@{
+    ViewBag.Title = "Магазин " + Model.Shop.Title;
+}
+
+<div class="catalogInner inShop">
+    <table>
+        <tr>
+            <td class="ci1">
+                <span class="hed1">@Model.Shop.Title</span>
+                @{Html.RenderAction("CategoriesView", new { shopId = Model.Shop.ID });}
+
+                @Html.Partial("_YandexDirectPartial")
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                    <a href="/">Главная страница</a>
+                    <span class="arr">&rarr;</span>
+                    @Model.Shop.Title
+                </div>
+                <h1>Магазин @Model.Shop.Title</h1>
+
+                <div class="shopBlock">
+                    <div class="shopBlockTop">
+                        <div class="sbtLeft">
+                            <div class="shopLog">
+                                <a href="javascript:void(0)">
+                                    <img class="logoShop" src="@(Model.Shop.Logo != null ? "/Images/Catalog/ShopLogos/" + Model.Shop.Logo : "")" /></a>
+                            </div>
+                            <ul>
+                                @if (Model.Shop.Site != null)
+                                { <li>
+                                    <img src="/Images/System/world.png" />Сайт: <a href="@(Model.Shop.Site.Contains("http://") ? Model.Shop.Site : "http://" + Model.Shop.Site)">@Model.Shop.Site</a></li> }
+                                <li>
+                                    <img src="/Images/System/post.png" />E-mail: <a href="mailto:@Model.User.Email">@Model.User.Email</a></li>
+                                @if (Model.Shop.Skype != null)
+                                { <li>
+                                    <img src="/Images/System/skype.png" />Skype: @Model.Shop.Skype</li> }
+                                @if (Model.Shop.Icq != null)
+                                { <li>
+                                    <img src="/Images/System/icq.png" />ICQ: @Model.Shop.Icq</li> }
+                            </ul>
+                        </div>
+                        <div class="sbtCenter">
+                            <div class="shopTime">
+                                <span class="@(Model.Shop.Monday ? "" : "no")">Пн</span>
+                                <span class="@(Model.Shop.Tuesday ? "" : "no")">Вт</span>
+                                <span class="@(Model.Shop.Wednesday ? "" : "no")">Ср</span>
+                                <span class="@(Model.Shop.Thursday ? "" : "no")">Чт</span>
+                                <span class="@(Model.Shop.Friday ? "" : "no")">Пт</span>
+                                <span class="@(Model.Shop.Saturday ? "" : "no")">Сб</span>
+                                <span class="@(Model.Shop.Sunday ? "" : "no")">Вс</span>
+                            </div>
+                            <ul>
+                                @Model.Shop.Phone
+                            </ul>
+                        </div>
+                        <div class="sbtRight">
+                            <p>@Model.Shop.Requisites</p>
+                        </div>
+                    </div>
+                    <div>@Model.Shop.Description</div>
+                </div>
+                @Html.Partial("_ShopComments", new ShopCommentsPageViewModel { Comments = Model.Comments, ShopID = Model.Shop.ID})
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>

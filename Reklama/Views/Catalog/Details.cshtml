@@ -1,0 +1,119 @@
+﻿@using Domain.Enums
+@using Reklama
+@using Reklama.ViewModels.Catalog
+
+@model DetailsViewModel
+@{
+    ViewBag.Title = string.Format("{0} - www.reklama.tm", Model.CurrentProduct.Title);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="catalogInner">
+    <table>
+        <tr>
+            <td class="ci1">
+                @Html.Partial("_PlaceGoods")
+                @Html.Partial("_Manufacturers", new ManufacturersMenuViewModel
+                {
+                    CurrentCategory = Model.CurrentProduct.Category,
+                    Manufacturers = Model.Manufacturers
+                    
+                })
+                @{ Html.RenderAction("GetUnderFiltersBanner", "Banners");}
+   
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                    <a href="/">Главная страница</a>
+                    <span class="arr">&rarr;</span>
+                    @Html.ActionLink("Каталог товаров", "Index")
+                    <span class="arr">&rarr;</span>
+                    @Html.ActionLink(Model.CurrentProduct.Category.Name, "Category", new { secondCategoryId = Model.CurrentProduct.Category.ID })
+                    <span class="arr">&rarr;</span>
+                    @Model.CurrentProduct.Title
+                </div>
+
+                @Html.Partial("_Product", Model.CurrentProduct, (new ViewDataDictionary {
+                        new KeyValuePair<string, object>("productMenu", ProductMenu.Characteristics)
+                }))
+
+                <div class="prodList">
+                    <div class="prodListHead"><span>Технические характеристики</span></div>
+                    <div class="prodListIn" id="scrollbarX">
+                        <div class="viewport">
+                            <div class="overview">
+                                <ul>
+                                    @foreach (var image in Model.CurrentProduct.ProductImage)
+                                    {
+                                        <li class="a">
+                                            <div>
+                                                <span>
+                                                    <a id="sl_1" href="@Url.Action("Photos", new { id = Model.CurrentProduct.ID })">
+                                                        <img src="/@string.Concat(ProjectConfiguration.Get.FilePaths["products"], image.ImageName)" />
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="scrollbar">
+                            <div class="track">
+                                <div class="thumb">
+                                    <div class="end"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="prodTable">
+                    <table>
+                        @*<tr>
+                            <th>Общая информация</th>
+                            <th></th>
+                        </tr>*@
+
+                        @foreach (var section2 in Model.Sections)
+                        {
+                            if (section2.Parameters.Any())
+                            {
+                                <tr>
+                                    <th>@section2.Section.Name</th>
+                                    <th></th>
+                                </tr>
+
+                                foreach (var parameter in section2.Parameters)
+                                {
+                                    <tr>
+                                        <td>@parameter.Name</td>
+                                        <td>
+                                            @if (!String.IsNullOrEmpty(parameter.Value))
+                                            {
+                                                @parameter.Value@:&nbsp;@parameter.Unit
+                                            }
+                                            else
+                                            {
+                                                @:Не указано
+                                    }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    </table>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>

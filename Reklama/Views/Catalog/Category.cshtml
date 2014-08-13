@@ -1,0 +1,300 @@
+﻿@using Reklama.Models.ViewModels.Catalog
+@using Reklama.ViewModels.Catalog
+@model Reklama.ViewModels.Catalog.CategoryOverviewViewModel
+@{
+    ViewBag.Title = Model.CurrentCategory.Name;
+    var secondCategory = Model.CurrentCategory;
+    var filter = Model.Filter;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="catalogInner">
+    <table>
+        <tr>
+            <td class="ci1">
+                @Html.Partial("_PlaceGoods")
+                @Html.Partial("_Manufacturers", new ManufacturersMenuViewModel
+                {
+                    CurrentCategory = Model.CurrentCategory,
+                    Manufacturers = Model.Manufacturers
+                    
+                })
+                @{ Html.RenderAction("GetUnderFiltersBanner", "Banners");}
+
+                @Html.Partial("_YandexDirectPartial")
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                    <a href="/">Главная страница</a>
+                    <span class="arr">&rarr;</span>
+                    @Html.ActionLink("Каталог товаров", "Index")
+                    <span class="arr">&rarr;</span>
+                    @secondCategory.Name
+                </div>
+                <h1>@secondCategory.Name</h1>
+                <div class="hed2">
+                    <div class="ciSort">
+                        <span>Сортировать по:</span>
+                        <ul>
+                            <li @((filter.SortOptions == Domain.Enums.SortOptionsParams.ByPrice) ? "class=a" : "")>
+                                <img class="ciSortL" src="/Images/System/ciSortL.png"><img class="ciSortR" src="/Images/System/ciSortR.png"><a href="@Url.Action("Category", new ProductsFilterParams()
+                                                                                                                                                {
+                                                                                                                                                    Page = filter.Page,
+                                                                                                                                                    PageSize = filter.PageSize,
+                                                                                                                                                    SecondCategoryId = filter.SecondCategoryId,
+                                                                                                                                                    SortOptions = Domain.Enums.SortOptionsParams.ByPrice,
+                                                                                                                                                    SortOrder = filter.SortOrder,
+                                                                                                                                                    ThirdCategoryId = filter.ThirdCategoryId
+                                                                                                                                                })"><span>цене</span></a>
+                            </li>
+                            <li @((filter.SortOptions == Domain.Enums.SortOptionsParams.ByName) ? "class=a" : "")>
+                                <img class="ciSortL" src="/Images/System/ciSortL.png"><img class="ciSortR" src="/Images/System/ciSortR.png"><a href="@Url.Action("Category", new ProductsFilterParams()
+                                                                                                                                                {
+                                                                                                                                                    Page = filter.Page,
+                                                                                                                                                    PageSize = filter.PageSize,
+                                                                                                                                                    SecondCategoryId = filter.SecondCategoryId,
+                                                                                                                                                    SortOptions = Domain.Enums.SortOptionsParams.ByName,
+                                                                                                                                                    SortOrder = filter.SortOrder,
+                                                                                                                                                    ThirdCategoryId = filter.ThirdCategoryId
+                                                                                                                                                })"><span>названию</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="retSort down">
+                        @if (filter.SortOrder == Domain.Enums.SortOrderParams.Ascending)
+                        {
+                            <a href="@Url.Action("Category", new ProductsFilterParams()
+                                {
+                                    Page = filter.Page,
+                                    PageSize = filter.PageSize,
+                                    SecondCategoryId = filter.SecondCategoryId,
+                                    SortOptions = filter.SortOptions,
+                                    SortOrder = Domain.Enums.SortOrderParams.Descending,
+                                    ThirdCategoryId = filter.ThirdCategoryId
+                                })">
+                                по убыванию
+                            </a><span>&nbsp;</span>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Category", new ProductsFilterParams()
+                                {
+                                    Page = filter.Page,
+                                    PageSize = filter.PageSize,
+                                    SecondCategoryId = filter.SecondCategoryId,
+                                    SortOptions = filter.SortOptions,
+                                    SortOrder = Domain.Enums.SortOrderParams.Ascending,
+                                    ThirdCategoryId = filter.ThirdCategoryId
+                                })">
+                                по возрастанию
+                            </a><span>&nbsp;</span>
+                        }
+                    </div>
+                    <div class="ciShowBy">
+                        <span>Показать на странице:</span>
+                        <ul>
+                            @for (int i = 0; i < 3; i++)
+                            {
+                                <li @((filter.PageSize == Reklama.ProjectConfiguration.Get.ItemsOnPage[i]) ? "class=a" : "")>
+                                    <a href="@Url.Action("Category", new ProductsFilterParams()
+                                        {
+                                            Page = filter.Page,
+                                            PageSize = Reklama.ProjectConfiguration.Get.ItemsOnPage[i],
+                                            SecondCategoryId = filter.SecondCategoryId,
+                                            SortOptions = filter.SortOptions,
+                                            SortOrder = filter.SortOrder,
+                                            ThirdCategoryId = filter.ThirdCategoryId
+                                        })">
+                                        <span>@Reklama.ProjectConfiguration.Get.ItemsOnPage[i]</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="ciList">
+                    <ul>
+                        @foreach (var product in Model.Products)
+                        {
+                            <li>
+                                <table>
+                                    <tr>
+                                        <td class="ciImg">
+                                            <a href="@Url.Action("Details", new { id = product.ID })">
+                                                @Html.Partial("_ProductTitularImage", product.ProductImage)
+                                            </a>
+                                        </td>
+                                        <td class="ciText">
+                                            <div>
+                                                <span class="ciName">@Html.ActionLink(product.Title, "Details", new { id = product.ID })</span>
+                                                <p>@product.SmallDescription ...@Html.ActionLink("Читать подробнее", "Details", new { id = product.ID })</p>
+                                                <div class="ciRate">
+                                                    <span>
+                                                        <img src="/Images/System/file.png" />
+                                                        @Html.ActionLink("Характеристики", "Details", new { id = product.ID })
+                                                    </span>
+                                                    <span>
+                                                        <img src="/Images/System/foto.png" />
+                                                        @Html.ActionLink("Фото", "Photos", new { id = product.ID })
+                                                        <sup>@(product.ProductImage.Count)</sup>
+                                                    </span>
+                                                    <span>
+
+                                                        @if (product.ReviewLink != null && !product.ReviewLink.IsEmpty())
+                                                        {
+                                                            <img src="/Images/System/page.png" />
+                                                            <a href="@product.ReviewLink">Обзор</a>
+                                                        }
+                                                    </span>
+                                                    <span>
+                                                        <img src="/Images/System/book.png" />
+                                                        @Html.ActionLink("Отзывы", "Feedbacks", new { id = product.ID })
+                                                        <sup>@product.ProductFeedback.Count</sup>
+                                                    </span>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="ciOffers">
+                                            @Html.Partial("_ProductCurrencyPartialList", product)
+                                            @Html.Partial("_BuySellersCount", product)
+                                        </td>
+                                    </tr>
+                                </table>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+
+
+
+                <div class="pages">
+                    <ul class="fastNav">
+                        <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                        <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                        <a class="page-prev" href="javascript:void(0)"></a>
+
+                        @for (int page = 1; page <= Model.Products.PageCount && page <= 7; page++)
+                        {
+                            <li>
+
+                                @if (page == Model.Products.PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "Category", new
+                                                                            {
+                                                                                Page = page,
+                                                                                filter.PageSize,
+                                                                                filter.SecondCategoryId,
+                                                                                filter.SortOptions,
+                                                                                filter.SortOrder,
+                                                                                filter.ThirdCategoryId
+                                                                            },
+                                                                            new { @class = "hr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "Category", new
+                                                                            {
+                                                                                Page = page,
+                                                                                filter.PageSize,
+                                                                                filter.SecondCategoryId,
+                                                                                filter.SortOptions,
+                                                                                filter.SortOrder,
+                                                                                filter.ThirdCategoryId
+                                                                            })
+                                }
+                            </li>
+                        }
+
+                        @if (Model.Products.PageCount > 14)
+                        {
+                            <li class="exppages">
+                                <a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a>
+                            </li>
+                        }
+
+                        @for (int page = Model.Products.PageCount - 6; page <= Model.Products.PageCount && page > 7; page++)
+                        {
+                            <li>
+
+                                @if (page == Model.Products.PageNumber)
+                                {
+                                    @Html.ActionLink(page.ToString(), "Category", new
+                                                                            {
+                                                                                Page = page,
+                                                                                filter.PageSize,
+                                                                                filter.SecondCategoryId,
+                                                                                filter.SortOptions,
+                                                                                filter.SortOrder,
+                                                                                filter.ThirdCategoryId
+                                                                            },
+                                                                            new { @class = "hr" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(page.ToString(), "Category", new
+                                                                            {
+                                                                                Page = page,
+                                                                                filter.PageSize,
+                                                                                filter.SecondCategoryId,
+                                                                                filter.SortOptions,
+                                                                                filter.SortOrder,
+                                                                                filter.ThirdCategoryId
+                                                                            })
+                                }
+                            </li>
+                        }
+
+                        <a class="page-next" href="javascript:void(0)"></a>
+                    </ul>
+
+                    <div class="pageslider">
+                        <div class="pagesliderTop">
+                            <ul>
+                                @for (int page = 1; page <= Model.Products.PageCount; page++)
+                                {
+                                    <li>
+
+                                        @if (page == Model.Products.PageNumber)
+                                        {
+                                            @Html.ActionLink(page.ToString(), "Category", new
+                                                                            {
+                                                                                Page = page,
+                                                                                filter.PageSize,
+                                                                                filter.SecondCategoryId,
+                                                                                filter.SortOptions,
+                                                                                filter.SortOrder,
+                                                                                filter.ThirdCategoryId
+                                                                            },
+                                                                            new { @class = "shr" })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink(page.ToString(), "Category", new
+                                                                            {
+                                                                                Page = page,
+                                                                                filter.PageSize,
+                                                                                filter.SecondCategoryId,
+                                                                                filter.SortOptions,
+                                                                                filter.SortOrder,
+                                                                                filter.ThirdCategoryId
+                                                                            })
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>

@@ -1,0 +1,53 @@
+﻿@using Domain.Entity.Catalogs
+@using Domain.Enums
+@using PagedList
+@using Reklama.ViewModels.Catalog
+@model ProductFeedbacksPageViewModel
+
+@{
+    ViewBag.Title = "Отзывы о товаре";
+}
+
+<div class="catalogInner">
+
+
+    <table>
+        <tr>
+            <td class="ci1">
+                @Html.Partial("_PlaceGoods")
+                @Html.Partial("_Manufacturers", new ManufacturersMenuViewModel
+                {
+                    CurrentCategory = Model.Product.Category,
+                    Manufacturers = Model.Product.Category.Product.Select(q => q.Manufacturer)
+                })
+                @{ Html.RenderAction("GetUnderFiltersBanner", "Banners");}
+
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="crumbs">
+                    <a href="/">Главная страница</a>
+                    <span class="arr">&rarr;</span>
+                    @Html.ActionLink("Каталог товаров", "Index")
+                    <span class="arr">&rarr;</span>
+                    @Html.ActionLink(Model.Product.Category.Name, "Category", new { secondCategoryId = Model.Product.Category.ID })
+                    <span class="arr">&rarr;</span>
+                    @Model.Product.Title - Отзывы
+                </div>
+                
+                @Html.Partial("_Product", Model.Product, (new ViewDataDictionary() { 
+                        new KeyValuePair<string, object>("productMenu", ProductMenu.Feedback)
+                }))
+                
+                
+                @* List of comments *@
+                @Html.Partial("_ProductComments", Model)
+                
+
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>

@@ -1,0 +1,149 @@
+﻿@model Reklama.ViewModels.Shops.ShopPageViewModel
+
+@{
+    ViewBag.Title = "Редактирование страницы магазина";
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<div class="catalogInner personal">
+    <table>
+        <tr>
+            <td class="ci1">
+                <div class="persLogo">
+                    <img class="logoShop" src="@(Model.Shop.Logo != null ? "/Images/Catalog/ShopLogos/" + Model.Shop.Logo : "")" />
+                </div>
+                <p class="persLink">@Html.ActionLink("Страница на сайте", "Details", "Shops", new { id = Model.Shop.ID }, null)</p>
+
+                <div class="persBord"></div>
+                <p class="persTitleL">Абонентская плата</p>
+                <div class="subscriberFee">
+                    <div class="mPrice1">
+                        <img class="mPriceL1" src="/Images/System/mPriceL1.png">
+                        <img class="mPriceR1" src="/Images/System/mPriceR1.png">
+                        @(Model.MonthlyFee)
+                        <span>USD</span>
+                    </div>
+
+                </div>
+                <div class="clear"></div><p>оплата производится в конце месяца (менеджер свяжется с вами).</p>
+                <div class="persBord"></div>
+               
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="persTop">
+                    <p class="persTitle">Панель управления магазином @Model.Shop.Title</p>
+                </div>
+                @Html.Partial("_ShopTabs", Model.Shop.ID)
+                <div class="persBlock persPage">
+                    <div class="persBlockTop">
+                    </div>
+                    <div class="persProd">
+                        @using (Html.BeginForm("EditShopPage", "Shops", FormMethod.Post))
+                        {
+                            <table>
+                                <tr>
+                                    <th>Название магазина:</th>
+                                    <td>
+                                        @if (!User.IsInRole("Administrator") && !User.IsInRole("Moderator"))
+                                        {
+                                            @Html.TextBoxFor(x => x.Shop.Title, new { disabled = "disabled" })
+                                            @Html.HiddenFor(x => x.Shop.Title)
+                                        }
+                                        else
+                                        {
+                                            @Html.TextBoxFor(x => x.Shop.Title, new { @class = "regInp1" })
+                                        }
+                                        <div>@Html.ValidationMessageFor(x => x.Shop.Title)</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Логотип:</th>
+                                    <td>
+                                        <img class="logoShops" src="@(Model.Shop.Logo != null ? "/Images/Catalog/ShopLogos/" + Model.Shop.Logo : "/Images/System/no_logo.png")" />
+                                        <div>
+                                            <img src="/Images/System/regBut1.gif" class="shopsUploadLogo" />
+                                            <input type="button" class="shopsDeleteLogo" value="Удалить логотип" 
+                                                @(Model.Shop.Logo != null ? "" : "style=display:none") />
+                                        </div>
+                                        <img id="load" class="unvisible" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Контактные телефоны:</th>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.Shop.Phone)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>E-mail:</th>
+                                    <td>@Html.TextBoxFor(x => x.User.Email, new { disabled = "disabled" })</td>
+                                </tr>
+                                <tr>
+                                    <th>Адрес сайта:</th>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.Shop.Site)
+                                        <div>@Html.ValidationMessageFor(x => x.Shop.Site)</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>ICQ:</th>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.Shop.Icq)
+                                        <div>@Html.ValidationMessageFor(x => x.Shop.Icq)</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Skype:</th>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.Shop.Skype)
+                                        <div>@Html.ValidationMessageFor(x => x.Shop.Skype)</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Режим работы:</th>
+                                    <td>
+                                        @Html.CheckBoxFor(x => x.Shop.Monday)<label>пн</label>
+                                        @Html.CheckBoxFor(x => x.Shop.Tuesday)<label>вт</label>
+                                        @Html.CheckBoxFor(x => x.Shop.Wednesday)<label>ср</label>
+                                        @Html.CheckBoxFor(x => x.Shop.Thursday)<label>чт</label>
+                                        @Html.CheckBoxFor(x => x.Shop.Friday)<label>пт</label>
+                                        @Html.CheckBoxFor(x => x.Shop.Saturday)<label>сб</label>
+                                        @Html.CheckBoxFor(x => x.Shop.Sunday)<label>вс</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Описание магазина:</th>
+                                    <td>
+                                        <p>
+                                            @Html.TextAreaFor(x => x.Shop.Description)
+                                            <div>@Html.ValidationMessageFor(x => x.Shop.Description)</div>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+
+    <input type="hidden" id="Id" name="Id" value="@(Model.Shop.ID)" />
+    <input type="hidden" id="Requisites" name="Requisites" value="@(Model.Shop.Requisites)" />
+    <input type="hidden" id="FullTitle" name="FullTitle" value="@(Model.Shop.FullTitle)" />
+    <input type="hidden" id="CompanyName" name="CompanyName" value="@(Model.Shop.CompanyName)" />
+    <input type="hidden" id="CityID" name="CityID" value="@(Model.Shop.CityID)" />
+                            <input type="submit" class="savePpage" value=" " />
+                        }
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/ajaxupload.js")
+    @Scripts.Render("~/Scripts/Shop.js")
+    @Scripts.Render("~/Scripts/Catalog/Shops.js")
+}

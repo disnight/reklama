@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ReklamaDataEntitiesStoreContainer" CdmEntityContainer="ReklamaCustomEntities">
+    <EntitySetMapping Name="Banners">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.Banners">
+        <MappingFragment StoreEntitySet="Banners">
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="CountOfClicks" ColumnName="CountOfClicks" />
+          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+          <ScalarProperty Name="BannerType" ColumnName="BannerType" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BannerTypes">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.BannerTypes">
+        <MappingFragment StoreEntitySet="BannerTypes">
+          <ScalarProperty Name="Desc" ColumnName="Desc" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.Images">
+        <MappingFragment StoreEntitySet="Images">
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Manufacturer">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.Manufacturer">
+        <MappingFragment StoreEntitySet="Manufacturer">
+          <ScalarProperty Name="IsPopular" ColumnName="IsPopular" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="SmallDescription" ColumnName="SmallDescription" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ReviewLink" ColumnName="ReviewLink" />
+          <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductBookmark">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.ProductBookmark">
+        <MappingFragment StoreEntitySet="ProductBookmark">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductFeedback">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.ProductFeedback">
+        <MappingFragment StoreEntitySet="ProductFeedback">
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductImage">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.ProductImage">
+        <MappingFragment StoreEntitySet="ProductImage">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsTitular" ColumnName="IsTitular" />
+          <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shop">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.Shop">
+        <MappingFragment StoreEntitySet="Shop">
+          <ScalarProperty Name="Skype" ColumnName="Skype" />
+          <ScalarProperty Name="Icq" ColumnName="Icq" />
+          <ScalarProperty Name="Requisites" ColumnName="Requisites" />
+          <ScalarProperty Name="Sunday" ColumnName="Sunday" />
+          <ScalarProperty Name="Saturday" ColumnName="Saturday" />
+          <ScalarProperty Name="Friday" ColumnName="Friday" />
+          <ScalarProperty Name="Thursday" ColumnName="Thursday" />
+          <ScalarProperty Name="Wednesday" ColumnName="Wednesday" />
+          <ScalarProperty Name="Tuesday" ColumnName="Tuesday" />
+          <ScalarProperty Name="Monday" ColumnName="Monday" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="FullTitle" ColumnName="FullTitle" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Debt" ColumnName="Debt" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShopFeedback">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.ShopFeedback">
+        <MappingFragment StoreEntitySet="ShopFeedback">
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShopProduct">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.ShopProduct">
+        <MappingFragment StoreEntitySet="ShopProduct">
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ShopProductStatusID" ColumnName="ShopProductStatusID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShopProductStatus">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.ShopProductStatus">
+        <MappingFragment StoreEntitySet="ShopProductStatus">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Unit">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.Unit">
+        <MappingFragment StoreEntitySet="Unit">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoryParameter">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.CategoryParameter">
+        <MappingFragment StoreEntitySet="CategoryParameter">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SectionID" ColumnName="SectionID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoryParametersSection">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.CategoryParametersSection">
+        <MappingFragment StoreEntitySet="CategoryParametersSection">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Group">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.Group">
+        <MappingFragment StoreEntitySet="Group">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductParameterValue">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.ProductParameterValue">
+        <MappingFragment StoreEntitySet="ProductParameterValue">
+          <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="CategoryParameterID" ColumnName="CategoryParameterID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

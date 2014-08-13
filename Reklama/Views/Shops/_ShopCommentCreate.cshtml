@@ -1,0 +1,39 @@
+﻿@model Reklama.Models.ViewModels.Catalog.ShopCommentViewModel
+@using CaptchaMvc.HtmlHelpers
+
+@*<script src="~/Scripts/jquery-1.7.1.min.js"></script>*@
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<div class="itemResponseAdd">
+    <em>Оставить отзыв</em>
+    @using (Html.BeginForm("CreateShopFeedback", "Shops", FormMethod.Post))
+    {
+        @Html.ValidationSummary()
+
+        <div class="respArea">
+            @Html.TextAreaFor(c => c.Comment)
+        </div>
+        <div class="clear"></div>
+        <div class="respRules">
+            <p>рекомендуем ознакомиться -</p>
+            <p>
+                @{ Html.RenderAction("LinkToOneOfMainConfigPage", "Links", new { mainPageName = "UserAgreement" }); }
+            </p>
+        </div>
+        @Html.EditorFor(c => c.CommentId)
+        @Html.EditorFor(c => c.ShopId)
+        @Html.AntiForgeryToken()
+        <div class="respSubm">
+            @if(User.Identity.IsAuthenticated)
+            {
+                <input type="submit" value="" />
+            }
+            else
+            {
+                <div class="itemNothingResponse">Для отправки комментариев необходимо @Html.ActionLink("авторизоваться", "Login", "Account", new { returnUrl = Url.Action("Details", "Shop", new { id = Model.ShopId }) }, null)</div>
+            }
+        </div>
+
+    }
+</div>

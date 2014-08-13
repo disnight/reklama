@@ -100,6 +100,13 @@ namespace Reklama.Data.Base
         /// <returns>First Entity</returns>
         TEntity First(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
+        /// Gets first or default entity
+        /// </summary>
+        /// <param name="predicate">predicate</param>
+        /// <returns>First Entity</returns> 
+        /// 
+        TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate);
+        /// <summary>
         /// Gets first entity
         /// </summary>
         /// <param name="specification">specification</param>

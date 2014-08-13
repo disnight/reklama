@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Reklama.Data.Entities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ReklamaCustomEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Banners" EntityType="Reklama.Data.Entities.Banners" />
+    <EntitySet Name="BannerTypes" EntityType="Reklama.Data.Entities.BannerTypes" />
+    <EntitySet Name="Images" EntityType="Reklama.Data.Entities.Images" />
+    <AssociationSet Name="FK_Banners_BannerTypes" Association="Reklama.Data.Entities.FK_Banners_BannerTypes">
+      <End Role="BannerTypes" EntitySet="BannerTypes" />
+      <End Role="Banners" EntitySet="Banners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Banners_Images" Association="Reklama.Data.Entities.FK_Banners_Images">
+      <End Role="Images" EntitySet="Images" />
+      <End Role="Banners" EntitySet="Banners" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Banners">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Controller" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="BannerType" Type="Int32" Nullable="false" />
+    <Property Name="ImageID" Type="Int32" />
+    <Property Name="CountOfClicks" Type="Int32" />
+    <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsShow" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BannerTypes" Relationship="Reklama.Data.Entities.FK_Banners_BannerTypes" FromRole="Banners" ToRole="BannerTypes" />
+    <NavigationProperty Name="Images" Relationship="Reklama.Data.Entities.FK_Banners_Images" FromRole="Banners" ToRole="Images" />
+    <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="BannerTypes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Banners" Relationship="Reklama.Data.Entities.FK_Banners_BannerTypes" FromRole="BannerTypes" ToRole="Banners" />
+    <Property Name="Desc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Images">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Banners" Relationship="Reklama.Data.Entities.FK_Banners_Images" FromRole="Images" ToRole="Banners" />
+  </EntityType>
+  <Association Name="FK_Banners_BannerTypes">
+    <End Type="Reklama.Data.Entities.BannerTypes" Role="BannerTypes" Multiplicity="1" />
+    <End Type="Reklama.Data.Entities.Banners" Role="Banners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BannerTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Banners">
+        <PropertyRef Name="BannerType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Banners_Images">
+    <End Type="Reklama.Data.Entities.Images" Role="Images" Multiplicity="0..1" />
+    <End Type="Reklama.Data.Entities.Banners" Role="Banners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Images">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Banners">
+        <PropertyRef Name="ImageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

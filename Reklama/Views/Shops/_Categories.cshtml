@@ -1,0 +1,21 @@
+﻿@model Reklama.ViewModels.Shops.CategoriesViewModel
+
+<div class="lMenu2">
+    <ul>
+        @foreach (var group in Model.Groups)
+        {
+            <li>
+                <span><a href="javascript:void(0)">@group.Key.Name</a></span>
+                <ul class="lMenu2Second">
+                    @{
+            
+            foreach (var category in group.Distinct())
+            {
+                        <li>@Html.ActionLink(@category.Name, "ProductsShop", "Shops", new { shopID = Model.ShopID, categoryID = category.ID }, null)</li>
+            }
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+</div>

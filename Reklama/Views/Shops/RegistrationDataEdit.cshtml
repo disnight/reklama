@@ -1,0 +1,152 @@
+﻿@model Reklama.ViewModels.Shops.ShopRegistrationDataViewModel
+@{
+    ViewBag.Title = "Редактирование регистрационных данных";
+}
+
+@*<script src="~/Scripts/jquery-1.7.1.min.js"></script>*@
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<div class="catalogInner personal">
+    <table>
+        <tr>
+            <td class="ci1">
+                <div class="persLogo">
+                    <img src="@( Model.Shop.Logo != null ? "/Images/Catalog/ShopLogos/" + Model.Shop.Logo : "")" />
+                </div>
+                <p class="persLink">@Html.ActionLink("Страница на сайте", "Details", "Shops", new { id = Model.Shop.ID }, null)</p>
+
+                <div class="persBord"></div>
+                <p class="persTitleL">Абонентская плата</p>
+                <div class="subscriberFee">
+                    <div class="mPrice1">
+                        <img class="mPriceL1" src="/Images/System/mPriceL1.png">
+                        <img class="mPriceR1" src="/Images/System/mPriceR1.png">
+                        @(Model.MonthlyFee)
+                        <span>USD</span>
+                    </div>
+
+                </div>
+                <div class="clear"></div><p>оплата производится в конце месяца (менеджер свяжется с вами).</p>
+                <div class="persBord"></div>
+
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="persTop">
+                    <p class="persTitle">Панель управления магазином @Model.Shop.Title</p>
+                    
+                </div>
+                @Html.Partial("_ShopTabs", Model.Shop.ID)
+                <div class="persBlock persData">
+                    <div class="persBlockTop">
+                    </div>
+                    @using (Html.BeginForm("RegistrationDataEdit", "Shops", FormMethod.Post))
+                    {
+                        <div class="persProd">
+                            <div class="yellowInfo">@ViewBag.ChangeRegistrationDataHelp</div>
+                            <table>
+                                <tr>
+                                    <td><span>Название магазина:</span></td>
+                                    <td>
+                                        @if (!User.IsInRole("Administrator") && !User.IsInRole("Moderator"))
+                                        {
+                                            @Html.TextBoxFor(x => x.Shop.Title, new { disabled = "disabled" })
+                                            @Html.HiddenFor(x => x.Shop.Title)
+                                        }
+                                        else
+                                        {
+                                            @Html.TextBoxFor(x => x.Shop.Title, new { @class = "regInp1" })
+                                        }
+                                        <div>@Html.ValidationMessageFor(x => x.Shop.Title)</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Контактные данные:</th>
+                                </tr>
+                                <tr>
+                                    <td><span>Контактный телефон:</span></td>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.Shop.Phone, new { @class = "regInp1" })
+                                        <div>@Html.ValidationMessageFor(x => x.Shop.Phone)</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span>Электронная почта:</span></td>
+                                    <td>@Html.TextBoxFor(x => x.User.Email, new { disabled = "disabled" })</td>
+                                </tr>
+                                <tr>
+                                    <th>Персональные данные:</th>
+                                </tr>
+                                <tr>
+                                    <td><span>Фамилия Имя Отчество:</span></td>
+                                    <td>
+                                        @if (!User.IsInRole("Administrator") && !User.IsInRole("Moderator"))
+                                        {
+                                            @Html.TextBoxFor(x => x.Shop.Title, new { disabled = "disabled" })
+                                            @Html.HiddenFor(x => x.Shop.Title)
+                                        }
+                                        else
+                                        {
+                                            @Html.TextBoxFor(x => x.Shop.Title)
+                                        }
+                                        <div>@Html.ValidationMessageFor(x => x.Shop.Title)</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Данные организации:</th>
+                                </tr>
+                                <tr>
+                                    <td><span>Название организации:</span></td>
+                                    <td>
+                                        @if (!User.IsInRole("Administrator") && !User.IsInRole("Moderator"))
+                                        {
+                                            @Html.TextBoxFor(x => x.Shop.CompanyName, new { disabled = "disabled" })
+                                            @Html.HiddenFor(x => x.Shop.CompanyName)
+                                        }
+                                        else
+                                        {
+                                            @Html.TextBoxFor(x => x.Shop.CompanyName)
+                                        }
+                                        <div>@Html.ValidationMessageFor(x => x.Shop.CompanyName)</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span>Город:</span></td>
+                                    <td>
+                                        @Html.DropDownListFor(x => x.Shop.CityID, new SelectList(Model.Cities, "Id", "Name"), "Выберите город", new { @class = "regInp2" })
+                                        <div>@Html.ValidationMessageFor(x => x.Shop.CityID)</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span>Реквизиты:</span></td>
+                                    <td>
+                                        @Html.TextAreaFor(x => x.Shop.Requisites)
+                                        <div>@Html.ValidationMessageFor(x => x.Shop.Requisites)</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        @Html.HiddenFor(q => q.Shop.ID)
+                                        @Html.HiddenFor(q => q.Shop.UserID)
+                                        <input type="hidden" id="Id" name="Id" value="@(Model.Shop.ID)" />
+                                        <input type="submit" class="savePpage" value="" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="clear"></div>
+                        </div>
+                       
+                    }
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,229 @@
+﻿@using Reklama.Models.ViewModels.Catalog
+@model Reklama.ViewModels.Shops.ProductForShopViewModel
+
+@{
+    ViewBag.Title = "Товары магазина";
+}
+
+<div class="catalogInner personal">
+    <table>
+        <tr>
+            <td class="ci1">
+                <div class="persLogo">
+                    <img src="@( Model.Shop.Logo != null ? "/Images/Catalog/ShopLogos/" + Model.Shop.Logo : "")" />
+                </div>
+                <p class="persLink">@Html.ActionLink("Страница на сайте", "Details", "Shops", new { id = Model.Shop.ID }, null)
+                </p>
+   
+                <div class="persBord"></div>
+                <p class="persTitleL">Абонентская плата</p>
+                <div class="subscriberFee">
+                    <div class="mPrice1">
+                        <img class="mPriceL1" src="/Images/System/mPriceL1.png">
+                        <img class="mPriceR1" src="/Images/System/mPriceR1.png">
+                        @(Model.MonthlyFee)
+                        <span>USD</span>
+                    </div>
+
+                </div>
+                <p>оплата производится в конце месяца (менеджер свяжется с вами).</p>
+                <div class="persBord"></div>
+            
+            </td>
+            <td class="ci2">
+                <img width="10" height="1" border="0" src="/Images/System/s.png" />
+            </td>
+            <td class="ci3" valign="top">
+                <div class="persTop">
+                    <p class="persTitle">Панель управления магазином @Model.Shop.Title</p>
+                    
+                </div>
+                @Html.Partial("_ShopTabs", Model.Shop.ID)
+                @using (Html.BeginForm("ShopProducts", "Shops", FormMethod.Get))
+{
+    <div class="persBlock persBase">
+        @if (Model.Groups.Any())
+        {
+            <div class="persBlockTop">
+                <div class="persSection">
+                    <span>Раздел каталога:</span>
+                    @Html.DropDownList("CategoryId", Model.Groups)
+                </div>
+                <div class="persSection right">
+                    <span>Подраздел:</span>
+                    @Html.DropDownList("SecondCategoryId", Model.Categories)
+                </div>
+            </div>
+            <div class="persProd">
+                <div class="persProdSection">
+                    @if (Model.Manufacturers != null)
+                    {
+
+                        <span>Производитель:</span>
+                        @Html.DropDownList("ThirdCategoryId", Model.Manufacturers)
+
+                    }
+                </div>
+                <input type="submit" value="Сменить категорию" />
+
+                <ul>
+                    @foreach (var item in Model.ShopProductsFiltered)
+                                        {
+                                        <li>
+                                            <table>
+                                                <tr>
+                                                    <td class="ppInfo">
+                                                        @Html.Partial("_ProductTitularImage", item.Product.ProductImage)
+                                                        <span>@Html.ActionLink(@item.Product.Title, "Details", "Catalog", new { id = item.ProductID }, null)</span>
+                                                        <input type="text" value="@Math.Round(((decimal)item.Price), 2).ToString("0.#####", System.Globalization.CultureInfo.InvariantCulture)" style="float:right" />
+                                                    </td>
+                                                    <td class="ppMargin"></td>
+                                                    <td class="ppChange">
+                                                        <input type="button" value="Изменить цену" class="changeButton" id="@item.ProductID" />
+                                                    </td>
+                                                    <td class="ppMargin"></td>
+                                                    <td class="ppDel">
+                                                        @*<input type="button" value=" " class="removeButton" href="/Shop/RemoveProductFromShop/@item.ShopId?CategoryId=@item.Product.CategoryId&SecondCategoryId=@item.Product.SecondCategoryId&ThirdCategoryId=@item.Product.ThirdCategoryId&Page=@Model.PageNumber&ShopProductId=@item.Id"/>*@
+                                                        @*<input type="button" value=" " class="removeButton" href="/Shop/RemoveProductFromShop/@Model.Filter.Id?CategoryId=@Model.Filter.CategoryId&SecondCategoryId=@Model.Filter.SecondCategoryId&ThirdCategoryId=@Model.Filter.ThirdCategoryId&Page=@Model.PageNumber&ShopProductId=@item.Id"/>*@
+                                                        <input type="button" class="removeButton" value=" " productid="@item.ProductID" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </li>
+                                        }
+                </ul>
+                <div class="pages">
+                    <ul class="fastNav">
+                        <img class="fastNavL" src="/Images/System/fastNavL.png" />
+                        <img class="fastNavR" src="/Images/System/fastNavR.png" />
+                        <a class="page-prev" href="javascript:void(0)"></a>
+
+                        @for (int page = 1; page <= Model.ShopProductsFiltered.PageCount && page <= 7; page++)
+                                            {
+                                            <li>
+
+                                                @if (page == Model.ShopProductsFiltered.PageNumber)
+                                                    {
+                                                    @Html.ActionLink(page.ToString(), "ProductsShop", new FilterParams
+                                                        {
+                                                            Id = Model.Filter.Id,
+                                                            CategoryId = Model.Filter.CategoryId,
+                                                            SecondCategoryId = Model.Filter.SecondCategoryId,
+                                                            ThirdCategoryId = Model.Filter.ThirdCategoryId,
+                                                            Page = page
+                                                        },
+                                                            new { @class = "hr" })
+                                                    }
+                                                    else
+                                                    {
+                                                    @Html.ActionLink(page.ToString(), "ProductsShop", new FilterParams
+                                                        {
+                                                            Id = Model.Filter.Id,
+                                                            CategoryId = Model.Filter.CategoryId,
+                                                            SecondCategoryId = Model.Filter.SecondCategoryId,
+                                                            ThirdCategoryId = Model.Filter.ThirdCategoryId,
+                                                            Page = page
+                                                        })
+                                                    }
+                                            </li>
+                                            }
+
+                        @if (Model.ShopProductsFiltered.PageCount > 14)
+                                            {
+                                            <li class="exppages">
+                                                <a class="exppagesTitle" href="javascript:void(0)">все<img src="/Images/System/orArrow.png" /></a>
+                                            </li>
+                                            }
+
+
+                        @for (int page = Model.ShopProductsFiltered.PageCount - 6; page <= Model.ShopProductsFiltered.PageCount && page > 7; page++)
+                                            {
+                                            <li>
+
+                                                @if (page == Model.ShopProductsFiltered.PageNumber)
+                                                    {
+                                                    @Html.ActionLink(page.ToString(), "ProductsShop", new FilterParams
+                                                        {
+                                                            Id = Model.Filter.Id,
+                                                            CategoryId = Model.Filter.CategoryId,
+                                                            SecondCategoryId = Model.Filter.SecondCategoryId,
+                                                            ThirdCategoryId = Model.Filter.ThirdCategoryId,
+                                                            Page = page
+                                                        },
+                                                            new { @class = "hr" })
+                                                    }
+                                                    else
+                                                    {
+                                                    @Html.ActionLink(page.ToString(), "ProductsShop", new FilterParams
+                                                        {
+                                                            Id = Model.Filter.Id,
+                                                            CategoryId = Model.Filter.CategoryId,
+                                                            SecondCategoryId = Model.Filter.SecondCategoryId,
+                                                            ThirdCategoryId = Model.Filter.ThirdCategoryId,
+                                                            Page = page
+                                                        })
+                                                    }
+                                            </li>
+                                            }
+
+                        <a class="page-next" href="javascript:void(0)"></a>
+                    </ul>
+
+                    <div class="pageslider">
+                        <div class="pagesliderTop">
+                            <ul>
+                                @for (int page = 1; page <= Model.ShopProductsFiltered.PageCount; page++)
+                                                    {
+                                                    <li>
+
+                                                        @if (page == Model.ShopProductsFiltered.PageNumber)
+                                                            {
+                                                            @Html.ActionLink(page.ToString(), "ProductsShop", new FilterParams
+                                                                {
+                                                                    Id = Model.Filter.Id,
+                                                                    CategoryId = Model.Filter.CategoryId,
+                                                                    SecondCategoryId = Model.Filter.SecondCategoryId,
+                                                                    ThirdCategoryId = Model.Filter.ThirdCategoryId,
+                                                                    Page = page
+                                                                },
+                                                                    new { @class = "shr" })
+                                                            }
+                                                            else
+                                                            {
+                                                            @Html.ActionLink(page.ToString(), "ProductsShop", new FilterParams
+                                                                {
+                                                                    Id = Model.Filter.Id,
+                                                                    CategoryId = Model.Filter.CategoryId,
+                                                                    SecondCategoryId = Model.Filter.SecondCategoryId,
+                                                                    ThirdCategoryId = Model.Filter.ThirdCategoryId,
+                                                                    Page = page
+                                                                })
+                                                            }
+                                                    </li>
+                                                    }
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        }
+        else
+        {
+            <div class="persProd">
+                <h3>Нет товаров в выбранной категории!</h3>
+            </div>
+        }
+    </div>
+    @Html.Hidden("ShopId", Model.Shop.ID)
+}
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="middleBot"></div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/catalog/Products.js")
+}

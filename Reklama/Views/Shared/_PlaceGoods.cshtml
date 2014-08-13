@@ -1,0 +1,15 @@
+﻿@{
+    Layout = null;
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="placeGoods">
+        @if(User.IsInRole("Shop")) {
+            @Html.ActionLink(" ", "RedirectToBaseProducts", "Shops")
+        }
+        else {
+            @Html.ActionLink(" ", "Create", "Shops")
+        }
+    </div>
+}

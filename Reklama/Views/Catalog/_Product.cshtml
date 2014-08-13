@@ -1,0 +1,42 @@
+﻿@using Domain.Enums
+@using Reklama
+@model Reklama.Data.Entities.Product
+@{
+    Layout = null;
+    var viewData= (ViewDataDictionary)ViewData;
+}
+
+<h1>@Model.Title</h1>
+@* Link for Add-To-Bookmarks *@
+@if (Model.ProductBookmark.Any(q => q.UserID == WebSecurity.CurrentUserId))
+{
+    <span>В закладках</span>
+}
+else
+{
+    if (WebSecurity.IsAuthenticated)
+    {
+    @Html.Partial("_AddToBookmarkPartial", new Reklama.Models.SortModels.CategorySearchSortModel()
+                                                                                {
+                                                                                    Id = (int)Model.ID,
+                                                                                    Category = CategorySearch.Product
+                                                                                })
+    }
+}
+<div class="prodTop">
+    <div class="prodTopL">
+        <a href="@Url.Action("Details", "Catalog", new { id = Model.ID })">
+            @Html.Partial("_ProductTitularImage", Model.ProductImage)
+        </a>
+    </div>
+
+    @Html.Partial("_ProductMenu", Model, viewData)
+
+    <div class="prodTopM">
+        <p>@Model.Description</p>
+
+        @Html.Partial("_ProductCurrencyPartial", Model)
+        @Html.Partial("_BuySellersCount", Model)
+    </div>
+
+</div>

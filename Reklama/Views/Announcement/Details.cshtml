@@ -91,14 +91,14 @@
                                 }
                             }
 
-                           @* @Html.Partial("_SocialWidgetsPartial", new SocialWidgetsViewModel()
+                            @Html.Partial("_SocialWidgetsPartial", new SocialWidgetsViewModel()
                             {
                                 Title = Model.Name,
                                 Description = Model.SmallDescription,
                                 ImageLink = (Model.Images != null && Model.Images.Count > 0) ? "http://reklama.tm" + string.Concat('/', Reklama.ProjectConfiguration.Get.FilePaths["users"] + Model.Images.ElementAt(0).Link) : "",
                                 Link = "http://reklama.tm" + Url.Action("Details", "Announcement", new { id = Model.Id }),
                                 IsInline = true
-                            })*@
+                            })
                         </div>
                     </div>
                     

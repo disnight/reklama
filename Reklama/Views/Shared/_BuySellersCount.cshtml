@@ -1,0 +1,14 @@
+﻿@model Reklama.Data.Entities.Product
+@{
+    Layout = null;
+}
+
+@if (Model.ShopProduct != null)
+{
+    <div class="prodToBuy">
+        <div class="buyProd">
+            @Html.ActionLink(" ", "Shops", "Catalog", new { id = Model.ID }, null)
+        </div>
+        <div class="selNum">@Model.ShopProduct.Count(r => r.Shop.IsActive) продавцов</div>
+    </div>
+}

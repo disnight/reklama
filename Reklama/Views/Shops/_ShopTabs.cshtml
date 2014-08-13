@@ -1,0 +1,25 @@
+﻿@model int
+<div class="persTabs">
+    <ul>
+        <li @( ViewContext.RouteData.Values["action"] as string == "ShopProducts" ? "class=a" : "")  >
+            <img class="persTabsL" src="/Images/System/persTabsL.png" />
+            <img class="persTabsR" src="/Images/System/persTabsR.png" />
+            @Html.ActionLink("Товары магазина", "ShopProducts", "Shops", new { id = Model }, null)
+        </li>
+        <li @(ViewContext.RouteData.Values["action"] as string == "BaseProducts" ? "class=a" : "")>
+            <img class="persTabsL" src="/Images/System/persTabsL.png" />
+            <img class="persTabsR" src="/Images/System/persTabsR.png" />
+            @Html.ActionLink("База товаров", "BaseProducts", "Shops", new { id = Model }, null)
+        </li>
+        <li @(ViewContext.RouteData.Values["action"] as string == "RegistrationData" || ViewContext.RouteData.Values["action"] as string == "RegistrationDataEdit" ? "class=a" : "")>
+            <img class="persTabsL" src="/Images/System/persTabsL.png" />
+            <img class="persTabsR" src="/Images/System/persTabsR.png" />
+            @Html.ActionLink("Регистрационные данные", "RegistrationData", "Shops", new { id = Model }, null)
+        </li>
+        <li @(ViewContext.RouteData.Values["action"] as string == "ViewShopPage" || ViewContext.RouteData.Values["action"] as string == "EditShopPage" ? "class=a" : "")>
+            <img class="persTabsL" src="/Images/System/persTabsL.png" />
+            <img class="persTabsR" src="/Images/System/persTabsR.png" />
+            @Html.ActionLink("Страница магазина", "ViewShopPage", "Shops", new { id = Model }, null)
+        </li>
+    </ul>
+</div>

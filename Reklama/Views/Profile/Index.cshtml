@@ -88,7 +88,7 @@
                                 </div>
                                 if (ViewBag.ShopId != null)
                                 {
-                                    <div>@Html.ActionLink("Мой магазин", "ViewShopPage", "Shop", new { id = ViewBag.ShopId }, null)</div>
+                                    <div>@Html.ActionLink("Мой магазин", "ViewShopPage", "Shops", new { id = ViewBag.ShopId }, null)</div>
                                     <div>@Html.RouteLink("Закладки", "MyAnnouncementBookmarks", null, new { @class = "userRed" })</div>
                                     <div>@Html.RouteLink("Мои объявления", "MyAnnouncements")</div>
                                     <div></div>
