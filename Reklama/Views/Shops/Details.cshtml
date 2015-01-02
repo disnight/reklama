@@ -47,6 +47,7 @@
                             </ul>
                         </div>
                         <div class="sbtCenter">
+				<p class="timex"> Режим работы: </p>
                             <div class="shopTime">
                                 <span class="@(Model.Shop.Monday ? "" : "no")">Пн</span>
                                 <span class="@(Model.Shop.Tuesday ? "" : "no")">Вт</span>
@@ -56,15 +57,15 @@
                                 <span class="@(Model.Shop.Saturday ? "" : "no")">Сб</span>
                                 <span class="@(Model.Shop.Sunday ? "" : "no")">Вс</span>
                             </div>
-                            <ul>
+                            <p>
                                 @Model.Shop.Phone
-                            </ul>
+                            </p>
                         </div>
                         <div class="sbtRight">
                             <p>@Model.Shop.Requisites</p>
                         </div>
                     </div>
-                    <div>@Model.Shop.Description</div>
+                    <div><p>@Model.Shop.Description</p></div>
                 </div>
                 @Html.Partial("_ShopComments", new ShopCommentsPageViewModel { Comments = Model.Comments, ShopID = Model.Shop.ID})
             </td>
