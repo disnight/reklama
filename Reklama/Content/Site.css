@@ -8884,3 +8884,12 @@ body
     margin: 0;
 }
 
+
+/* shop corrects*/
+.shopCont .shopLogo img {
+width: 200px;
+}
+
+.workResponse {
+margin-top: 1px;
+}
