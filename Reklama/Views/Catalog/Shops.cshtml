@@ -192,7 +192,8 @@
                                                     <a href="@Url.Action("Details", "Shops", new { id = shop.ShopID })"><img src="/Images/System/book.png" /><span>Отзывы</span></a><sup>@shop.Shop.ShopFeedback.Count</sup>
                                                 </div>
                                             </td>
-                                            <td class="shopText"></td>
+                                            <td class="shopText">
+						<p> @shop.Shop.Description </p></td>
                                         </tr>
                                     </table>
                                 </li>
