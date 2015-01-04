@@ -50,7 +50,7 @@ namespace Reklama.Data.Base
 
         public void Edit(TEntity entity)
         {
-            _objectSet.Attach(entity);
+            _objectSet.Attach(entity); 
             _context.ObjectStateManager.ChangeObjectState(entity, EntityState.Modified);
         }
 

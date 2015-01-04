@@ -1,4 +1,4 @@
-﻿@model System.Linq.IQueryable<Domain.Entity.Admin.PopularSectionInCatalog>
+﻿@model IEnumerable<Reklama.Data.Entities.Category>
 @{
     Layout = null;
 }
@@ -10,12 +10,12 @@
         <ul>
             @foreach (var popular in Model)
             {
-                var shopsProducts = popular.Section.Products.SelectMany(s => s.ShopProductRefs);
+                var shopsProducts = popular.Product.SelectMany(s => s.ShopProduct);
 
                 <li>
-                    @Html.ActionLink(popular.Section.Name, "List", "Product", new {secondCategoryId = popular.SectionId}, null)
+                    @Html.ActionLink(popular.Name, "Category", "Catalog", new {secondCategoryId = popular.ID}, null)
                     <sup>&nbsp;
-                        @if (shopsProducts != null && shopsProducts.Any())
+                        @if (shopsProducts.Any())
                         {
                             @:от @Convert.ToInt32(shopsProducts.Min(p => p.Price)).ToString() $
                         }

@@ -19,8 +19,8 @@ namespace Reklama.Data.Entities
             this.ProductBookmark = new HashSet<ProductBookmark>();
             this.ProductFeedback = new HashSet<ProductFeedback>();
             this.ProductImage = new HashSet<ProductImage>();
-            this.ShopProduct = new HashSet<ShopProduct>();
             this.ProductParameterValue = new HashSet<ProductParameterValue>();
+            this.ShopProduct = new HashSet<ShopProduct>();
         }
     
         public long ID { get; set; }
@@ -30,6 +30,7 @@ namespace Reklama.Data.Entities
         public string Title { get; set; }
         public string SmallDescription { get; set; }
         public string Description { get; set; }
+        public bool IsPopular { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime CreatedAt { get; set; }
     
@@ -37,8 +38,8 @@ namespace Reklama.Data.Entities
         public virtual ICollection<ProductBookmark> ProductBookmark { get; set; }
         public virtual ICollection<ProductFeedback> ProductFeedback { get; set; }
         public virtual ICollection<ProductImage> ProductImage { get; set; }
+        public virtual ICollection<ProductParameterValue> ProductParameterValue { get; set; }
         public virtual ICollection<ShopProduct> ShopProduct { get; set; }
         public virtual Category Category { get; set; }
-        public virtual ICollection<ProductParameterValue> ProductParameterValue { get; set; }
     }
 }

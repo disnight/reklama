@@ -7,6 +7,7 @@ using Domain.Entity.Announcements;
 using Domain.Enums;
 using Domain.Repository.Announcements;
 using Domain.Repository.Shared;
+using Reklama.Data.Servises;
 using Reklama.Models.SortModels;
 using Reklama.Models.ViewModels.Announcement;
 using Reklama.Models.ViewModels.Shared;
@@ -26,6 +27,8 @@ namespace Reklama.Controllers
     public class SearchController : Controller
     {
         private ReklamaContext rc = new ReklamaContext();
+
+        private readonly ProductService _productService = new ProductService();
 
         private IArticleRepository _articleRepository;
         private IAnnouncementRepository _announcementRepository;
@@ -148,11 +151,14 @@ namespace Reklama.Controllers
 
 
                 // Search by product
-                case CategorySearch.Product:
-                    var products = (new SearchModel<Product>(_productRepository))
-                        .Search(searchViewModel.Name, searchViewModel.OnlyByName)
-                        .OrderBy(p => p.Name)
-                        .AsQueryable();
+                default:
+                    var products = _productService.Search(searchViewModel.Name, searchViewModel.OnlyByName)
+                        .OrderBy(p => p.Title).ToList();
+                        
+                        //(new SearchModel<Product>(_productRepository))
+                        //.Search(searchViewModel.Name, searchViewModel.OnlyByName)
+                        //.OrderBy(p => p.Name)
+                        //.AsQueryable();
 
                     ViewBag.SearchViewModel = searchViewModel;
 

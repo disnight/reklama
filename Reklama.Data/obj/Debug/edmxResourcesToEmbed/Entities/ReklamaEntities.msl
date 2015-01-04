@@ -42,21 +42,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Product">
-      <EntityTypeMapping TypeName="Reklama.Data.Entities.Product">
-        <MappingFragment StoreEntitySet="Product">
-          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="SmallDescription" ColumnName="SmallDescription" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="ReviewLink" ColumnName="ReviewLink" />
-          <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
-          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ProductBookmark">
       <EntityTypeMapping TypeName="Reklama.Data.Entities.ProductBookmark">
         <MappingFragment StoreEntitySet="ProductBookmark">
@@ -152,18 +137,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Category">
-      <EntityTypeMapping TypeName="Reklama.Data.Entities.Category">
-        <MappingFragment StoreEntitySet="Category">
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CategoryParameter">
       <EntityTypeMapping TypeName="Reklama.Data.Entities.CategoryParameter">
         <MappingFragment StoreEntitySet="CategoryParameter">
@@ -183,14 +156,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Group">
-      <EntityTypeMapping TypeName="Reklama.Data.Entities.Group">
-        <MappingFragment StoreEntitySet="Group">
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ProductParameterValue">
       <EntityTypeMapping TypeName="Reklama.Data.Entities.ProductParameterValue">
         <MappingFragment StoreEntitySet="ProductParameterValue">
@@ -198,6 +163,44 @@
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="CategoryParameterID" ColumnName="CategoryParameterID" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Group">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.Group">
+        <MappingFragment StoreEntitySet="Group">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsPopular" ColumnName="IsPopular" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="SmallDescription" ColumnName="SmallDescription" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ReviewLink" ColumnName="ReviewLink" />
+          <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="Reklama.Data.Entities.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsPopular" ColumnName="IsPopular" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

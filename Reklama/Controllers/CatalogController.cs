@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 using Domain.Entity.Catalogs;
+using Domain.Enums;
 using Domain.Repository.Shared;
 using PagedList;
 using Reklama.Data.Servises;
@@ -24,6 +25,8 @@ namespace Reklama.Controllers
         public CatalogController(IProfileRepository profileRepository)
         {
             _profileRepository = profileRepository;
+
+            ViewBag.SelectedSiteCategory = CategorySearch.Product;
         }
 
         private readonly ProductService _productService = new ProductService();

@@ -31,6 +31,7 @@
     <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="IsNew" Type="bit" Nullable="false" />
+    <Property Name="IsPopular" Type="bit" Nullable="false" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="CategoryParameter">
@@ -40,13 +41,13 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SectionID" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
-    <Property Name="Description" Type="nvarchar" MaxLength="512" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="512" />
   </EntityType>
   <EntityType Name="CategoryParametersSection">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CategoryID" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
@@ -56,6 +57,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Images">
     <Key>
@@ -83,6 +85,7 @@
     <Property Name="Title" Type="nvarchar" MaxLength="180" Nullable="false" />
     <Property Name="SmallDescription" Type="nvarchar" MaxLength="600" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsPopular" Type="bit" Nullable="false" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="CreatedAt" Type="datetime" Nullable="false" />
   </EntityType>

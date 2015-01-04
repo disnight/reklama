@@ -1,14 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Domain.Entity.Catalogs;
 using Domain.Repository.Admin;
 using Domain.Repository.Shared;
+using ExcelLibrary.BinaryFileFormat;
+using ExcelLibrary.SpreadSheet;
 using PagedList;
+using Reklama.Attributes;
 using Reklama.Data.Entities;
 using Reklama.Data.Servises;
 using Reklama.Filters;
@@ -17,6 +23,7 @@ using Reklama.Models.ViewModels.Catalog;
 using Reklama.ViewModels.Catalog;
 using Reklama.ViewModels.Shops;
 using WebMatrix.WebData;
+using Shop = Reklama.Data.Entities.Shop;
 
 namespace Reklama.Controllers
 {
@@ -26,14 +33,17 @@ namespace Reklama.Controllers
         private readonly ProductService _productService = new ProductService();
         private readonly IProfileRepository _profileRepository;
         private readonly IConfigRepository _configRepository;
+        private readonly ICityRepository _cityRepository;
 
-        public ShopsController(IProfileRepository profileRepository, IConfigRepository configRepository)
+        public ShopsController(IProfileRepository profileRepository, IConfigRepository configRepository, ICityRepository cityRepository)
         {
 
             _profileRepository = profileRepository;
             _configRepository = configRepository;
+            _cityRepository = cityRepository;
+
             var rc = new ReklamaContext();
-            _configRepository.Context = rc;
+            _configRepository.Context = _cityRepository.Context = rc;
         }
 
         public ActionResult Details(int id, int? commentPage)
@@ -44,7 +54,7 @@ namespace Reklama.Controllers
                 HttpNotFound();
             }
             _profileRepository.Context = new ReklamaContext();
-            var result = new ShopDetailsPageViewModel(_profileRepository) {Shop = shop};
+            var result = new ShopDetailsPageViewModel(_profileRepository) { Shop = shop };
 
             if (shop.ShopFeedback.Any())
             {
@@ -126,7 +136,7 @@ namespace Reklama.Controllers
         {
             if (filter == null)
             {
-                filter = new ShopProductsFilter {CategoryID = categoryID, ShopID = shopID};
+                filter = new ShopProductsFilter { CategoryID = categoryID, ShopID = shopID };
             }
             var result = new ShopProductsViewModel();
 
@@ -145,7 +155,7 @@ namespace Reklama.Controllers
             {
                 return HttpNotFound();
             }
-            var result = new ShopPageViewModel() {Shop = shop};
+            var result = new ShopPageViewModel() { Shop = shop };
 
             var categories = shop.ShopProduct.Select(q => q.Product.Category).Distinct().ToList();
             if (categories.Any())
@@ -232,7 +242,7 @@ namespace Reklama.Controllers
             }
         }
 
-        
+
 
         [Authorize]
         public ActionResult RegistrationData(int id)
@@ -326,13 +336,199 @@ namespace Reklama.Controllers
         }
 
         [HttpGet]
+        public void ExportProduct(int categoryId, int shopID, ImportType type)
+        {
+            if(categoryId == 0)return;
+            var category = _shopService.GetCategory(categoryId);
+
+            string fileName = "";
+            IEnumerable<ExportProductForShop> products = null;
+            switch (type)
+            {
+                    case ImportType.All:
+                    fileName = "all";
+                    products = _productService.GetProductsForExportByAll(shopID);
+                    break;
+                case ImportType.Binded:
+                    fileName = "all_binded";
+                    products = _productService.GetProductsForExportByBinded(shopID);
+                    break;
+                case ImportType.Category:
+                    fileName = category.Name.Replace(" ", "_").Replace("-", "_");
+                    products = _productService.GetProductsForExportByCategory(categoryId, shopID);
+                    break;
+            }
+
+            var workbook = new Workbook();
+            var worksheet = new Worksheet("First Sheet");
+            for (var k = 0; k < 200; k++)
+            {
+                worksheet.Cells[k, 0] = new Cell(null);
+            }
+
+            worksheet.Cells[0, 0] = new Cell("Category");
+            worksheet.Cells[0, 1] = new Cell("Manufacturer");
+            worksheet.Cells[0, 2] = new Cell("Product");
+            worksheet.Cells[0, 3] = new Cell("Is in stock");
+            worksheet.Cells[0, 4] = new Cell("Price");
+            worksheet.Cells[0, 8] = new Cell("Доступные статусы товара");
+
+            var statuses = _productService.GetShopProductStatus();
+            var z = 1;
+            foreach (var status in statuses)
+            {
+                worksheet.Cells[z, 8] = new Cell(status.Name);
+                z++;
+            }
+
+            if (products.Any())
+            {
+                var i = 1;
+                foreach (var product in products)
+                {
+                    worksheet.Cells[i, 0] = new Cell(product.Product.Category.Name);
+                    worksheet.Cells[i, 1] = new Cell(product.Product.Manufacturer.Name);
+                    worksheet.Cells[i, 2] = new Cell(product.Product.Title);
+                    if (product.ShopProduct != null)
+                    {
+                        worksheet.Cells[i, 3] = new Cell(product.ShopProduct.ShopProductStatus.Name);
+                        worksheet.Cells[i, 4] = new Cell(product.ShopProduct.Price);
+                    }
+                    i++;
+                }
+            }
+                
+            worksheet.Cells.ColumnWidth[0] = 7000;
+            worksheet.Cells.ColumnWidth[1] = 5000;
+            worksheet.Cells.ColumnWidth[2] = 10000;
+            worksheet.Cells.ColumnWidth[3] = 4000;
+            worksheet.Cells.ColumnWidth[8] = 7000;
+            workbook.Worksheets.Add(worksheet);
+
+            var stream = new MemoryStream();
+            workbook.SaveToStream(stream);
+            stream.Position = 0;
+            Response.Clear();
+            Response.ContentType = "application/force-download";
+            Response.AddHeader("content-disposition",
+                String.Format("attachment; filename={0}_products.xls", fileName));
+            Response.BinaryWrite(stream.ToArray());
+            Response.End();
+        }
+
+        [HttpPost]
+        public ActionResult ImportShopProducts(int shopID, FormCollection collection)
+        {
+            var actionResult = new List<ImportResultItem>();
+
+            var file = Request.Files[0];
+            if (file == null || file.ContentLength == 0 || String.IsNullOrEmpty(file.FileName) ||
+                !file.FileName.Contains(".xls"))
+            {
+                actionResult.Add(new ImportResultItem
+                {
+                    ResultType = ImportResultType.CommonError,
+                    Message = "Can't import. File extension must be <strong>.xls</strong>"
+                });
+            }
+
+            var workbook = Workbook.Load(file.InputStream);
+            var worksheet = workbook.Worksheets[0];
+
+            var rowsIndexs = worksheet.Cells.Rows.Where(q => q.Key > 0).Select(q => q.Key).OrderBy(q => q);
+
+            var result = new List<ShopProduct>();
+
+            foreach (var rowIndex in rowsIndexs)
+            {
+                var sShopProductStatus = worksheet.Cells[rowIndex, 3].StringValue;
+                var isEmptyStatus = String.IsNullOrWhiteSpace(sShopProductStatus);
+
+                var sPrice = worksheet.Cells[rowIndex, 4].StringValue;
+                var isEmptyPrice = String.IsNullOrWhiteSpace(sPrice);
+
+                var sProduct = worksheet.Cells[rowIndex, 2].StringValue;
+
+                if(isEmptyPrice && isEmptyStatus) continue;
+
+                if (isEmptyPrice)
+                {
+                    actionResult.Add(new ImportResultItem
+                    {
+                        ResultType = ImportResultType.Errror,
+                        Message = "Для привязки товара необходимо указать 'Is in stock' и 'Price'. Вы не указали 'Price' для <strong>" + sProduct + "</strong>"
+                    });
+                    continue;
+                }
+
+                if (isEmptyStatus)
+                {
+                    actionResult.Add(new ImportResultItem
+                    {
+                        ResultType = ImportResultType.Errror,
+                        Message = "Для привязки товара необходимо указать 'Is in stock' и 'Price'. Вы не указали 'Is in stock' для <strong>" + sProduct + "</strong>"
+                    });
+                    continue;
+                }
+
+                var shopProductStatus = _productService.GetShopProductStatusByName(sShopProductStatus);
+                if (shopProductStatus == null)
+                {
+                    actionResult.Add(new ImportResultItem
+                    {
+                        ResultType = ImportResultType.Errror,
+                        Message = "Статус товара с именем <strong>" + sShopProductStatus + "</strong> не существует."
+                    });
+                    continue;
+                }
+                
+                decimal price;
+                if (!decimal.TryParse(sPrice, out price))
+                {
+                    actionResult.Add(new ImportResultItem
+                    {
+                        ResultType = ImportResultType.Errror,
+                        Message = "Указана неверная цена для <strong>" + sProduct + "</strong>"
+                    });
+                    continue;
+                }
+
+                
+                var product = _productService.GetProductByName(sProduct);
+                if (product == null)
+                {
+                    actionResult.Add(new ImportResultItem
+                    {
+                        ResultType = ImportResultType.Errror,
+                        Message = "Товар с именем <strong>" + sProduct + "</strong> не существует. Название товара менять нельзя!"
+                    });
+                    continue;
+                }
+
+                
+                var shopProduct = new ShopProduct();
+                shopProduct.ShopID = shopID;
+                shopProduct.ProductID = product.ID;
+                shopProduct.ShopProductStatusID = shopProductStatus.ID;
+                shopProduct.Price = price;
+
+                result.Add(shopProduct);
+              
+            }
+
+            actionResult.Add(_shopService.ImportShopProduct(result));
+            TempData["actionResult"] = actionResult;
+            return RedirectToAction("ShopProducts", new { Id = shopID });
+        }
+
+        [HttpGet]
         public ActionResult BaseProducts(ProductForShopViewModel model, FilterParams filter = null)
         {
-            if(filter == null) 
+            if (filter == null)
                 filter = new FilterParams();
 
             var shop = _shopService.GetShop(filter.Id);
-
+            
             //Verification access
             if (shop == null || (WebSecurity.CurrentUserId != shop.UserID && !User.IsInRole("Administrator") && !User.IsInRole("Moderator")))
             {
@@ -354,7 +550,7 @@ namespace Reklama.Controllers
                 ? categories.First()
                 : categories.First(q => q.ID == filter.SecondCategoryId);
 
-            var emptyManufacturer = new Manufacturer {ID = 0, Name = "Все"};
+            var emptyManufacturer = new Manufacturer { ID = 0, Name = "Все" };
             var manufacturers = new List<Manufacturer> { emptyManufacturer };
             manufacturers.AddRange(_shopService.GetManufacturers(selectedCategory.ID));
             Manufacturer selectedManufacturer = emptyManufacturer;
@@ -371,20 +567,30 @@ namespace Reklama.Controllers
             model.Groups = new SelectList(groups, "ID", "Name", selectedGroup);
             model.Categories = new SelectList(categories, "ID", "Name", selectedCategory);
             model.Manufacturers = new SelectList(manufacturers, "ID", "Name", selectedManufacturer);
+            model.CurrentCategoryID = selectedCategory.ID;
             model.Shop = shop;
             model.MonthlyFee = 0;
             model.ShopProducts = shopProducts;
             model.Products = selectedCategory.Product.Where(q => selectedManufacturer.ID == 0 || selectedManufacturer.ID == q.ManufacturerID).ToPagedList(filter.Page, ProjectConfiguration.Get.ProductsOnPageInBasePage);
-                
-            
+
+            var categories2 = shop.ShopProduct.Select(q => q.Product.Category).Distinct().ToList();
+            if (categories2.Any())
+                model.MonthlyFee = categories2.Sum(x => x.Price);
 
             return View(model);
         }
 
-        public ActionResult ShopProducts(ProductForShopViewModel model, FilterParams filter = null)
+        public ActionResult ShopProducts(ProductForShopViewModel model, FilterParams filter = null, List<ImportResultItem> importResult = null )
         {
             if (filter == null)
                 filter = new FilterParams();
+
+            if (TempData.ContainsKey("actionResult"))
+            {
+                model.ImportResult = (List<ImportResultItem>)TempData["actionResult"];
+                //TempData.Remove("actionResult");
+            }
+            
 
             var shop = _shopService.GetShop(filter.Id);
 
@@ -402,7 +608,8 @@ namespace Reklama.Controllers
             var source = _shopService.GetShopCategories(shop.ID).ToList();
             var groups = new List<Group>();
 
-            if (source.Any()) { 
+            if (source.Any())
+            {
                 groups.AddRange(source.Select(q => q.Key));
                 var selectedGroup = filter.CategoryId == 0
                     ? groups.First()
@@ -434,10 +641,14 @@ namespace Reklama.Controllers
                 model.ShopProducts = shopProducts;
                 model.ShopProductsFiltered = shopProducts.Where(q => q.Product.CategoryID == selectedCategory.ID).Where(q => selectedManufacturer.ID == 0 || selectedManufacturer.ID == q.Product.ManufacturerID).ToPagedList(filter.Page, ProjectConfiguration.Get.ProductsOnPageInBasePage);
 
-                }
+            }
 
-                model.Shop = shop;
-                model.MonthlyFee = 0;
+            model.Shop = shop;
+            model.MonthlyFee = 0;
+
+            var categories2 = shop.ShopProduct.Select(q => q.Product.Category).Distinct().ToList();
+            if (categories2.Any())
+                model.MonthlyFee = categories2.Sum(x => x.Price);
 
             return View(model);
         }
@@ -448,6 +659,44 @@ namespace Reklama.Controllers
             var userId = WebSecurity.CurrentUserId;
             var shop = _shopService.GetShopByUserID(userId);
             return RedirectToAction("BaseProducts", new { id = shop.ID });
+        }
+
+        [Authorize]
+        public ActionResult Create()
+        {
+            if (_shopService.IsExistShopByCurrentUser(WebSecurity.CurrentUserId))
+            {
+                TempData["error"] = "У вас уже создан магазин!";
+                return Redirect("/");
+            }
+            ViewBag.Cities = _cityRepository.Read();
+            return View();
+        }
+
+        //
+        // POST: /Shop/Create
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Create(Shop shop)
+        {
+            if (ModelState.IsValid)
+            {
+                shop.UserID = WebSecurity.CurrentUserId;
+                try
+                {
+                    _shopService.Create(shop);
+                    TempData["notice"] = "Магазин создан, личная панель будет доступна после активации магазина администратором.";
+                    return Redirect("/");
+                }
+                catch
+                {
+                    TempData["Error"] = "Произошла ошибка при создании магазина";
+                    ViewBag.Cities = _cityRepository.Read();
+                    return View(shop);
+                }
+            }
+            return View(shop);
         }
 
         #region AJAX Methods
@@ -627,7 +876,7 @@ namespace Reklama.Controllers
 
             try
             {
-                _shopService.AddProductToShop(new ShopProduct() { ProductID = productId, ShopID = shopId, Price = price, ShopProductStatusID = 1});
+                _shopService.AddProductToShop(new ShopProduct() { ProductID = productId, ShopID = shopId, Price = price, ShopProductStatusID = 1 });
             }
             catch
             {
@@ -692,5 +941,12 @@ namespace Reklama.Controllers
         }
 
         #endregion
+    }
+
+    public enum ImportType
+    {
+        Category,
+        Binded,
+        All
     }
 }

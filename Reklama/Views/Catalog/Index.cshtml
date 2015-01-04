@@ -12,7 +12,7 @@
         @Html.Partial("_PlaceGoods")
         <p class="orangeText">@Html.Raw(ProjectConfiguration.Get.CatalogConfig.PromoText)</p>
     </div>
-    @foreach (var category in Model.Where(q => q.Category.Any(w => w.IsActive)))
+    @foreach (var category in Model.Where(q => q.Category.Any(w => w.IsActive) && q.Category.Any(w => w.Product.Any(e => e.IsActive)) ))
     {
         <p class="cmTitle">@category.Name</p>
         <ul>

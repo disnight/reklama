@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<Domain.Entity.Catalogs.Product>
+﻿@model PagedList.IPagedList<Reklama.Data.Entities.Product>
 @using Reklama.Models.ViewModels.Catalog;
 
 @{
@@ -11,59 +11,6 @@
 <div class="catalogInner">
     <table>
         <tr>
-            @*<td class="ci1">
-                <div class="placeGoods">
-                    <a href="javascript:void(0)"></a>
-                </div>
-
-                @Html.Partial("_Manufacturers", secondCategory)*@
-
-                @*<div class="leftProd">
-                                    <ul>
-                                        <li>
-                                            <div>
-                                                <a href="javascript:void(0)">
-                                                    <span class="img">
-                                                        <img src="data/lProd1.jpg">
-                                                    </span>
-                                                    <div class="text">
-                                                        <p>National Geographic NG 5159</p>
-                                                        от 150 $
-                                                    </div>
-                                                    <div class="lShop">
-                                                        <a href="javascript:void(0)">ООО «Диалса»</a>
-                                                        <p>+375 29 555-00-00</p>
-                                                        <p>+375 29 555-00-00</p>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div>
-                                                <a href="javascript:void(0)">
-                                                    <span class="img">
-                                                        <img src="data/lProd2.jpg">
-                                                    </span>
-                                                    <div class="text">
-                                                        <p>Nokia Lumia 800</p>
-                                                        от 380 $
-                                                    </div>
-                                                </a>                                                    
-                                                <div class="lShop">
-                                                    <a href="javascript:void(0)">ООО «Диалса»</a>
-                                                    <p>+375 29 555-00-00</p>
-                                                    <p>+375 29 555-00-00</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>*@
-
-                @*<div class="lBan">
-                                    <a href="javascript:void(0)"><img src="/Images/System/ban120600.jpg" /></a>
-                                </div>*@
-                @*@Html.Partial("_YandexDirectPartial")
-            </td>*@
             <td class="ci2">
                 <img width="10" height="1" border="0" src="/Images/System/s.png" />
             </td>
@@ -71,7 +18,7 @@
                 <div class="crumbs">
                     <a href="/">Главная страница</a>
                     <span class="arr">&rarr;</span>
-                    @Html.ActionLink("Каталог товаров", "Catalog", "Product")
+                    @Html.ActionLink("Каталог товаров", "Index", "Catalog")
                     <span class="arr">&rarr;</span>
                     Результаты поиска
                 </div>
@@ -87,22 +34,23 @@
                                     <table>
                                         <tr>
                                             <td class="ciImg">
-                                                <a href="@Url.Action("Details", "Product", new {id = product.Id})">
-                                                    <img src="/@string.Concat(Reklama.ProjectConfiguration.Get.FilePaths["products"], product.Image)" /></a>
+                                                <a href="@Url.Action("Details", "Product", new {id = product.ID})">
+                                                    @Html.Partial("_ProductTitularImage", product.ProductImage)
+                                                </a>
                                             </td>
                                             <td class="ciText">
                                                 <div>
-                                                    <span class="ciName">@Html.ActionLink(product.Name, "Details", "Product", new {id = product.Id}, null)</span>
-                                                    <p>@product.SmallDescription ...@Html.ActionLink("Читать подробнее", "Details", "Product", new {id = product.Id}, null)</p>
+                                                    <span class="ciName">@Html.ActionLink(product.Title, "Details", "Catalog", new {id = product.ID}, null)</span>
+                                                    <p>@product.SmallDescription ...@Html.ActionLink("Читать подробнее", "Details", "Catalog", new {id = product.ID}, null)</p>
                                                     <div class="ciRate">
                                                         <span>
                                                             <img src="/Images/System/file.png" />
-                                                            @Html.ActionLink("Характеристики", "Details", "Product", new {id = product.Id}, null)
+                                                            @Html.ActionLink("Характеристики", "Details", "Catalog", new {id = product.ID}, null)
                                                         </span>
                                                         <span>
                                                             <img src="/Images/System/foto.png" />
-                                                            @Html.ActionLink("Фото", "Photos", "Product", new {id = product.Id}, null)
-                                                            <sup>@(product.Images.Count + 1)</sup>
+                                                            @Html.ActionLink("Фото", "Photos", "Catalog", new { id = product.ID }, null)
+                                                            <sup>@(product.ProductImage.Count + 1)</sup>
                                                         </span>
                                                         <span>
                                                             @if (product.ReviewLink != null && !product.ReviewLink.IsEmpty())
@@ -113,8 +61,8 @@
                                                         </span>
                                                         <span>
                                                             <img src="/Images/System/book.png" />
-                                                            @Html.ActionLink("Отзывы", "Feedbacks", "Product", new {id = product.Id}, null)
-                                                            <sup>@product.Feedbacks.Count</sup>
+                                                            @Html.ActionLink("Отзывы", "Feedbacks", "Catalog", new { id = product.ID }, null)
+                                                            <sup>@product.ProductFeedback.Count</sup>
                                                         </span>
                                                         @*                                                                <span>
                                                                     <img src="/Images/System/talk.png" />
@@ -126,8 +74,8 @@
                                             </td>
                                         
                                             <td class="ciOffers">
-                                                @Html.Partial("~/Views/Product/_ProductCurrencyPartialList.cshtml", product)
-                                                @Html.Partial("~/Views/Product/_BuySellersCount.cshtml", product)
+                                                @Html.Partial("_ProductCurrencyPartialList", product)
+                                                @Html.Partial("_BuySellersCount", product)
                                             </td>
                                         </tr>
                                     </table>
@@ -155,23 +103,25 @@
 
                                 @if (page == Model.PageNumber)
                                 {
-                                    @Html.ActionLink(page.ToString(), "List", new
+                                    @Html.ActionLink(page.ToString(), "Search", new
                                                                             {
                                                                                 name = searchViewModel.Name,
                                                                                 onlyByName = searchViewModel.OnlyByName,
                                                                                 currentPage = page,
-                                                                                pageSize = searchViewModel.PageSize
+                                                                                pageSize = searchViewModel.PageSize,
+                                                                                category = searchViewModel.Category
                                                                             },
                                                                             new { @class = "hr" })
                                 }
                                 else
                                 {
-                                    @Html.ActionLink(page.ToString(), "List", new
+                                    @Html.ActionLink(page.ToString(), "Search", new
                                                                             {
                                                                                 name = searchViewModel.Name,
                                                                                 onlyByName = searchViewModel.OnlyByName,
                                                                                 currentPage = page,
-                                                                                pageSize = searchViewModel.PageSize
+                                                                                pageSize = searchViewModel.PageSize,
+                                                                                category = searchViewModel.Category
                                                                             })
                                 }
                             </li>
@@ -189,23 +139,25 @@
 
                                 @if (page == Model.PageNumber)
                                 {
-                                    @Html.ActionLink(page.ToString(), "List", new
+                                    @Html.ActionLink(page.ToString(), "Search", new
                                                                             {
                                                                                 name = searchViewModel.Name,
                                                                                 onlyByName = searchViewModel.OnlyByName,
                                                                                 currentPage = page,
-                                                                                pageSize = searchViewModel.PageSize
+                                                                                pageSize = searchViewModel.PageSize,
+                                                                                category = searchViewModel.Category
                                                                             },
                                                                             new { @class = "hr" })
                                 }
                                 else
                                 {
-                                    @Html.ActionLink(page.ToString(), "List", new
+                                    @Html.ActionLink(page.ToString(), "Search", new
                                                                             {
                                                                                 name = searchViewModel.Name,
                                                                                 onlyByName = searchViewModel.OnlyByName,
                                                                                 currentPage = page,
-                                                                                pageSize = searchViewModel.PageSize
+                                                                                pageSize = searchViewModel.PageSize,
+                                                                                category = searchViewModel.Category
                                                                             })
                                 }
                             </li>
@@ -223,23 +175,25 @@
 
                                         @if (page == Model.PageNumber)
                                         {
-                                            @Html.ActionLink(page.ToString(), "List", new
+                                            @Html.ActionLink(page.ToString(), "Search", new
                                                                             {
                                                                                 name = searchViewModel.Name,
                                                                                 onlyByName = searchViewModel.OnlyByName,
                                                                                 currentPage = page,
-                                                                                pageSize = searchViewModel.PageSize
+                                                                                pageSize = searchViewModel.PageSize,
+                                                                                category = searchViewModel.Category
                                                                             },
                                                                             new { @class = "shr" })
                                         }
                                         else
                                         {
-                                            @Html.ActionLink(page.ToString(), "List", new
+                                            @Html.ActionLink(page.ToString(), "Search", new
                                                                             {
                                                                                 name = searchViewModel.Name,
                                                                                 onlyByName = searchViewModel.OnlyByName,
                                                                                 currentPage = page,
-                                                                                pageSize = searchViewModel.PageSize
+                                                                                pageSize = searchViewModel.PageSize,
+                                                                                category = searchViewModel.Category
                                                                             })
                                         }
                                     </li>

@@ -1,0 +1,78 @@
+﻿@using Reklama
+@model Reklama.Data.Entities.Shop
+
+@{
+    ViewBag.Title = "Регистрация магазина";
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+<div class="middle">
+    <div class="register">
+        <h1>Регистрация магазина</h1>
+        <div class="registerIn">
+            @using (Html.BeginForm("Create", "Shops", FormMethod.Post, new { Id = "formCreate" }))
+            {
+                <div class="registerInL">
+                    <div class="borderReg">
+                        <div>
+                            <span class="firstS">Название магазина:</span>
+                            @Html.TextBoxFor(x => x.Title, new { @class="regInp1" })
+                            <div>@Html.ValidationMessageFor(x => x.Title)</div>
+                        </div>
+                    </div>
+                    <div class="borderReg">
+                        <div><em>Контактные данные:</em></div>
+                        <div>
+                            <span>Контактный телефон:</span>
+                            @Html.TextBoxFor(x => x.Phone, new { @class="regInp1" })
+                            <div>@Html.ValidationMessageFor(x => x.Phone)</div>
+                        </div>
+                    </div>
+                    <div class="borderReg">
+                        <div><em>Персональные данные:</em></div>
+                        <div>
+                            <span>Фамилия  Имя  Отчество:</span>
+                            @Html.TextBoxFor(x => x.FullTitle, new { @class="regInp2" })
+                            <div>@Html.ValidationMessageFor(x => x.FullTitle)</div>
+                        </div>
+
+                    </div>
+                    <div class="borderReg">
+                        <div><em>Данные организации:</em></div>
+                        <div>
+                            <span>Название организации:</span>
+                            @Html.TextBoxFor(x => x.CompanyName, new { @class="regInp2" })
+                            <div>@Html.ValidationMessageFor(x => x.CompanyName)</div>
+                        </div>
+                        <div>
+                            <span>Город:</span>
+                            @Html.DropDownListFor(x => x.CityID, new SelectList((ViewBag.Cities), "Id", "Name"), "Выберите город", new { @class="regInp2" })
+                            <div>@Html.ValidationMessageFor(x => x.CityID)</div>
+                        </div>
+                        <div>
+                            <span>Реквизиты:</span>
+                            @Html.TextAreaFor(x => x.Requisites)
+                            <div>@Html.ValidationMessageFor(x => x.Requisites)</div>
+                            <p><b>*</b>Заполнение всех полей обязательно</p>
+                        </div>
+
+                        <input type="submit" value="" class="regBut" />
+                    </div>
+                </div>
+                <div class="registerInR">
+                    <div class="registerInRT">
+                        @Html.Raw(ProjectConfiguration.Get.CatalogConfig.RegShopPromoText)
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="middleBot"></div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/ajaxupload.js")
+}

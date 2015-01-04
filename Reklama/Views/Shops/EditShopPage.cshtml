@@ -45,6 +45,8 @@
                     <div class="persProd">
                         @using (Html.BeginForm("EditShopPage", "Shops", FormMethod.Post))
                         {
+                            @Html.HiddenFor(q => q.Shop.ID);
+                            
                             <table>
                                 <tr>
                                     <th>Название магазина:</th>

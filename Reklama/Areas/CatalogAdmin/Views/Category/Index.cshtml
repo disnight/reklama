@@ -1,0 +1,94 @@
+﻿@model IEnumerable<IGrouping<Reklama.Data.Entities.Group, Reklama.Data.Entities.Category>>
+
+@{
+    ViewBag.Title = "Категории товаров";
+    Layout = "~/Areas/CatalogAdmin/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel-body">
+            <a class="btn btn-success" id="create-new-button" href="@Url.Action("Edit", "Category", new {id = 0})">Добавить</a>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Категории товаров
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Группа</th>
+                                <th>Название</th>
+                                <th>Цена</th>
+                                <th>Is Popular?</th>
+                                <th>Is New?</th>
+                                <th>Is Active?</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var group in Model)
+                            {
+                                foreach (var item in group)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => group.Key.Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.IsPopular)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.IsNew)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
+                                        <td>
+                                            <a href="@Url.Action("Edit", "Category", new { id = item.ID })" class="btn btn-primary btn-xs" title="Редактировать категорию"><i class="icon-edit"></i></a>
+                                            <a href="@Url.Action("IsPopular", "Category", new { id = item.ID })" class="btn @(item.IsPopular ? "btn-danger" : "btn-success") btn-xs" title="популярный/не популярный"><i class="icon-hand-up"></i></a>
+                                            <a href="@Url.Action("IsNew", "Category", new { id = item.ID })" class="btn @(item.IsNew ? "btn-danger" : "btn-success") btn-xs" title="новый/не новый"><i class="icon-tags"></i></a>
+                                            <a href="#" data-categoryid="@item.ID" class="btn @(item.IsActive ? "btn-danger" : "btn-success") btn-xs category-activate" title="активировать/деактивировать"><i class="@(item.IsActive ? "icon-ban-circle" : "icon-ok")"></i></a>
+                                            <a href="@Url.Action("Export", "Product", new { id = item.ID })" class="btn btn-warning btn-xs" title="Экспорт продуктов"><i class="icon-download"></i></a>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div aria-hidden="true" role="dialog" tabindex="-1" id="delete-confirm" class="modal fade" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("Deactive", "Category", FormMethod.Post))
+        {
+                        <input type="hidden" id="categoryID" name="id" value="0" />
+                                    <div class="modal-header">
+                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                            <h4 id="H1" class="modal-title">Активация/Деактивация категории</h4>
+                        </div>
+                        <div class="modal-body">
+                            Вы уверены, что хотите активировать/деактивировать выбранную категоию товаров?
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Отменить</button>
+                            <button class="btn btn-success" type="submit">Действуем!</button>
+                        </div>
+        }
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).on("click", ".category-activate", function () {
+        var sender = $(this);
+        $("#categoryID").val(sender.attr("data-categoryid"));
+        $('#delete-confirm').modal('show');
+    });
+</script>

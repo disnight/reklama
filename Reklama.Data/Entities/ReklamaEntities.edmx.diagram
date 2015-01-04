@@ -11,7 +11,6 @@
         <AssociationConnector Association="Reklama.Data.Entities.FK_Banners_BannerTypes" />
         <AssociationConnector Association="Reklama.Data.Entities.FK_Banners_Images" />
         <EntityTypeShape EntityType="Reklama.Data.Entities.Manufacturer" Width="1.5" PointX="3" PointY="6.875" />
-        <EntityTypeShape EntityType="Reklama.Data.Entities.Product" Width="1.5" PointX="5.25" PointY="10.25" />
         <EntityTypeShape EntityType="Reklama.Data.Entities.ProductBookmark" Width="1.5" PointX="7.5" PointY="12" />
         <EntityTypeShape EntityType="Reklama.Data.Entities.ProductFeedback" Width="1.5" PointX="7.5" PointY="8" />
         <EntityTypeShape EntityType="Reklama.Data.Entities.ProductImage" Width="1.5" PointX="7.5" PointY="18.375" />
@@ -20,26 +19,27 @@
         <EntityTypeShape EntityType="Reklama.Data.Entities.ShopProduct" Width="1.5" PointX="10.5" PointY="10.5" />
         <EntityTypeShape EntityType="Reklama.Data.Entities.ShopProductStatus" Width="1.5" PointX="8.25" PointY="22.125" />
         <EntityTypeShape EntityType="Reklama.Data.Entities.Unit" Width="1.5" PointX="5.25" PointY="14.875" />
+        <AssociationConnector Association="Reklama.Data.Entities.FK_ShopFeedback_Shop" />
+        <AssociationConnector Association="Reklama.Data.Entities.FK_ShopProduct_Shop" />
+        <AssociationConnector Association="Reklama.Data.Entities.FK_ShopProduct_ShopProductStatus" />
+        <EntityTypeShape EntityType="Reklama.Data.Entities.CategoryParameter" Width="1.5" PointX="7.5" PointY="25.25" />
+        <EntityTypeShape EntityType="Reklama.Data.Entities.CategoryParametersSection" Width="1.5" PointX="5.25" PointY="25.25" />
+        <EntityTypeShape EntityType="Reklama.Data.Entities.ProductParameterValue" Width="1.5" PointX="10.75" PointY="20.625" />
+        <AssociationConnector Association="Reklama.Data.Entities.FK_CategoryParameter_CategoryParametersSection" />
+        <AssociationConnector Association="Reklama.Data.Entities.FK_ProductParameterValue_CategoryParameter" />
+        <AssociationConnector Association="Reklama.Data.Entities.FK_ProductParameterValue_Unit" />
+        <EntityTypeShape EntityType="Reklama.Data.Entities.Group" Width="1.5" PointX="0.75" PointY="11.375" />
+        <EntityTypeShape EntityType="Reklama.Data.Entities.Product" Width="1.5" PointX="5.25" PointY="8.25" />
         <AssociationConnector Association="Reklama.Data.Entities.FK_Product_Manufacturer" />
         <AssociationConnector Association="Reklama.Data.Entities.FK_ProductBookmark_Product" />
         <AssociationConnector Association="Reklama.Data.Entities.FK_ProductFeedback_Product" />
         <AssociationConnector Association="Reklama.Data.Entities.FK_ProductImage_Product" />
+        <AssociationConnector Association="Reklama.Data.Entities.FK_ProductParameterValue_Product" />
         <AssociationConnector Association="Reklama.Data.Entities.FK_ShopProduct_Product" />
-        <AssociationConnector Association="Reklama.Data.Entities.FK_ShopFeedback_Shop" />
-        <AssociationConnector Association="Reklama.Data.Entities.FK_ShopProduct_Shop" />
-        <AssociationConnector Association="Reklama.Data.Entities.FK_ShopProduct_ShopProductStatus" />
-        <EntityTypeShape EntityType="Reklama.Data.Entities.Category" Width="1.5" PointX="3" PointY="10.875" />
-        <EntityTypeShape EntityType="Reklama.Data.Entities.CategoryParameter" Width="1.5" PointX="7.5" PointY="25.25" />
-        <EntityTypeShape EntityType="Reklama.Data.Entities.CategoryParametersSection" Width="1.5" PointX="5.25" PointY="25.25" />
-        <EntityTypeShape EntityType="Reklama.Data.Entities.Group" Width="1.5" PointX="0.75" PointY="11.5" />
-        <EntityTypeShape EntityType="Reklama.Data.Entities.ProductParameterValue" Width="1.5" PointX="10.75" PointY="20.625" />
+        <EntityTypeShape EntityType="Reklama.Data.Entities.Category" Width="1.5" PointX="3" PointY="10.75" />
         <AssociationConnector Association="Reklama.Data.Entities.FK_Category_Group" />
         <AssociationConnector Association="Reklama.Data.Entities.FK_CategoryParametersSection_Category" />
         <AssociationConnector Association="Reklama.Data.Entities.FK_Product_Category" />
-        <AssociationConnector Association="Reklama.Data.Entities.FK_CategoryParameter_CategoryParametersSection" />
-        <AssociationConnector Association="Reklama.Data.Entities.FK_ProductParameterValue_CategoryParameter" />
-        <AssociationConnector Association="Reklama.Data.Entities.FK_ProductParameterValue_Product" />
-        <AssociationConnector Association="Reklama.Data.Entities.FK_ProductParameterValue_Unit" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

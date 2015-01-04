@@ -21,6 +21,7 @@ namespace Reklama.Data.Entities
     
         public int ID { get; set; }
         public string Name { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual ICollection<Category> Category { get; set; }
     }

@@ -1,0 +1,206 @@
+﻿@model Reklama.Areas.CatalogAdmin.Models.EditProductPageViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/CatalogAdmin/Views/Shared/_adminLayout.cshtml";
+}
+
+@*<link href="~/Areas/CatalogAdmin/assets/css/fileinput.min.css" rel="stylesheet" />*@
+<link href="~/Content/jquery-te-1.4.0.css" rel="stylesheet" />
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header">@(Model.Product != null ? Model.Product.Title : "Добавление продукта")</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-info btn-grad col-lg-4" href="@Url.Action("Index")">Назад к списку</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box dark">
+            <header>
+                <div class="icons"><i class="icon-edit"></i></div>
+                <h5>Редактирование</h5>
+            </header>
+            <div id="div-1" class="accordion-body collapse in body">
+                @using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    @Html.HiddenFor(model => model.Product.ID)
+                    @Html.HiddenFor(model => model.Product.CreatedAt)
+                    <div class="form-group">
+                        <div class="col-lg-6 col-sm-6 col-3">
+                            <button type="submit" class="btn btn-success btn-block">Сохранить</button>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-3">
+                            <a class="btn btn-danger btn-block" href="@Url.Action("Index")">Отменить</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">Группа</label>
+                        <div class="col-lg-8 col-sm-8 col-4">
+                            @Html.DropDownList("group", Model.Groups, new { id = "CategoryId", @class = "form-control chzn-select" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">Категория</label>
+                        <div class="col-lg-8 col-sm-8 col-4">
+                            @Html.DropDownListFor(q => q.Product.CategoryID, Model.Categories, new { id = "SecondCategoryId", @class = "form-control chzn-select" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">Производитель</label>
+                        <div class="col-lg-8 col-sm-8 col-4">
+                            @Html.DropDownListFor(q => q.Product.ManufacturerID, Model.Manufacturers, new { id = "ManufacturerId", @class = "form-control chzn-select" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="text2" class="control-label col-lg-4">Название</label>
+
+                        <div class="col-lg-8">
+                            @Html.TextBoxFor(model => model.Product.Title, new { @class = "form-control", placeholder = "Введите название продукта", required = "required" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text2" class="control-label col-lg-4">Короткое описание</label>
+
+                        <div class="col-lg-8">
+                            @Html.TextBoxFor(model => model.Product.SmallDescription, new { @class = "form-control", placeholder = "Введите короткое описание продукта", required = "required" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text2" class="control-label col-lg-4">Описание</label>
+
+                        <div class="col-lg-8">
+                            @Html.TextBoxFor(model => model.Product.Description, new { @class = "form-control", placeholder = "Введите описание продукта", required = "required" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text2" class="control-label col-lg-4">Ссылка на обзор</label>
+
+                        <div class="col-lg-8">
+                            @Html.TextBoxFor(model => model.Product.ReviewLink, new { @class = "form-control", placeholder = "Введите ссылку на объект продукта" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text2" class="control-label col-lg-4">Is Popular?</label>
+                        <div class="col-lg-8">
+                            <div class="make-switch" data-on="success" data-off="danger">
+                                @Html.CheckBoxFor(model => model.Product.IsPopular)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text2" class="control-label col-lg-4">Is Active?</label>
+                        <div class="col-lg-8">
+                            <div class="make-switch" data-on="success" data-off="danger">
+                                @Html.CheckBoxFor(model => model.Product.IsActive)
+                            </div>
+                        </div>
+                    </div>
+                    if (Model.Product != null && Model.Product.ID != 0)
+                    {
+                        <div class="form-group">
+                            <label for="text2" class="control-label col-lg-4">Фото</label>
+                            <div class="col-lg-8">
+                                @Html.Partial("_FileUpload")
+                                @*<input id="input-5" type="file" multiple="true" name="photos[]" accept="image/*">*@
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group">
+                        <hr />
+                    </div>
+
+                    foreach (var sec in Model.Sections)
+                    {
+                        <div class="form-group">
+                            <label for="text2" class="control-label col-lg-4">@sec.Key.Name</label>
+                        </div>
+                        foreach (var par in @sec)
+                        {
+                            <div class="form-group">
+                                <label for="param_@(par.Parameter.ID)" class="control-label col-lg-4">
+                                    @(par.Parameter.Name)
+                                </label>
+                                <div class="col-lg-8">
+                                    <input name="param_@(par.Parameter.ID)" class="form-control" value="@(par.ParameterValue != null ? @par.ParameterValue.Value : @String.Empty)" />
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    <div class="form-group">
+                        <div class="col-lg-6 col-sm-6 col-3">
+                            <button type="submit" class="btn btn-success btn-block">Сохранить</button>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-3">
+                            <a class="btn btn-danger btn-block" href="@Url.Action("Index")">Отменить</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@*<script src="~/Areas/CatalogAdmin/assets/js/fileinput.min.js"></script>*@
+<script src="~/Areas/CatalogAdmin/assets/js/productEdit.js"></script>
+<script src="~/Scripts/jquery-te-1.4.0.min.js"></script>
+<script src="~/Scripts/angular/es5-shim.min.js"></script>
+<script src="~/Scripts/angular/angular.min.js"></script>
+<script src="~/Scripts/angular/angular-file-upload.js"></script>
+<script src="~/Scripts/angular/controllers.js"></script>
+<script src="~/Scripts/angular/directives.js"></script>
+<script type="text/javascript">
+
+    $(".regBut1").val("Добавить фото").addClass("btn btn-success");
+
+    @*    var photos = @Html.Raw(Json.Encode(Model.Photos));
+
+    $("#input-5").fileinput({
+        initialPreview: photos,
+        overwriteInitial: false,
+        showUpload: false,
+        maxFileCount: 10, mainClass: "input-group-lg",
+        previewTemplates:{
+            image: '<div class="file-preview-frame" id="{previewId}">\n' +
+                '   <img src="{data}" class="file-preview-image" title="{caption}" alt="{caption}" >\n' +
+                '</div>\n',
+        }
+    });*@
+</script>
+
+@*@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <input name="param_1" />
+        <input name="sum" />
+        <input name="cost" />
+        <input name="param_2" />
+        <input name="param_5" />
+        <input name="param_10" />
+
+        <div class="form-group">
+            <div class="col-lg-6 col-sm-6 col-3">
+                <button type="submit" class="btn btn-success btn-block">Сохранить</button>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-3">
+                <a class="btn btn-danger btn-block" href="@Url.Action("Index")">Отменить</a>
+            </div>
+        </div>
+    }*@

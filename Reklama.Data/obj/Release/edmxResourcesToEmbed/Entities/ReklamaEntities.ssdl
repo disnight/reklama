@@ -22,12 +22,171 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Desc" Type="nvarchar" MaxLength="200" />
   </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="IsNew" Type="bit" Nullable="false" />
+    <Property Name="IsPopular" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategoryParameter">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SectionID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="512" />
+  </EntityType>
+  <EntityType Name="CategoryParametersSection">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="Images">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ImagePath" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Manufacturer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="IsPopular" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="ManufacturerID" Type="int" Nullable="false" />
+    <Property Name="ReviewLink" Type="nvarchar" MaxLength="256" />
+    <Property Name="Title" Type="nvarchar" MaxLength="180" Nullable="false" />
+    <Property Name="SmallDescription" Type="nvarchar" MaxLength="600" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsPopular" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductBookmark">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="ProductID" Type="bigint" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductFeedback">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="bigint" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductImage">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="bigint" Nullable="false" />
+    <Property Name="ImageName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="IsTitular" Type="bit" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductParameterValue">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CategoryParameterID" />
+    </Key>
+    <Property Name="ProductID" Type="bigint" Nullable="false" />
+    <Property Name="CategoryParameterID" Type="int" Nullable="false" />
+    <Property Name="Value" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UnitID" Type="int" />
+  </EntityType>
+  <EntityType Name="Shop">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="CityID" Type="int" />
+    <Property Name="Debt" Type="float" Nullable="false" />
+    <Property Name="Logo" Type="nvarchar" MaxLength="256" />
+    <Property Name="Site" Type="nvarchar" MaxLength="256" />
+    <Property Name="Title" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="256" />
+    <Property Name="FullTitle" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Monday" Type="bit" Nullable="false" />
+    <Property Name="Tuesday" Type="bit" Nullable="false" />
+    <Property Name="Wednesday" Type="bit" Nullable="false" />
+    <Property Name="Thursday" Type="bit" Nullable="false" />
+    <Property Name="Friday" Type="bit" Nullable="false" />
+    <Property Name="Saturday" Type="bit" Nullable="false" />
+    <Property Name="Sunday" Type="bit" Nullable="false" />
+    <Property Name="Requisites" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Icq" Type="nvarchar" MaxLength="10" />
+    <Property Name="Skype" Type="nvarchar" MaxLength="32" />
+  </EntityType>
+  <EntityType Name="ShopFeedback">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShopID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ShopProduct">
+    <Key>
+      <PropertyRef Name="ShopID" />
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ShopID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="bigint" Nullable="false" />
+    <Property Name="ShopProductStatusID" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ShopProductStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="16" Nullable="false" />
   </EntityType>
   <Association Name="FK_Banners_BannerTypes">
     <End Role="BannerTypes" Type="Self.BannerTypes" Multiplicity="1" />
@@ -53,10 +212,205 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Category_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CategoryParameter_CategoryParametersSection">
+    <End Role="CategoryParametersSection" Type="Self.CategoryParametersSection" Multiplicity="1" />
+    <End Role="CategoryParameter" Type="Self.CategoryParameter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryParametersSection">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CategoryParameter">
+        <PropertyRef Name="SectionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CategoryParametersSection_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="CategoryParametersSection" Type="Self.CategoryParametersSection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CategoryParametersSection">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Manufacturer">
+    <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacturer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ManufacturerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductBookmark_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductBookmark" Type="Self.ProductBookmark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductBookmark">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductFeedback_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductFeedback" Type="Self.ProductFeedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductFeedback">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductImage_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductImage" Type="Self.ProductImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductImage">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductParameterValue_CategoryParameter">
+    <End Role="CategoryParameter" Type="Self.CategoryParameter" Multiplicity="1" />
+    <End Role="ProductParameterValue" Type="Self.ProductParameterValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryParameter">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductParameterValue">
+        <PropertyRef Name="CategoryParameterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductParameterValue_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductParameterValue" Type="Self.ProductParameterValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductParameterValue">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductParameterValue_Unit">
+    <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+    <End Role="ProductParameterValue" Type="Self.ProductParameterValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductParameterValue">
+        <PropertyRef Name="UnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShopFeedback_Shop">
+    <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
+    <End Role="ShopFeedback" Type="Self.ShopFeedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ShopFeedback">
+        <PropertyRef Name="ShopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShopProduct_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ShopProduct" Type="Self.ShopProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ShopProduct">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShopProduct_Shop">
+    <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
+    <End Role="ShopProduct" Type="Self.ShopProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ShopProduct">
+        <PropertyRef Name="ShopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShopProduct_ShopProductStatus">
+    <End Role="ShopProductStatus" Type="Self.ShopProductStatus" Multiplicity="1" />
+    <End Role="ShopProduct" Type="Self.ShopProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShopProductStatus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ShopProduct">
+        <PropertyRef Name="ShopProductStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="ReklamaDataEntitiesStoreContainer">
     <EntitySet Name="Banners" EntityType="Self.Banners" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BannerTypes" EntityType="Self.BannerTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CategoryParameter" EntityType="Self.CategoryParameter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CategoryParametersSection" EntityType="Self.CategoryParametersSection" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductBookmark" EntityType="Self.ProductBookmark" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductFeedback" EntityType="Self.ProductFeedback" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductImage" EntityType="Self.ProductImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductParameterValue" EntityType="Self.ProductParameterValue" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShopFeedback" EntityType="Self.ShopFeedback" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShopProduct" EntityType="Self.ShopProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShopProductStatus" EntityType="Self.ShopProductStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Banners_BannerTypes" Association="Self.FK_Banners_BannerTypes">
       <End Role="BannerTypes" EntitySet="BannerTypes" />
       <End Role="Banners" EntitySet="Banners" />
@@ -64,6 +418,66 @@
     <AssociationSet Name="FK_Banners_Images" Association="Self.FK_Banners_Images">
       <End Role="Images" EntitySet="Images" />
       <End Role="Banners" EntitySet="Banners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Category_Group" Association="Self.FK_Category_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="Category" EntitySet="Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CategoryParameter_CategoryParametersSection" Association="Self.FK_CategoryParameter_CategoryParametersSection">
+      <End Role="CategoryParametersSection" EntitySet="CategoryParametersSection" />
+      <End Role="CategoryParameter" EntitySet="CategoryParameter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CategoryParametersSection_Category" Association="Self.FK_CategoryParametersSection_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="CategoryParametersSection" EntitySet="CategoryParametersSection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Manufacturer" Association="Self.FK_Product_Manufacturer">
+      <End Role="Manufacturer" EntitySet="Manufacturer" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductBookmark_Product" Association="Self.FK_ProductBookmark_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductBookmark" EntitySet="ProductBookmark" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductFeedback_Product" Association="Self.FK_ProductFeedback_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductFeedback" EntitySet="ProductFeedback" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductImage_Product" Association="Self.FK_ProductImage_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductImage" EntitySet="ProductImage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductParameterValue_CategoryParameter" Association="Self.FK_ProductParameterValue_CategoryParameter">
+      <End Role="CategoryParameter" EntitySet="CategoryParameter" />
+      <End Role="ProductParameterValue" EntitySet="ProductParameterValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductParameterValue_Product" Association="Self.FK_ProductParameterValue_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductParameterValue" EntitySet="ProductParameterValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductParameterValue_Unit" Association="Self.FK_ProductParameterValue_Unit">
+      <End Role="Unit" EntitySet="Unit" />
+      <End Role="ProductParameterValue" EntitySet="ProductParameterValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShopFeedback_Shop" Association="Self.FK_ShopFeedback_Shop">
+      <End Role="Shop" EntitySet="Shop" />
+      <End Role="ShopFeedback" EntitySet="ShopFeedback" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShopProduct_Product" Association="Self.FK_ShopProduct_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ShopProduct" EntitySet="ShopProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShopProduct_Shop" Association="Self.FK_ShopProduct_Shop">
+      <End Role="Shop" EntitySet="Shop" />
+      <End Role="ShopProduct" EntitySet="ShopProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShopProduct_ShopProductStatus" Association="Self.FK_ShopProduct_ShopProductStatus">
+      <End Role="ShopProductStatus" EntitySet="ShopProductStatus" />
+      <End Role="ShopProduct" EntitySet="ShopProduct" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

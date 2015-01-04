@@ -1,5 +1,5 @@
 ﻿@using Reklama
-@model IEnumerable<Domain.Entity.Admin.PopularProduct>
+@model IEnumerable<Reklama.Data.Entities.Product>
 
 @{
     Layout = null;
@@ -16,14 +16,14 @@
             {
                 <li>
                     <div>
-                        <a href="@Url.Action("Details", "Product", new { id = product.ProductId })">
+                        <a href="@Url.Action("Details", "Catalog", new { id = product.ID })">
                             <span class="img">
-                                <img src="/@String.Concat(ProjectConfiguration.Get.FilePaths["product_thumb"], "/", product.Product.Image)" /></span>
+                                @Html.Partial("_ProductTitularImage", product.ProductImage)</span>
                             <div class="text">
-                                <p>@product.Product.Name</p>
-                                @if(product.Product.ShopProductRefs.Count > 0)
+                                <p>@product.Title</p>
+                                @if(product.ShopProduct.Count > 0)
                                 {
-                                    @:от @Convert.ToInt32(product.Product.ShopProductRefs.Min(p => p.Price)).ToString() $
+                                    @:от @Convert.ToInt32(product.ShopProduct.Min(p => p.Price)).ToString() $
                                 }
                             </div>
                         </a>

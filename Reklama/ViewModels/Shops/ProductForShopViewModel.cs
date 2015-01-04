@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using PagedList;
 using Reklama.Data.Entities;
+using Reklama.Data.Servises;
 using Reklama.Models.ViewModels.Catalog;
 
 namespace Reklama.ViewModels.Shops
@@ -17,6 +18,9 @@ namespace Reklama.ViewModels.Shops
 
         public SelectList Groups { get; set; }
         public SelectList Categories { get; set; }
-        public SelectList Manufacturers { get; set; } 
+        public SelectList Manufacturers { get; set; }
+        public int CurrentCategoryID { get; set; }
+
+        public List<ImportResultItem> ImportResult { get; set; } 
     }
 }

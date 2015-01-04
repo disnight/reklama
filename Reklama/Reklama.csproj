@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="CaptchaMvc">
       <HintPath>..\packages\CaptchaMvc.Mvc4.1.3.0\lib\net40-full\CaptchaMvc.dll</HintPath>
     </Reference>
@@ -52,7 +56,13 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ExcelLibrary">
+      <HintPath>..\..\temp\ExcelLibrary_20110730\ExcelLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.0.2-unstable-9\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -82,9 +92,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
@@ -126,6 +133,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
     <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
@@ -162,14 +173,6 @@
       <Private>True</Private>
       <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
     </Reference>
-    <Reference Include="WebGrease">
-      <Private>True</Private>
-      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
-    </Reference>
-    <Reference Include="Antlr3.Runtime">
-      <Private>True</Private>
-      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AuthConfig.cs" />
@@ -177,10 +180,21 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\CatalogAdmin\CatalogAgminAreaRegistration.cs" />
+    <Compile Include="Areas\CatalogAdmin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\CatalogAdmin\Controllers\GroupController.cs" />
+    <Compile Include="Areas\CatalogAdmin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\CatalogAdmin\Controllers\ManufacturerController.cs" />
+    <Compile Include="Areas\CatalogAdmin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\CatalogAdmin\Controllers\ShopController.cs" />
+    <Compile Include="Areas\CatalogAdmin\Models\EditCategoryViewModel.cs" />
+    <Compile Include="Areas\CatalogAdmin\Models\EditProductPageViewModel.cs" />
+    <Compile Include="Areas\CatalogAdmin\Models\IndexProductPageViewModel.cs" />
     <Compile Include="Attributes\CustomRealtyEditAuth.cs" />
     <Compile Include="Attributes\CustomRealtyAuth.cs" />
     <Compile Include="Attributes\CustomAnnouncementAuth.cs" />
     <Compile Include="Attributes\CustomAnnouncementEditAuth.cs" />
+    <Compile Include="Attributes\MultipleButtonAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AjaxServicesController.cs" />
@@ -621,6 +635,275 @@
     <Compile Include="ViewModels\Shops\ShopRegistrationDataViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\CatalogAdmin\assets\css\bootstrap-fileupload.min.css" />
+    <Content Include="Areas\CatalogAdmin\assets\css\fileinput.min.css" />
+    <Content Include="Areas\CatalogAdmin\assets\css\jquery-ui.css" />
+    <Content Include="Areas\CatalogAdmin\assets\css\main.css" />
+    <Content Include="Areas\CatalogAdmin\assets\css\MoneAdmin.css" />
+    <Content Include="Areas\CatalogAdmin\assets\css\theme.css" />
+    <Content Include="Areas\CatalogAdmin\assets\img\1.png" />
+    <Content Include="Areas\CatalogAdmin\assets\img\1G.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\img\1G_B.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\img\2.png" />
+    <Content Include="Areas\CatalogAdmin\assets\img\2G.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\img\2G_B.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\img\3.png" />
+    <Content Include="Areas\CatalogAdmin\assets\img\4.png" />
+    <Content Include="Areas\CatalogAdmin\assets\img\bg.png" />
+    <Content Include="Areas\CatalogAdmin\assets\img\cp.png" />
+    <Content Include="Areas\CatalogAdmin\assets\img\demoBig.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\img\demoBig2.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\img\demoImage.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\img\demoImage2.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\img\demoUpload.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\img\loading.gif" />
+    <Content Include="Areas\CatalogAdmin\assets\img\logo.png" />
+    <Content Include="Areas\CatalogAdmin\assets\img\logo_reklama.png" />
+    <Content Include="Areas\CatalogAdmin\assets\img\moreNoti.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\img\moreNoti_old.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\img\px_by_Gre3g.png" />
+    <Content Include="Areas\CatalogAdmin\assets\img\user.gif" />
+    <Content Include="Areas\CatalogAdmin\assets\img\user_old.gif" />
+    <Content Include="Areas\CatalogAdmin\assets\js\ajaxService.js" />
+    <Content Include="Areas\CatalogAdmin\assets\js\fileinput.min.js" />
+    <Content Include="Areas\CatalogAdmin\assets\js\formsInit.js" />
+    <Content Include="Areas\CatalogAdmin\assets\js\jquery-ui.min.js" />
+    <Content Include="Areas\CatalogAdmin\assets\js\jquery.tmpl.js" />
+    <Content Include="Areas\CatalogAdmin\assets\js\productEdit.js" />
+    <Content Include="Areas\CatalogAdmin\assets\js\productIndex.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\autosize\jquery.autosize.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\autosize\jquery.autosize.min.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\bootstrap\css\bootstrap.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\bootstrap\js\bootstrap-fileupload.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\bootstrap\js\bootstrap.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Areas\CatalogAdmin\assets\js\categoryEdit.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\chosen\chosen-sprite%402x.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\chosen\chosen-sprite.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\chosen\chosen.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\chosen\chosen.jquery.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\chosen\chosen.jquery.min.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\chosen\chosen.min.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\chosen\chosen.proto.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\chosen\chosen.proto.min.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\chosen\docsupport\chosen.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\chosen\docsupport\oss-credit.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\chosen\docsupport\prism.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\chosen\docsupport\prism.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\chosen\docsupport\style.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\Font-Awesome\css\font-awesome.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\inputlimiter\demo.htm" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\inputlimiter\jquery-1.7.2.min.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\inputlimiter\jquery.inputlimiter.1.0.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\inputlimiter\jquery.inputlimiter.1.3.1.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\inputlimiter\jquery.inputlimiter.1.3.1.min.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\css\bootstrap-responsive.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\css\bootstrap.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\css\docs.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\font\iconic_fill.svg" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\font\iconic_stroke.svg" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\ico\apple-touch-icon-114-precomposed.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\ico\apple-touch-icon-144-precomposed.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\ico\apple-touch-icon-57-precomposed.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\ico\apple-touch-icon-72-precomposed.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\ico\favicon.ico" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\ico\favicon.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\bootstrap-docs-readme.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\bootstrap-mdo-sfmoma-01.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\bootstrap-mdo-sfmoma-02.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\bootstrap-mdo-sfmoma-03.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\bs-docs-bootstrap-features.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\bs-docs-masthead-pattern.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\bs-docs-responsive-illustrations.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\bs-docs-twitter-github.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\example-sites\8020select.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\example-sites\adoptahydrant.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\example-sites\breakingnews.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\example-sites\fleetio.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\example-sites\gathercontent.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\example-sites\jshint.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\example-sites\kippt.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\example-sites\soundready.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\examples\bootstrap-example-carousel.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\examples\bootstrap-example-fluid.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\examples\bootstrap-example-justified-nav.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\examples\bootstrap-example-marketing-narrow.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\examples\bootstrap-example-marketing.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\examples\bootstrap-example-signin.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\examples\bootstrap-example-starter.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\examples\bootstrap-example-sticky-footer.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\examples\browser-icon-chrome.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\examples\browser-icon-firefox.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\examples\browser-icon-safari.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\examples\slide-01.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\examples\slide-02.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\examples\slide-03.jpg" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\extended-by-jasny.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\glyphicons-halflings-white.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\glyphicons-halflings.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\grid-baseline-20px.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\jasny-logo-emboss.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\jasny-logo.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\less-logo-large.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\img\responsive-illustrations.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\application.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap-affix.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap-alert.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap-button.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap-carousel.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap-collapse.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap-dropdown.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap-fileupload.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap-inputmask.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap-modal.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap-popover.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap-rowlink.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap-scrollspy.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap-tab.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap-tooltip.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap-transition.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap-typeahead.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\bootstrap.min.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\catincan.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\google-code-prettify\prettify.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\google-code-prettify\prettify.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\holder\holder.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\html5shiv.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\jquery.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\base-css.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\build\index.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\components.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\customize.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\examples\carousel.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\examples\fluid.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\examples\hero.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\examples\justified-nav.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\examples\marketing-narrow.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\examples\signin.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\examples\starter-template.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\examples\sticky-footer-navbar.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\examples\sticky-footer.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\extend.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\getting-started.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\index.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\javascript.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\scaffolding.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\font\iconic_fill.svg" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\font\iconic_stroke.svg" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\img\glyphicons-halflings-white.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\img\glyphicons-halflings.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap-affix.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap-alert.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap-button.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap-carousel.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap-collapse.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap-dropdown.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap-fileupload.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap-inputmask.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap-modal.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap-popover.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap-rowlink.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap-scrollspy.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap-tab.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap-tooltip.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap-transition.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap-typeahead.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\bootstrap.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\index.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\phantom.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\server.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\unit\bootstrap-affix.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\unit\bootstrap-alert.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\unit\bootstrap-button.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\unit\bootstrap-carousel.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\unit\bootstrap-collapse.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\unit\bootstrap-dropdown.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\unit\bootstrap-modal.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\unit\bootstrap-phantom.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\unit\bootstrap-popover.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\unit\bootstrap-scrollspy.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\unit\bootstrap-tab.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\unit\bootstrap-tooltip.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\unit\bootstrap-transition.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\unit\bootstrap-typeahead.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\vendor\jquery.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\vendor\qunit.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\js\tests\vendor\qunit.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\tests\buttons.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\tests\css-tests.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\tests\css-tests.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\tests\forms-responsive.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\tests\forms.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\tests\navbar-fixed-top.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\tests\navbar-static-top.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\tests\navbar.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jquery-2.0.3.min.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\modernizr-2.6.2-respond-1.1.0.min.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\switch\examples\index.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\switch\static\js\bootstrap-switch.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\switch\static\js\bootstrap-switch.min.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\switch\static\stylesheets\bootstrap-switch.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\switch\static\stylesheets\flat-ui-fonts.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\demo\demo.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\jquery.uniform.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\jquery.uniform.min.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\theme-kit\bg-input-focus.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\theme-kit\bg-input.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\theme-kit\identification.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\agent\css\uniform.agent.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\agent\css\uniform.agent.min.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\agent\images\bg-input-agent.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\agent\images\bg-input-focus-agent.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\agent\images\sprite-agent.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\aristo\css\uniform.aristo.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\aristo\css\uniform.aristo.min.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\aristo\images\bg-input-aristo.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\aristo\images\bg-input-focus-aristo.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\aristo\images\sprite-aristo.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\default\css\uniform.default.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\default\css\uniform.default.min.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\default\images\bg-input-focus.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\default\images\bg-input.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\default\images\sprite.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\jeans\css\uniform.jeans.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\jeans\css\uniform.jeans.min.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\jeans\images\bg-input-focus-jeans.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\jeans\images\bg-input-focus-retina-jeans.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\jeans\images\bg-input-jeans.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\jeans\images\bg-input-retina-jeans.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\jeans\images\sprite-jeans.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\jeans\images\sprite-retina-jeans.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\_base\css\uniform._base.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\_base\css\uniform._base.min.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www-fragments\index-start.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www-fragments\index-stop.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\images\bg-code.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\images\btn-lg-bg.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\images\btn-sm-bg.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\images\download.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\images\icon-download.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\images\logo-pixelmatrix.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\images\preview-agent.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\images\preview-aristo.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\images\preview-default.png" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\javascripts\ICanHaz-no-mustache.min.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\javascripts\index-theme.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\javascripts\index.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\javascripts\multiple-themes.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\javascripts\mustache.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\multiple-themes.html" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\stylesheets\multiple-themes.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\stylesheets\site.css" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\validVal\js\jquery.validVal-customValidations.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\validVal\js\jquery.validVal-debugger.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\validVal\js\jquery.validVal.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\validVal\js\jquery.validVal.min.js" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\validVal\serverside-validations\index.html" />
     <Content Include="Content\Admin.css" />
     <Content Include="Content\Announcement.css" />
     <Content Include="Content\buttons.css" />
@@ -701,6 +984,120 @@
     <Content Include="Content\Tinyscrollbar.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Areas\CatalogAdmin\Views\Web.config" />
+    <Content Include="Areas\CatalogAdmin\Views\Shared\_adminLayout.cshtml" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\switch\static\less\bootstrap-switch.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\switch\static\less\deps\mixins.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\switch\static\less\deps\variables.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\theme-kit\README.md" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\theme-kit\sprite.psd" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\agent\css\uniform.agent.scss" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\aristo\css\uniform.aristo.scss" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\default\css\uniform.default.scss" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\jeans\css\uniform.jeans.scss" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\themes\_base\css\uniform._base.scss" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\uniform\www\stylesheets\multiple-themes.scss" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\validVal\serverside-validations\validations.php" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\font\iconic_fill.eot" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\font\iconic_fill.otf" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\font\iconic_fill.ttf" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\font\iconic_fill.woff" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\font\iconic_stroke.eot" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\font\iconic_stroke.otf" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\font\iconic_stroke.ttf" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\font\iconic_stroke.woff" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\assets\js\README.md" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\build\package.json" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\templates\layout.mustache" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\templates\pages\base-css.mustache" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\templates\pages\components.mustache" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\templates\pages\customize.mustache" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\templates\pages\extend.mustache" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\templates\pages\getting-started.mustache" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\templates\pages\index.mustache" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\templates\pages\javascript.mustache" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\docs\templates\pages\scaffolding.mustache" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\font\iconic_fill.eot" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\font\iconic_fill.otf" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\font\iconic_fill.ttf" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\font\iconic_fill.woff" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\font\iconic_stroke.eot" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\font\iconic_stroke.otf" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\font\iconic_stroke.ttf" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\font\iconic_stroke.woff" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\accordion.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\action-areas.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\action-links.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\alerts.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\bootstrap.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\breadcrumbs.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\button-groups.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\buttons.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\carousel.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\close.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\code.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\component-animations.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\dropdowns.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\fileupload.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\forms-uneditable.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\forms.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\grid.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\hero-unit.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\iconic.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\jasny-bootstrap.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\jasny-forms.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\jasny-forms.responsive-1200px-min.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\jasny-forms.responsive-767px-max.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\jasny-forms.responsive-768px-979px.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\jasny-navs-tabbable.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\jasny-responsive.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\labels-badges.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\layouts-semifluid.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\layouts-semifluid.responsive-1200px-min.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\layouts.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\media.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\mixins.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\modals.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\navbar.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\navs.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\page-alert.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\page-alert.responsive-1200px-min.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\page-alert.responsive-767px-max.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\pager.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\pagination.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\popovers.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\progress-bars.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\reset.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\responsive-1200px-min.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\responsive-767px-max.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\responsive-768px-979px.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\responsive-navbar.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\responsive-row-desktop.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\responsive-tables.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\responsive-utilities.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\responsive.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\rowlink.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\scaffolding.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\sprites.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\tables.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\thumbnails.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\tooltip.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\type.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\utilities.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\variables.less" />
+    <Content Include="Areas\CatalogAdmin\assets\plugins\jasny\less\wells.less" />
+    <Content Include="Areas\CatalogAdmin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\CatalogAdmin\Views\Group\Index.cshtml" />
+    <Content Include="Areas\CatalogAdmin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\CatalogAdmin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\CatalogAdmin\Views\Product\Edit.cshtml" />
+    <Content Include="Areas\CatalogAdmin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\CatalogAdmin\Views\Product\Import.cshtml" />
+    <Content Include="Areas\CatalogAdmin\Views\Manufacturer\Index.cshtml" />
+    <Content Include="Areas\CatalogAdmin\Views\Shop\Index.cshtml" />
     <None Include="Properties\PublishProfiles\HardDrive.pubxml" />
     <None Include="Properties\PublishProfiles\reklama.pubxml" />
     <None Include="Properties\PublishProfiles\To FileSystem.pubxml" />
@@ -2193,6 +2590,7 @@
     <Content Include="Views\Shops\BaseProducts.cshtml" />
     <Content Include="Views\Shared\_ProductThumbImage.cshtml" />
     <Content Include="Views\Shops\ShopProducts.cshtml" />
+    <Content Include="Views\Shops\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2373,6 +2771,35 @@
     <EmbeddedResource Include="Migrations\201404190815444_Add_IsActive_To_Suncategory.resx">
       <DependentUpon>201404190815444_Add_IsActive_To_Suncategory.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Domain.Enums;
 using Domain.Repository.Admin;
+using Reklama.Data.Entities;
+using Reklama.Data.Servises;
 using Reklama.Models;
 using Domain.Entity.Admin;
 using Domain.Repository.Realty;
@@ -71,36 +73,43 @@ namespace Reklama.Controllers
         [ChildActionOnly]
         public ActionResult PopularSectionsInCatalog()
         {
-            var popularSections = _popularSectionCatalogRepository.Read();
+            var shopService = new ShopsService();
+            //var popularSections = _popularSectionCatalogRepository.Read();
+            var popularSections = shopService.GetPopularCategories();
             return View(popularSections);
         }
 
         [ChildActionOnly]
         public ActionResult NewInCatalog()
         {
-            var news = _newSectionInCatalogRepository.Read();
+            var shopService = new ShopsService();
+            //var news = _newSectionInCatalogRepository.Read();
+            var news = shopService.GetNewCategories();
             return View(news);
         }
 
         [ChildActionOnly]
         public ActionResult PopularProducts()
         {
-            var products = _popularProductRepository.Read().ToList();
-            List<PopularProduct> result = new List<PopularProduct>();
+            var shopService = new ShopsService();
+
+            //var products = _popularProductRepository.Read().ToList();
+            var products = shopService.GetPopularProducts().ToList();
             if (products.Count() <= 5)
             {
-                result = products.ToList();
+                return View(products);
             }
             else
             {
+                var result = new List<Product>();
                 for (int i = 0; i < 5; i++)
                 {
                     int index = new Random().Next(products.Count());
                     result.Add(products[index]);
                     products.RemoveAt(index);
                 }
+                return View(result);
             }
-            return View(result);
         }
 
         [ChildActionOnly]

@@ -151,9 +151,10 @@
                                     time = TimeSpan.FromHours(ViewBag.UpTimeHours) - time;
                                     using (Html.BeginForm("Up", "Realty"))
                                     {
+                                        @Html.HiddenFor(x => x.Id);
                                         if (Model.UpTime <= DateTime.Now.AddHours(-ViewBag.UpTimeHours) || User.IsInRole("Administrator") || User.IsInRole("Moderator"))
                                         {
-                                    @Html.HiddenFor(x => x.Id);
+                                    
                                     <input type="submit" value="Поднять объявление" />
                                                               if ((User.IsInRole("Administrator") || User.IsInRole("Moderator")) && time.TotalSeconds > 0)
                                                               {

@@ -10,3 +10,8 @@ D:\Projects\Reklama\reklama\Reklama.Data\bin\Release\EntityFramework.SqlServer.x
 D:\Projects\Reklama\reklama\Reklama.Data\obj\Release\Reklama.Data.csprojResolveAssemblyReference.cache
 D:\Projects\Reklama\reklama\Reklama.Data\obj\Release\Reklama.Data.dll
 D:\Projects\Reklama\reklama\Reklama.Data\obj\Release\Reklama.Data.pdb
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Release\Antlr3.Runtime.dll
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Release\Newtonsoft.Json.dll
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Release\WebGrease.dll
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Release\Antlr3.Runtime.pdb
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Release\Newtonsoft.Json.xml

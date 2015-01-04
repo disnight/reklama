@@ -29,7 +29,6 @@ namespace Reklama.Data.Entities
         public virtual DbSet<BannerTypes> BannerTypes { get; set; }
         public virtual DbSet<Images> Images { get; set; }
         public virtual DbSet<Manufacturer> Manufacturer { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<ProductBookmark> ProductBookmark { get; set; }
         public virtual DbSet<ProductFeedback> ProductFeedback { get; set; }
         public virtual DbSet<ProductImage> ProductImage { get; set; }
@@ -38,10 +37,11 @@ namespace Reklama.Data.Entities
         public virtual DbSet<ShopProduct> ShopProduct { get; set; }
         public virtual DbSet<ShopProductStatus> ShopProductStatus { get; set; }
         public virtual DbSet<Unit> Unit { get; set; }
-        public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<CategoryParameter> CategoryParameter { get; set; }
         public virtual DbSet<CategoryParametersSection> CategoryParametersSection { get; set; }
-        public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<ProductParameterValue> ProductParameterValue { get; set; }
+        public virtual DbSet<Group> Group { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
     }
 }

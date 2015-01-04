@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="UTF-8" />
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="/Images/System/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/Images/System/favicon.ico" type="image/x-icon" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!--[if IE]>
+       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+       <![endif]-->
+    <!-- GLOBAL STYLES -->
+    <!-- GLOBAL STYLES -->
+    <link rel="stylesheet" href="/Areas/CatalogAdmin/assets/plugins/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="/Areas/CatalogAdmin/assets/css/main.css" />
+    <link rel="stylesheet" href="/Areas/CatalogAdmin/assets/css/theme.css" />
+    <link rel="stylesheet" href="/Areas/CatalogAdmin/assets/css/MoneAdmin.css" />
+    <link rel="stylesheet" href="/Areas/CatalogAdmin/assets/plugins/Font-Awesome/css/font-awesome.css" />
+    <!--END GLOBAL STYLES -->
+    <!-- PAGE LEVEL STYLES -->
+
+    <link href="/Areas/CatalogAdmin/assets/css/jquery-ui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Areas/CatalogAdmin/assets/plugins/uniform/themes/default/css/uniform.default.css" />
+    <link rel="stylesheet" href="/Areas/CatalogAdmin/assets/plugins/inputlimiter/jquery.inputlimiter.1.0.css" />
+    <link rel="stylesheet" href="/Areas/CatalogAdmin/assets/plugins/chosen/chosen.min.css" />
+    <link rel="stylesheet" href="/Areas/CatalogAdmin/assets/plugins/switch/static/stylesheets/bootstrap-switch.css" />
+
+    <!-- END PAGE LEVEL  STYLES -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    
+    
+    <!-- GLOBAL SCRIPTS -->
+    <script src="/Areas/CatalogAdmin/assets/plugins/jquery-2.0.3.min.js"></script>
+    <script src="/Areas/CatalogAdmin/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/Areas/CatalogAdmin/assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="/Areas/CatalogAdmin/assets/js/ajaxService.js"></script>
+    <!-- END GLOBAL SCRIPTS -->
+
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="padTop53 ">
+
+    <!-- MAIN WRAPPER -->
+    <div id="wrap">
+
+
+        <!-- HEADER SECTION -->
+        <div id="top">
+
+            <nav class="navbar navbar-inverse navbar-fixed-top " style="padding-top: 10px;">
+                <a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs" data-toggle="collapse" href="#menu" id="menu-toggle">
+                    <i class="icon-align-justify"></i>
+                </a>
+                <!-- LOGO SECTION -->
+                <header class="navbar-header">
+                    @*TODO: Link to the Index page*@
+                    <a href="#" class="navbar-brand">
+                        <img src="/Areas/CatalogAdmin/assets/img/logo_reklama.png" alt="" height="30px" />&nbsp;Catalog Admin
+                    </a>
+                </header>
+                <!-- END LOGO SECTION -->
+            </nav>
+
+        </div>
+        <!-- END HEADER SECTION -->
+        <!-- MENU SECTION -->
+        <div id="left">
+
+            <ul id="menu" class="collapse">
+                <li><a href="@Url.Action("Index","Shop")"><i class="icon-shopping-cart"></i> Магазины</a></li>
+                <li><a href="@Url.Action("Index","Manufacturer")"><i class="icon-pinterest-sign"></i> Производители</a></li>
+                <li><a href="@Url.Action("Index","Group")"><i class="icon-table"></i> Группы товаров</a></li>
+                <li><a href="@Url.Action("Index","Category")"><i class="icon-film"></i> Категории товаров </a></li>
+                <li><a href="@Url.Action("Index","Product")"><i class="icon-suitcase"></i> Продукты </a></li>
+                <li><a href="@Url.Action("Import","Product")"><i class="icon-map-marker"></i> Импорт товаров </a></li>
+            </ul>
+
+        </div>
+        <!--END MENU SECTION -->
+        <!--PAGE CONTENT -->
+        <div id="content">
+            <div class="inner">
+                @RenderBody()
+            </div>
+        </div>
+        <!-- END PAGE CONTENT -->
+
+    </div>
+
+
+    <!--END MAIN WRAPPER -->
+    <!-- FOOTER -->
+    <div id="footer">
+        <p>&copy;  reklama.tm &nbsp;2014 &nbsp;</p>
+    </div>
+    <!--END FOOTER -->
+   
+
+</body>
+<!-- END BODY -->
+</html>

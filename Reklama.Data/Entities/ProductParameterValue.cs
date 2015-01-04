@@ -20,7 +20,7 @@ namespace Reklama.Data.Entities
         public Nullable<int> UnitID { get; set; }
     
         public virtual CategoryParameter CategoryParameter { get; set; }
-        public virtual Product Product { get; set; }
         public virtual Unit Unit { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

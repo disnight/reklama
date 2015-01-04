@@ -10,3 +10,8 @@ D:\Projects\Reklama\reklama\Reklama.Data\bin\Debug\EntityFramework.xml
 D:\Projects\Reklama\reklama\Reklama.Data\bin\Debug\EntityFramework.SqlServer.xml
 D:\Projects\Reklama\reklama\Reklama.Data\obj\Debug\Reklama.Data.dll
 D:\Projects\Reklama\reklama\Reklama.Data\obj\Debug\Reklama.Data.pdb
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Debug\Antlr3.Runtime.dll
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Debug\WebGrease.dll
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Debug\Antlr3.Runtime.pdb
+D:\Projects\Reklama\reklama\Reklama.Data\bin\Debug\Newtonsoft.Json.xml

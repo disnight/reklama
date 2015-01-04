@@ -1,5 +1,5 @@
-﻿@model System.Linq.IQueryable<Domain.Entity.Admin.NewSectionInCatalog>
-
+﻿@*@model System.Linq.IQueryable<Domain.Entity.Admin.NewSectionInCatalog>*@
+@model IEnumerable<Reklama.Data.Entities.Category>
 @{
     Layout = null;
 }
@@ -12,14 +12,14 @@
     {
         <ul>
 
-        @foreach (var popularNew in Model)
+        @foreach (var category in Model)
         {
-            var shopsProducts = popularNew.Category.Products.SelectMany(s => s.ShopProductRefs);
+            var shopsProducts = category.Product.SelectMany(q => q.ShopProduct);
             
             <li>
-                    @Html.ActionLink(popularNew.Category.Name, "List", "Product", new {secondCategoryId = popularNew.SectionId}, null)
+                    @Html.ActionLink(category.Name, "Category", "Catalog", new { secondCategoryId = category.ID }, null)
                     <sup>&nbsp;
-                        @if (shopsProducts != null && shopsProducts.Any())
+                        @if (shopsProducts.Any())
                         {
                             @:от @Convert.ToInt32(shopsProducts.Min(p => p.Price)).ToString() $
                         }

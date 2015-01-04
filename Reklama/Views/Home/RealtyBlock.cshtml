@@ -46,14 +46,11 @@
                                 {
                                     @Html.ActionLink(realty.AgencyName, "Index", "Profile", new { id = realty.UserId }, null)
                                 }
-                                else
+                                else if (!String.IsNullOrEmpty(realty.ContactEmail))
                                 {
                                     if (realty.UserId == -1)
                                      {
-                                         if (!String.IsNullOrEmpty(realty.ContactEmail))
-                                         {
-                                             <a href="mailto:@realty.ContactEmail">@realty.ContactEmail</a>
-                                         }
+                                        <a href="mailto:@realty.ContactEmail">@realty.ContactEmail</a>
                                      }
                                      else
                                      {

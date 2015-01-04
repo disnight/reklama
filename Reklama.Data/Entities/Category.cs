@@ -25,6 +25,7 @@ namespace Reklama.Data.Entities
         public string Name { get; set; }
         public decimal Price { get; set; }
         public bool IsNew { get; set; }
+        public bool IsPopular { get; set; }
         public bool IsActive { get; set; }
     
         public virtual Group Group { get; set; }

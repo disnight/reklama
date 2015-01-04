@@ -11,7 +11,7 @@
             @if (User.IsInRole("Administrator"))
         {
             <li>
-                @Html.ActionLink("Редактировать", "ProductParamValuesEdit", "Admin", new { id = Model.ID }, new { style = "color:#00A;" })
+                @Html.RouteLink("Редактировать", "CatalogAdmin_default", new { Controller = "Product", Action = "Edit", id = Model.ID }, new { style = "color:#00A;" })
             </li>
         }
         </li>
@@ -24,7 +24,7 @@
             @if (User.IsInRole("Administrator"))
             {
                 <br />
-                @Html.ActionLink("Добавить фото", "ProductAddPhoto", "Admin", new { id = Model.ID }, new { style = "color:#00A;", target = "_blank" })
+                @Html.RouteLink("Добавить фото", "CatalogAdmin_default", new { Controller = "Product", Action = "Edit", id = Model.ID }, new { style = "color:#00A;", target = "_blank" })
             }
         </li>
         @if(Model.ReviewLink != null && !Model.ReviewLink.IsEmpty())
@@ -43,7 +43,7 @@
         @if (User.IsInRole("Administrator"))
         {
             <li>
-                @Html.ActionLink("Редактировать товар", "ProductEdit", "Admin", new { id = Model.ID }, new { style = "color:#00A;" })
+                @Html.RouteLink("Редактировать товар", "CatalogAdmin_default", new { Controller = "Product", Action = "Edit", id = Model.ID }, new { style = "color:#00A;" })
             </li>
         }
                 <li><a @(((ProductMenu)ViewData["productMenu"] == ProductMenu.Shops) ? "class=act" : "" ) href="@Url.Action("Shops", new { id = Model.ID })">

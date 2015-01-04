@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Domain.Entity.Shared;
 using Domain.Repository.Shared;
+using Reklama.Data.Servises;
 using Reklama.Filters;
 using WebMatrix.WebData;
 using Reklama.Models;
@@ -21,6 +22,7 @@ namespace Reklama.Controllers
         private IProfileRepository _profileRepository;
         private IPrivateMessageRepository _privateMessageRepository;
         private IShopRepository _shopRepository;
+        private ShopsService _shopService = new ShopsService();
 
         public ProfileController(IProfileRepository profileRepository, IPrivateMessageRepository privateMessageRepository, IShopRepository shopRepository)
         {
@@ -47,9 +49,9 @@ namespace Reklama.Controllers
             }
 
             ViewBag.InboxUnreadCount = _privateMessageRepository.GetUnreadCount(WebSecurity.CurrentUserId);
-            if (_shopRepository.IsExistShopByCurrentUser(id))
+            if (_shopService.IsExistShopByCurrentUser(id))
             {
-                ViewBag.ShopId = _shopRepository.ReadShopIdByUserId(id);
+                ViewBag.ShopId = _shopService.GetShopByUserID(id).ID;
             }
             return View(profile);
         }

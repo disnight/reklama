@@ -23,7 +23,7 @@ namespace Reklama.Data.Entities
         public int CategoryID { get; set; }
         public string Name { get; set; }
     
-        public virtual Category Category { get; set; }
         public virtual ICollection<CategoryParameter> CategoryParameter { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

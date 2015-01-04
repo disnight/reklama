@@ -289,6 +289,12 @@ namespace Reklama.Controllers
                         uploader.Convert(ProjectConfiguration.Get.RealtyImageWidth, ProjectConfiguration.Get.RealtyImageHeight);
                         uploader.Save("realty_thumb");
                         break;
+                    case "Product":
+                        uploader.Convert(530, 350);
+                        uploader.Save("products");
+                        uploader.Convert(ProjectConfiguration.Get.RealtyImageWidth, ProjectConfiguration.Get.RealtyImageHeight);
+                        uploader.Save("product_thumb");
+                        break;
                 }
 
             }

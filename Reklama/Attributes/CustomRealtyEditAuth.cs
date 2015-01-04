@@ -10,7 +10,21 @@ namespace Reklama.Attributes
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             var anonymousService = new AnonymousUserService();
-            var routId = httpContext.Request.RequestContext.RouteData.Values["id"];
+
+            object routId;
+            switch (httpContext.Request.HttpMethod)
+            {
+                case "POST":
+                    routId = httpContext.Request.Params["Id"];
+                    break;
+                case "GET":
+                    routId = httpContext.Request.RequestContext.RouteData.Values["id"];
+                    break;
+                default:
+                    routId = httpContext.Request.RequestContext.RouteData.Values["id"];
+                    break;
+            }
+
             var annId = 0;
             if (routId != null)
                 annId = Convert.ToInt32(routId);

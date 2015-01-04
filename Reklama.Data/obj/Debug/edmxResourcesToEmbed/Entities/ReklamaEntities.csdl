@@ -13,7 +13,6 @@
       <End Role="Banners" EntitySet="Banners" />
     </AssociationSet>
     <EntitySet Name="Manufacturer" EntityType="Reklama.Data.Entities.Manufacturer" />
-    <EntitySet Name="Product" EntityType="Reklama.Data.Entities.Product" />
     <EntitySet Name="ProductBookmark" EntityType="Reklama.Data.Entities.ProductBookmark" />
     <EntitySet Name="ProductFeedback" EntityType="Reklama.Data.Entities.ProductFeedback" />
     <EntitySet Name="ProductImage" EntityType="Reklama.Data.Entities.ProductImage" />
@@ -22,6 +21,35 @@
     <EntitySet Name="ShopProduct" EntityType="Reklama.Data.Entities.ShopProduct" />
     <EntitySet Name="ShopProductStatus" EntityType="Reklama.Data.Entities.ShopProductStatus" />
     <EntitySet Name="Unit" EntityType="Reklama.Data.Entities.Unit" />
+    <AssociationSet Name="FK_ShopFeedback_Shop" Association="Reklama.Data.Entities.FK_ShopFeedback_Shop">
+      <End Role="Shop" EntitySet="Shop" />
+      <End Role="ShopFeedback" EntitySet="ShopFeedback" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShopProduct_Shop" Association="Reklama.Data.Entities.FK_ShopProduct_Shop">
+      <End Role="Shop" EntitySet="Shop" />
+      <End Role="ShopProduct" EntitySet="ShopProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShopProduct_ShopProductStatus" Association="Reklama.Data.Entities.FK_ShopProduct_ShopProductStatus">
+      <End Role="ShopProductStatus" EntitySet="ShopProductStatus" />
+      <End Role="ShopProduct" EntitySet="ShopProduct" />
+    </AssociationSet>
+    <EntitySet Name="CategoryParameter" EntityType="Reklama.Data.Entities.CategoryParameter" />
+    <EntitySet Name="CategoryParametersSection" EntityType="Reklama.Data.Entities.CategoryParametersSection" />
+    <EntitySet Name="ProductParameterValue" EntityType="Reklama.Data.Entities.ProductParameterValue" />
+    <AssociationSet Name="FK_CategoryParameter_CategoryParametersSection" Association="Reklama.Data.Entities.FK_CategoryParameter_CategoryParametersSection">
+      <End Role="CategoryParametersSection" EntitySet="CategoryParametersSection" />
+      <End Role="CategoryParameter" EntitySet="CategoryParameter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductParameterValue_CategoryParameter" Association="Reklama.Data.Entities.FK_ProductParameterValue_CategoryParameter">
+      <End Role="CategoryParameter" EntitySet="CategoryParameter" />
+      <End Role="ProductParameterValue" EntitySet="ProductParameterValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductParameterValue_Unit" Association="Reklama.Data.Entities.FK_ProductParameterValue_Unit">
+      <End Role="Unit" EntitySet="Unit" />
+      <End Role="ProductParameterValue" EntitySet="ProductParameterValue" />
+    </AssociationSet>
+    <EntitySet Name="Group" EntityType="Reklama.Data.Entities.Group" />
+    <EntitySet Name="Product" EntityType="Reklama.Data.Entities.Product" />
     <AssociationSet Name="FK_Product_Manufacturer" Association="Reklama.Data.Entities.FK_Product_Manufacturer">
       <End Role="Manufacturer" EntitySet="Manufacturer" />
       <End Role="Product" EntitySet="Product" />
@@ -38,27 +66,15 @@
       <End Role="Product" EntitySet="Product" />
       <End Role="ProductImage" EntitySet="ProductImage" />
     </AssociationSet>
+    <AssociationSet Name="FK_ProductParameterValue_Product" Association="Reklama.Data.Entities.FK_ProductParameterValue_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductParameterValue" EntitySet="ProductParameterValue" />
+    </AssociationSet>
     <AssociationSet Name="FK_ShopProduct_Product" Association="Reklama.Data.Entities.FK_ShopProduct_Product">
       <End Role="Product" EntitySet="Product" />
       <End Role="ShopProduct" EntitySet="ShopProduct" />
     </AssociationSet>
-    <AssociationSet Name="FK_ShopFeedback_Shop" Association="Reklama.Data.Entities.FK_ShopFeedback_Shop">
-      <End Role="Shop" EntitySet="Shop" />
-      <End Role="ShopFeedback" EntitySet="ShopFeedback" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ShopProduct_Shop" Association="Reklama.Data.Entities.FK_ShopProduct_Shop">
-      <End Role="Shop" EntitySet="Shop" />
-      <End Role="ShopProduct" EntitySet="ShopProduct" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ShopProduct_ShopProductStatus" Association="Reklama.Data.Entities.FK_ShopProduct_ShopProductStatus">
-      <End Role="ShopProductStatus" EntitySet="ShopProductStatus" />
-      <End Role="ShopProduct" EntitySet="ShopProduct" />
-    </AssociationSet>
     <EntitySet Name="Category" EntityType="Reklama.Data.Entities.Category" />
-    <EntitySet Name="CategoryParameter" EntityType="Reklama.Data.Entities.CategoryParameter" />
-    <EntitySet Name="CategoryParametersSection" EntityType="Reklama.Data.Entities.CategoryParametersSection" />
-    <EntitySet Name="Group" EntityType="Reklama.Data.Entities.Group" />
-    <EntitySet Name="ProductParameterValue" EntityType="Reklama.Data.Entities.ProductParameterValue" />
     <AssociationSet Name="FK_Category_Group" Association="Reklama.Data.Entities.FK_Category_Group">
       <End Role="Group" EntitySet="Group" />
       <End Role="Category" EntitySet="Category" />
@@ -70,22 +86,6 @@
     <AssociationSet Name="FK_Product_Category" Association="Reklama.Data.Entities.FK_Product_Category">
       <End Role="Category" EntitySet="Category" />
       <End Role="Product" EntitySet="Product" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CategoryParameter_CategoryParametersSection" Association="Reklama.Data.Entities.FK_CategoryParameter_CategoryParametersSection">
-      <End Role="CategoryParametersSection" EntitySet="CategoryParametersSection" />
-      <End Role="CategoryParameter" EntitySet="CategoryParameter" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductParameterValue_CategoryParameter" Association="Reklama.Data.Entities.FK_ProductParameterValue_CategoryParameter">
-      <End Role="CategoryParameter" EntitySet="CategoryParameter" />
-      <End Role="ProductParameterValue" EntitySet="ProductParameterValue" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductParameterValue_Product" Association="Reklama.Data.Entities.FK_ProductParameterValue_Product">
-      <End Role="Product" EntitySet="Product" />
-      <End Role="ProductParameterValue" EntitySet="ProductParameterValue" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductParameterValue_Unit" Association="Reklama.Data.Entities.FK_ProductParameterValue_Unit">
-      <End Role="Unit" EntitySet="Unit" />
-      <End Role="ProductParameterValue" EntitySet="ProductParameterValue" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Banners">
@@ -153,27 +153,6 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="IsPopular" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Product" Relationship="Reklama.Data.Entities.FK_Product_Manufacturer" FromRole="Manufacturer" ToRole="Product" />
-  </EntityType>
-  <EntityType Name="Product">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CategoryID" Type="Int32" Nullable="false" />
-    <Property Name="ManufacturerID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Manufacturer" Relationship="Reklama.Data.Entities.FK_Product_Manufacturer" FromRole="Product" ToRole="Manufacturer" />
-    <NavigationProperty Name="ProductBookmark" Relationship="Reklama.Data.Entities.FK_ProductBookmark_Product" FromRole="Product" ToRole="ProductBookmark" />
-    <NavigationProperty Name="ProductFeedback" Relationship="Reklama.Data.Entities.FK_ProductFeedback_Product" FromRole="Product" ToRole="ProductFeedback" />
-    <NavigationProperty Name="ProductImage" Relationship="Reklama.Data.Entities.FK_ProductImage_Product" FromRole="Product" ToRole="ProductImage" />
-    <NavigationProperty Name="ShopProduct" Relationship="Reklama.Data.Entities.FK_ShopProduct_Product" FromRole="Product" ToRole="ShopProduct" />
-    <Property Name="ReviewLink" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-    <Property Name="Title" Type="String" Nullable="false" MaxLength="180" FixedLength="false" Unicode="true" />
-    <Property Name="SmallDescription" Type="String" Nullable="false" MaxLength="600" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="IsActive" Type="Boolean" Nullable="false" />
-    <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="Category" Relationship="Reklama.Data.Entities.FK_Product_Category" FromRole="Product" ToRole="Category" />
-    <NavigationProperty Name="ProductParameterValue" Relationship="Reklama.Data.Entities.FK_ProductParameterValue_Product" FromRole="Product" ToRole="ProductParameterValue" />
   </EntityType>
   <EntityType Name="ProductBookmark">
     <Key>
@@ -255,9 +234,9 @@
     <Property Name="ProductID" Type="Int64" Nullable="false" />
     <Property Name="ShopProductStatusID" Type="Int32" Nullable="false" />
     <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
-    <NavigationProperty Name="Product" Relationship="Reklama.Data.Entities.FK_ShopProduct_Product" FromRole="ShopProduct" ToRole="Product" />
     <NavigationProperty Name="Shop" Relationship="Reklama.Data.Entities.FK_ShopProduct_Shop" FromRole="ShopProduct" ToRole="Shop" />
     <NavigationProperty Name="ShopProductStatus" Relationship="Reklama.Data.Entities.FK_ShopProduct_ShopProductStatus" FromRole="ShopProduct" ToRole="ShopProductStatus" />
+    <NavigationProperty Name="Product" Relationship="Reklama.Data.Entities.FK_ShopProduct_Product" FromRole="ShopProduct" ToRole="Product" />
   </EntityType>
   <EntityType Name="ShopProductStatus">
     <Key>
@@ -274,6 +253,143 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ProductParameterValue" Relationship="Reklama.Data.Entities.FK_ProductParameterValue_Unit" FromRole="Unit" ToRole="ProductParameterValue" />
+  </EntityType>
+  <Association Name="FK_ShopFeedback_Shop">
+    <End Type="Reklama.Data.Entities.Shop" Role="Shop" Multiplicity="1" />
+    <End Type="Reklama.Data.Entities.ShopFeedback" Role="ShopFeedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ShopFeedback">
+        <PropertyRef Name="ShopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShopProduct_Shop">
+    <End Type="Reklama.Data.Entities.Shop" Role="Shop" Multiplicity="1" />
+    <End Type="Reklama.Data.Entities.ShopProduct" Role="ShopProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ShopProduct">
+        <PropertyRef Name="ShopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShopProduct_ShopProductStatus">
+    <End Type="Reklama.Data.Entities.ShopProductStatus" Role="ShopProductStatus" Multiplicity="1" />
+    <End Type="Reklama.Data.Entities.ShopProduct" Role="ShopProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShopProductStatus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ShopProduct">
+        <PropertyRef Name="ShopProductStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CategoryParameter">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SectionID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CategoryParametersSection" Relationship="Reklama.Data.Entities.FK_CategoryParameter_CategoryParametersSection" FromRole="CategoryParameter" ToRole="CategoryParametersSection" />
+    <NavigationProperty Name="ProductParameterValue" Relationship="Reklama.Data.Entities.FK_ProductParameterValue_CategoryParameter" FromRole="CategoryParameter" ToRole="ProductParameterValue" />
+  </EntityType>
+  <EntityType Name="CategoryParametersSection">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CategoryParameter" Relationship="Reklama.Data.Entities.FK_CategoryParameter_CategoryParametersSection" FromRole="CategoryParametersSection" ToRole="CategoryParameter" />
+    <NavigationProperty Name="Category" Relationship="Reklama.Data.Entities.FK_CategoryParametersSection_Category" FromRole="CategoryParametersSection" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="ProductParameterValue">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CategoryParameterID" />
+    </Key>
+    <Property Name="ProductID" Type="Int64" Nullable="false" />
+    <Property Name="CategoryParameterID" Type="Int32" Nullable="false" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UnitID" Type="Int32" />
+    <NavigationProperty Name="CategoryParameter" Relationship="Reklama.Data.Entities.FK_ProductParameterValue_CategoryParameter" FromRole="ProductParameterValue" ToRole="CategoryParameter" />
+    <NavigationProperty Name="Unit" Relationship="Reklama.Data.Entities.FK_ProductParameterValue_Unit" FromRole="ProductParameterValue" ToRole="Unit" />
+    <NavigationProperty Name="Product" Relationship="Reklama.Data.Entities.FK_ProductParameterValue_Product" FromRole="ProductParameterValue" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_CategoryParameter_CategoryParametersSection">
+    <End Type="Reklama.Data.Entities.CategoryParametersSection" Role="CategoryParametersSection" Multiplicity="1" />
+    <End Type="Reklama.Data.Entities.CategoryParameter" Role="CategoryParameter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryParametersSection">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CategoryParameter">
+        <PropertyRef Name="SectionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductParameterValue_CategoryParameter">
+    <End Type="Reklama.Data.Entities.CategoryParameter" Role="CategoryParameter" Multiplicity="1" />
+    <End Type="Reklama.Data.Entities.ProductParameterValue" Role="ProductParameterValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryParameter">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductParameterValue">
+        <PropertyRef Name="CategoryParameterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductParameterValue_Unit">
+    <End Type="Reklama.Data.Entities.Unit" Role="Unit" Multiplicity="0..1" />
+    <End Type="Reklama.Data.Entities.ProductParameterValue" Role="ProductParameterValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductParameterValue">
+        <PropertyRef Name="UnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="Reklama.Data.Entities.FK_Category_Group" FromRole="Group" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="ManufacturerID" Type="Int32" Nullable="false" />
+    <Property Name="ReviewLink" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="180" FixedLength="false" Unicode="true" />
+    <Property Name="SmallDescription" Type="String" Nullable="false" MaxLength="600" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsPopular" Type="Boolean" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Manufacturer" Relationship="Reklama.Data.Entities.FK_Product_Manufacturer" FromRole="Product" ToRole="Manufacturer" />
+    <NavigationProperty Name="ProductBookmark" Relationship="Reklama.Data.Entities.FK_ProductBookmark_Product" FromRole="Product" ToRole="ProductBookmark" />
+    <NavigationProperty Name="ProductFeedback" Relationship="Reklama.Data.Entities.FK_ProductFeedback_Product" FromRole="Product" ToRole="ProductFeedback" />
+    <NavigationProperty Name="ProductImage" Relationship="Reklama.Data.Entities.FK_ProductImage_Product" FromRole="Product" ToRole="ProductImage" />
+    <NavigationProperty Name="ProductParameterValue" Relationship="Reklama.Data.Entities.FK_ProductParameterValue_Product" FromRole="Product" ToRole="ProductParameterValue" />
+    <NavigationProperty Name="ShopProduct" Relationship="Reklama.Data.Entities.FK_ShopProduct_Product" FromRole="Product" ToRole="ShopProduct" />
+    <NavigationProperty Name="Category" Relationship="Reklama.Data.Entities.FK_Product_Category" FromRole="Product" ToRole="Category" />
   </EntityType>
   <Association Name="FK_Product_Manufacturer">
     <End Type="Reklama.Data.Entities.Manufacturer" Role="Manufacturer" Multiplicity="1" />
@@ -323,6 +439,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ProductParameterValue_Product">
+    <End Type="Reklama.Data.Entities.Product" Role="Product" Multiplicity="1" />
+    <End Type="Reklama.Data.Entities.ProductParameterValue" Role="ProductParameterValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductParameterValue">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ShopProduct_Product">
     <End Type="Reklama.Data.Entities.Product" Role="Product" Multiplicity="1" />
     <End Type="Reklama.Data.Entities.ShopProduct" Role="ShopProduct" Multiplicity="*" />
@@ -335,42 +463,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ShopFeedback_Shop">
-    <End Type="Reklama.Data.Entities.Shop" Role="Shop" Multiplicity="1" />
-    <End Type="Reklama.Data.Entities.ShopFeedback" Role="ShopFeedback" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Shop">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="ShopFeedback">
-        <PropertyRef Name="ShopID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ShopProduct_Shop">
-    <End Type="Reklama.Data.Entities.Shop" Role="Shop" Multiplicity="1" />
-    <End Type="Reklama.Data.Entities.ShopProduct" Role="ShopProduct" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Shop">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="ShopProduct">
-        <PropertyRef Name="ShopID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ShopProduct_ShopProductStatus">
-    <End Type="Reklama.Data.Entities.ShopProductStatus" Role="ShopProductStatus" Multiplicity="1" />
-    <End Type="Reklama.Data.Entities.ShopProduct" Role="ShopProduct" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ShopProductStatus">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="ShopProduct">
-        <PropertyRef Name="ShopProductStatusID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="Category">
     <Key>
       <PropertyRef Name="ID" />
@@ -380,52 +472,11 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
     <Property Name="IsNew" Type="Boolean" Nullable="false" />
+    <Property Name="IsPopular" Type="Boolean" Nullable="false" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Group" Relationship="Reklama.Data.Entities.FK_Category_Group" FromRole="Category" ToRole="Group" />
     <NavigationProperty Name="CategoryParametersSection" Relationship="Reklama.Data.Entities.FK_CategoryParametersSection_Category" FromRole="Category" ToRole="CategoryParametersSection" />
     <NavigationProperty Name="Product" Relationship="Reklama.Data.Entities.FK_Product_Category" FromRole="Category" ToRole="Product" />
-  </EntityType>
-  <EntityType Name="CategoryParameter">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="SectionID" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="CategoryParametersSection" Relationship="Reklama.Data.Entities.FK_CategoryParameter_CategoryParametersSection" FromRole="CategoryParameter" ToRole="CategoryParametersSection" />
-    <NavigationProperty Name="ProductParameterValue" Relationship="Reklama.Data.Entities.FK_ProductParameterValue_CategoryParameter" FromRole="CategoryParameter" ToRole="ProductParameterValue" />
-  </EntityType>
-  <EntityType Name="CategoryParametersSection">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="CategoryID" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Category" Relationship="Reklama.Data.Entities.FK_CategoryParametersSection_Category" FromRole="CategoryParametersSection" ToRole="Category" />
-    <NavigationProperty Name="CategoryParameter" Relationship="Reklama.Data.Entities.FK_CategoryParameter_CategoryParametersSection" FromRole="CategoryParametersSection" ToRole="CategoryParameter" />
-  </EntityType>
-  <EntityType Name="Group">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Category" Relationship="Reklama.Data.Entities.FK_Category_Group" FromRole="Group" ToRole="Category" />
-  </EntityType>
-  <EntityType Name="ProductParameterValue">
-    <Key>
-      <PropertyRef Name="ProductID" />
-      <PropertyRef Name="CategoryParameterID" />
-    </Key>
-    <Property Name="ProductID" Type="Int64" Nullable="false" />
-    <Property Name="CategoryParameterID" Type="Int32" Nullable="false" />
-    <Property Name="Value" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="UnitID" Type="Int32" />
-    <NavigationProperty Name="CategoryParameter" Relationship="Reklama.Data.Entities.FK_ProductParameterValue_CategoryParameter" FromRole="ProductParameterValue" ToRole="CategoryParameter" />
-    <NavigationProperty Name="Product" Relationship="Reklama.Data.Entities.FK_ProductParameterValue_Product" FromRole="ProductParameterValue" ToRole="Product" />
-    <NavigationProperty Name="Unit" Relationship="Reklama.Data.Entities.FK_ProductParameterValue_Unit" FromRole="ProductParameterValue" ToRole="Unit" />
   </EntityType>
   <Association Name="FK_Category_Group">
     <End Type="Reklama.Data.Entities.Group" Role="Group" Multiplicity="1" />
@@ -460,54 +511,6 @@
       </Principal>
       <Dependent Role="Product">
         <PropertyRef Name="CategoryID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CategoryParameter_CategoryParametersSection">
-    <End Type="Reklama.Data.Entities.CategoryParametersSection" Role="CategoryParametersSection" Multiplicity="1" />
-    <End Type="Reklama.Data.Entities.CategoryParameter" Role="CategoryParameter" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CategoryParametersSection">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="CategoryParameter">
-        <PropertyRef Name="SectionID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProductParameterValue_CategoryParameter">
-    <End Type="Reklama.Data.Entities.CategoryParameter" Role="CategoryParameter" Multiplicity="1" />
-    <End Type="Reklama.Data.Entities.ProductParameterValue" Role="ProductParameterValue" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CategoryParameter">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="ProductParameterValue">
-        <PropertyRef Name="CategoryParameterID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProductParameterValue_Product">
-    <End Type="Reklama.Data.Entities.Product" Role="Product" Multiplicity="1" />
-    <End Type="Reklama.Data.Entities.ProductParameterValue" Role="ProductParameterValue" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Product">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="ProductParameterValue">
-        <PropertyRef Name="ProductID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProductParameterValue_Unit">
-    <End Type="Reklama.Data.Entities.Unit" Role="Unit" Multiplicity="0..1" />
-    <End Type="Reklama.Data.Entities.ProductParameterValue" Role="ProductParameterValue" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Unit">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="ProductParameterValue">
-        <PropertyRef Name="UnitID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

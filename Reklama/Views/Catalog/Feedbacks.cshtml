@@ -18,7 +18,7 @@
                 @Html.Partial("_Manufacturers", new ManufacturersMenuViewModel
                 {
                     CurrentCategory = Model.Product.Category,
-                    Manufacturers = Model.Product.Category.Product.Select(q => q.Manufacturer)
+                    Manufacturers = Model.Product.Category.Product.Select(q => q.Manufacturer).Distinct()
                 })
                 @{ Html.RenderAction("GetUnderFiltersBanner", "Banners");}
 

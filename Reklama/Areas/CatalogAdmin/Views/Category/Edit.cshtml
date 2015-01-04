@@ -1,0 +1,300 @@
+﻿@model Reklama.Areas.CatalogAdmin.Models.EditCategoryViewModel
+
+@{
+    ViewBag.Title = "Редактирование категории";
+    Layout = "~/Areas/CatalogAdmin/Views/Shared/_adminLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header">@(Model.Category != null ? Model.Category.Name : "Добавление категории")</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-info btn-grad col-lg-4" href="@Url.Action("Index")">Назад к списку</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box dark">
+            <header>
+                <div class="icons"><i class="icon-edit"></i></div>
+                <h5>Редактирование</h5>
+            </header>
+            <div id="div-1" class="accordion-body collapse in body">
+                @using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    @Html.HiddenFor(model => model.Category.ID)
+                    <div class="form-group">
+                        <label class="control-label col-lg-4">Группа</label>
+
+                        <div class="col-lg-8 col-sm-8 col-4">
+                            @Html.DropDownListFor(q => q.Category.GroupID, Model.Groups, new { @class = "form-control chzn-select" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="text2" class="control-label col-lg-4">Название</label>
+
+                        <div class="col-lg-8">
+                            @Html.TextBoxFor(model => model.Category.Name, new { @class = "form-control", placeholder = "Введите название категории" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text2" class="control-label col-lg-4">Цена</label>
+
+                        <div class="col-lg-8">
+                            @Html.TextBoxFor(model => model.Category.Price, new { @class = "form-control", placeholder = "Введите стоимость категории для магазина" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text2" class="control-label col-lg-4">Is Popular?</label>
+                        <div class="col-lg-8">
+                            <div class="make-switch" data-on="success" data-off="danger">
+                                @Html.CheckBoxFor(model => model.Category.IsPopular)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="text2" class="control-label col-lg-4">Is New?</label>
+                        <div class="col-lg-8">
+                            <div class="make-switch" data-on="success" data-off="danger">
+                                @Html.CheckBoxFor(model => model.Category.IsNew)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text2" class="control-label col-lg-4">Is Active?</label>
+                        <div class="col-lg-8">
+                            <div class="make-switch" data-on="success" data-off="danger">
+                                @Html.CheckBoxFor(model => model.Category.IsActive)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-6 col-sm-6 col-3">
+                            <button type="submit" class="btn btn-success btn-block">Сохранить</button>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-3">
+                            <a class="btn btn-danger btn-block" href="@Url.Action("Index")">Отменить</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@if (Model.Category != null)
+{
+  
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box dark">
+            <header>
+                <div class="icons"><i class="icon-edit"></i></div>
+                <h5>Параметры категории</h5>
+            </header>
+            <div id="div-2" class="accordion-body collapse in body">
+                <div id="common-section-container">
+                    @foreach (var sec in Model.Sections)
+                    {
+                        <div class="row">
+
+                            <div class="col-lg-12 parameters-section">
+                                <div class="col-lg-4">
+                                    <input value="@sec.Name" class="form-control section-name" />
+                                </div>
+                                <div class="col-lg-8">
+                                    <button class="btn btn-success with-tooltip section-edit-button" type="button" data-sectionid="@sec.ID" data-toggle="tooltip" data-placement="right" title="Сохранить">
+                                        <i class="icon-save"></i>
+                                    </button>
+
+                                    <button class="btn btn-danger with-tooltip section-remove-button" type="button" data-sectionid="@sec.ID" data-toggle="tooltip" data-placement="right" title="Удалить">
+                                        <i class="icon-trash "></i>
+                                    </button>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="common-parameters-container">
+                                @foreach (var param in sec.CategoryParameter)
+                                {
+                                    <div class="col-lg-offset-1 col-lg-11 parameter-container">
+                                        <div class="col-lg-4">
+                                            <input value="@param.Name" class="form-control param-name" style="width: 100%;" />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input value="@param.Description" class="form-control param-desc" style="width: 100%;" />
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <button class="btn btn-success with-tooltip param-edit-button" type="button" data-parameterid="@param.ID" data-toggle="tooltip" data-placement="right" title="Сохранить">
+                                                <i class="icon-save"></i>
+                                            </button>
+
+                                            <button class="btn btn-danger with-tooltip param-remove-button" type="button" data-parameterid="@param.ID" data-toggle="tooltip" data-placement="right" title="Удалить">
+                                                <i class="icon-trash "></i>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-lg-offset-1 col-lg-11 parameter-container create">
+                                <div class="col-lg-4">
+                                    <input value="" class="form-control param-name" style="width: 100%;" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input value="" class="form-control param-desc" style="width: 100%;" />
+                                </div>
+                                <div class="col-lg-2">
+                                    <a class="btn btn-success with-tooltip addParametr" href="#" data-sectionid="@sec.ID" data-toggle="tooltip" data-placement="right" title="Добавить новый параметр">Добавить</a>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 parameters-section create">
+                        <div class="col-lg-4">
+                            <input value="" class="form-control section-name" />
+                        </div>
+                        <div class="col-lg-8">
+                            <a class="btn btn-success with-tooltip create-section" href="#" data-toggle="tooltip" data-placement="right" title="Добавить новую секцию">Добавить</a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script id="newSectionTemplate" type="text/html">
+    <div class="row">
+
+        <div class="col-lg-12 parameters-section">
+            <div class="col-lg-4">
+                <input value="${name}" class="form-control section-name" />
+            </div>
+            <div class="col-lg-8">
+                <button class="btn btn-success with-tooltip section-edit-button" type="button" data-sectionid="${sectionID}" data-toggle="tooltip" data-placement="right" title="Сохранить">
+                    <i class="icon-save"></i>
+                </button>
+
+                <button class="btn btn-danger with-tooltip section-remove-button" type="button" data-sectionid="${sectionID}" data-toggle="tooltip" data-placement="right" title="Удалить">
+                    <i class="icon-trash "></i>
+                </button>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="common-parameters-container">
+
+        </div>
+        <div class="col-lg-offset-1 col-lg-11 parameter-container create">
+            <div class="col-lg-4">
+                <input value="" class="form-control param-name" style="width: 100%;" />
+            </div>
+            <div class="col-lg-6">
+                <input value="" class="form-control param-desc" style="width: 100%;" />
+            </div>
+            <div class="col-lg-2">
+                <a class="btn btn-success with-tooltip addParametr" href="#" data-sectionid="${sectionID}" data-toggle="tooltip" data-placement="right" title="Добавить новый параметр">Добавить</a>
+
+            </div>
+        </div>
+    </div>    
+</script>
+
+<script id="newParameterTemplate" type="text/html">
+    <div class="col-lg-offset-1 col-lg-11 parameter-container">
+        <div class="col-lg-4">
+            <input value="${name}" class="form-control param-name" style="width: 100%;" />
+        </div>
+        <div class="col-lg-6">
+            <input value="${desc}" class="form-control param-desc" style="width: 100%;" />
+        </div>
+        <div class="col-lg-2">
+            <button class="btn btn-success with-tooltip param-edit-button" type="button" data-parameterid="${paramID}" data-toggle="tooltip" data-placement="right" title="Сохранить">
+                <i class="icon-save"></i>
+            </button>
+
+            <button class="btn btn-danger with-tooltip param-remove-button" type="button" data-parameterid="${paramID}" data-toggle="tooltip" data-placement="right" title="Удалить">
+                <i class="icon-trash "></i>
+            </button>
+        </div>
+    </div>
+</script>
+
+<script src="/Areas/CatalogAdmin/assets/js/categoryEdit.js"></script>
+}
+else
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box dark">
+                <header>
+                    <div class="icons"><i class="icon-edit"></i></div>
+                    <h5>Параметры категории</h5>
+                </header>
+                <div id="div-2" class="accordion-body collapse in body">
+                    <h3>
+                        Чтобы добавлять параметры, необходимо сохранить категорию.
+                    </h3></div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<style type="text/css">
+    #GroupID_chosen {
+        width: 100%;
+    }
+
+    .parameters-section {
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+
+    .parameter-container {
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+</style>
+
+<!-- PAGE LEVEL SCRIPT-->
+<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+<script src="/Areas/CatalogAdmin/assets/js/jquery-ui.min.js"></script>
+<script src="/Areas/CatalogAdmin/assets/plugins/uniform/jquery.uniform.min.js"></script>
+<script src="/Areas/CatalogAdmin/assets/plugins/inputlimiter/jquery.inputlimiter.1.3.1.min.js"></script>
+<script src="/Areas/CatalogAdmin/assets/plugins/chosen/chosen.jquery.min.js"></script>
+<script src="/Areas/CatalogAdmin/assets/plugins/validVal/js/jquery.validVal.min.js"></script>
+<script src="/Areas/CatalogAdmin/assets/plugins/switch/static/js/bootstrap-switch.min.js"></script>
+<script src="/Areas/CatalogAdmin/assets/plugins/autosize/jquery.autosize.min.js"></script>
+<script src="/Areas/CatalogAdmin/assets/plugins/jasny/js/bootstrap-inputmask.js"></script>
+<script src="/Areas/CatalogAdmin/assets/js/formsInit.js"></script>
+<script>
+    $(function () { formInit(); });
+</script>
+
+<!--END PAGE LEVEL SCRIPT-->

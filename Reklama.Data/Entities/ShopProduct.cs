@@ -19,8 +19,8 @@ namespace Reklama.Data.Entities
         public int ShopProductStatusID { get; set; }
         public Nullable<decimal> Price { get; set; }
     
-        public virtual Product Product { get; set; }
         public virtual Shop Shop { get; set; }
         public virtual ShopProductStatus ShopProductStatus { get; set; }
+        public virtual Product Product { get; set; }
     }
 }
