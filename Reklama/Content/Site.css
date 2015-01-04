@@ -4561,7 +4561,6 @@ a.addToBook span
     {
         float: left;
         margin: 14px 0 12px;
-        text-align: center;
         width: 100%;
     }
 
@@ -6726,12 +6725,6 @@ a.addToBook span
     border: 0 none;
 }
 
-.logoShop
-{
-    max-height: 45px;
-    max-width: 120px;
-}
-
 .ppInfo img
 {
     max-width: 75px;
@@ -8882,6 +8875,44 @@ body
     position: absolute;
     top: 0;
     margin: 0;
+}
+
+
+/* shop corrects*/
+.shopCont .shopLogo img {
+width: 200px;
+}
+
+.logoShop{
+	width: 200px;
+}
+
+.workResponse {
+margin-top: 1px;
+}
+
+/* shop details */
+.shopBlock p {
+color: #3a3a3a;
+font: 12px/135% Arial;
+padding-bottom: 15px;
+padding-right: 13px;
+}
+.sbtCenter p{
+margin-bottom:10px;
+}
+.sbtCenter .shopTime{
+margin-bottom:30px;
+}
+p.timex
+{
+font-size:8pt;
+padding-bottom: 0px;
+}
+
+/*bugfix*/
+.img img {
+width: 150px;
 }
 
 .popProducts .img img {
