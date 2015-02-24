@@ -8918,3 +8918,9 @@ width: 150px;
 .popProducts .img img {
     width: 100%;
 }
+
+/*fix images in catalog*/
+.prodListIn {
+width: 1000px;
+overflow: hidden;
+}
